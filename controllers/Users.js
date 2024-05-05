@@ -5,6 +5,9 @@ class Users{
     form(req, res){
         res.render('form');
     }
+    register(req, res){
+        res.render('register');
+    }
 }
 
 module.exports = new Users;

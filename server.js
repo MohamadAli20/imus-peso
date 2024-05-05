@@ -12,6 +12,7 @@ app.use(express.static("assets"));
 
 app.use('/', routes);
 app.use('/form', routes);
+app.use('/register', routes);
 
 app.listen(3000, () => {
     console.log('http://localhost:3000');
