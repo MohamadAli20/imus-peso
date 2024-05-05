@@ -1,0 +1,73 @@
+*{
+    /* border: 1px dotted red;     */
+}
+/* Navbar */
+nav{
+    border-bottom: 1px solid black;
+}
+    .custom-logo{
+        font-weight: bold;
+    }
+    .custom-links{
+        display: flex;
+        justify-content: center;
+    }
+    .custom-links ul li{
+        margin: 0 20px;
+    }
+    .custom-nav-button{
+        margin: 0 15px;
+    }
+/* Carousel */
+#carouselExample{
+    position: relative;
+}
+#apply-now{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    margin: 0 auto;
+}
+/* Modal */
+.modal-dialog{
+    margin-top: 10%;
+}
+.modal-header, .modal-footer{
+    border-radius: 0;
+    border: none;
+    background-color: white;
+}
+    .modal-header h1{
+        text-align: center;
+        width: 100%;
+    }
+.modal-body form label{
+    display: block;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+    .modal-body form label input{
+        display: block;
+        width: 100%;
+        border: none; /* This removes the border */
+        outline: none;
+    }
+.modal-footer{
+    /* border: 1px solid red; */
+}
+    .modal-footer p{
+        text-align: left;
+        position: absolute;
+        left: 10px;
+    }
+/* Footer */
+footer{
+    border-top: 1px solid black;
+    width: 100%;
+    height: 15%;
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    background-color: white;
+}
