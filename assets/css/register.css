@@ -49,6 +49,10 @@ main{
     z-index: 1;
     margin: 0 auto;
 }
+/* Form */
+.message{
+    height: 30px;
+}
 /* Modal */
 .modal-dialog{
     margin-top: 10%;
