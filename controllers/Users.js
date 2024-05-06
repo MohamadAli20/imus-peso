@@ -65,12 +65,12 @@ class Users{
                 }
                 if(!verified){
                     result = "Login Failed";
-                    res.render("index", { result });
+                    return result;
                 }
             });
         }
         else {
-            res.render("index", { result }); // Render result without verification
+            res.send(result); // Render result without verification
         }
     }
 }

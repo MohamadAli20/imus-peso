@@ -46,10 +46,10 @@
                 <h3 class="p-0">Registration</h3>
                 <div class="col-lg-12 col-md-8 col-sm-12 p-0 message">
                     <% if(typeof result !== "undefined" && result === "success"){ %>
-                    <p class="text-success" id="success">Successfully registered!</p>
+                    <p class="alert alert-success" id="success">Successfully registered!</p>
                     <% }
                     else if(typeof result !== "undefined"){ %>
-                    <p class="text-danger" id="error"><%= result %></p>
+                    <p class="alert alert-danger" id="error"><%= result %></p>
                     <% } %>
                 </div>
                 <div class="col-lg-12 col-md-8 col-sm-12 p-0"> <!-- On large screens, take 40% width, on medium screens 50%, on small screens occupy the whole width -->
@@ -81,7 +81,7 @@
             </div>
         </form>
     </main>
-    <!-- Modal -->
+    <!-- Login Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
