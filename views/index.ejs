@@ -14,8 +14,8 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand custom-logo" href="#">PESO Imus</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon border"></span>
             </button>
             <div class="collapse navbar-collapse custom-links" id="navbarNav">
                 <ul class="navbar-nav">
@@ -29,7 +29,11 @@
                         <a class="nav-link" href="/form">Apply Now</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="custom-nav-button btn border-primary text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+                        <div class="d-flex align-items-center">
+                            <p class="d-inline-block py-0 my-0 mx-1" id="username"></p> 
+                            <button id="btnLogout" type="button" class="d-inline-block custom-nav-button btn border-primary text-primary mx-1">Logout</button>
+                            <button id="navLoginBtn" type="button" class="d-inline-block custom-nav-button btn border-primary text-primary mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -74,7 +78,6 @@
                 </div>
                 <div class="modal-body">
                     <div id="loginMessage">
-
                     </div>
                     <form id="loginForm">
                         <label>Email address:

@@ -16,6 +16,13 @@ nav{
     .custom-links ul li{
         margin: 0 20px;
     }
+    #username{
+        font-weight: bold;
+        cursor: pointer;
+    }
+    #logoutModal{
+        border: 1px solid black;
+    }
 #apply-now{
     position: absolute;
     z-index: 1;

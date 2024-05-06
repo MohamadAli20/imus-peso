@@ -1,4 +1,5 @@
 const model = require("../models/User");
+const session = require('express-session');
 
 class Users{
     index(req, res){
@@ -61,11 +62,13 @@ class Users{
                     return;
                 }
                 if(verified){
-                    res.render("profile", { information });
+                    /* Store in session */
+                    req.session.username = information.username;
+                    res.json({ success: true, username: information.username });
                 }
                 if(!verified){
                     result = "Login Failed";
-                    return result;
+                    res.send(result);
                 }
             });
         }
