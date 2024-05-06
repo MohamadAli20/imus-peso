@@ -4,7 +4,7 @@ $(document).ready(() => {
     let form = $(".modal-body form");
     
     $("#btnLogin").click(function(){
-        $(".alert").remove();
+        $(".message .alert").remove();
 
         let email = $(form).find("input[name='email']").val();
         let password = $(form).find("input[name='password']").val();
@@ -28,7 +28,7 @@ $(document).ready(() => {
                 $(".message").append(p);
                 
                 setTimeout(function(){
-                    $(".alert").remove();
+                    $(".message .alert").remove();
                 }, 3000);
                 
             },
@@ -38,4 +38,7 @@ $(document).ready(() => {
         })
     });
 
+    /* For registration */
+    $('#success').delay(3000).fadeOut();
+    $('#error').delay(3000).fadeOut();
 });
