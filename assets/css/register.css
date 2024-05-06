@@ -17,20 +17,32 @@ nav{
         margin: 0 20px;
     }
 main{
-    /* border: 1px dotted gray; */
+    text-align: left;
 }
-    main form{
-        /* border: 1px solid black; */
-        width: 50%;
+    .custom-form{
+        margin-left: 0;
     }
-    main form label{
-        display: block;
-        /* border: 1px solid black; */
-        
+    @media (min-width: 1024px){
+        .custom-form{
+            width: 50%;
+        }
     }
-        main form label input{
-            display: block;
-            width: 100%;
+    .custom-label{
+        border: 1px solid black;
+        width: 100%;
+        padding: 5px;
+    }
+        .custom-label label{
+            padding: 0 5px;
+        }
+        .custom-label input{
+            border: 0;
+            outline: 0;
+            /* margin: 0; */
+            /* padding: 0; */
+        }
+        input:focus {
+            outline: none; /* Remove the outline when focused */
         }
 #apply-now{
     position: absolute;
@@ -62,19 +74,3 @@ main{
         border: none; /* This removes the border */
         outline: none;
     }
-
-    .modal-footer p{
-        text-align: left;
-        position: absolute;
-        left: 10px;
-    }
-/* Footer */
-footer{
-    border-top: 1px solid black;
-    /* width: 100%;
-    height: 15%;
-    position: absolute;
-    bottom: 0;
-    overflow: hidden;
-    background-color: white; */
-}
