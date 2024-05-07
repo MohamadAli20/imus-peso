@@ -56,42 +56,20 @@ nav{
     #close-icon{
         display: none;
     }
-/* Main */
-main{
-    text-align: left;
-}
-    .custom-form{
-        margin-left: 0;
-    }
-    @media (min-width: 1024px){
-        .custom-form{
-            width: 50%;
-        }
-    }
-    .custom-label{
-        border: 1px solid #038aff;
+/* Responsive links */
+@media screen and (max-width: 989px){
+    .custom-links{
+        z-index: 5;
+        position: absolute;
+        top: 100%;
+        background-color: rgba(3, 138, 255, 0.8);
         width: 100%;
-        padding: 5px;
-        border-radius: 5px;
+        padding: 10px 0;
+        -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
     }
-        .custom-label label{
-            padding: 0 5px;
-        }
-        .custom-label input{
-            border: 0;
-            outline: 0;
-            background-color: #F3F4F8;
-        }
-        input:focus {
-            background-color: transparent;
-        }
-        .form-control:focus {
-            background-color: transparent;
-            border-radius: 0;
-            border: 0;
-            outline: 0;
-            box-shadow: none;
-        }
+}
 /* Login Modal */
 .modal-dialog{
     position: absolute;
@@ -121,3 +99,14 @@ main{
         border: none;
         outline: none;
     }
+/* Message Modal */
+#messageAlert{
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#messageAlert div{
+    width: 35%;
+    display: none;
+    margin: 0 auto;
+}

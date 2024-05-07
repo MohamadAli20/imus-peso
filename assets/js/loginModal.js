@@ -1,15 +1,26 @@
 $(document).ready(() => {
 
-
-
     let checkUserLogin = () => {
         let username = localStorage.getItem('username');
         if(username){
-            $("#username").text(username).show();
-            $("#navLoginBtn").css("display", "none");
+            $("#username p").text(username);
+            $("#username p").show();
+            $("#navLoginBtn").hide();
+        }
+        else{
+            $("#username p").text("");
+            $("#username").hide();
+            $("#navLoginBtn").show();
         }
     }
     checkUserLogin();
+
+    $("#btnLogout").click(function(){
+        localStorage.removeItem('username');
+        checkUserLogin();
+        location.reload();
+    });
+    
 
     let form = $(".modal-body form");
     $("#btnLogin").click(function(){
@@ -27,6 +38,7 @@ $(document).ready(() => {
                     localStorage.setItem('username', response.username)
                     $("#username").css("display", "block");
                     $("#navLoginBtn").css("display", "none");
+                    location.reload();
                 }
                 else{
                     $(".message").css({
