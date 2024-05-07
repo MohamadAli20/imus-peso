@@ -56,3 +56,94 @@ nav{
     #close-icon{
         display: none;
     }
+/* Responsive links */
+@media screen and (max-width: 989px){
+    .custom-links{
+        z-index: 5;
+        position: absolute;
+        top: 100%;
+        background-color: rgba(3, 138, 255, 0.8);
+        width: 100%;
+        padding: 10px 0;
+        -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    }
+}
+/* Main */
+main{
+    height: 100vh;
+}
+.form-section{
+    background-color: #038aff;
+    border-top: 1px solid #F3F4F8;
+    height: 100vh;
+}
+    .form-section a{
+        display: block;
+        text-decoration: none;
+        color: #F3F4F8;
+        padding: 10px 0;
+    }
+    #arrow-icon{
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        display: none;
+    }
+@media screen and (max-width: 750px){
+    .form-section{
+        display: none;
+    }
+    #arrow-icon{
+        display: block;
+        border-radius: 100px;
+        padding: 10px;
+    }
+    #arrow-icon:hover{
+        -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+    }
+}
+/* Login Modal */
+.modal-dialog{
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.modal-header, .modal-footer{
+    border: none;
+    background-color: white;
+}
+    .modal-header h1{
+        text-align: center;
+        width: 100%;
+    }
+.modal-body form label{
+    display: block;
+    border: 1px solid #038aff;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+    .modal-body form label input{
+        display: block;
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+/* Message Modal */
+#messageAlert{
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#messageAlert div{
+    width: 35%;
+    display: none;
+    margin: 0 auto;
+}

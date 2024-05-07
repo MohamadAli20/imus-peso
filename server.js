@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("assets"));
 
 app.use('/', routes);
-app.use('/form', routes);
+app.use('/apply', routes);
 app.use('/register', routes);
 
 app.listen(3000, () => {
