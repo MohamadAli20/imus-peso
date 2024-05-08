@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
     <link rel="icon" type="image/png" href="/images/peso-logo.png">
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap 5.3 -->
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- CSS and JavaScript -->
     <link rel="stylesheet" href="/css/form.css">
     <script src="/js/loginModal.js"></script>
+    <script src="/js/formSection.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -48,28 +52,155 @@
     </nav>
     <!-- Main -->
     <main class="row m-0">
-        <div class="col-md-3 form-section">
-            <a href="">Personal Information</a>
-            <a href="">Job Preference</a>
-            <a href="">Language / Dialect Proficiency</a>
-            <a href="">Educational Background</a>
-            <a href="">Technical / Vocation / Training</a>
-            <a href="">Eligibility / Professional License</a>
-            <a href="">Work Experience</a>
-            <a href="">Other Skills Acquired with Formal Training</a>
-            <a href="">Certification and Authorization</a>
+        <div class="col-md-3 col-sm-3 form-section">
+            <div>
+                <a href="">Personal Information</a>
+                <a href="">Job Preference</a>
+                <a href="">Language / Dialect Proficiency</a>
+                <a href="">Educational Background</a>
+                <a href="">Technical / Vocation / Training</a>
+                <a href="">Eligibility / Professional License</a>
+                <a href="">Work Experience</a>
+                <a href="">Other Skills Acquired with Formal Training</a>
+                <a href="">Certification and Authorization</a>
+                <figure id="arrow-icon" class="d-inline-block col-sm-2">
+                    <img id="arrow-forward" src="/images/arrow_forward.svg" alt="Arrow forward icon">
+                </figure>
+            </div>
         </div>
-        <div class="col-md-9 border">
-            <figure id="arrow-icon" class="">
-                <img src="/images/arrow_forward.svg" alt="Arrow forward icon">
-            </figure>
-            <p>Second col</p>
+        <div class="col-md-9 col-sm-9 col-12 form-content">
+            <a href="">Go Back</a>
+            <div class="row border custom-form">
+                <h4>INSTRUCTIONS:</h4>
+                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="surname" type="text" name="surname" placeholder="Surname">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="firstname" type="text" name="firstname" placeholder="First name">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="lastname" type="text" name="lastname" placeholder="Last name">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="suffix" type="text" name="suffix" placeholder="Suffix (Jr, Sr, etc.)">
+                </div>
+            </div>
+            <div class="row border custom-form">
+                <div class="col-md-3 col-sm-6">
+                    <input id="date" class="form-control" type="date" name="date" placeholder="Birthdate">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="email" type="email" name="email" placeholder="Email">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="contact" type="text" name="contact" placeholder="Contact">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="height" type="text" name="height" placeholder="Height">
+                </div>
+            </div>
+            <div class="row border custom-form">
+                <div class="col-md-3 col-sm-6 col-6 border">
+                    Gender
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="male">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="female">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-6">
+                    Civil Status
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="civil_status" id="single">
+                        <label class="form-check-label" for="single">Single</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="civil_status" id="married">
+                        <label class="form-check-label" for="married">Married</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="civil_status" id="widowed">
+                        <label class="form-check-label" for="widowed">Widowed</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-6">
+                    Disability
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="disability" id="visual">
+                        <label class="form-check-label" for="visual">Visual</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="disability" id="hearing">
+                        <label class="form-check-label" for="hearing">Hearing</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="disability" id="speech">
+                        <label class="form-check-label" for="speech">Speech</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="disability" id="physical">
+                        <label class="form-check-label" for="physical">Physical</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="disability" id="mental">
+                        <label class="form-check-label" for="mental">Mental</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="disability" id="Others">
+                        <label class="form-check-label" for="Others">Others</label>
+                        <input class="form-control" type="text" name="">
+                    </div>
+                </div>
+            </div>
+            <div class="row border custom-form">
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="religion" type="text" name="religion" placeholder="Religion">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="contact" type="text" name="contact" placeholder="Contact    ">
+                </div>
+            </div>
+            <div class="row border custom-form">
+                <div class="col-md-12 col-sm-12 pb-3">
+                    Present Address
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" type="text" name="province" id="province" placeholder="Province">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" id="city-municipality" type="text" name="city-municipality" placeholder="City or municipality">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" type="text" name="barangay" id="barangay" placeholder="Barangay">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <input class="form-control" type="text" name="house_no_street" id="house_no_street" placeholder="House No. / Street">
+                </div>
+            </div>
+            <div class="row border custom-form">
+                <div class="col-md-12">Employment Status / Type</div>
+                <p class="col-md-12">Please input only one type of employment status, disregard the other one.</p>
+                <div class="col-md-4">
+                    Employment Status
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="employment_status" id="employed">
+                        <label class="form-check-label" for="employed">Employed</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="employment_status" id="unemployed">
+                        <label class="form-check-label" for="unemployed">Unemployed</label>
+                    </div>
+                </div>
+                
+            </div>
         </div>
-        <footer>
-            This is footer
-        </footer>
     </main>
-
     <!-- Logout Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -119,6 +250,16 @@
             </div>
         </div>
     </div>
+    <!-- jQuery plugins floating label -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.placeholder.label.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function (){
+			$('input[placeholder]').placeholderLabel();
+        })
+	</script>
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
