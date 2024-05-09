@@ -93,6 +93,9 @@ main{
     #arrow-icon{
         visibility: hidden;
     }
+    #arrow-back{
+        display: none;
+    }
 .form-content{
     overflow: auto;
     position: absolute;

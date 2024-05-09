@@ -1,49 +1,36 @@
 $(document).ready(function(){
-    // Forward arrow click handler
-    $(document).on('click', "#arrow-forward", function(){
-        $(".form-section").animate({left: '0px'})
-        $('#arrow-forward').remove();
-        
-        let img = $('<img id="arrow-back" src="/images/arrow_back.svg" alt="Arrow back icon">');
-        $("#arrow-icon").append(img);
-    });
+    /*
+    * show side bar ehrn arrow forward is clicked
+    * change the arrow forward with arrow back
+    */
+    
 
-    // Back arrow click handler using event delegation
-    $(document).on('click', '#arrow-back', function(){
+    let openSideBar = () => {
+        $(".form-section").animate({left: '0px'})
+        $("#arrow-forward").css("display", "none");
+        $("#arrow-back").css("display", "block");
+    }
+    let closeSideBar = () => {
         $(".form-section").animate({left: '-200px'});
-        $('#arrow-back').remove();
-        
-        let img = $('<img id="arrow-forward" src="/images/arrow_forward.svg" alt="Arrow forward icon">');
-        $("#arrow-icon").append(img);
+        $("#arrow-forward").css("display", "block");
+        $("#arrow-back").css("display", "none");
+    }
+    
+    $(document).on('click', "#arrow-forward", function(){
+       openSideBar();
+       $('#navbarNav').collapse('hide');
+    });
+    $(document).on('click', '#arrow-back', function(){
+        closeSideBar();
     });
 
     $("input[type='date']").change(function() {
         $(this).css('color', 'black');
     });
 
-    // $('input[placeholder]').placeholderLabel({
-
-    //     // placeholder color
-    //     placeholderColor: "#898989", 
-    
-    //     // label color
-    //     labelColor: "#4AA2CC",
-    
-    //     // size of label
-    //     labelSize: "14px",
-    
-    //     // font style
-    //     fontStyle: "normal", 
-    
-    //     // uses border color
-    //     useBorderColor: true, 
-    
-    //     // displayed in the input
-    //     inInput: true, 
-    
-    //     // time to move
-    //     timeMove: 200 
-        
-    //   });
-        
+    $(".navbar-toggler").click(function(){
+        closeSideBar();
+        // let img = $('<img id="arrow-forward" src="/images/arrow_forward.svg" alt="Arrow forward icon">');
+        // $("#arrow-icon").css("left", "0");
+    })
 });
