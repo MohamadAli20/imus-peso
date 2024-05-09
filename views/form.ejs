@@ -54,56 +54,58 @@
     <main class="row m-0">
         <div class="col-md-3 col-sm-3 form-section bg-primary">
             <div class="side-bar-links">
-                <a href="">Personal Information</a>
-                <a href="">Job Preference</a>
-                <a href="">Language / Dialect Proficiency</a>
-                <a href="">Educational Background</a>
-                <a href="">Technical / Vocation / Training</a>
-                <a href="">Eligibility / Professional License</a>
-                <a href="">Work Experience</a>
-                <a href="">Other Skills Acquired with Formal Training</a>
-                <a href="">Certification and Authorization</a>
+                <a id="personal-information" href="#">Personal Information</a>
+                <a id="job-preference" href="#">Job Preference</a>
+                <a href="#">Language / Dialect Proficiency</a>
+                <a href="#">Educational Background</a>
+                <a href="#">Technical / Vocation / Training</a>
+                <a href="#">Eligibility / Professional License</a>
+                <a href="#">Work Experience</a>
+                <a href="#">Other Skills Acquired with Formal Training</a>
+                <a href="#">Certification and Authorization</a>
             </div>
             <figure id="arrow-icon" class="col-sm-2">
                 <img id="arrow-forward" src="/images/arrow_forward.svg" alt="Arrow forward icon">
                 <img id="arrow-back" src="/images/arrow_back.svg" alt="Arrow back icon">
             </figure>
         </div>
-        
-        <div class="col-md-9 col-sm-9 col-12 form-content">
-            <a href="">Go Back</a>
-            <h4>INSTRUCTIONS:</h4>
-            <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
-            <div class="row custom-form border">
-                <div class="col-md-3 col-sm-6">
+        <!-- Personal Information -->
+        <div class="col-md-9 col-sm-9 col-12 form-content personal-information">
+            <header>
+                <a href="">Go Back</a>
+                <h4>INSTRUCTIONS:</h4>
+                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+            </header>
+            <div class="row custom-form">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="surname" type="text" name="surname" placeholder="Surname">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="firstname" type="text" name="firstname" placeholder="First name">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="lastname" type="text" name="lastname" placeholder="Last name">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="suffix" type="text" name="suffix" placeholder="Suffix (Jr, Sr, etc.)">
                 </div>
             </div>
             <div class="row custom-form">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input id="date" class="form-control" type="date" name="date" placeholder="Birthdate">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="email" type="email" name="email" placeholder="Email">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="contact" type="text" name="contact" placeholder="Contact">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="height" type="text" name="height" placeholder="Height">
                 </div>
             </div>
             <div class="row custom-form">
-                <div class="col-md-3 col-sm-6 col-6">
+                <div class="col-md-3 col-sm-6 col-6 mt-3">
                     Gender
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="male">
@@ -114,7 +116,7 @@
                         <label class="form-check-label" for="female">Female</label>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-6">
+                <div class="col-md-3 col-sm-6 col-6 mt-3">
                     Civil Status
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="civil_status" id="single">
@@ -129,65 +131,73 @@
                         <label class="form-check-label" for="widowed">Widowed</label>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-6">
-                    Disability
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="disability" id="visual">
-                        <label class="form-check-label" for="visual">Visual</label>
+                <div class="col-lg-6 col-md-3 col-sm-6 col-6 mt-3">
+                    <div>
+                        Disability
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="disability" id="hearing">
-                        <label class="form-check-label" for="hearing">Hearing</label>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="disability" id="visual">
+                                <label class="form-check-label" for="visual">Visual</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="disability" id="hearing">
+                                <label class="form-check-label" for="hearing">Hearing</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="disability" id="speech">
+                                <label class="form-check-label" for="speech">Speech</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="disability" id="physical">
+                                <label class="form-check-label" for="physical">Physical</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="disability" id="mental">
+                                <label class="form-check-label" for="mental">Mental</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="disability" id="disability_others">
+                                <label class="form-check-label" for="disability_others">Others</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="disability" id="speech">
-                        <label class="form-check-label" for="speech">Speech</label>
+                    <div class="mt-3 ">
+                        <input class="col-12 form-control" type="text" name="disability_others" placeholder="Please specify">
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-6">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="disability" id="physical">
-                        <label class="form-check-label" for="physical">Physical</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="disability" id="mental">
-                        <label class="form-check-label" for="mental">Mental</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="disability" id="Others">
-                        <label class="form-check-label" for="Others">Others</label>
-                    </div>
-                    <input class="form-control" type="text" name="">
                 </div>
             </div>
-            <div class="row custom-form">
-                <div class="col-md-3 col-sm-6">
+            <div class="row custom-form pt-3">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="religion" type="text" name="religion" placeholder="Religion">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" id="contact" type="text" name="contact" placeholder="Contact    ">
                 </div>
             </div>
-            <div class="row custom-form">
-                <div class="col-md-12 col-sm-12 pb-3">
+            <div class="row custom-form pt-3">
+                <div class="col-md-12 col-sm-12">
                     Present Address
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="province" id="province" placeholder="Province">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" id="city-municipality" type="text" name="city-municipality" placeholder="City or municipality">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="barangay" id="barangay" placeholder="Barangay">
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="house_no_street" id="house_no_street" placeholder="House No. / Street">
                 </div>
             </div>
-            <div class="row custom-form">
+            <div class="row custom-form pt-3">
                 <div class="col-md-12">Employment Status / Type</div>
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-6 col-md-12 mt-3">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="employment_status" id="employed">
                         <label class="form-check-label" for="employed">Employed</label>
@@ -240,15 +250,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-6 col-md-12 mt-3">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="employment_status" id="unemployed">
                         <label class="form-check-label" for="unemployed">Unemployed</label>
                     </div>
-                    <div class="mt-3">
-                        <input class="form-control" type="text" placeholder="How long have you been looking for work?">
+                    <div class="">
+                        <label for="">How long have you been looking for work?</label>
+                        <input class="form-control" type="text">
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-6">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="unemployed" id="new_entrant">
@@ -280,20 +291,131 @@
                                 <input class="form-check-input" type="radio" name="unemployed" id="laid_off_abroad">
                                 <label class="form-check-label" for="laid_off_abroad">Terminated/Laid off (abroad)</label>
                             </div>
-                            <div class="mt-2">
+                            <div class="mt-2 d-inline-block">
                                 <input class="form-control" type="text" placeholder="Specify country:">
                             </div>
-                            <div class="form-check">
+                            <div class="form-check mt-2">
                                 <input class="form-check-input" type="radio" name="unemployed" id="unemployed_others">
                                 <label class="form-check-label" for="unemployed_others">Others</label>
                             </div>
-                            <div class="mt-2">
+                            <div class="mt-2 d-inline-block">
                                 <input class="form-control" type="text" placeholder="Specify:">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row pt-3">
+                <div class="col-lg-6">
+                    <div>
+                        Are you an OFW?
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="is_ofw" id="yes">
+                        <label class="form-check-label" for="yes">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="is_ofw" id="no">
+                        <label class="form-check-label" for="no">No</label>
+                    
+                    </div>
+                    <div class="mt-2 d-inline-block col-lg-8">
+                        <input class="form-control" name="ofw_country" type="text" placeholder="Specify country">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div>
+                    Are you a former OFW?
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="is_former_ofw" id="yes">
+                        <label class="form-check-label" for="yes">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="is_former_ofw" id="no">
+                        <label class="form-check-label" for="no">No</label>
+                    </div>
+                    <div class="col-lg-12 mt-3">
+                        <input class="form-control" name="ofw_former_country" type="text" placeholder="Latest country of deployment">
+                    </div>
+                    <div class="col-lg-12 mt-3">
+                        <input class="form-control" name="month_year_return_ph" type="text" placeholder="Month and year of return to Philippines">
+                    </div>
+                </div> 
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <div>
+                        Are you a 4ps beneficiary?
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="is_4ps_beneficiary" id="yes">
+                        <label class="form-check-label" for="yes">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="is_4ps_beneficiary" id="no">
+                        <label class="form-check-label" for="no">No</label>
+                    </div>
+                    <div class="mt-3">
+                        <input class="form-control" type="text" placeholder="If yes, please provide Household ID No.">
+                    </div>
+                </div>
+                
+            </div>
+            <footer class="">
+                <button class="btn btn-primary my-3 float-end" id="next-job-preference">Next</button>
+            </footer>
+        </div>
+        <!--  -->
+        <div class="col-md-9 col-sm-9 col-12 form-content job-preference">
+            <header>
+                <a href="">Go Back</a>
+                <h4>INSTRUCTIONS:</h4>
+                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+            </header>
+            <div class="row">
+                <div class="col-lg-5 border">
+                    <div>Preferred Occupation</div>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="part_full_time" id="part-time">
+                            <label class="form-check-label" for="part-time">Part-time</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="part_full_time" id="full-time">
+                            <label class="form-check-label" for="full-time">Full-time</label>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <input class="form-control" type="text" placeholder="1.">                        
+                    </div>
+                    <div class="mt-3">
+                        <input class="form-control" type="text" placeholder="2.">                        
+                    </div>
+                    <div class="mt-3">
+                        <input class="form-control" type="text" placeholder="3.">                        
+                    </div>
+                </div>
+                <div class="col-lg-7 border">
+                    <div>Preferred Work Occupation</div>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="local_overseas" id="local">
+                            <label class="form-check-label" for="local">Local (specify cities/municipalities)</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="local_overseas" id="overseas">
+                            <label class="form-check-label" for="overseas">Overseas (specify countries)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="d-inline-block btn btn-primary my-3" id="prev-personal-information">Previous</button>
+                <button class="d-inline-block btn btn-primary my-3" id="next-job-preference">Next</button>
+            </div>    
         </div>
     </main>
     <!-- Logout Modal -->

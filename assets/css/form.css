@@ -90,6 +90,9 @@ main{
         color: #F3F4F8;
         padding: 10px 0;
     }
+    #personal-information{
+        font-weight: bold;
+    }
     #arrow-icon{
         visibility: hidden;
     }
@@ -103,6 +106,12 @@ main{
 }
 /* Hide the sidebar */
 @media screen and (max-width: 576px){
+    main{
+        font-size: 15px;
+    }
+    input::placeholder{
+        font-size: 15px;
+    }
     .custom-links{
         padding: 0;
     }
@@ -144,16 +153,10 @@ main{
         overflow: auto;
     }
 }
-@media screen and (max-width: 766px){
-    input[type='text'], input[type='date'], input[type='email']{
-        margin: 10px 0;
-    }
-}
 /* Form */
 .form-content input:focus{
     box-shadow: none;
 }
-
 /* Change input date text color */
 input[type=date] {
     color: transparent;
@@ -162,8 +165,12 @@ input[type=date] {
 input[type=date]:focus {
     color: black;
 }
-.custom-form{
-    padding: 15px 0;
+/* Job preference */
+.personal-information{
+    display: none;
+}
+.job-preference{
+    /* display: none; */
 }
 /* Login Modal */
 .modal-dialog{
