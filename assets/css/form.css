@@ -127,12 +127,12 @@ main{
         #arrow-icon{
             visibility: visible;
             border-radius: 100px;
-            padding: 10px;
             position: absolute;
             left:110%;
             top: 50%;
             transform: translate(-50%, -50%);
-            /* z-index: ; */
+            padding: 5px;
+            margin-left: -12px;
         }
         #arrow-icon:hover{
             -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);

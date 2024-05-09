@@ -187,18 +187,18 @@
             </div>
             <div class="row custom-form">
                 <div class="col-md-12">Employment Status / Type</div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="employment_status" id="employed">
                         <label class="form-check-label" for="employed">Employed</label>
                     </div>
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="wage_employed" id="wage_employed">
+                            <input class="form-check-input" type="radio" name="type_employed" id="wage_employed">
                             <label class="form-check-label" for="wage_employed">Wage Employed</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="self_employed" id="self_employed">
+                            <input class="form-check-input" type="radio" name="type_employed" id="self_employed">
                             <label class="form-check-label" for="self_employed">Self Employed (Please specify)</label>
                         </div>        
                     </div>
@@ -232,16 +232,65 @@
                             <label class="form-check-label" for="artisan_craft_worker">Artisan/Craft Worker</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Others" id="Others">
-                            <label class="form-check-label" for="Others">Others (Please specify): </label>
-                            <input class="form-control" type="text">
+                            <input class="form-check-input" type="radio" name="employed_others" id="employed_others">
+                            <label class="form-check-label" for="employed_others">Others</label>
+                        </div>
+                        <div class="mt-2">
+                            <input class="form-control" type="text" placeholder="Please specify">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="employment_status" id="unemployed">
                         <label class="form-check-label" for="unemployed">Unemployed</label>
+                    </div>
+                    <div class="mt-3">
+                        <input class="form-control" type="text" placeholder="How long have you been looking for work?">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="new_entrant">
+                                <label class="form-check-label" for="new_entrant">New Entrant/Fresh Graduate</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="finished_contract">
+                                <label class="form-check-label" for="finished_contract">Finished Contract</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="resigned">
+                                <label class="form-check-label" for="resigned">Resigned</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="retired">
+                                <label class="form-check-label" for="retired">Retired</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="laid_off_due_calamity">
+                                <label class="form-check-label" for="laid_off_due_calamity">Terminated/Laid off due to calamity</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="laid_off_local">
+                                <label class="form-check-label" for="laid_off_local">Terminated/Laid off (local)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="laid_off_abroad">
+                                <label class="form-check-label" for="laid_off_abroad">Terminated/Laid off (abroad)</label>
+                            </div>
+                            <div class="mt-2">
+                                <input class="form-control" type="text" placeholder="Specify country:">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="unemployed" id="unemployed_others">
+                                <label class="form-check-label" for="unemployed_others">Others</label>
+                            </div>
+                            <div class="mt-2">
+                                <input class="form-control" type="text" placeholder="Specify:">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
