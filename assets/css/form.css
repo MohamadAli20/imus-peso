@@ -165,29 +165,15 @@ input[type=date] {
 input[type=date]:focus {
     color: black;
 }
-/* Job preference */
-.personal-information{
-    display: none;
-}
-.job-preference{
-    display: none;
-}
-.language-dialect-proficiency{
-    display: none;
-}
-.educational-background{
-    display: none;
-}
-.technical-vocational-training{
-    display: none;
-}
-.eligibility-professional-license{
-    display: none;
-}
-.work-experience{
-    display: none;
-}
-.other-skills-acquired{
+/* Form section */
+.job-preference,
+.language-dialect-proficiency,
+.educational-background,
+.technical-vocational-training,
+.eligibility-professional-license,
+.work-experience,
+.other-skills-acquired,
+.certification-authorization{
     display: none;  
 }
 .form-check-label span{
