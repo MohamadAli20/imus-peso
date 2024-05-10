@@ -187,7 +187,9 @@ input[type=date]:focus {
 .work-experience{
     display: none;
 }
-
+.other-skills-acquired{
+    display: none;  
+}
 .form-check-label span{
     font-size: 14px;
 }
