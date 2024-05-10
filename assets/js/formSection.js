@@ -34,36 +34,32 @@ $(document).ready(function(){
         closeSideBar();
     });
     
-    /* */
-    $("#next-job-preference").click(function(){
-        $(".personal-information").css("display", "none");
-        $(".job-preference").css("display", "block");
+    /* 
+    * The following are the Next and Previous button 
+    * for every sections of the form
+    */
+    let currentPage = 1;
+    $(".btn-prev").click(function(){
+        /* remove the bold of the succeeding link*/
+        $(`.page${currentPage}`).css("font-weight", "100"); 
+        $(`#page${currentPage}`).css("display", "none");
 
-        $("#personal-information").css("font-weight", "100");
-        $("#job-preference").css("font-weight", "bold")
-    })
-    $("#prev-personal-information").click(function(){
-        $(".personal-information").css("display", "block");
-        $(".job-preference").css("display", "none");
-    })
-    /* Add more experience */
-    let workExperienceNo = 2;
-    $(".addWorkExperience").click(function(){
-        
-        // let div = document.createElement("div");
-        // div.className = "col-lg-6 mt-3";
-        
-        // let input = document.createElement("input");
-        // input.className = "form-control";
-        // input.setAttribute("type", "text");
-        // input.setAttribute("placeholder", `${workExperienceNo}. Company name`);
+        $(`#page${currentPage}`).css("display", "none");
+        /* decrement the value of the current page */
+        currentPage--;
+        $(`#page${currentPage}`).css("display", "block");
+        /* bold the selected link or the current page label in the sidebar*/
+        $(`.page${currentPage}`).css("font-weight", "bold");
+    });
+    $(".btn-next").click(function(){
+        /* remove the bold of the previous link*/
+        $(`.page${currentPage}`).css("font-weight", "100"); 
+        $(`#page${currentPage}`).css("display", "none");
 
-        // div.append(label);
-        // div.append(input);
-
-        // // $(".divider").before(`<div class='col-lg-6 mt-3'><label style="position: absolute; cursor: initial; font-style: normal; color: rgb(137, 137, 137); font-size: 16px; margin-top: 6px; margin-left: 7px; padding-left: 5px; padding-right: 5px; background-color: rgb(255, 255, 255);">Address (City/Municipality)</label><input class='form-control' type='text' bind-placeholder-label='true'></div>`);
-        // // $(".divider").before(`<div class="col-lg-6 mt-3"><input class="form-control" type="text" placeholder="Address (City/Municipality)"></div>`);
-        // $(".divider").before(div)
-        // workExperienceNo++;
+        /* increment the value of the current page */
+        currentPage++;
+        $(`#page${currentPage}`).css("display", "block");
+        /* bold the selected link or the current page label in the sidebar*/
+        $(`.page${currentPage}`).css("font-weight", "bold"); 
     })
 });

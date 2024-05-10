@@ -176,6 +176,9 @@ input[type=date]:focus {
 .certification-authorization{
     display: none;  
 }
+.page1{
+    font-weight: bold;
+}
 .form-check-label span{
     font-size: 14px;
 }
