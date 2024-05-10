@@ -5,58 +5,9 @@ body{
     /* background-color: #F3F4F8; */
     font-size: 16px;
 }
-/* Navbar */
 .custom-nav{
-    width: 100%;
-    background: #038aff;
     position: fixed;
-    z-index: 1;
 }
-    .logo-title, .logo-title:hover{
-        font-weight: bold;
-        color: #F3F4F8;
-        margin-left: 15px;
-    }
-    .custom-links ul{
-        display: flex;
-        justify-content: end;
-        text-align: right;
-        z-index: 5;
-    }
-    .navbar-nav .nav-link.active{
-        color: #F3F4F8;
-    }
-    .custom-links ul li a{
-        margin: 0 20px;
-        position: relative;
-        color: #F3F4F8;
-    }
-    .custom-links ul li a:hover{
-        background-color: #037eeb;
-        color: #F3F4F8;
-    }
-    #username{
-        font-weight: bold;
-        cursor: pointer;
-    }
-    #navLoginBtn{
-        display: block;
-    }
-    .logout-modal{
-        border: 1px solid black;
-        width: 100px;
-        position: absolute;
-        top: 0;
-    }
-    .custom-toggler{
-        border: none;
-    }
-    .navbar-toggler-icon{
-        border: none;
-    }
-    #close-icon{
-        display: none;
-    }
 /* Responsive links */
 @media screen and (max-width: 989px){
     .custom-links{
@@ -103,6 +54,15 @@ main{
     overflow: auto;
     position: absolute;
     right: 0;
+}
+@media screen and (max-width: 991px){
+    .custom-links ul li{
+        width: 100%;
+        text-align: right;
+    }
+    /* #username p{
+        padding: 7px 0;
+    } */
 }
 /* Hide the sidebar */
 @media screen and (max-width: 576px){

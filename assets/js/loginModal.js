@@ -4,8 +4,8 @@ $(document).ready(() => {
         let username = localStorage.getItem('username');
         if(username){
             $("#username p").text(username);
-            $("#username p").show();
-            $("#navLoginBtn").hide();
+            $("#username").css("display", "block")
+            $("#navLoginBtn").css("display", "none");
         }
         else{
             $("#username p").text("");
