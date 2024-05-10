@@ -66,9 +66,9 @@ body{
         background-color: rgba(3, 138, 255, 0.8);
         width: 100%;
         padding: 10px 0;
-        -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+        /* -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75); */
     }
 }
 /* Main */
@@ -119,15 +119,14 @@ main{
         position: fixed;
         left: -200px;
         height: 100vh;
-        /* display: none; */
         z-index: 1;
-        /* overflow: auto; */
         padding-top: 0;
         border: 0;
         margin-top: 55px;
         font-size: 15px;
         width: 200px;
         padding: 0;
+        background-color: rgba(3, 138, 255, 0.9);
     }
         .side-bar-links{
             width: 100%;
