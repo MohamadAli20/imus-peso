@@ -60,9 +60,6 @@ main{
         width: 100%;
         text-align: right;
     }
-    /* #username p{
-        padding: 7px 0;
-    } */
 }
 /* Hide the sidebar */
 @media screen and (max-width: 576px){

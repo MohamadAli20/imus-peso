@@ -61,5 +61,24 @@ $(document).ready(function(){
         $(`#page${currentPage}`).css("display", "block");
         /* bold the selected link or the current page label in the sidebar*/
         $(`.page${currentPage}`).css("font-weight", "bold"); 
-    })
+    });
+
+    /*
+    * Get the value from the input tag
+    * Validate if empty or not
+    */
+    $(".btn-next").click(function(){
+        var formDataArray = $("form").serializeArray();
+        
+        // Log the array of form data to the console
+        console.log(formDataArray);
+        
+        // You can then use the array 'formDataArray' as needed
+        // For example, you can convert it into a JSON object
+        var formDataObject = {};
+        $.each(formDataArray, function(i, field){
+            formDataObject[field.name] = field.value;
+        });
+        console.log("Form data as JSON:", formDataObject);
+    });
 });
