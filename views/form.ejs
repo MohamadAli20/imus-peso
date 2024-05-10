@@ -317,7 +317,6 @@
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="is_ofw" id="no">
                         <label class="form-check-label" for="no">No</label>
-                    
                     </div>
                     <div class="mt-2 d-inline-block col-lg-8">
                         <input class="form-control" name="ofw_country" type="text" placeholder="Specify country">
@@ -449,36 +448,50 @@
                 <h4>INSTRUCTIONS:</h4>
                 <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
             </header>
-            <div class="row">
-                <div class="col-lg-3 border pt-3">
-                    <div>Language/Dialect</div>
-                    <div class="my-3">
-                        <input class="form-control" type="text" value="English" disabled>
-                    </div>
-                    <div class="my-3">
-                        <input class="form-control" type="text" value="Filipino" disabled>
-                    </div>
-                    <div class="my-3">
-                        <input class="form-control" type="text" value="Mandarin" disabled>
-                    </div>
-                    <div class="my-3">
-                        <input class="form-control" type="text" placeholder="Others">
-                    </div>
-                </div>
-                <div class="col-lg-3 border pt-3">
-                    <div>Read</div>
-                    <div class="my-3 py-1">
-                        <input class="form-check-input" type="checkbox">
-                    </div>
-                    <div class="my-3 py-1">
-                        <input class="form-check-input" type="checkbox">
-                    </div>
-                    <div class="my-3 py-1">
-                        <input class="form-check-input" type="checkbox">
-                    </div>
-                </div>
-                
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Language/Dialect</th>
+                        <th scope="col">Read</th>
+                        <th scope="col">Write</th>
+                        <th scope="col">Speak</th>
+                        <th scope="col">Understand</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <th scope="row">English</th>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Filipino</th>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mandarin</th>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="specify-language"><input  class="form-control" type="text" placeholder="Others"></th>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                  </table>
             </div>
+            
             <div class="text-end">
                 <button class="d-inline-block btn btn-primary my-3" id="prev-personal-information">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3" id="next-job-preference">Next</button>

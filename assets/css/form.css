@@ -172,9 +172,28 @@ input[type=date]:focus {
 .job-preference{
     display: none;
 }
+.language-dialect-proficiency{
+    display: none;
+}
 .form-check-label span{
     font-size: 14px;
 }
+.language-dialect-proficiency .custom-checkbox{
+    padding: 7px 0;
+    text-align: center;
+}
+.language{
+    /* text-wrap: wrap; */
+    word-wrap: break-word;
+}
+#specify-language{
+    position: relative;
+
+}
+/* .table thead th {
+    word-wrap: break-word;
+    white-space: normal;
+  } */
 /* Login Modal */
 .modal-dialog{
     position: absolute;
