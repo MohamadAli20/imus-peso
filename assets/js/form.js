@@ -33,12 +33,47 @@ $(document).ready(function(){
     $(".navbar-toggler").click(function(){
         closeSideBar();
     });
-    
+
     /* 
     * The following are the Next and Previous button 
     * for every sections of the form
     */
     let currentPage = 1;
+    let checkInputField = (form) => {
+
+        let formDataArray = $(form).serializeArray();
+        console.log(formDataArray)
+
+        /* Check if input field is empty */
+        let isEmpty = formDataArray.some(field => field.value.trim() === '');
+
+        // if (isEmpty) {
+        //     let p = document.createElement('p');
+        //     p.className = "alert alert-danger"
+        //     p.style.color = 'red';
+        //     p.innerText = 'There are empty fields in the form.';
+        //     $(".message").append(p);
+            
+        //     setTimeout(function(){
+        //         $(".message .alert").remove();
+        //     }, 3000);
+
+        // }
+        // else{
+        //     /* remove the bold of the previous link*/
+        //     $(`.page${currentPage}`).css("font-weight", "100"); 
+        //     $(`#page${currentPage}`).css("display", "none");
+
+        //     /* increment the value of the current page */
+        //     currentPage++;
+        //     $(`#page${currentPage}`).css("display", "block");
+        //     /* bold the selected link or the current page label in the sidebar*/
+        //     $(`.page${currentPage}`).css("font-weight", "bold"); 
+        // }
+
+
+
+    }
     $(".btn-prev").click(function(){
         /* remove the bold of the succeeding link*/
         $(`.page${currentPage}`).css("font-weight", "100"); 
@@ -51,7 +86,13 @@ $(document).ready(function(){
         /* bold the selected link or the current page label in the sidebar*/
         $(`.page${currentPage}`).css("font-weight", "bold");
     });
-    $(".btn-next").click(function(){
+    /* Submitting form also proceed to the next page*/
+    $(".btn-next").click(function(e){
+        e.preventDefault();
+        
+        // let form = $(this).closest('form')[0];
+        // checkInputField(form);
+
         /* remove the bold of the previous link*/
         $(`.page${currentPage}`).css("font-weight", "100"); 
         $(`#page${currentPage}`).css("display", "none");
@@ -61,24 +102,31 @@ $(document).ready(function(){
         $(`#page${currentPage}`).css("display", "block");
         /* bold the selected link or the current page label in the sidebar*/
         $(`.page${currentPage}`).css("font-weight", "bold"); 
-    });
+        
+    })
 
-    /*
-    * Get the value from the input tag
-    * Validate if empty or not
+    /* 
+    * The following, stores the value of input tag to the checked radio button
     */
-    $(".btn-next").click(function(){
-        var formDataArray = $("form").serializeArray();
-        
-        // Log the array of form data to the console
-        console.log(formDataArray);
-        
-        // You can then use the array 'formDataArray' as needed
-        // For example, you can convert it into a JSON object
-        var formDataObject = {};
-        $.each(formDataArray, function(i, field){
-            formDataObject[field.name] = field.value;
-        });
-        console.log("Form data as JSON:", formDataObject);
+    /* Disability */
+    $("#input_disability_others").change(function(){
+        let val = $("#input_disability_others").val();
+        $("#disability_others").val(val);
+    })
+    /* Others radio button under employed category */
+    $("#input_employed_others").change(function(){
+        let val = $("#input_employed_others").val();
+        $("#employed_others").val(val);
     });
+    /* Laid off abroad */
+    $("#input_laid_off_abroad").change(function(){
+        let val = $("#input_laid_off_abroad").val();
+        $("#laid_off_abroad").val(val);
+    });
+    /* Others radio button under unemployed category */
+    $("input_unemployed_others").change(function(){
+        let val = $("input_unemployed_others").val();
+        $("#unemployed_others").val(val);
+    });
+    /* Yes radio */
 });
