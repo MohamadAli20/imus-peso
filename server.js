@@ -14,6 +14,9 @@ app.use(session({
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Use body-parser middleware to parse JSON data
+app.use(bodyParser.json());
+
 /*serve by templates*/
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

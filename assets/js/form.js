@@ -149,6 +149,7 @@ $(document).ready(function(){
     $("a").click(function(){
         /* Remove the current form or page */
         $(`#page${currentPage}`).css("display", "none");
+        checkInputField($(`#page${currentPage}`));
 
         let pageNo = $(this).prop("class");
         let lastCharacter = pageNo[pageNo.length - 1];
@@ -338,8 +339,8 @@ $(document).ready(function(){
     * OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
     */
     $("#input_other_skills").change(function(){
-            let val = $("#input_other_skills").val();
-            $("input[name='other_skills']").val(val);
+        let val = $("#input_other_skills").val();
+        $("input[name='other_skills']").val(val);
     });
 
     /*
@@ -353,7 +354,18 @@ $(document).ready(function(){
         let isAware = $("input[name='aware']").prop("checked")
 
         if(isCertify === true && isAuthorize === true && isAware === true){
-            
+            $.ajax({
+                url: "/addInformation",
+                type: "POST",
+                data: JSON.stringify(finalInformation),
+                contentType: "application/json",
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(xhr, status, error){
+                    console.error(error);
+                }
+            })
         }
         else{
             alertMessage("Check all the checkboxes.");
