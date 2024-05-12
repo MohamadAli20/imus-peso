@@ -4,6 +4,7 @@ $(document).ready(function(){
         personalInformation: [],
         jobPreference: [],
         languageDialectProficiency: [],
+        educationalBackground: [],
     }
     
     /*
@@ -51,6 +52,9 @@ $(document).ready(function(){
         }
         if(currentPage === 3){
             finalInformation.languageDialectProficiency = formData;  
+        }
+        if(currentPage == 4){
+            finalInformation.educationalBackground = formData;
         }
         console.log(finalInformation);
     }
@@ -129,7 +133,7 @@ $(document).ready(function(){
     })
 
     /* 
-    * The following are under personal informatin
+    * PERSONAL INFORMATION
     * Stores the value of input tag to the checked radio button
     */
     /* Disability */
@@ -174,17 +178,12 @@ $(document).ready(function(){
         $("#yes_4ps_beneficiary").val(val)
     });
 
-    /* Language / Dialect proficiency */
-    
-    // let checkboxEng = $("input[name='english']");
-    // for(let i = 0; i < checkboxEng.length; i++){
-    //     if($(checkboxEng)[i].checked === true){
-    //         english += $(checkboxEng)[i].value + " ";
-    //     }
-    // }
-    /* English */
+    /*
+    * LANGUAGE / DIALECT PROFICIENCY
+    * English 
+    */
     let englishObj = { english: {} };
-    $("input[name='checkbox_language1']").change(function(){
+    $(".checkbox_language1").change(function(){
         /* check if the checkbox is checked */
         if($(this).is(":checked")){
             let key = $(this).val();
@@ -200,7 +199,7 @@ $(document).ready(function(){
     });
     /* Filipino */
     let filipinoObj = { filipino: {} };
-    $("input[name='checkbox_language2']").change(function(){
+    $(".checkbox_language2").change(function(){
         /* check if the checkbox is checked */
         if($(this).is(":checked")){
             let key = $(this).val();
@@ -216,7 +215,7 @@ $(document).ready(function(){
     });
     /* Mandarin */
     let mandarinObj = { mandarin: {} };
-    $("input[name='checkbox_language3']").change(function(){
+    $(".checkbox_language3").change(function(){
         /* check if the checkbox is checked */
         if($(this).is(":checked")){
             let key = $(this).val();
@@ -230,23 +229,47 @@ $(document).ready(function(){
             $("input[name='language3']").val(JSON.stringify(mandarinObj));
         }
     });
-    /* Other language */
+    /* 
+    * Other language 
+    * Set the specified language as the key of the object 
+    */
     let specifyLanguageObj = {};
-    let inputSpecifyLanguage = $("input[name='specify_language']");
+    let inputSpecifyLanguage = $("#input_specify_language");
     inputSpecifyLanguage.on("input", function(){
         let inputVal = $(inputSpecifyLanguage).val();
         if(inputVal !== ""){
             /* enable checkboxes */
-            $("input[name='checkbox_specify_language']").prop('disabled', false);
-            // console.log(inputVal);
+            $(".checkbox_specify_language").prop('disabled', false);
+            specifyLanguageObj = {}; /* empty the object after every change */
             specifyLanguageObj[inputVal] = {};
+            /* store the specified language to the input type hidden */
+            $("input[name='specify_language']").val(JSON.stringify(specifyLanguageObj));
         }
         else{
             /* disable checkboxes */
-            $("input[name='checkbox_specify_language']").prop('disabled', true);
+            $(".checkbox_specify_language").prop('disabled', true);
 
         }
     })
+    /* Radio button for the specify language */
+    $(".checkbox_specify_language").change(function(){
+        /* get the key value */
+        let language = $(inputSpecifyLanguage).val();
+        /* check if the checkbox is checked */
+        if($(this).is(":checked")){
+            let key = $(this).val();
+            specifyLanguageObj[language][key] = 1; /* assigning 1 to the nested object */
+
+            $("input[name='specify_language']").val(JSON.stringify(specifyLanguageObj));
+        }
+        else{
+            delete specifyLanguageObj[language][$(this).val()]; /* remove the key from the nested object */
+            $("input[name='specify_language']").val(JSON.stringify(specifyLanguageObj));
+        }
+    });
+
+
+
     // $("input[name='checkbox_specify_language']").change(function(){
     //     /* check if the checkbox is checked */
     //     if($(this).is(":checked")){

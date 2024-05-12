@@ -463,33 +463,34 @@
                         <tr>
                             <input type="hidden" name="language1" value="na">
                             <th scope="row">English</th>
-                            <td><input type="checkbox" name="checkbox_language1" value="read"></td>
-                            <td><input type="checkbox" name="checkbox_language1" value="write"></td>
-                            <td><input type="checkbox" name="checkbox_language1" value="speak"></td>
-                            <td><input type="checkbox" name="checkbox_language1" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language1" value="read"></td>
+                            <td><input type="checkbox" class="checkbox_language1" value="write"></td>
+                            <td><input type="checkbox" class="checkbox_language1" value="speak"></td>
+                            <td><input type="checkbox" class="checkbox_language1" value="understand"></td>
                         </tr>
                         <tr>
                             <input type="hidden" name="language2" value="na">
                             <th scope="row">Filipino</th>
-                            <td><input type="checkbox" name="checkbox_language2" value="read"></td>
-                            <td><input type="checkbox" name="checkbox_language2" value="write"></td>
-                            <td><input type="checkbox" name="checkbox_language2" value="speak"></td>
-                            <td><input type="checkbox" name="checkbox_language2" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="read"></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="write"></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="speak"></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="understand"></td>
                         </tr>
                         <tr>
                             <input type="hidden" name="language3" value="na">
                             <th scope="row">Mandarin</th>
-                            <td><input type="checkbox" name="checkbox_language3" value="read"></td>
-                            <td><input type="checkbox" name="checkbox_language3" value="write"></td>
-                            <td><input type="checkbox" name="checkbox_language3" value="speak"></td>
-                            <td><input type="checkbox" name="checkbox_language3" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="read"></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="write"></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="speak"></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="understand"></td>
                         </tr>
                         <tr>
-                            <th scope="row" id="specify-language"><input class="form-control" name="specify_language" type="text" placeholder="Others"></th>
-                            <td><input type="checkbox" name="checkbox_specify_language" value="read" disabled></td>
-                            <td><input type="checkbox" name="checkbox_specify_language" value="write" disabled></td>
-                            <td><input type="checkbox" name="checkbox_specify_language" value="speak" disabled></td>
-                            <td><input type="checkbox" name="checkbox_specify_language" value="understand" disabled></td>
+                            <input type="hidden" name="specify_language" value="na">
+                            <th scope="row"><input class="form-control" id="input_specify_language" type="text" placeholder="Others"></th>
+                            <td><input type="checkbox" class="checkbox_specify_language" value="read" disabled></td>
+                            <td><input type="checkbox" class="checkbox_specify_language" value="write" disabled></td>
+                            <td><input type="checkbox" class="checkbox_specify_language" value="speak" disabled></td>
+                            <td><input type="checkbox" class="checkbox_specify_language" value="understand" disabled></td>
                         </tr>
                     </tbody>
                   </table>
@@ -511,97 +512,97 @@
                 <div class="col-lg-12 mt-2">
                     <div>Elementary</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="School">
+                        <input class="form-control" name="elementary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Course">
+                        <input class="form-control" name="elementary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year graduated">
+                        <input class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
-                    <div>If graduated</div>
+                    <div>If undergraduate</div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="What level?">
+                        <input class="form-control" name="elementary_undergraduate_level" type="text" placeholder="What level?">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year last attended">
+                        <input class="form-control" name="elementary_undergraduate_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Awards received">
+                        <input class="form-control" name="elementary_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <div>Secondary</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="School">
+                        <input class="form-control" name="secondary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Course">
+                        <input class="form-control" name="secondary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year graduated">
+                        <input class="form-control" name="secondary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
-                    <div>If graduated</div>
+                    <div>If undergraduate</div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="What level?">
+                        <input class="form-control" name="secondary_undergraduate_level" type="text" placeholder="What level?">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year last attended">
+                        <input class="form-control" name="secondary_undergraduate_year_last_attended" type="text" placeholder="Year last attended">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Awards received">
+                        <input class="form-control" name="secondary_undergraduate_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <div>Tertiary</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="School">
+                        <input class="form-control" name="tertiary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Course">
+                        <input class="form-control" name="tertiary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year graduated">
+                        <input class="form-control" name="tertiary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
-                    <div>If graduated</div>
+                    <div>If undergraduate</div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="What level?">
+                        <input class="form-control" name="tertiary_undergraduate_level" type="text" placeholder="What level?">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year last attended">
+                        <input class="form-control" name="tertiary_undergraduate_year_last_attended" type="text" placeholder="Year last attended">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Awards received">
+                        <input class="form-control" name="tertiary_undergraduate_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <div>Graduate Studies</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="School">
+                        <input class="form-control" name="graduate_studies_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Course">
+                        <input class="form-control" name="graduate_studies_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year graduated">
+                        <input class="form-control" name="gradudate_studies_year_attended" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
-                    <div>If graduated</div>
+                    <div>If undergraduate</div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="What level?">
+                        <input class="form-control" name="graduate_studies_undergraduate_level" type="text" placeholder="What level?">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Year last attended">
+                        <input class="form-control" name="graduate_studies_undergraduate_year_last_attended" type="text" placeholder="Year last attended">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" type="text" placeholder="Awards received">
+                        <input class="form-control" name="graduate_studies_undergraduate_awards_recieved" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="text-end">
@@ -622,51 +623,51 @@
                     <div>Technical/Vocational And Other Training</div>
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="1.Training/Vocational Course">
+                    <input class="form-control" name="first_training_vocational_course" type="text" placeholder="1.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block" type="date" placeholder="Date From">
+                    <input class="form-control d-inline-block" name="first_date_from" type="date" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block" type="date" placeholder="Date To">
+                    <input class="form-control d-inline-block" name="first_date_to" type="date" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="Training Institution">
+                    <input class="form-control" name="first_training_institution" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="Certificates Received">
+                    <input class="form-control" name="first_certificates_received" type="text" placeholder="Certificates Received">
                 </div>
                 <div class="border-bottom col-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="2.Training/Vocational Course">
+                    <input class="form-control" name="second_training_vocational_course" type="text" placeholder="2.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block" type="date" placeholder="Date From">
+                    <input class="form-control d-inline-block" name="second_date_from" type="date" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block" type="date" placeholder="Date To">
+                    <input class="form-control d-inline-block" name="second_date_to" type="date" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="Training Institution">
+                    <input class="form-control" name="second_training_institution" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="Certificates Received">
+                    <input class="form-control" name="second_certificates_received" type="text" placeholder="Certificates Received">
                 </div>
                 <div class="border-bottom col-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="3.Training/Vocational Course">
+                    <input class="form-control" name="third_training_vocational_course" type="text" placeholder="3.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block" type="date" placeholder="Date From">
+                    <input class="form-control d-inline-block" name="third_date_from" type="date" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block" type="date" placeholder="Date To">
+                    <input class="form-control d-inline-block" name="third_date_to" type="date" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="Training Institution">
+                    <input class="form-control" type="text" name="third_training_institution" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" type="text" placeholder="Certificates Received">
+                    <input class="form-control" type="text" name="third_certificates_received" placeholder="Certificates Received">
                 </div>
             </div>
             <div class="text-end">
