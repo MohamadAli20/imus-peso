@@ -5,6 +5,10 @@ $(document).ready(function(){
         jobPreference: [],
         languageDialectProficiency: [],
         educationalBackground: [],
+        techicalVocationalTraining: [],
+        eligibilityProfessionalLicense: [],
+        workExperience: [],
+        otherSkills: []
     }
     
     /*
@@ -53,8 +57,20 @@ $(document).ready(function(){
         if(currentPage === 3){
             finalInformation.languageDialectProficiency = formData;  
         }
-        if(currentPage == 4){
+        if(currentPage === 4){
             finalInformation.educationalBackground = formData;
+        }
+        if(currentPage === 5){
+            finalInformation.techicalVocationalTraining = formData;
+        }
+        if(currentPage === 6){
+            finalInformation.eligibilityProfessionalLicense = formData;
+        }
+        if(currentPage === 7){
+            finalInformation.workExperience = formData;
+        }
+        if(currentPage === 8){
+            finalInformation.otherSkills = formData;
         }
         console.log(finalInformation);
     }
@@ -268,7 +284,13 @@ $(document).ready(function(){
         }
     });
 
-
+    /*
+    * OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
+    */
+   $("#input_other_skills").change(function(){
+        let val = $("#input_other_skills").val();
+        $("input[name='other_skills']").val(val);
+   });
 
     // $("input[name='checkbox_specify_language']").change(function(){
     //     /* check if the checkbox is checked */
