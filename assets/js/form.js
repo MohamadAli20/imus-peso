@@ -1,4 +1,11 @@
 $(document).ready(function(){
+    
+    let finalInformation = {
+        personalInformation: [],
+        jobPreference: [],
+        languageDialectProficiency: [],
+    }
+    
     /*
     * show side bar ehrn arrow forward is clicked
     * change the arrow forward with arrow back
@@ -33,19 +40,33 @@ $(document).ready(function(){
     $(".navbar-toggler").click(function(){
         closeSideBar();
     });
+    
+    let currentPage = 1;
+    let addToObject = (formData) => {
+        if(currentPage === 1){
+            finalInformation.personalInformation = formData;
+        }
+        if(currentPage === 2){
+            finalInformation.jobPreference = formData;            
+        }
+        if(currentPage === 3){
+            finalInformation.languageDialectProficiency = formData;  
+        }
+        console.log(finalInformation);
+    }
 
     /* 
     * The following are the Next and Previous button 
     * for every sections of the form
     */
-    let currentPage = 1;
+    
     let checkInputField = (form) => {
 
-        let formDataArray = $(form).serializeArray();
-        console.log(formDataArray)
+        let formData = $(form).serializeArray();
+        addToObject(formData);
 
         /* Check if input field is empty */
-        let isEmpty = formDataArray.some(field => field.value.trim() === '');
+        let isEmpty = formData.some(field => field.value.trim() === '');
 
         // if (isEmpty) {
         //     let p = document.createElement('p');
@@ -74,7 +95,9 @@ $(document).ready(function(){
 
 
     }
-    $(".btn-prev").click(function(){
+    $(".btn-prev").click(function(e){
+        e.preventDefault();
+
         /* remove the bold of the succeeding link*/
         $(`.page${currentPage}`).css("font-weight", "100"); 
         $(`#page${currentPage}`).css("display", "none");
@@ -90,8 +113,8 @@ $(document).ready(function(){
     $(".btn-next").click(function(e){
         e.preventDefault();
         
-        // let form = $(this).closest('form')[0];
-        // checkInputField(form);
+        let form = $(this).closest('form')[0];
+        checkInputField(form);
 
         /* remove the bold of the previous link*/
         $(`.page${currentPage}`).css("font-weight", "100"); 
@@ -106,7 +129,8 @@ $(document).ready(function(){
     })
 
     /* 
-    * The following, stores the value of input tag to the checked radio button
+    * The following are under personal informatin
+    * Stores the value of input tag to the checked radio button
     */
     /* Disability */
     $("#input_disability_others").change(function(){
@@ -128,5 +152,114 @@ $(document).ready(function(){
         let val = $("input_unemployed_others").val();
         $("#unemployed_others").val(val);
     });
-    /* Yes radio */
+    /* Yes radio if OFW */
+    $("#input_ofw_country").change(function(){
+        let val = $("#input_ofw_country").val();
+        $("#yes_ofw").val(val);
+    });
+    /* Yes radio if former OFW */
+    let formerCountry = "na";
+    let monthYearReturnPh = "na";
+    $("#ofw_former_country").change(function(){
+        formerCountry = $("#ofw_former_country").val();
+        $("#yes_former_ofw").val(formerCountry + " " + monthYearReturnPh);
+    });
+    $("#month_year_return_ph").change(function(){
+        monthYearReturnPh = $("#month_year_return_ph").val();
+        $("#yes_former_ofw").val(formerCountry + " " + monthYearReturnPh);
+    });
+    /* If 4p's beneficiary */
+    $("#4ps_household_no").change(function(){
+        let val = $("#4ps_household_no").val();
+        $("#yes_4ps_beneficiary").val(val)
+    });
+
+    /* Language / Dialect proficiency */
+    
+    // let checkboxEng = $("input[name='english']");
+    // for(let i = 0; i < checkboxEng.length; i++){
+    //     if($(checkboxEng)[i].checked === true){
+    //         english += $(checkboxEng)[i].value + " ";
+    //     }
+    // }
+    /* English */
+    let englishObj = { english: {} };
+    $("input[name='checkbox_language1']").change(function(){
+        /* check if the checkbox is checked */
+        if($(this).is(":checked")){
+            let key = $(this).val();
+            englishObj.english[key] = 1; /* assigning 1 to the nested object */
+
+            $("input[name='language1']").val(JSON.stringify(englishObj));
+        }
+        else{
+            delete englishObj.english[$(this).val()]; /* remove the key from the nested object */
+            
+            $("input[name='language1']").val(JSON.stringify(englishObj));
+        }
+    });
+    /* Filipino */
+    let filipinoObj = { filipino: {} };
+    $("input[name='checkbox_language2']").change(function(){
+        /* check if the checkbox is checked */
+        if($(this).is(":checked")){
+            let key = $(this).val();
+            filipinoObj.filipino[key] = 1; /* assigning 1 to the nested object */
+
+            $("input[name='language2']").val(JSON.stringify(filipinoObj));
+        }
+        else{
+            delete filipinoObj.filipino[$(this).val()]; /* remove the key from the nested object */
+            
+            $("input[name='language2']").val(JSON.stringify(filipinoObj));
+        }
+    });
+    /* Mandarin */
+    let mandarinObj = { mandarin: {} };
+    $("input[name='checkbox_language3']").change(function(){
+        /* check if the checkbox is checked */
+        if($(this).is(":checked")){
+            let key = $(this).val();
+            mandarinObj.mandarin[key] = 1; /* assigning 1 to the nested object */
+
+            $("input[name='language3']").val(JSON.stringify(mandarinObj));
+        }
+        else{
+            delete mandarinObj.mandarin[$(this).val()]; /* remove the key from the nested object */
+            
+            $("input[name='language3']").val(JSON.stringify(mandarinObj));
+        }
+    });
+    /* Other language */
+    let specifyLanguageObj = {};
+    let inputSpecifyLanguage = $("input[name='specify_language']");
+    inputSpecifyLanguage.on("input", function(){
+        let inputVal = $(inputSpecifyLanguage).val();
+        if(inputVal !== ""){
+            /* enable checkboxes */
+            $("input[name='checkbox_specify_language']").prop('disabled', false);
+            // console.log(inputVal);
+            specifyLanguageObj[inputVal] = {};
+        }
+        else{
+            /* disable checkboxes */
+            $("input[name='checkbox_specify_language']").prop('disabled', true);
+
+        }
+    })
+    // $("input[name='checkbox_specify_language']").change(function(){
+    //     /* check if the checkbox is checked */
+    //     if($(this).is(":checked")){
+    //         let key = $(this).val();
+    //         specifyLanguageObj.specifyLanguage[key] = {}; /* assigning 1 to the nested object */
+
+    //         $("input[name='specify_language']").val(JSON.stringify(specifyLanguageObj));
+    //     }
+    //     else{
+    //         delete specifyLanguageObj.specifyLanguage[$(this).val()]; /* remove the key from the nested object */
+            
+    //         $("input[name='specify_language']").val(JSON.stringify(specifyLanguageObj));
+    //     }
+    // });
+    
 });
