@@ -11,8 +11,35 @@ $(document).ready(function(){
         otherSkills: []
     }
     
+    /* Display alert message */
     let alertMessage = (message) => {
-        // let div = document.create
+        $(".message").css({
+            "position": "absolute",
+            "top": "0",
+            "z-index": "10",
+            "display": "block",
+            "width": "50%",
+            "text-align": "center",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+        })
+
+        let p = document.createElement('p');
+        p.className = "alert alert-danger"
+        p.style.color = 'red';
+        p.innerText = message;
+        $(".message").append(p);
+
+        /* remove and restyle element */
+        setTimeout(function(){
+            $(".message .alert").remove();
+            $(".message").css({
+                "position": "none",
+                "top": "0",
+                "z-index": "10",
+                "display": "none"
+            })
+        }, 3000);
     }
 
     /*
@@ -120,18 +147,17 @@ $(document).ready(function(){
 
     }
     $("a").click(function(){
+        /* Remove the current form or page */
+        $(`#page${currentPage}`).css("display", "none");
+
         let pageNo = $(this).prop("class");
         let lastCharacter = pageNo[pageNo.length - 1];
-        
+
         $(".side-bar-links").find("a").css("font-weight", "100");
         $(this).css("font-weight", "bold")
         /* Display the selected form */
         $(`#${pageNo}`).css("display", "block");
 
-        /* Remove the current form or page */
-        $(`#page${currentPage}`).css("display", "none");
-
-        
         /* Update the currentPage value */
         currentPage = parseInt(lastCharacter);
     })
@@ -330,15 +356,7 @@ $(document).ready(function(){
             
         }
         else{
-            let p = document.createElement('p');
-            p.className = "alert alert-danger"
-            p.style.color = 'red';
-            p.innerText = 'Check all the checkboxes.';
-            $(".message").append(p);
-            
-            setTimeout(function(){
-                $(".message .alert").remove();
-            }, 3000);
+            alertMessage("Check all the checkboxes.");
         }
         
     });

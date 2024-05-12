@@ -194,18 +194,9 @@ input[type=date]:focus {
         outline: none;
     }
 /* Message Modal */
-#messageAlert {
-    position: fixed;
-    width: 50%;
-    height: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 10;
-    padding: 0;
-}
-
-#messageAlert div{
+.message{
     width: 100%;
     margin: 0 auto;
+    display: none;
+    text-align: center;
 }
