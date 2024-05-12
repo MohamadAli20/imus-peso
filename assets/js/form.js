@@ -287,24 +287,23 @@ $(document).ready(function(){
     /*
     * OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
     */
-   $("#input_other_skills").change(function(){
-        let val = $("#input_other_skills").val();
-        $("input[name='other_skills']").val(val);
-   });
+    $("#input_other_skills").change(function(){
+            let val = $("#input_other_skills").val();
+            $("input[name='other_skills']").val(val);
+    });
 
-    // $("input[name='checkbox_specify_language']").change(function(){
-    //     /* check if the checkbox is checked */
-    //     if($(this).is(":checked")){
-    //         let key = $(this).val();
-    //         specifyLanguageObj.specifyLanguage[key] = {}; /* assigning 1 to the nested object */
+    /*
+    * Check if certification and authorization is checked;
+    */
+    $(".btn-submit").click(function(e){
+        e.preventDefault()
+        
+        let isCertify = $("input[name='certify']").prop("checked");
+        let isAuthorize = $("input[name='authorize']").prop("checked") 
+        let isAware = $("input[name='aware']").prop("checked")
 
-    //         $("input[name='specify_language']").val(JSON.stringify(specifyLanguageObj));
-    //     }
-    //     else{
-    //         delete specifyLanguageObj.specifyLanguage[$(this).val()]; /* remove the key from the nested object */
-            
-    //         $("input[name='specify_language']").val(JSON.stringify(specifyLanguageObj));
-    //     }
-    // });
-    
+        if(isCertify === true && isAuthorize === true && isAware === true){
+            console.log("Do the AJAX here")
+        }
+    });
 });
