@@ -11,6 +11,10 @@ $(document).ready(function(){
         otherSkills: []
     }
     
+    let alertMessage = (message) => {
+        // let div = document.create
+    }
+
     /*
     * show side bar ehrn arrow forward is clicked
     * change the arrow forward with arrow back
@@ -115,6 +119,26 @@ $(document).ready(function(){
 
 
     }
+    $("a").click(function(){
+        let pageNo = $(this).prop("class");
+        let lastCharacter = pageNo[pageNo.length - 1];
+        
+        $(".side-bar-links").find("a").css("font-weight", "100");
+        $(this).css("font-weight", "bold")
+        /* Display the selected form */
+        $(`#${pageNo}`).css("display", "block");
+
+        /* Remove the current form or page */
+        $(`#page${currentPage}`).css("display", "none");
+
+        
+        /* Update the currentPage value */
+        currentPage = parseInt(lastCharacter);
+    })
+
+    /*
+    * Previous and Next button 
+    */ 
     $(".btn-prev").click(function(e){
         e.preventDefault();
 
@@ -303,7 +327,19 @@ $(document).ready(function(){
         let isAware = $("input[name='aware']").prop("checked")
 
         if(isCertify === true && isAuthorize === true && isAware === true){
-            console.log("Do the AJAX here")
+            
         }
+        else{
+            let p = document.createElement('p');
+            p.className = "alert alert-danger"
+            p.style.color = 'red';
+            p.innerText = 'Check all the checkboxes.';
+            $(".message").append(p);
+            
+            setTimeout(function(){
+                $(".message .alert").remove();
+            }, 3000);
+        }
+        
     });
 });
