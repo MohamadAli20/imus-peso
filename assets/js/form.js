@@ -202,27 +202,281 @@ $(document).ready(function(){
     /* 
     * PERSONAL INFORMATION
     * Stores the value of input tag to the checked radio button
+    *
+    * Disability
+    * Radio buttons
     */
-    /* Disability */
-    $("#input_disability_others").change(function(){
-        let val = $("#input_disability_others").val();
-        $("#disability_others").val(val);
+    let disabilityObj;
+
+    try{
+        disabilityObj = JSON.parse($("input[name='disability']").val());
+    }
+    catch(error){
+        disabilityObj = { disability: [] };
+    }
+    $(".input_disability").change(function(){
+        if ($(this).is(":checked")) {
+            let val = $(this).val();
+            disabilityObj['disability'].push(val);
+        } else {
+            let val = $(this).val();
+            let index = disabilityObj['disability'].indexOf(val);
+            if (index !== -1) {
+                disabilityObj['disability'].splice(index, 1);
+            }
+        }
+        $("input[name='disability']").val(JSON.stringify(disabilityObj));
+    });
+
+    /* When Others radio button is checked 
+    * get the specified disability
+    */
+    $("#disability_others").change(function(){
+        if($(this).is(":checked")){
+            let val = $("#input_disability_others").val();
+            if(val.trim() !== ''){ 
+                disabilityObj['disability'] = [val];
+            }
+            else
+            {
+                disabilityObj['disability'] = []; /* Clear the disability array if the input value is empty */
+            }
+        }
+        else{
+            disabilityObj['disability'] = []; /* Clear the disability array if "Others" radio button is unchecked */
+        }
+        $("input[name='disability']").val(JSON.stringify(disabilityObj)); 
+    });
+    /* When input tag is changed when disability is specified */
+    $("#input_disability_others").on('input', function(){
+        let val = $(this).val();
+        disabilityObj['disability'] = [val]; /* Update the disability array with the new value */
+        $("input[name='disability']").val(JSON.stringify(disabilityObj)); /* Update the hidden input field */
+    });
+
+    /* Combine all location to complete the present address */
+    let address = {
+        "house_no_street": "",
+        "barangay": "",
+        "city_municipality": "",
+        "province": ""
+    };
+
+    $(".province").on("input", function(){
+        address.province = $(".province").val();
+        $("input[name='address']").val(JSON.stringify(address));
+    });
+    $(".city_municipality").on("input", function(){
+        address.city_municipality = $(".city_municipality").val();
+        $("input[name='address']").val(JSON.stringify(address));
+    });
+    $(".barangay").on("input", function(){
+        address.barangay = $(".barangay").val();
+        $("input[name='address']").val(JSON.stringify(address));
+    });
+    $(".house_no_street").on("input", function(){
+        address.house_no_street = $(".house_no_street").val();
+        $("input[name='address']").val(JSON.stringify(address));
+    });
+
+    /*
+    * Employment Status
+    */
+    let employeeStatusObj = JSON.parse($("input[name='employment_status']").val());
+    let setEmployeeStatus = (status) => {
+        employeeStatusObj = {}
+        employeeStatusObj["employment_status"] = status;
+        $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+    }
+    $("#employed").click(function(){
+        if($(this).prop("checked")){
+            $("#unemployed").prop("checked", false); /* unchecked the unemplyed checkbox*/
+            setEmployeeStatus("employed"); /* add string json value to the input tag */
+            $(".employed .employed_type").prop("disabled", false); /* enable checkboxes under type of employed */
+            /* Disable unemployed checkboxes and uncheck */
+            $(".unemployed").prop("disabled", true);
+            $("#unemployed").prop("disabled", false);
+            $(".unemployed input[type='checkbox']").prop("checked", false);
+        }
+        else{
+            employeeStatusObj = {};
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+            /* disable checkboxes except the employed checkbox */
+            $(".employed input[type='checkbox']").prop("disabled", true);
+            $("#employed").prop("disabled", false);
+            $(".employed input[type='checkbox']").prop("checked", false);
+        }
+    });
+    $("#unemployed").click(function(){
+        if($(this).prop("checked")){
+            $("#employed").prop("checked", false);
+            setEmployeeStatus("unemployed");
+            $(".unemployed input[type='checkbox']").prop("disabled", false);
+            /* Disable employed checkboxes and unchecked */
+            $(".employed input[type='checkbox']").prop("disabled", true);
+            $("#employed").prop("disabled", false);
+            $(".employed input[type='checkbox']").prop("checked", false);
+            $(".input_other_job").val(""); /* clear employed input field */
+            
+        }
+        else{
+            employeeStatusObj = {};
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+            /* disable checkboxes except the unemployed checkbox */
+            $(".unemployed input[type='checkbox']").prop("disabled", true);
+            $("#unemployed").prop("disabled", false);
+            $(".unemployed input[type='checkbox']").prop("checked", false);
+            $(".how_long_looking_for_work").val(""); /* clear input field - duration of looking for a job under unemployed */
+            $(".input_other_unemployed_type").val("");
+        }
+    });
+    /* Wage and self employed */
+    $(".wage_employed").change(function(){
+        if($(this).prop("checked")){
+            $(".self_employed").prop("checked", false);
+            employeeStatusObj["employed_type"] = "wage employed"; /* add key value pair */
+
+            $(".job").prop("disabled", false);
+            $(".other_job").prop("disabled", false);
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+        else{
+            delete  employeeStatusObj["employed_type"]; /* remove the key from the nested object */
+            $(".job").prop("disabled", true);
+            $(".other_job").prop("disabled", true);
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+    });
+    $(".self_employed").change(function(){
+        if($(this).prop("checked")){
+            $(".wage_employed").prop("checked", false);
+            employeeStatusObj["employed_type"] = "self employed";
+
+            $(".job").prop("disabled", false);
+            $(".other_job").prop("disabled", false);
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+        else{
+            delete  employeeStatusObj["employed_type"]; /* remove the key from the nested object */
+            $(".job").prop("disabled", true);
+            $(".other_job").prop("disabled", true);
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
     })
-    /* Others radio button under employed category */
-    $("#input_employed_others").change(function(){
-        let val = $("#input_employed_others").val();
-        $("#employed_others").val(val);
+    /* Job checkboxes */
+    $(".job").click(function(){
+        $(".job").prop("checked", false); /* checkboxes under employed */
+        $(this).prop("checked", true);
+        let job = $(this).val();
+        if($(this).prop("checked")){
+            employeeStatusObj["job"] = job;
+
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
     });
-    /* Laid off abroad */
-    $("#input_laid_off_abroad").change(function(){
-        let val = $("#input_laid_off_abroad").val();
-        $("#laid_off_abroad").val(val);
+    $(".other_job").click(function(){
+        // console.log(this) $(this).prop("checked")
+        if($(this).prop("checked")){
+            let job = $(".input_other_job").val();
+            employeeStatusObj["job"] = job;
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+        else{
+            delete employeeStatusObj["job"]; /* remove the key from the nested object */
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
     });
-    /* Others radio button under unemployed category */
-    $("input_unemployed_others").change(function(){
-        let val = $("input_unemployed_others").val();
-        $("#unemployed_others").val(val);
+    $(".input_other_job").on("input", function(){
+        if($(this).prop("checked")){
+            let job = $(".input_other_job").val();
+            employeeStatusObj["job"] = job;
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
     });
+
+    /* Unemployed checkboxes and input */
+    $(".how_long_looking_for_work").on("input", function(){
+        let time = $(".how_long_looking_for_work").val();
+        if($("#unemployed").prop("checked")){
+            if(time === ""){
+                if("how_long_looking_for_work" in employeeStatusObj){
+                    delete employeeStatusObj["how_long_looking_for_work"];
+                }
+            }
+            else{
+                employeeStatusObj["how_long_looking_for_work"] = time;
+            }
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+    });
+    $(".unemployed_type").click(function(){
+        $(".unemployed_type").prop("checked", false); /* checkboxes under employed */
+        $(this).prop("checked", true);
+        let unemployed_type = $(this).val();
+        if($(this).prop("checked")){
+            employeeStatusObj["unemployed_type"] = unemployed_type;
+
+            delete employeeStatusObj["country"]; /* remove the key from the nested object */
+            $(".input_laid_off_abroad").val("");
+            $(".input_other_unemployed_type").val("");
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+    });
+    $(".laid_off_abroad").click(function(){
+        if($(this).prop("checked")){
+            let country = $(".input_laid_off_abroad").val();
+            employeeStatusObj["country"] = country;
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+        else{
+            delete employeeStatusObj["country"]; /* remove the key from the nested object */
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+    });
+    $(".input_laid_off_abroad").on("input", function(){
+        if($(".laid_off_abroad").prop("checked")){
+            let country = $(".input_laid_off_abroad").val();
+            if($("#unemployed").prop("checked")){
+                if(country === ""){
+                    if("country" in employeeStatusObj){
+                        delete employeeStatusObj["country"];
+                    }
+                }
+                else{
+                    employeeStatusObj["country"] = country;
+                }
+            }
+        }
+        $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+
+    })
+    $(".other_unemployed_type").click(function(){
+        if($(this).prop("checked")){
+            let unemployed_type = $(".input_other_unemployed_type").val();
+            employeeStatusObj["unemployed_type"] = unemployed_type;
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+        else{
+            delete employeeStatusObj["unemployed_type"]; /* remove the key from the nested object */
+            $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        }
+    });
+    $(".input_other_unemployed_type").on("input", function(){
+        if($(".other_unemployed_type").prop("checked")){
+            let unemployed_type = $(".input_other_unemployed_type").val();
+            if(unemployed_type === ""){
+                if("country" in employeeStatusObj){
+                    delete employeeStatusObj["unemployed_type"];
+                }
+            }
+            else{
+                employeeStatusObj["unemployed_type"] = unemployed_type;
+            }
+        }
+        $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+
+    })
+
     /* Yes radio if OFW */
     $("#input_ofw_country").change(function(){
         let val = $("#input_ofw_country").val();

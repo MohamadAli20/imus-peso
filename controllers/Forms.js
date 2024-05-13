@@ -3,7 +3,9 @@ const bodyParser = require("body-parser");
 
 class Forms{
     add(req, res){
-        console.log(req.body.personalInformation);
+        model.insert(req.body, (error) => {
+
+        })
     }
 }
 

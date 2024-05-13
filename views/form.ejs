@@ -91,7 +91,7 @@
             </div>
             <div class="row custom-form">
                 <div class="col-md-3 col-sm-6 mt-3">
-                    <input class="form-control" type="date" name="date" placeholder="Birthdate">
+                    <input class="form-control" type="date" name="birthdate" placeholder="Birthdate">
                 </div>
                 <div class="col-md-3 col-sm-6 mt-3">
                     <input class="form-control" type="email" name="email" placeholder="Email">
@@ -131,35 +131,34 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-3 col-sm-6 col-6 mt-3">
-                    <div>
-                        Disability
-                    </div>
+                    <div>Disability</div>
+                    <input name="disability" type="hidden" value="{disability:[]}">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="disability" id="visual" value="visual">
+                                <input class="form-check-input input_disability" type="checkbox" id="visual" value="visual">
                                 <label class="form-check-label" for="visual">Visual</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="disability" id="hearing" value="hearing">
+                                <input class="form-check-input input_disability" type="checkbox" id="hearing" value="hearing">
                                 <label class="form-check-label" for="hearing">Hearing</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="disability" id="speech" value="speech">
+                                <input class="form-check-input input_disability" type="checkbox" id="speech" value="speech">
                                 <label class="form-check-label" for="speech">Speech</label>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="disability" id="physical" value="physical">
+                                <input class="form-check-input input_disability" type="checkbox" id="physical" value="physical">
                                 <label class="form-check-label" for="physical">Physical</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="disability" id="mental" value="mental">
+                                <input class="form-check-input input_disability" type="checkbox" id="mental" value="mental">
                                 <label class="form-check-label" for="mental">Mental</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="disability" id="disability_others" value="">
+                                <input class="form-check-input input_disability" type="checkbox" id="disability_others" value="">
                                 <label class="form-check-label" for="disability_others">Others</label>
                             </div>
                         </div>
@@ -174,131 +173,132 @@
                     <input class="form-control" type="text" name="religion" placeholder="Religion">
                 </div>
                 <div class="col-md-3 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="contact" placeholder="Contact">
                 </div>
             </div>
             <div class="row custom-form pt-3">
-                <div class="col-md-12 col-sm-12">
-                    Present Address
+                <div class="col-md-12 col-sm-12">Present Address</div>
+                <input name="address" type="hidden" value="na">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
+                    <input class="form-control province" type="text" placeholder="Province">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="province" placeholder="Province">
+                    <input class="form-control city_municipality" type="text" placeholder="City or municipality">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="city-municipality" placeholder="City or municipality">
+                    <input class="form-control barangay" type="text" placeholder="Barangay">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="barangay" placeholder="Barangay">
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="house_no_street" placeholder="House No. / Street">
+                    <input class="form-control house_no_street" type="text" placeholder="House No. / Street">
                 </div>
             </div>
             <div class="row custom-form pt-3">
                 <div class="col-md-12">Employment Status / Type</div>
-                <div class="col-lg-6 col-md-12 mt-3">
+                <input type="hidden" name="employment_status" value="{}">
+                <!-- Employed -->
+                <div class="col-lg-6 col-md-12 mt-3 employed">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="employment_status" id="employed" value="employed" checked>
+                        <input class="form-check-input" id="employed" type="checkbox" value="employed">
                         <label class="form-check-label" for="employed">Employed</label>
                     </div>
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type_employed" id="wage_employed" value="wage employed">
-                            <label class="form-check-label" for="wage_employed">Wage Employed</label>
+                            <input class="form-check-input employed_type wage_employed" type="checkbox" value="wage employed" disabled>
+                            <label class="form-check-label" for="checkbox">Wage Employed</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type_employed" id="self_employed" value="self employed">
+                            <input class="form-check-input employed_type self_employed" type="checkbox" value="self employed" disabled>
                             <label class="form-check-label" for="self_employed">Self Employed (Please specify)</label>
                         </div>        
                     </div>
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="fisherman" id="fisherman" value="fisherman">
+                            <input class="form-check-input job" type="checkbox" value="fisherman/fisherfolk" disabled>
                             <label class="form-check-label" for="fisherman">Fisherman/Fisherfolk</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="vendor" id="vendor" value="vender">
+                            <input class="form-check-input job" type="checkbox" id="vendor" value="vendor/retailer" disabled>
                             <label class="form-check-label" for="vendor">Vendor/Retailer</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="home_based_worker" id="home_based_worker" value="home based worker">
+                            <input class="form-check-input job" type="checkbox" id="home_based_worker" value="home based worker" disabled>
                             <label class="form-check-label" for="home_based_worker">Home-based worker</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="transport" id="transport" value="transport">
+                            <input class="form-check-input job" type="checkbox" id="transport" value="transport" disabled>
                             <label class="form-check-label" for="transport">Transport</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="domestic" id="domestic" value="domestic">
+                            <input class="form-check-input job" type="checkbox" id="domestic" value="domestic" disabled>
                             <label class="form-check-label" for="domestic">Domestic Worker</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="freelancer" id="freelancer" value="freelancer">
+                            <input class="form-check-input job" type="checkbox" id="freelancer" value="freelancer" disabled>
                             <label class="form-check-label" for="freelancer">Freelancer</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="artisan_craft_worker" id="artisan_craft_worker" value="artisan craft worker">
+                            <input class="form-check-input job" type="checkbox" id="artisan_craft_worker" value="artisan/craft worker" disabled>
                             <label class="form-check-label" for="artisan_craft_worker">Artisan/Craft Worker</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="employed_others" id="employed_others" value="na">
-                            <label class="form-check-label" for="employed_others">Others</label>
+                            <input class="form-check-input other_job" type="checkbox" value="na" disabled>
+                            <label class="form-check-label" for="other_job">Others</label>
                         </div>
                         <div class="mt-2">
-                            <input class="form-control" type="text" placeholder="Please specify" id="input_employed_others">
+                            <input class="form-control input_other_job" value="" type="text">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 mt-3">
+                <!-- Unemployed -->
+                <div class="col-lg-6 col-md-12 mt-3 unemployed">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="employment_status" id="unemployed" value="unemployed">
+                        <input class="form-check-input" type="checkbox" id="unemployed" value="unemployed">
                         <label class="form-check-label" for="unemployed">Unemployed</label>
                     </div>
                     <div class="">
-                        <label for="">How long have you been looking for work?</label>
-                        <input class="form-control" type="text" name="how_long_looking_work">
+                        <label>How long have you been looking for work?</label>
+                        <input class="form-control how_long_looking_for_work" type="text">
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="unemployed" id="new_entrant_fresh_graduate" value="new entrant or fresh graduate">
+                                <input class="form-check-input unemployed_type" type="checkbox" id="new_entrant_fresh_graduate" value="new entrant or fresh graduate" disabled>
                                 <label class="form-check-label" for="new_entrant">New Entrant/Fresh Graduate</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="unemployed" id="finished_contract" value="finished contract">
+                                <input class="form-check-input unemployed_type" type="checkbox" id="finished_contract" value="finished contract" disabled>
                                 <label class="form-check-label" for="finished_contract">Finished Contract</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="unemployed" id="resigned" value="resigned">
+                                <input class="form-check-input unemployed_type" type="checkbox" id="resigned" value="resigned" disabled>
                                 <label class="form-check-label" for="resigned">Resigned</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="unemployed" id="retired" value="retired">
+                                <input class="form-check-input unemployed_type" type="checkbox" id="retired" value="retired" disabled>
                                 <label class="form-check-label" for="retired">Retired</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="unemployed" id="laid_off_due_calamity" value="laid off due calamity">
+                                <input class="form-check-input unemployed_type" type="checkbox" id="laid_off_due_calamity" value="terminated/laid off due calamity" disabled>
                                 <label class="form-check-label" for="laid_off_due_calamity">Terminated/Laid off due to calamity</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="unemployed" id="laid_off_local" value="laid off local">
+                                <input class="form-check-input unemployed_type" type="checkbox" id="laid_off_local" value="terminated/laid off (local)" disabled>
                                 <label class="form-check-label" for="laid_off_local">Terminated/Laid off (local)</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="unemployed" id="laid_off_abroad" value="na">
+                                <input class="form-check-input unemployed_type laid_off_abroad" type="checkbox" value="terminated/laid off (abroad)" disabled>
                                 <label class="form-check-label" for="laid_off_abroad">Terminated/Laid off (abroad)</label>
                             </div>
                             <div class="mt-2 d-inline-block">
-                                <input class="form-control" type="text" id="input_laid_off_abroad" placeholder="Specify country:">
+                                <input class="form-control input_laid_off_abroad" type="text">
                             </div>
                             <div class="form-check mt-2">
-                                <input class="form-check-input" type="radio" name="unemployed" id="unemployed_others" value="na">
+                                <input class="form-check-input unemployed_type other_unemployed_type" type="checkbox" id="unemployed_others" value="na" disabled>
                                 <label class="form-check-label" for="unemployed_others">Others</label>
                             </div>
                             <div class="mt-2 d-inline-block">
-                                <input class="form-control" type="text" id="input_unemployed_others" placeholder="Specify:">
+                                <input class="form-control input_other_unemployed_type" type="text">
                             </div>
                         </div>
                     </div>
@@ -306,19 +306,18 @@
             </div>
             <div class="row pt-3">
                 <div class="col-lg-6">
-                    <div>
-                        Are you an OFW?
-                    </div>
+                    <div>Are you an OFW?</div>
+                    <input type="hidden" name="is_ofw" value="{}">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_ofw" id="yes_ofw" value="na">
+                        <input class="form-check-input is_ofw" type="checkbox" id="yes_ofw" value="na">
                         <label class="form-check-label" for="yes_ofw">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_ofw" id="no_ofw" value="no">
+                        <input class="form-check-input is_ofw" type="checkbox" id="no_ofw" value="no">
                         <label class="form-check-label" for="no_ofw">No</label>
                     </div>
                     <div class="mt-2 d-inline-block col-lg-8">
-                        <input class="form-control" id="input_ofw_country" type="text" placeholder="Specify country">
+                        <input class="form-control" id="input_ofw_country" type="text">
                     </div>
                 </div>
             </div>

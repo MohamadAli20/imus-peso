@@ -143,7 +143,6 @@ input[type=date]:focus {
     text-align: center;
 }
 .language{
-    /* text-wrap: wrap; */
     word-wrap: break-word;
 }
 #specify-language{
