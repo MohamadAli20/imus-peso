@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/form.css">
     <script src="/js/loginModal.js"></script>
-    <script src="/js/form.js"></script>
-    <script src="/js/personalInfo.js"></script>
-    <script src="/js/jobPreference.js"></script>
 </head>
 <body>
     <!-- Warning message -->
@@ -392,53 +389,47 @@
                     </div>
                     <input type="hidden" name="occupation" value="{}">
                     <div class="mt-3">
-                        <label>1. Occupation</label>
+                        <label>Occupation 1</label>
                         <input class="form-control input_occupation preferred_occupation1" type="text">                        
                     </div>
                     <div class="mt-3">
-                        <label>2. Occupation</label>
+                        <label>Occupation 2</label>
                         <input class="form-control input_occupation preferred_occupation2" type="text">                        
                     </div>
                     <div class="mt-3">
-                        <label>3. Occupation</label>
+                        <label>Occupation 3</label>
                         <input class="form-control input_occupation preferred_occupation3" type="text">                        
                     </div>
                 </div>
                 <div class="col-lg-7 pt-3">
                     <div>Preferred Work Occupation</div>
+                    <input type="hidden" name="preferred_work_occupation" value="{}">
                     <div class="row">
                         <div class="col-lg-6 mt-2">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_location" id="local" value="local">
+                                <input class="form-check-input work_location" type="checkbox" id="local" value="local">
                                 <label class="form-check-label" for="local">Local 
                                     <span>(specify cities/municipalities)</span>
                                 </label>
                             </div>
-                            <div class="mt-3">
-                                <input class="form-control" name="local_address1" type="text" placeholder="1.">                        
-                            </div>
-                            <div class="mt-3">
-                                <input class="form-control" name="local_address2" type="text" placeholder="2.">                        
-                            </div>
-                            <div class="mt-3">
-                                <input class="form-control" name="local_address3" type="text" placeholder="3.">                        
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mt-2">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="work_location" id="overseas" value="overseas">
+                                <input class="form-check-input work_location" type="checkbox" id="overseas" value="overseas">
                                 <label class="form-check-label" for="overseas">Overseas
                                     <span>(specify countries)</span>
                                 </label>
                             </div>
+                            <input type="hidden" name="work_address" value="{}">
                             <div class="mt-3">
-                                <input class="form-control" name="overseas_address1" type="text" placeholder="1.">                        
+                                <label>Work Location 1</label>
+                                <input class="form-control input_address address1" type="text">                        
                             </div>
                             <div class="mt-3">
-                                <input class="form-control" name="overseas_address2" type="text" placeholder="2.">                        
+                                <label>Work Location 2</label>
+                                <input class="form-control input_address address2" type="text">                        
                             </div>
                             <div class="mt-3">
-                                <input class="form-control" name="overseas_address3" type="text" placeholder="3.">                        
+                                <label>Work Location 3</label>
+                                <input class="form-control input_address address3" type="text">                        
                             </div>
                         </div>
                     </div>
@@ -469,7 +460,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <input type="hidden" name="language1" value="na">
+                            <input type="hidden" name="language1" value="{}">
                             <th scope="row">English</th>
                             <td><input type="checkbox" class="checkbox_language1" value="read"></td>
                             <td><input type="checkbox" class="checkbox_language1" value="write"></td>
@@ -477,7 +468,7 @@
                             <td><input type="checkbox" class="checkbox_language1" value="understand"></td>
                         </tr>
                         <tr>
-                            <input type="hidden" name="language2" value="na">
+                            <input type="hidden" name="language2" value="{}">
                             <th scope="row">Filipino</th>
                             <td><input type="checkbox" class="checkbox_language2" value="read"></td>
                             <td><input type="checkbox" class="checkbox_language2" value="write"></td>
@@ -485,7 +476,7 @@
                             <td><input type="checkbox" class="checkbox_language2" value="understand"></td>
                         </tr>
                         <tr>
-                            <input type="hidden" name="language3" value="na">
+                            <input type="hidden"{}me="language3" value="{}">
                             <th scope="row">Mandarin</th>
                             <td><input type="checkbox" class="checkbox_language3" value="read"></td>
                             <td><input type="checkbox" class="checkbox_language3" value="write"></td>
@@ -493,12 +484,12 @@
                             <td><input type="checkbox" class="checkbox_language3" value="understand"></td>
                         </tr>
                         <tr>
-                            <input type="hidden" name="specify_language" value="na">
-                            <th scope="row"><input class="form-control" id="input_specify_language" type="text" placeholder="Others"></th>
-                            <td><input type="checkbox" class="checkbox_specify_language" value="read" disabled></td>
-                            <td><input type="checkbox" class="checkbox_specify_language" value="write" disabled></td>
-                            <td><input type="checkbox" class="checkbox_specify_language" value="speak" disabled></td>
-                            <td><input type="checkbox" class="checkbox_specify_language" value="understand" disabled></td>
+                            <input type="hidden" name="other_language" value="{}">
+                            <th scope="row"><input class="form-control input_other_language" type="text" placeholder="Others"></th>
+                            <td><input type="checkbox" class="checkbox_other_language" value="read" disabled></td>
+                            <td><input type="checkbox" class="checkbox_other_language" value="write" disabled></td>
+                            <td><input type="checkbox" class="checkbox_other_language" value="speak" disabled></td>
+                            <td><input type="checkbox" class="checkbox_other_language" value="understand" disabled></td>
                         </tr>
                     </tbody>
                   </table>
@@ -978,6 +969,12 @@
             </div>
         </div>
     </div>
+    <!-- Form libraries -->
+    <script src="/js/header.js"></script>
+    <script src="/js/personalInfo.js"></script>
+    <script src="/js/jobPreference.js"></script>
+    <script src="/js/languageDialectProficiency.js"></script>
+    <script src="/js/footer.js"></script>
     <!-- jQuery plugins floating label -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.placeholder.label.js"></script>

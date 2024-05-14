@@ -123,8 +123,8 @@ input[type=date]:focus {
 }
 /* Form section */
 .personal-information,
-/* .job-preference, */
-.language-dialect-proficiency,
+.job-preference,
+/* .language-dialect-proficiency, */
 .educational-background,
 .technical-vocational-training,
 .eligibility-professional-license,
