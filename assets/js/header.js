@@ -1,5 +1,3 @@
-// $(document).ready(function(){
-
 let finalInformation = {
     personalInformation: [],
     jobPreference: [],
@@ -143,8 +141,6 @@ let checkInputField = (form) => {
     //     $(`.page${currentPage}`).css("font-weight", "bold"); 
     // }
 
-
-
 }
 $("a").click(function(){
     /* Remove the current form or page */
@@ -162,5 +158,3 @@ $("a").click(function(){
     /* Update the currentPage value */
     currentPage = parseInt(lastCharacter);
 })
-
-

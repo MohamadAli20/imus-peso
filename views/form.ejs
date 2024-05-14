@@ -476,7 +476,7 @@
                             <td><input type="checkbox" class="checkbox_language2" value="understand"></td>
                         </tr>
                         <tr>
-                            <input type="hidden"{}me="language3" value="{}">
+                            <input type="hidden" name="language3" value="{}">
                             <th scope="row">Mandarin</th>
                             <td><input type="checkbox" class="checkbox_language3" value="read"></td>
                             <td><input type="checkbox" class="checkbox_language3" value="write"></td>
@@ -510,98 +510,102 @@
             <div class="row">
                 <div class="col-lg-12 mt-2">
                     <div>Elementary</div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="elementary_school" type="text" placeholder="School">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="elementary_course" type="text" placeholder="Course">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
+                <input type="hidden" name="if_elementary_undergraduate" value="{}">
                 <div class="col-lg-12 mt-2">
                     <div>If undergraduate</div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="elementary_undergraduate_level" type="text" placeholder="What level?">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control elem_what_level" type="text" placeholder="What level?">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="elementary_undergraduate_last_year_attended" type="text" placeholder="Year last attended">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control elem_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="elementary_awards_received" type="text" placeholder="Awards received">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control elem_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <div>Secondary</div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="secondary_school" type="text" placeholder="School">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="secondary_course" type="text" placeholder="Course">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="secondary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
+                <input type="hidden" name="if_secondary_undergraduate" value="{}">
                 <div class="col-lg-12 mt-2">
                     <div>If undergraduate</div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="secondary_undergraduate_level" type="text" placeholder="What level?">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control secondary_what_level" type="text" placeholder="What level?">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="secondary_undergraduate_year_last_attended" type="text" placeholder="Year last attended">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control secondary_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="secondary_undergraduate_awards_received" type="text" placeholder="Awards received">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control secondary_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <div>Tertiary</div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="tertiary_school" type="text" placeholder="School">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="tertiary_course" type="text" placeholder="Course">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="tertiary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
+                <input type="hidden" name="if_tertiary_undergraduate" value="{}">
                 <div class="col-lg-12 mt-2">
                     <div>If undergraduate</div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="tertiary_undergraduate_level" type="text" placeholder="What level?">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control tertiary_what_level" type="text" placeholder="What level?">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="tertiary_undergraduate_year_last_attended" type="text" placeholder="Year last attended">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control tertiary_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="tertiary_undergraduate_awards_received" type="text" placeholder="Awards received">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control tertiary_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <div>Graduate Studies</div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="graduate_studies_school" type="text" placeholder="School">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="graduate_studies_course" type="text" placeholder="Course">
                     </div>
-                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-2">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="gradudate_studies_year_attended" type="text" placeholder="Year graduated">
                     </div>
                 </div>
+                <input type="hidden" name="if_graduate_studies_undergraduate" value="{}">
                 <div class="col-lg-12 mt-2">
                     <div>If undergraduate</div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="graduate_studies_undergraduate_level" type="text" placeholder="What level?">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control graduate_studies_what_level" type="text" placeholder="What level?">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="graduate_studies_undergraduate_year_last_attended" type="text" placeholder="Year last attended">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control graduate_studies_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-2">
-                        <input class="form-control" name="graduate_studies_undergraduate_awards_recieved" type="text" placeholder="Awards received">
+                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
+                        <input class="form-control graduate_studies_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="text-end">
@@ -796,86 +800,87 @@
                 <h4>INSTRUCTIONS:</h4>
                 <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
             </header>
+            <input type="hidden" name="skills_acquired" value="[]">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
-                        <input class="form-check-input" name="automechanic" type="checkbox" value="automechanic" id="autoMechanic">
+                        <input class="form-check-input skills" type="checkbox" value="automechanic" id="autoMechanic">
                         <label class="form-check-label" for="autoMechanic">Auto Mechanic</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="beautician" type="checkbox" value="beautician" id="beautician">
+                        <input class="form-check-input skills" type="checkbox" value="beautician" id="beautician">
                         <label class="form-check-label" for="beautician">Beautician</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="carpentry" type="checkbox" value="carpentry" id="carpentry">
+                        <input class="form-check-input skills" type="checkbox" value="carpentry" id="carpentry">
                         <label class="form-check-label" for="carpentry">Carpentry Work</label>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input" name="computer_literate" type="checkbox" value="computer literate" id="computer_literate">
+                        <input class="form-check-input skills" type="checkbox" value="computer literate" id="computer_literate">
                         <label class="form-check-label" for="computer_literate">Computer Literate</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="domestic_chores" type="checkbox" value="domestic chores" id="domestic_chores">
+                        <input class="form-check-input skills" type="checkbox" value="domestic chores" id="domestic_chores">
                         <label class="form-check-label" for="domestic_chores">Domestic Chores</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="driver" type="checkbox" value="driver" id="driver">
+                        <input class="form-check-input skills" type="checkbox" value="driver" id="driver">
                         <label class="form-check-label" for="driver">Driver</label>
                     </div> 
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
-                        <input class="form-check-input" name="electrician" type="checkbox" value="electrician" id="electrician">
+                        <input class="form-check-input skills" type="checkbox" value="electrician" id="electrician">
                         <label class="form-check-label" for="electrician">Electrician</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="embroidery" type="checkbox" value="embroidery" id="embroidery">
+                        <input class="form-check-input skills" type="checkbox" value="embroidery" id="embroidery">
                         <label class="form-check-label" for="embroidery">Embroidery</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="gardening" type="checkbox" value="gardening" id="gardening">
+                        <input class="form-check-input skills" type="checkbox" value="gardening" id="gardening">
                         <label class="form-check-label" for="gardening">Gardening</label>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input" name="masonry" type="checkbox" value="masonry" id="masonry">
+                        <input class="form-check-input skills" type="checkbox" value="masonry" id="masonry">
                         <label class="form-check-label" for="masonry">Masonry</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="painter_artist" type="checkbox" value="painter/artist" id="painter_artist">
+                        <input class="form-check-input skills" type="checkbox" value="painter/artist" id="painter_artist">
                         <label class="form-check-label" for="painter_artist">Painter/Artist</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="painting" type="checkbox" value="painting" id="painting">
+                        <input class="form-check-input skills" type="checkbox" value="painting" id="painting">
                         <label class="form-check-label" for="painting">Painting Jobs</label>
                     </div> 
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
-                        <input class="form-check-input" name="photography" type="checkbox" value="photography" id="photography">
+                        <input class="form-check-input skills" type="checkbox" value="photography" id="photography">
                         <label class="form-check-label" for="photography">Photography</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="plumbing" type="checkbox" value="plumbing" id="plumbing">
+                        <input class="form-check-input skills" type="checkbox" value="plumbing" id="plumbing">
                         <label class="form-check-label" for="plumbing">Plumbing</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="sewing" type="checkbox" value="sewing" id="sewing">
+                        <input class="form-check-input skills" type="checkbox" value="sewing" id="sewing">
                         <label class="form-check-label" for="sewing">Sewing Dresses</label>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input" name="stenography" type="checkbox" value="stenography" id="stenography">
+                        <input class="form-check-input skills" type="checkbox" value="stenography" id="stenography">
                         <label class="form-check-label" for="stenography">Stenography</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="tailoring" type="checkbox" value="tailoring" id="tailoring">
+                        <input class="form-check-input skills" type="checkbox" value="tailoring" id="tailoring">
                         <label class="form-check-label" for="tailoring">Tailoring</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="other_skills" type="checkbox" value="na" id="other_skills">
-                        <label class="form-check-label" for="other_skills">Others:</label>
+                        <input class="form-check-input other_skill" type="checkbox" id="other_skill">
+                        <label class="form-check-label" for="other_skill">Others:</label>
                     </div>
                     <div>
-                        <input class="form-control" id="input_other_skills" type="text">
+                        <input class="form-control input_other_skill" type="text">
                     </div>
                 </div>
             </div>
@@ -974,6 +979,8 @@
     <script src="/js/personalInfo.js"></script>
     <script src="/js/jobPreference.js"></script>
     <script src="/js/languageDialectProficiency.js"></script>
+    <script src="/js/educationalBackground.js"></script>
+    <script src="/js/skillsAcquired.js"></script>
     <script src="/js/footer.js"></script>
     <!-- jQuery plugins floating label -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
