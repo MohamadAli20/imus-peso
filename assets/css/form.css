@@ -122,7 +122,8 @@ input[type=date]:focus {
     color: black;
 }
 /* Form section */
-.job-preference,
+.personal-information,
+/* .job-preference, */
 .language-dialect-proficiency,
 .educational-background,
 .technical-vocational-training,

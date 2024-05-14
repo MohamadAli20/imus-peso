@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/css/form.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/form.js"></script>
+    <script src="/js/personalInfo.js"></script>
+    <script src="/js/jobPreference.js"></script>
 </head>
 <body>
     <!-- Warning message -->
@@ -132,39 +134,40 @@
                 </div>
                 <div class="col-lg-6 col-md-3 col-sm-6 col-6 mt-3">
                     <div>Disability</div>
-                    <input name="disability" type="hidden" value="{disability:[]}">
+                    <input name="disability" type="hidden" value="{}">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-check">
-                                <input class="form-check-input input_disability" type="checkbox" id="visual" value="visual">
+                                <input class="form-check-input disability" type="checkbox" id="visual" value="visual">
                                 <label class="form-check-label" for="visual">Visual</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input input_disability" type="checkbox" id="hearing" value="hearing">
+                                <input class="form-check-input disability" type="checkbox" id="hearing" value="hearing">
                                 <label class="form-check-label" for="hearing">Hearing</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input input_disability" type="checkbox" id="speech" value="speech">
+                                <input class="form-check-input disability" type="checkbox" id="speech" value="speech">
                                 <label class="form-check-label" for="speech">Speech</label>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-check">
-                                <input class="form-check-input input_disability" type="checkbox" id="physical" value="physical">
+                                <input class="form-check-input disability" type="checkbox" id="physical" value="physical">
                                 <label class="form-check-label" for="physical">Physical</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input input_disability" type="checkbox" id="mental" value="mental">
+                                <input class="form-check-input disability" type="checkbox" id="mental" value="mental">
                                 <label class="form-check-label" for="mental">Mental</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input input_disability" type="checkbox" id="disability_others" value="">
+                                <input class="form-check-input other_disability" type="checkbox" id="disability_others">
                                 <label class="form-check-label" for="disability_others">Others</label>
                             </div>
                         </div>
                     </div>
                     <div class="mt-3 ">
-                        <input class="col-12 form-control" id="input_disability_others" type="text" placeholder="Please specify">
+                        <label>Please specify</label>
+                        <input class="col-12 form-control input_other_disability" type="text">
                     </div>
                 </div>
             </div>
@@ -240,11 +243,11 @@
                             <label class="form-check-label" for="artisan_craft_worker">Artisan/Craft Worker</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input other_job" type="checkbox" value="na" disabled>
+                            <input class="form-check-input other_job" type="checkbox" disabled>
                             <label class="form-check-label" for="other_job">Others</label>
                         </div>
                         <div class="mt-2">
-                            <input class="form-control input_other_job" value="" type="text">
+                            <input class="form-control input_other_job" type="text">
                         </div>
                     </div>
                 </div>
@@ -309,54 +312,56 @@
                     <div>Are you an OFW?</div>
                     <input type="hidden" name="is_ofw" value="{}">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input is_ofw" type="checkbox" id="yes_ofw" value="na">
+                        <input class="form-check-input" type="checkbox" id="yes_ofw" value="na">
                         <label class="form-check-label" for="yes_ofw">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input is_ofw" type="checkbox" id="no_ofw" value="no">
+                        <input class="form-check-input" type="checkbox" id="no_ofw" value="no">
                         <label class="form-check-label" for="no_ofw">No</label>
                     </div>
                     <div class="mt-2 d-inline-block col-lg-8">
-                        <input class="form-control" id="input_ofw_country" type="text">
+                        <label for="">Specify country</label>
+                        <input class="form-control input_ofw_country" type="text">
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
-                <div>
-                    Are you a former OFW?
-                </div>
+                <div>Are you a former OFW?</div>
+                <input type="hidden" name="is_former_ofw" value="{}">
                 <div class="col-lg-6">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_former_ofw" id="yes_former_ofw" value="na">
+                        <input class="form-check-input yes_former_ofw" type="checkbox">
                         <label class="form-check-label" for="yes_former_ofw">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_former_ofw" id="no_former_ofw" value="no">
+                        <input class="form-check-input no_former_ofw" type="checkbox" value="no">
                         <label class="form-check-label" for="no_former_ofw">No</label>
                     </div>
                     <div class="col-lg-12 mt-3">
-                        <input class="form-control" id="ofw_former_country" type="text" placeholder="Latest country of deployment">
+                        <label for="">Latest country of deployment</label>
+                        <input class="form-control ofw_former_country" type="text">
                     </div>
                     <div class="col-lg-12 mt-3">
-                        <input class="form-control" id="month_year_return_ph" type="text" placeholder="Month and year of return to Philippines">
+                        <label for="">Month and year of return to Philippines</label>
+                        <input class="form-control month_year_return_ph" type="text">
                     </div>
                 </div> 
             </div>
             <div class="row mt-3">
                 <div class="col-lg-6">
-                    <div>
-                        Are you a 4ps beneficiary?
-                    </div>
+                    <div>Are you a 4ps beneficiary?</div>
+                    <input type="hidden" name="is_4ps_beneficiary" value="{}">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_4ps_beneficiary" id="yes_4ps_beneficiary" value="na">
+                        <input class="form-check-input yes_4ps_beneficiary" type="checkbox">
                         <label class="form-check-label" for="yes">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="is_4ps_beneficiary" id="no_4ps_beneficiary" value="no">
+                        <input class="form-check-input no_4ps_beneficiary" type="checkbox" value="no">
                         <label class="form-check-label" for="no">No</label>
                     </div>
                     <div class="mt-3">
-                        <input class="form-control" type="text" id="4ps_household_no" placeholder="If yes, please provide Household ID No.">
+                        <label>If yes, please provide Household ID No.</label>
+                        <input class="form-control 4ps_household_no" type="text">
                     </div>
                 </div>
             </div>
@@ -374,24 +379,29 @@
             <div class="row">
                 <div class="col-lg-5 pt-3">
                     <div>Preferred Occupation</div>
+                    <input type="hidden" name="preferred_occupation" value="{}">
                     <div class="mt-2">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="preferred_occupation" id="part-time" value="part time">
+                            <input class="form-check-input type_preferred_occupation" type="checkbox" id="part-time" value="part time">
                             <label class="form-check-label" for="part-time">Part-time</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="preferred_occupation" id="full-time" value="full time">
+                            <input class="form-check-input type_preferred_occupation" type="checkbox" id="full-time" value="full time">
                             <label class="form-check-label" for="full-time">Full-time</label>
                         </div>
                     </div>
+                    <input type="hidden" name="occupation" value="{}">
                     <div class="mt-3">
-                        <input class="form-control" name="occupation1" type="text" placeholder="1.">                        
+                        <label>1. Occupation</label>
+                        <input class="form-control input_occupation preferred_occupation1" type="text">                        
                     </div>
                     <div class="mt-3">
-                        <input class="form-control" name="occupation2" type="text" placeholder="2.">                        
+                        <label>2. Occupation</label>
+                        <input class="form-control input_occupation preferred_occupation2" type="text">                        
                     </div>
                     <div class="mt-3">
-                        <input class="form-control" name="occupation3" type="text" placeholder="3.">                        
+                        <label>3. Occupation</label>
+                        <input class="form-control input_occupation preferred_occupation3" type="text">                        
                     </div>
                 </div>
                 <div class="col-lg-7 pt-3">
