@@ -1,9 +1,3 @@
-// let coursesObj = JSON.parse($("input[name='courses']").val());
-// let institutionsObj = JSON.parse($("input[name='institutions']").val());
-// let dateFromObj = JSON.parse($("input[name='date_from']").val());
-// let dateTObj = JSON.parse($("input[name='date_to']").val());
-// let certificatesObj = JSON.parse($("input[name='certificated']").val());
-
 let coursesObj = {};
 let dateFromObj = {};
 let dateToObj = {};
@@ -57,19 +51,13 @@ let addCertificates = () => {
     }
 }
 
-$("input").on("input", function(){
+$(".technical-vocational-training input").on("input", function(){
     /* call these function to update object value */
     addCourses();
     addDateFrom();
     addDateTo();
     addInstitutions();
     addCertificates();
-
-    // console.log(coursesObj);
-    // console.log(dateFromObj);
-    // console.log(dateToObj);
-    // console.log(institutionsObj);
-    // console.log(certificatesObj);
 
     /* Update input tag value */
     $("input[name='courses']").val(JSON.stringify(coursesObj));

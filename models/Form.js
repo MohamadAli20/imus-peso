@@ -111,9 +111,38 @@ class Form{
         this.connection.query(
             'INSERT INTO technical_vocational_training(course, institution, date_from, date_to, certificate, created_at) VALUES(?,?,?,?,?,?)',
             [
-                info.techicalVocationalTraining
-            ]
+                info.techicalVocationalTraining[0].value, // course
+                info.techicalVocationalTraining[1].value, // institution
+                info.techicalVocationalTraining[2].value, // date_from
+                info.techicalVocationalTraining[3].value, // date_to
+                info.techicalVocationalTraining[4].value, // certificate
+                today // created_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
         )
+        /* eligibility and professional license */
+        this.connection.query(
+            'INSERT INTO eligibility_professional_license(eligibility, rating, date_exam, professional_license, valid_until, created_at) VALUES(?,?,?,?,?,?)',
+            [
+                info.eligibilityProfessionalLicense[0].value, // eligibility
+                info.eligibilityProfessionalLicense[1].value, // rating
+                info.eligibilityProfessionalLicense[2].value, // date_exam
+                info.eligibilityProfessionalLicense[3].value, // professional_license
+                info.eligibilityProfessionalLicense[4].value, // valid_until
+                today // created_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        )
+
+        console.log(info);
     }
 }
 

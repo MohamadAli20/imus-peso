@@ -691,37 +691,42 @@
             <div class="row">
                 <div>Eligibility/Professional License</div>
                 <!-- Eligibility -->
+                <input type="hidden" name="eligibility" value="">
+                <input type="hidden" name="rating" value="">
+                <input type="hidden" name="date_exam" value="">
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="first_eligibility" type="text" placeholder="1.Eligibility (Civil Service)">
+                    <input class="form-control eligibility" type="text" placeholder="1.Eligibility (Civil Service)">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control" name="first_rating" type="text" placeholder="Rating">
+                    <input class="form-control rating" type="text" placeholder="Rating">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control" name="first_date_exam" type="date" placeholder="Date of Examination">
+                    <input class="form-control date_exam" type="date" placeholder="Date of Examination">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="second_eligibility" type="text" placeholder="2.Eligibility (Civil Service)">
+                    <input class="form-control eligibility" type="text" placeholder="2.Eligibility (Civil Service)">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control" name="second_rating" type="text" placeholder="Rating">
+                    <input class="form-control rating" type="text" placeholder="Rating">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control" name="second_date_exam" type="date" placeholder="Date of Examination">
+                    <input class="form-control date_exam" type="date" placeholder="Date of Examination">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <!-- Professional License -->
+                <input type="hidden" name="professional_license" value="">
+                <input type="hidden" name="valid_until" value="">
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input class="form-control" name="first_prof_license" type="text" placeholder="1.Professional License (PRC)">
+                    <input class="form-control professional_license" type="text" placeholder="1.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6  mt-3">
-                    <input class="form-control" name="first_license_valid_until" type="date" placeholder="Valid until">
+                    <input class="form-control valid_until" type="date" placeholder="Valid until">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input class="form-control" name="second_prof_license" type="text" placeholder="2.Professional License (PRC)">
+                    <input class="form-control professional_license" type="text" placeholder="2.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input class="form-control" name="second_license_valid_until" type="date" placeholder="Valid until">
+                    <input class="form-control valid_until" type="date" placeholder="Valid until">
                 </div>
             </div>
             <div class="text-end">
@@ -738,56 +743,56 @@
             </header>
             <div class="row row-work-experience">
                 <div>Work Experience</div>
-                <!-- 1. -->
+                <input type="hidden" name="company_name" value="">
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="first_company_name" type="text" placeholder="1.Company name">
+                    <input class="form-control company_name"type="text" placeholder="1.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="first_company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="first_position" type="text" placeholder="Position">
+                    <input class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control" name="first_inclusive_dates" type="date" placeholder="Inclusive Dates">
+                    <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control" name="first_status" type="text" placeholder="Status">
+                    <input class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="second_company_name" type="text" placeholder="2.Company name">
+                    <input class="form-control company_name" type="text" placeholder="2.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="second_company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-lg-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="second_position" type="text" placeholder="Position">
+                    <input class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control" name="second_inclusive_dates" type="date" placeholder="Inclusive Dates">
+                    <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control" name="second_status" type="text" placeholder="Status">
+                    <input class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="third_company_name" type="text" placeholder="3.Company name">
+                    <input class="form-control company_name" type="text" placeholder="3.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="third_company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control" name="third_position" type="text" placeholder="Position">
+                    <input class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control" name="third_inclusive_dates" type="date" placeholder="Inclusive Dates">
+                    <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control" name="third_status" type="text" placeholder="Status">
+                    <input class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="col-lg-12 divider"></div>
             </div>
@@ -984,6 +989,8 @@
     <script src="/js/languageDialectProficiency.js"></script>
     <script src="/js/educationalBackground.js"></script>
     <script src="/js/technicalVocationalTraining.js"></script>
+    <script src="/js/eligibilityProfessionalLicense.js"></script>
+    <script src="/js/workExperience.js"></script>
     <script src="/js/skillsAcquired.js"></script>
     <script src="/js/footer.js"></script>
     <!-- jQuery plugins floating label -->
