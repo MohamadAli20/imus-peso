@@ -108,7 +108,12 @@ class Form{
             }
         )
         /* technical vocational training */
-        
+        this.connection.query(
+            'INSERT INTO technical_vocational_training(course, institution, date_from, date_to, certificate, created_at) VALUES(?,?,?,?,?,?)',
+            [
+                info.techicalVocationalTraining
+            ]
+        )
     }
 }
 
