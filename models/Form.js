@@ -141,8 +141,31 @@ class Form{
                 return;
             }
         )
-
-        console.log(info);
+        /* work experience */
+        this.connection.query(
+            'INSERT INTO work_experience(company_name, company_address, position, inclusive_date, status, created_at) VALUES(?,?,?,?,?,?)',
+            [
+                info.workExperience[0].value, // company_name
+                info.workExperience[1].value, // company_address
+                info.workExperience[2].value, // position
+                info.workExperience[3].value, // inclusive_date
+                info.workExperience[4].value, // status
+                today // created_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        )
+        /* Other skills */
+        // this.connection.query(
+        //     'INSERT INTO other_skills(skills, created_at) VALUES(?,?)',
+        //     [
+        //         info.otherSkills: [ { name: 'skills_acquired', value: '[]' } ]
+        //     ]
+        // )
+        // console.log(info);
     }
 }
 

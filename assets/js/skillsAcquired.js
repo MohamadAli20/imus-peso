@@ -1,7 +1,7 @@
 /*
 * OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
 */
-let skillsArr = JSON.parse($("input[name='skills_acquired']").val());
+let skillsObj = {};
 
 $(".skills").click(function() {
     let skill = $(this).val();
