@@ -31,6 +31,9 @@ main{
     border-top: 1px solid #F3F4F8;
     position: fixed;
     height: 100vh;
+    margin-top: 0;
+    padding-top: 0;
+    
 }
     .form-section, .form-content{
         padding-top: 70px;
@@ -39,7 +42,7 @@ main{
         display: block;
         text-decoration: none;
         color: #F3F4F8;
-        padding: 10px 0;
+        padding-bottom: 15px;
     }
     #personal-information{
         font-weight: bold;
@@ -55,58 +58,32 @@ main{
     position: absolute;
     right: 0;
 }
-@media screen and (max-width: 991px){
-    .custom-links ul li{
-        width: 100%;
-        text-align: right;
-    }
-}
 /* Hide the sidebar */
-@media screen and (max-width: 576px){
-    main{
-        font-size: 15px;
-    }
-    input::placeholder{
-        font-size: 15px;
-    }
-    .custom-links{
-        padding: 0;
-    }
+@media screen and (max-width: 575px){
     .form-section{
         position: fixed;
-        left: -200px;
-        height: 100vh;
+        width: 70%;
         z-index: 1;
+        border: none;
+        margin-top: 0;
         padding-top: 0;
-        border: 0;
-        margin-top: 55px;
-        font-size: 15px;
-        width: 200px;
-        padding: 0;
-        background-color: rgba(3, 138, 255, 0.9);
+        top: 10%;
     }
-        .side-bar-links{
-            width: 100%;
-            padding: 0 10px;
-        }
-        #arrow-icon{
-            visibility: visible;
-            border-radius: 100px;
-            position: absolute;
-            left:110%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            padding: 5px;
-            margin-left: -12px;
-        }
-        #arrow-icon:hover{
-            -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
-            -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
-            box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
-        }
-    .form-content{
-        position: relative;
-        overflow: auto;
+    #arrow-icon{
+        position: absolute;
+        top: 50%;
+        right: -8%;
+        visibility: visible;
+        z-index: 2;
+        padding: 0;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+    #arrow-icon:hover{
+        border-radius: 100px;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     }
 }
 /* Form */
@@ -164,6 +141,9 @@ input[type=date]:focus {
     padding-right: 5px; 
     background-color: rgb(255, 255, 255);
 }
+#btnSuccess{
+    display: none;
+}
 /* Login Modal */
 .modal-dialog{
     position: absolute;
@@ -194,7 +174,7 @@ input[type=date]:focus {
         outline: none;
     }
 /* Message Modal */
-.message{
+#message{
     width: 100%;
     margin: 0 auto;
     display: none;

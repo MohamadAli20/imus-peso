@@ -40,16 +40,46 @@ $(".btn-next").off("click").on("click", function(e){
 $(".btn-submit").click(function(e){
     e.preventDefault();
 
-    $.ajax({
-        url: "/addInformation",
-        type: "POST",
-        contentType : "application/json",
-        data: JSON.stringify(finalInformation),
-        success: function(response){
-            console.log(response);
-        },
-        error: function(error){
-            console.error(error);
+    let isChecked = true;
+    let certifyAuthorize = document.querySelectorAll(".certify-authorize")
+    for(let i = 0; i < certifyAuthorize.length; i++){
+        let checkbox = $(certifyAuthorize)[i];
+        if($(checkbox).prop("checked") === false){
+            isChecked = false;
         }
-    })
+    }
+    if(isChecked){
+        $.ajax({
+            url: "/addInformation",
+            type: "POST",
+            contentType : "application/json",
+            data: JSON.stringify(finalInformation),
+            success: function(response){
+                console.log(response);
+            },
+            error: function(error){
+                console.error(error);
+            }
+        });
+
+        $("#btnSuccess").trigger('click');
+    }
+    else{
+        let p = document.createElement('p');
+        p.className = "alert alert-danger col-lg-5 col-md-5 col-sm-6 col-12"
+        p.style.color = 'red';
+        p.style.margin = "0 auto";
+        p.innerText = 'Please check all the boxes.';
+        $("#message").append(p);
+        $("#message").css({
+            "display": "block",
+            "position": "absolute",
+            "top": "0",
+            "z-index": "5"
+        });
+        
+        setTimeout(function(){
+            $("#message").remove();
+        }, 3000);
+    }
 })

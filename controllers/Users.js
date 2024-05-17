@@ -2,6 +2,8 @@ const model = require("../models/User");
 const session = require('express-session');
 
 class Users{
+    /* methods render view files */
+    /* for user */
     index(req, res){
         res.render('index');
     }
@@ -11,7 +13,12 @@ class Users{
     register(req, res){
         res.render('register');
     }
+    /* for admin */
+    dashboard(req, res){
+        res.render('admin_dashboard');
+    }
 
+    /* methods interact with the model */
     create(req, res){
         let result = "";
         /*validate email*/

@@ -75,6 +75,10 @@ body{
         -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
         box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
     }
+        .custom-links ul li{
+            width: 100%;
+            text-align: right;
+        }
     .custom-nav-item{
         width: 100% !important;
         display: block;

@@ -17,7 +17,7 @@
 </head>
 <body>
     <!-- Warning message -->
-    <div class="message alert m-auto"></div>
+    <div id="message" class="message alert m-auto row"></div>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg text-white custom-nav">
         <div class="container-fluid">
@@ -74,31 +74,30 @@
                 <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
             </header>   
             <div class="row custom-form">
-                <div class="col-md-3 col-sm-6 mt-3">
-                    <!-- <label for=""></label> -->
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="surname" placeholder="Surname">
                 </div>
-                <div class="col-md-3 col-sm-6 mt-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="firstname" placeholder="First name">
                 </div>
-                <div class="col-md-3 col-sm-6 mt-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="middlename" placeholder="Middle name">
                 </div>
-                <div class="col-md-3 col-sm-6 mt-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="suffix" placeholder="Suffix">
                 </div>
             </div>
             <div class="row custom-form">
-                <div class="col-md-3 col-sm-6 mt-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="date" name="birthdate" placeholder="Birthdate">
                 </div>
-                <div class="col-md-3 col-sm-6 mt-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="email" name="email" placeholder="Email">
                 </div>
-                <div class="col-md-3 col-sm-6 mt-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="contact" placeholder="Contact">
                 </div>
-                <div class="col-md-3 col-sm-6 mt-3">
+                <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="height" placeholder="Height">
                 </div>
             </div>
@@ -812,7 +811,7 @@
                 <h4>INSTRUCTIONS:</h4>
                 <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
             </header>
-            <input type="hidden" name="skills_acquired" value="">
+            <input type="hidden" name="skills" value="">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
@@ -911,20 +910,20 @@
             <div class="row">
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" name="certify" type="checkbox" value="agree" id="certify">
+                        <input class="form-check-input certify-authorize" type="checkbox" value="agree" id="certify">
                         <label class="form-check-label" for="certify">
                             This is to certify that all data/information that I have provided in this form are true to the best of my knowledge.
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="authorize" type="checkbox" value="agree" id="authorize">
+                        <input class="form-check-input certify-authorize" type="checkbox" value="agree" id="authorize">
                         <label class="form-check-label" for="authorize">
                             This is also to authorized the DOLE to include my profile in the PESO Employment Information System , which is a subsystem of the PhilJobNet.
                             It is understood that my name shall be made available to employers who have access to the Registry.
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="aware" type="checkbox" value="agree" id="aware">
+                        <input class="form-check-input certify-authorize" type="checkbox" value="agree" id="aware">
                         <label class="form-check-label" for="aware">
                             I am also aware that DOLE is not obliged to seek employment on my behalf.
                         </label>
@@ -935,6 +934,7 @@
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-submit">Submit</button>
             </div>
+            <button id="btnSuccess" type="button" class="m-0 btn bg-primary text-white mx-1" data-bs-toggle="modal" data-bs-target="#successModal"></button>
         </form>
     </main>
     <!-- Logout Modal -->
@@ -981,6 +981,28 @@
                     <div class="">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="btnLogin">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Successful Registration Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="messageAlert row">
+            <div class="message col-lg-5 col-md-7 col-sm-7 m-auto"></div>
+        </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <a href="/"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
+                </div>
+                <div class="modal-body">
+                    <p class="text-success">Successfully registered!</p>
+                </div>
+                <div class="modal-footer row-fluid py-0 pb-2">
+                    <div class="">
+                        <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button></a>
                     </div>
                 </div>
             </div>

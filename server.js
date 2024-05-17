@@ -27,6 +27,7 @@ app.use(express.static("assets"));
 app.use('/', routes);
 app.use('/apply', routes);
 app.use('/register', routes);
+app.use('/dashboard', routes);
 
 app.listen(3000, () => {
     console.log('http://localhost:3000');

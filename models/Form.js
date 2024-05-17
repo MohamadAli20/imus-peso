@@ -158,13 +158,19 @@ class Form{
                 return;
             }
         )
-        /* Other skills */
-        // this.connection.query(
-        //     'INSERT INTO other_skills(skills, created_at) VALUES(?,?)',
-        //     [
-        //         info.otherSkills: [ { name: 'skills_acquired', value: '[]' } ]
-        //     ]
-        // )
+        /* other skills */
+        this.connection.query(
+            'INSERT INTO other_skills(skills, created_at) VALUES(?,?)',
+            [
+                info.otherSkills[0].value, // skills
+                today // created_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        )
         // console.log(info);
     }
 }

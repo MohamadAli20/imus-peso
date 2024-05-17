@@ -45,18 +45,46 @@ let alertMessage = (message) => {
 * change the arrow forward with arrow back
 */
 let openSideBar = () => {
-    $(".form-section").animate({left: '0px'})
+    $(".form-section").animate({left: '0px'});
     $("#arrow-forward").css("display", "none");
     $("#arrow-back").css("display", "block");
 }
+
 let closeSideBar = () => {
-    /* Only execute this when the screen size is equal or less than 576 pixels width */
-    if ($(window).width() <= 576) {
-        $(".form-section").animate({left: '-200px'});
+    if (window.innerWidth <= 576) {
+        $(".form-section").animate({left: '-70%'});
         $("#arrow-forward").css("display", "block");
         $("#arrow-back").css("display", "none");
     }
 }
+
+// Add event listener to handle window resize events
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 576) {
+        // Ensure sidebar is visible and positioned correctly
+        $(".form-section").css("left", "0px");
+        $("#arrow-forward").css("display", "none");
+        $("#arrow-back").css("display", "block");
+    }
+    if (window.innerWidth < 575) {
+        $(".form-section").css("left", "-70%");
+        $("#arrow-forward").css("display", "block");
+        $("#arrow-back").css("display", "none");
+    }
+});
+
+// Initial check to handle the case when the script runs
+if(window.innerWidth > 576){
+    $(".form-section").css("left", "0px");
+    $("#arrow-forward").css("display", "none");
+    $("#arrow-back").css("display", "block");
+}
+if(window.innerWidth < 575){
+    $(".form-section").css("left", "-70%");
+    $("#arrow-forward").css("display", "block");
+    $("#arrow-back").css("display", "none");
+}
+
 /* Open the side bar when arrow forward icon is clicked */
 $(document).on('click', "#arrow-forward", function(){
     openSideBar();
@@ -110,37 +138,8 @@ let addToObject = (formData) => {
 */
 
 let checkInputField = (form) => {
-
     let formData = $(form).serializeArray();
     addToObject(formData);
-
-    /* Check if input field is empty */
-    let isEmpty = formData.some(field => field.value.trim() === '');
-
-    // if (isEmpty) {
-    //     let p = document.createElement('p');
-    //     p.className = "alert alert-danger"
-    //     p.style.color = 'red';
-    //     p.innerText = 'There are empty fields in the form.';
-    //     $(".message").append(p);
-        
-    //     setTimeout(function(){
-    //         $(".message .alert").remove();
-    //     }, 3000);
-
-    // }
-    // else{
-    //     /* remove the bold of the previous link*/
-    //     $(`.page${currentPage}`).css("font-weight", "100"); 
-    //     $(`#page${currentPage}`).css("display", "none");
-
-    //     /* increment the value of the current page */
-    //     currentPage++;
-    //     $(`#page${currentPage}`).css("display", "block");
-    //     /* bold the selected link or the current page label in the sidebar*/
-    //     $(`.page${currentPage}`).css("font-weight", "bold"); 
-    // }
-
 }
 $("a").click(function(){
     /* Remove the current form or page */
