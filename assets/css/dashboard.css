@@ -1,0 +1,32 @@
+*{
+    font-family: sans-serif;
+}
+body{
+    /* background-color: #F3F4F8; */
+    font-size: 16px;
+}
+main{
+    padding: 20px;
+}
+    header{
+        position: relative;
+        padding: 5px;
+        border: 1px solid #898989;
+        /* margin: 20px ; */
+        /* width: 35%; */
+        border-radius: 5px;
+    }
+        header input{
+            border: none;
+            /* width: 90%; */
+            display: inline-block;
+        }
+        header img{
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+        }
+        header input:focus{
+            outline: none;
+        }
+    
