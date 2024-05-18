@@ -11,6 +11,8 @@ Router.post('/create', UserController.create);
 Router.post('/authenticate', UserController.authenticate);
 Router.post('/addInformation', FormController.add);
 
+Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
+Router.post('/search/:name', UserController.search)
 
 module.exports = Router;

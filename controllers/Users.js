@@ -15,7 +15,32 @@ class Users{
     }
     /* for admin */
     dashboard(req, res){
-        res.render('admin_dashboard');
+        const page = req.params.page;
+
+        model.applications(page, (error, row) => {
+            if(error){
+                console.error(error);
+            }
+            model.count_application((error, total) => {
+                if(error){
+                    console.error(error);
+                }
+                if(total){
+                    console.log(total[0].total)
+                }
+                res.render('admin_dashboard', { row, total });
+            })
+        })
+    }
+    search(req, res){
+        let name = req.params.name;
+        model.get_application_by_name(name, (error, row) =>{
+            if(error){
+                console.error(error);
+            }
+            res.render('admin_dashboard', { row });
+        
+        })
     }
 
     /* methods interact with the model */
@@ -37,7 +62,6 @@ class Users{
         }
         if(req.body.username !== "" && req.body.email !== "" &&  isValidEmail === true && req.body.password !== "" && (req.body.password.length >= 8 && req.body.password.length < 20)){
             model.register_account(req.body, (found) => {
-                console.log(found)
                 if(found){
                     result = "Email is already taken. ";
                 }

@@ -7,18 +7,19 @@ class User{
         this.connection = mysql.createConnection(config);
     }
     count_account(callback){
-        this.connection.query("SELECT COUNT(*) as total FROM users",
-        (error, row) => {
-            if(error){
-                console.error(error);
-                callback(error, null);
-                return;
-            }
-            if(row){
-                console.log(row);
-                callback(null, row[0].total)
-            }
-        });
+        this.connection.query(
+            "SELECT COUNT(*) as total FROM users",
+            (error, row) => {
+                if(error){
+                    console.error(error);
+                    callback(error, null);
+                    return;
+                }
+                if(row){
+                    console.log(row);
+                    callback(null, row[0].total)
+                }
+            });
     }
     register_account(account_info, callback){
         let is_admin = 0;
@@ -92,6 +93,64 @@ class User{
                 }
             }
         );
+    }
+    applications(page, callback){
+        let limitVal = 1;
+        if(!page || page == 1){
+            page = 0;
+        }
+        else{
+            page = (page - 1) * 9;
+        }
+
+        // console.log(page)
+        // page *= 10;
+        this.connection.query(
+            `SELECT * FROM personal_information LIMIT 9 OFFSET ${page}`,
+            (error, row) => {
+                if(error){
+                    console.error(error);
+                    callback(error, null);
+                    return;
+                }
+                if(row){
+                    callback(null, row);
+                }
+            }
+        );
+    }
+    count_application(callback){
+        this.connection.query(
+            "SELECT COUNT(*) AS total FROM personal_information",
+            (error, total) => {
+                if(error){
+                    console.error(error);
+                    callback(error, null);
+                    return;
+                }
+                if(total){
+                    callback(null, total);
+                }
+            }
+        )
+    }
+    get_application_by_name(name, callback){
+        console.log(name);
+        const searchTerm = name + '%';
+        this.connection.query(
+            "SELECT * FROM personal_information WHERE surname LIKE ? OR firstname LIKE ?",
+            [searchTerm, searchTerm],
+            (error, row) => {
+                if(error){
+                    console.error(error);
+                    callback(error, null);
+                    return;
+                }
+                if(row){
+                    callback(null, row);
+                }
+            }
+        )
     }
 }
 

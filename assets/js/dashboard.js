@@ -1,31 +1,20 @@
-import { Input, Ripple, initMDB } from "mdb-ui-kit";
+$(document).ready(function(){
 
-initMDB({ Input, Ripple });
-
-const searchFocus = document.getElementById('search-focus');
-const keys = [
-  { keyCode: 'AltLeft', isTriggered: false },
-  { keyCode: 'ControlLeft', isTriggered: false },
-];
-
-window.addEventListener('keydown', (e) => {
-  keys.forEach((obj) => {
-    if (obj.keyCode === e.code) {
-      obj.isTriggered = true;
-    }
-  });
-
-  const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
-
-  if (shortcutTriggered) {
-    searchFocus.focus();
-  }
-});
-
-window.addEventListener('keyup', (e) => {
-  keys.forEach((obj) => {
-    if (obj.keyCode === e.code) {
-      obj.isTriggered = false;
-    }
-  });
+	$(".search").on("input", function(){
+		let searchVal = $(".search").val();
+		$.ajax({
+			url: "/search/"+searchVal,
+			type: "POST",
+			data: { searchVal },
+			success: function(response){
+				if(response){
+					location.reload();
+				}
+				
+			},
+			error: function(error){
+				console.error(error);
+			}
+		})
+	})
 });
