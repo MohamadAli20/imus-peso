@@ -77,13 +77,14 @@ $(document).ready(function(){
 	$(".deleteIcon").click(function(){
 		selectedApplication = $(this).parent().parent();
 	});
-
+	/*  */
 	$("#btnDelete").click(function(){
 		let id = $(selectedApplication).find("input[name='applicationId']").val();
 		$.ajax({
 			url: "/delete/" + id,
 			type: "DELETE",
 			success: function(response){
+				console.log(response);
 				if(response){
 					window.location.href = "/dashboard";
 				}

@@ -101,9 +101,6 @@ class User{
         else{
             page = (page - 1) * 9;
         }
-
-        // console.log(page)
-        // page *= 10;
         this.connection.query(
             `SELECT * FROM personal_information LIMIT 9 OFFSET ${page}`,
             (error, row) => {
@@ -152,15 +149,35 @@ class User{
             )
         }
     }
-    delete_applcation_by_id(id, callback){
+    delete_application_by_id(id, callback){
         this.connection.query(
-            "DELETE FROM personal_information WHERE id = ?",
+            `DELETE pi, jp, ldp, eb, tvt, epl, we, os
+            FROM personal_information AS pi
+            LEFT JOIN job_preference AS jp ON pi.id = jp.id
+            LEFT JOIN language_dialect_proficiency AS ldp ON pi.id = ldp.id
+            LEFT JOIN educational_background AS eb ON pi.id = eb.id
+            LEFT JOIN technical_vocational_training AS tvt ON pi.id = tvt.id
+            LEFT JOIN eligibility_professional_license AS epl ON pi.id = epl.id
+            LEFT JOIN work_experience AS we ON pi.id = we.id
+            LEFT JOIN other_skills AS os ON pi.id = os.id
+            WHERE pi.id = ?;`,
             [ id ],
-            (error) => {
-                console.error(error);
-                callback(error);
+            (error, result) => {
+                if(error){
+                    console.error(error);
+                    callback(error, null);
+                }
+                if(result){
+                    callback(null, result);
+                }
+                // this.delete_job_preference(id, callback);
+                // this.delete_language_dialect_proficiency(id, callback);
             }
         )
+    }
+    /*  */
+    get_application_by_id(id, callback){
+        this.connection
     }
 }
 

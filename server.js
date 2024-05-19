@@ -24,10 +24,13 @@ app.set('view engine', 'ejs');
 /*serve static files*/
 app.use(express.static("assets"));
 
+/*for user*/
 app.use('/', routes);
 app.use('/apply', routes);
 app.use('/register', routes);
+/*for admin*/
 app.use('/dashboard', routes);
+app.use('/admin_form', routes);
 
 app.listen(3000, () => {
     console.log('http://localhost:3000');

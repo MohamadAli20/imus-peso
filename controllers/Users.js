@@ -2,8 +2,7 @@ const model = require("../models/User");
 const session = require('express-session');
 
 class Users{
-    /* methods render view files */
-    /* for user */
+    /* For user */
     index(req, res){
         res.render('index');
     }
@@ -13,7 +12,11 @@ class Users{
     register(req, res){
         res.render('register');
     }
-    /* for admin */
+
+    /* For admin */
+    admin_form(req, res){
+        res.render('admin_form');
+    }
     dashboard(req, res){
         const page = req.params.page;
 
@@ -44,23 +47,23 @@ class Users{
                 res.render('admin_dashboard', { row });
 
             }
-        
         })
     }
     delete(req, res){
         let id = req.params.id;
-        // console.log(id);
-        model.delete_applcation_by_id(id, (error) => {
-            if(error){
+        model.delete_application_by_id(id, (error, result) => {
+            if(error, result){
                 console.error(error);
             }
-            else{
+            if(result){
                 res.send("Successfully deleted");
+                // console.log(result)
             }
         });
     }
 
-    /* methods interact with the model */
+
+    /* Account registration, user authentication and authorization */
     create(req, res){
         let result = "";
         /*validate email*/

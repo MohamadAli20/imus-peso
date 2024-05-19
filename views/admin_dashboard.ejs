@@ -34,7 +34,7 @@
                         <a class="nav-link" href="#">Data Analytics</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/apply">Fill-Up Form</a>
+                        <a class="nav-link" href="/admin_apply">Fill-Up Form</a>
                     </li>
                     <li class="nav-item custom-nav-item d-flex justify-content-end align-items-center">
                         <div class="" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
@@ -66,7 +66,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-7"><%= row[i].firstname + " " + row[i].surname %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 email"><%= row[i].email %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-3 action">
-                    <img class="viewIcon" src="/images/view_gray.svg" alt="View icon">
+                    <a href="/view_application/<%=row[i].id%>"><img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
                     <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 </div>
             </div>
