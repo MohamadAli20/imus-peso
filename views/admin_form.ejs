@@ -48,6 +48,7 @@
             </div>
         </div>
     </nav>
+    <div><%= row[0].id %></div>
     <!-- Main -->
     <main class="row m-0">
         <div class="col-md-3 col-sm-3 form-section">
@@ -76,119 +77,121 @@
             </header>   
             <div class="row custom-form">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="surname" placeholder="Surname">
+                    <input value="<%= row[0].surname %>" class="form-control" type="text" name="surname" placeholder="Surname">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="firstname" placeholder="First name">
+                    <input value="<%= row[0].firstname %>" class="form-control" type="text" name="firstname" placeholder="First name">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="middlename" placeholder="Middle name">
+                    <input value="<%= row[0].middlename %>" class="form-control" type="text" name="middlename" placeholder="Middle name">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="suffix" placeholder="Suffix">
+                    <input value="<%= row[0].suffix %>" class="form-control" type="text" name="suffix" placeholder="Suffix">
                 </div>
             </div>
             <div class="row custom-form">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="date" name="birthdate" placeholder="Birthdate">
+                    <input value="<%= row[0].birthdate %>" class="form-control" type="text" name="birthdate" placeholder="Birthdate">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="email" name="email" placeholder="Email">
+                    <input value="<%= row[0].email %>" class="form-control" type="email" name="email" placeholder="Email">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="contact" placeholder="Contact">
+                    <input value="<%= row[0].contact %>" class="form-control" type="text" name="contact" placeholder="Contact">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="height" placeholder="Height">
+                    <input value="<%= row[0].height %>" class="form-control" type="text" name="height" placeholder="Height">
                 </div>
             </div>
             <div class="row custom-form">
                 <div class="col-md-3 col-sm-6 col-6 mt-3">
                     Gender
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" <% if(row[0].gender === "male") { %> checked <% } %>>
                         <label class="form-check-label" for="male">Male</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" <% if(row[0].gender === "female") { %> checked <% } %>>
                         <label class="form-check-label" for="female">Female</label>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-6 mt-3">
                     Civil Status
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="civil_status" id="single" value="single" checked>
-                        <label class="form-check-label" for="single">Single</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="civil_status" id="married" value="married">
-                        <label class="form-check-label" for="married">Married</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="civil_status" id="widowed" value="widowed">
-                        <label class="form-check-label" for="widowed">Widowed</label>
-                    </div>
+                    <% const civilStatuses = ["single", "married", "widowed"]; %>
+                    <% civilStatuses.forEach(status => { %>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="civil_status" id="<%= status %>" value="<%= status %>" <% if(row[0].civil_status === status) { %> checked <% } %>>
+                            <label class="form-check-label" for="<%= status %>"><%= status.charAt(0).toUpperCase() + status.slice(1) %></label>
+                        </div>
+                    <% }); %>
                 </div>
                 <div class="col-lg-6 col-md-3 col-sm-6 col-6 mt-3">
+                    <% let disability = JSON.parse(row[0].disability) %>
                     <div>Disability</div>
-                    <input name="disability" type="hidden" value="{}">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="form-check">
-                                <input class="form-check-input disability" type="checkbox" id="visual" value="visual">
+                                <div class="form-check">
+                                <input class="form-check-input disability" type="checkbox" id="visual" value="visual"  <% Object.keys(disability).forEach(key => { if(disability[key] === "visual"){ %> checked <% } }); %> >
                                 <label class="form-check-label" for="visual">Visual</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input disability" type="checkbox" id="hearing" value="hearing">
+                                <input class="form-check-input disability" type="checkbox" id="hearing" value="hearing" <% Object.keys(disability).forEach(key => { if(disability[key] === "hearing"){ %> checked <% } }); %> >
                                 <label class="form-check-label" for="hearing">Hearing</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input disability" type="checkbox" id="speech" value="speech">
+                                <input class="form-check-input disability" type="checkbox" id="speech" value="speech"  <% Object.keys(disability).forEach(key => { if(disability[key] === "speech"){ %> checked <% } }); %> >
                                 <label class="form-check-label" for="speech">Speech</label>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-check">
-                                <input class="form-check-input disability" type="checkbox" id="physical" value="physical">
+                                <input class="form-check-input disability" type="checkbox" id="physical" value="physical"  <% Object.keys(disability).forEach(key => { if(disability[key] === "physical"){ %> checked <% } }); %> >
                                 <label class="form-check-label" for="physical">Physical</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input disability" type="checkbox" id="mental" value="mental">
+                                <input class="form-check-input disability" type="checkbox" id="mental" value="mental"  <% Object.keys(disability).forEach(key => { if(disability[key] === "mental"){ %> checked <% } }); %> >
                                 <label class="form-check-label" for="mental">Mental</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input other_disability" type="checkbox" id="disability_others">
+                                <input class="form-check-input other_disability" type="checkbox" id="disability_others"  <% Object.keys(disability).forEach(key => { if(key === "other"){ %> checked <% } }); %> >
                                 <label class="form-check-label" for="disability_others">Others</label>
                             </div>
                         </div>
                     </div>
                     <div class="mt-3 ">
+                        <% let otherDisability = ''; %>
+                        <% Object.keys(disability).forEach(key => { %>
+                            <% if (key === 'other') { %>
+                                <% otherDisability = disability[key]; %>
+                            <% } %>
+                        <% }); %>
                         <label>Please specify</label>
-                        <input class="col-12 form-control input_other_disability" type="text">
+                        <input value="<%= otherDisability %>" class="col-12 form-control input_other_disability" type="text">
                     </div>
                 </div>
             </div>
             <div class="row custom-form pt-3">
                 <div class="col-md-3 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="religion" placeholder="Religion">
+                    <input value="<%= row[0].religion %>" class="form-control" type="text" name="religion" placeholder="Religion">
                 </div>
                 <div class="col-md-3 col-sm-6 mt-3">
                 </div>
             </div>
             <div class="row custom-form pt-3">
+                <% let address = JSON.parse(row[0].address); %>
                 <div class="col-md-12 col-sm-12">Present Address</div>
                 <input name="address" type="hidden" value="na">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control province" type="text" placeholder="Province">
+                    <input value="<%= address.province %>" class="form-control province" type="text" placeholder="Province">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control city_municipality" type="text" placeholder="City or municipality">
+                    <input value="<%= address.city_municipality %>" class="form-control city_municipality" type="text" placeholder="City or municipality">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control barangay" type="text" placeholder="Barangay">
+                    <input value="<%= address.barangay %>" class="form-control barangay" type="text" placeholder="Barangay">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control house_no_street" type="text" placeholder="House No. / Street">
+                    <input value="<%= address.house_no_street %>" class="form-control house_no_street" type="text" placeholder="House No. / Street">
                 </div>
             </div>
             <div class="row custom-form pt-3">
@@ -197,7 +200,7 @@
                 <!-- Employed -->
                 <div class="col-lg-6 col-md-12 mt-3 employed">
                     <div class="form-check">
-                        <input class="form-check-input" id="employed" type="checkbox" value="employed">
+                        <input class="form-check-input" id="employed" type="checkbox" value="employed" >
                         <label class="form-check-label" for="employed">Employed</label>
                     </div>
                     <div>

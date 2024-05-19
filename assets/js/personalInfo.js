@@ -5,43 +5,34 @@
 * Disability
 * Radio buttons
 */
-let disabilityObj =  JSON.parse($("input[name='disability']").val());
-$(".disability").change(function(){
-    if($(this).prop("checked")){
-        $(".disability").prop("checked", false);
-        $(".other_disability").prop("checked", false);
-        $(this).prop("checked", true);
+let addDisability = () => {
+    let disabilityObj =  {}
+    let disability = document.querySelectorAll(".disability");
+    
+    let num = 1;
+    for(let i = 0; i < disability.length; i++){
+        let checkbox = $(disability)[i];
         
-        disabilityObj["disability"] = $(this).val(); /* add key value pair */
-
-        $(".input_other_disability").val("");
+        if($(checkbox).prop("checked")){
+            console.log($(checkbox).val());
+            disabilityObj[`disability${num}`] = $(checkbox).val();
+            num++;
+        }
     }
-    else{
-        $(".input_other_disability").val("");
-        delete disabilityObj["disability"]; /* remove the key from the nested object */
+    if($(".other_disability").prop("checked")){
+        disabilityObj[`disability${num}`] = $(".input_other_disability").val();;
+        num++;
     }
     $("input[name='disability']").val(JSON.stringify(disabilityObj));
+}
+$(".disability").change(function(){
+    addDisability();
 });
 $(".other_disability").click(function(){
-    if($(this).prop("checked")){
-        $(".disability").prop("checked", false);
-        $(this).prop("checked", true);
-
-        let disability = $(".input_other_disability").val();
-        disabilityObj["disability"] = disability;
-    }
-    else{
-        $(".input_other_disability").val("");
-        delete disabilityObj["disability"]; /* remove the key from the nested object */
-    }
-    $("input[name='disability']").val(JSON.stringify(disabilityObj));
+   addDisability(); 
 });
 $(".input_other_disability").on("input", function(){
-    if($(".other_disability").prop("checked")){
-        let disability = $(".input_other_disability").val();
-        disabilityObj["disability"] = disability;
-        $("input[name='disability']").val(JSON.stringify(disabilityObj));
-    }
+    addDisability(); 
 });
 
 /* Combine all location to complete the present address */

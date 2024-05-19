@@ -15,7 +15,18 @@ class Users{
 
     /* For admin */
     admin_form(req, res){
-        res.render('admin_form');
+        const id = req.params.id;
+        model.get_application_by_id(id, (error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                console.log(row);
+                res.render('admin_form', { row });
+            }
+        })
+
+        
     }
     dashboard(req, res){
         const page = req.params.page;

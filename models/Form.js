@@ -171,8 +171,6 @@ class Form{
                 return;
             }
         )
-        // console.log(info);
     }
 }
-
 module.exports = new Form();

@@ -177,7 +177,23 @@ class User{
     }
     /*  */
     get_application_by_id(id, callback){
-        this.connection
+        this.connection.query(
+            `SELECT * 
+            FROM personal_information
+            LEFT JOIN job_preference ON personal_information.id = job_preference.id
+            WHERE personal_information.id = ?;`,
+            [ id ],
+            (error, row) => {
+                if(error){
+                    // console.error(error);
+                    callback(error, null);
+                }
+                if(row){
+                    // console.log(row);
+                    callback(null, row);
+                }
+            }
+        )
     }
 }
 
