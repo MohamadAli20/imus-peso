@@ -38,7 +38,12 @@ class Users{
             if(error){
                 console.error(error);
             }
-            res.render('admin_dashboard', { row });
+            if(row){
+                // console.log(row)
+                res.json(row);
+                res.render('admin_dashboard', { row });
+
+            }
         
         })
     }

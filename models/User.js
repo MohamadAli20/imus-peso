@@ -95,7 +95,6 @@ class User{
         );
     }
     applications(page, callback){
-        let limitVal = 1;
         if(!page || page == 1){
             page = 0;
         }
@@ -135,22 +134,23 @@ class User{
         )
     }
     get_application_by_name(name, callback){
-        console.log(name);
-        const searchTerm = name + '%';
-        this.connection.query(
-            "SELECT * FROM personal_information WHERE surname LIKE ? OR firstname LIKE ?",
-            [searchTerm, searchTerm],
-            (error, row) => {
-                if(error){
-                    console.error(error);
-                    callback(error, null);
-                    return;
+        if(name !== ""){
+            const searchTerm = name + '%';
+            this.connection.query(
+                "SELECT * FROM personal_information WHERE surname LIKE ? OR firstname LIKE ?",
+                [searchTerm, searchTerm],
+                (error, row) => {
+                    if(error){
+                        console.error(error);
+                        callback(error, null);
+                        return;
+                    }
+                    if(row){
+                        callback(null, row);
+                    }
                 }
-                if(row){
-                    callback(null, row);
-                }
-            }
-        )
+            )
+        }
     }
 }
 

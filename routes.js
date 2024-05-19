@@ -13,6 +13,7 @@ Router.post('/addInformation', FormController.add);
 
 Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
-Router.post('/search/:name', UserController.search)
+Router.post('/search/:name', UserController.search);
+// Router.post('/count/:name', UserController);
 
 module.exports = Router;
