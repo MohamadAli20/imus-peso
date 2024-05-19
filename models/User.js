@@ -152,6 +152,16 @@ class User{
             )
         }
     }
+    delete_applcation_by_id(id, callback){
+        this.connection.query(
+            "DELETE FROM personal_information WHERE id = ?",
+            [ id ],
+            (error) => {
+                console.error(error);
+                callback(error);
+            }
+        )
+    }
 }
 
 module.exports = new User();

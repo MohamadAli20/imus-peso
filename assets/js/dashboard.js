@@ -23,6 +23,7 @@ $(document).ready(function(){
     );
 
 	/* Display the result every time the inputs search is changed */
+	/* To be fix: Use session to use one controller for default and search application by name */
 	$(".search").on("input", function(){
 		let searchVal = $(this).val().trim();
 		if(searchVal !== ""){
@@ -69,5 +70,28 @@ $(document).ready(function(){
 		if(searchVal === ""){
 			location.reload();
 		}
-	})
+	});
+
+	/*  */
+	let selectedApplication;
+	$(".deleteIcon").click(function(){
+		selectedApplication = $(this).parent().parent();
+	});
+
+	$("#btnDelete").click(function(){
+		let id = $(selectedApplication).find("input[name='applicationId']").val();
+		$.ajax({
+			url: "/delete/" + id,
+			type: "DELETE",
+			success: function(response){
+				if(response){
+					window.location.href = "/dashboard";
+				}
+			},
+			error: function(error){
+				console.error(error);
+			}
+		});
+	});
+
 });

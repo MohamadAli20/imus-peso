@@ -47,6 +47,18 @@ class Users{
         
         })
     }
+    delete(req, res){
+        let id = req.params.id;
+        // console.log(id);
+        model.delete_applcation_by_id(id, (error) => {
+            if(error){
+                console.error(error);
+            }
+            else{
+                res.send("Successfully deleted");
+            }
+        });
+    }
 
     /* methods interact with the model */
     create(req, res){

@@ -47,7 +47,7 @@
             </div>
         </div>
     </nav>
-    <main class="row mx-lg-5 m-md-0">
+    <main class="row mx-lg-5 m-md-0 m-0">
         <header class="col-lg-3 col-md-6 col-12">
             <input class="search" type="text" placeholder="Search">
             <img src="/images/search.svg" alt="">
@@ -61,12 +61,13 @@
             </ul>
             <% for(let i = 0; i < row.length; i++){ %>
             <div class="row py-2 application">
+                <input value="<%=row[i].id%>" type="hidden" name="applicationId">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-2"><%= row[i].id %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-7"><%= row[i].firstname + " " + row[i].surname %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 email"><%= row[i].email %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-3 action">
                     <img class="viewIcon" src="/images/view_gray.svg" alt="View icon">
-                    <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon">
+                    <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 </div>
             </div>
             <% } %>
@@ -78,7 +79,24 @@
             <% } %>
             <!-- <img src="/images/arrow_forward.svg" alt="Arrow forward icon"> -->
         </footer>
-    </main>    
+    </main>
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete?</h1>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this?</p>
+                </div>
+                <div class="modal-footer row-fluid py-0 pb-2">
+                    <button type="button" class="btn btn-secondary" id="btnDelete" data-bs-dismiss="modal">Yes, I want</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No, I don't</button>
+                </div>
+            </div>
+        </div>
+    </div>    
     <!-- Login Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div id="messageAlert row">
