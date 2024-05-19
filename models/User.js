@@ -185,11 +185,9 @@ class User{
             [ id ],
             (error, row) => {
                 if(error){
-                    // console.error(error);
                     callback(error, null);
                 }
                 if(row){
-                    // console.log(row);
                     callback(null, row);
                 }
             }
