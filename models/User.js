@@ -175,12 +175,13 @@ class User{
             }
         )
     }
-    /*  */
     get_application_by_id(id, callback){
         this.connection.query(
             `SELECT * 
             FROM personal_information
             LEFT JOIN job_preference ON personal_information.id = job_preference.id
+            LEFT JOIN language_dialect_proficiency ON personal_information.id = language_dialect_proficiency.id
+            LEFT JOIN educational_background ON personal_information.id = educational_background.id
             WHERE personal_information.id = ?;`,
             [ id ],
             (error, row) => {

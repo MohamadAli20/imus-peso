@@ -1,0 +1,131 @@
+*{
+    font-family: sans-serif;
+}
+body{
+    /* background-color: #F3F4F8; */
+    font-size: 16px;
+}
+.custom-nav{
+    position: fixed;
+}
+/* Responsive links */
+@media screen and (max-width: 989px){
+    .custom-links{
+        z-index: 5;
+        position: absolute;
+        top: 100%;
+        background-color: rgba(3, 138, 255, 0.8);
+        width: 100%;
+        padding: 10px 0;
+        /* -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75); */
+    }
+}
+/* Main */
+main{
+    height: 100vh;
+}
+.form-section{
+    background-color: #038aff;
+    border-top: 1px solid #F3F4F8;
+    position: fixed;
+    height: 100vh;
+    margin-top: 0;
+    padding-top: 0;
+    
+}
+    .form-section, .form-content{
+        padding-top: 70px;
+    }
+    .form-section a{
+        display: block;
+        text-decoration: none;
+        color: #F3F4F8;
+        padding-bottom: 15px;
+    }
+    #personal-information{
+        font-weight: bold;
+    }
+    #arrow-icon{
+        visibility: hidden;
+    }
+    #arrow-back{
+        display: none;
+    }
+.form-content{
+    overflow: auto;
+    position: absolute;
+    right: 0;
+}
+/* Hide the sidebar */
+@media screen and (max-width: 575px){
+    .form-section{
+        position: fixed;
+        width: 70%;
+        z-index: 1;
+        border: none;
+        margin-top: 0;
+        padding-top: 0;
+        top: 10%;
+    }
+    #arrow-icon{
+        position: absolute;
+        top: 50%;
+        right: -8%;
+        visibility: visible;
+        z-index: 2;
+        padding: 0;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+    #arrow-icon:hover{
+        border-radius: 100px;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    }
+}
+/* Form */
+.form-content input:focus{
+    box-shadow: none;
+}
+/* Change input date text color */
+input[type=date] {
+    color: transparent;
+    /* margin: 10px 0; */
+}
+input[type=date]:focus {
+    color: black;
+}
+/* Form section */
+/* .personal-information, */
+.job-preference,
+.language-dialect-proficiency,
+.educational-background,
+.technical-vocational-training,
+.eligibility-professional-license,
+.work-experience,
+.other-skills-acquired,
+.certification-authorization{
+    visibility: hidden;
+}
+.page1{
+    font-weight: bold;
+}
+.form-check-label span{
+    font-size: 14px;
+}
+.language-dialect-proficiency .custom-checkbox{
+    padding: 7px 0;
+    text-align: center;
+}
+.language{
+    word-wrap: break-word;
+}
+#specify-language{
+    position: relative;
+}
+.educational-background input{
+    width: 100%;
+}

@@ -13,12 +13,10 @@
     <!-- CSS and JavaScript -->
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/loginModal.css">
-    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/admin_form.css">
     <script src="/js/loginModal.js"></script>
 </head>
 <body>
-    <!-- Warning message -->
-    <div id="message" class="message alert m-auto row"></div>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg text-white custom-nav">
         <div class="container-fluid">
@@ -520,34 +518,66 @@
                     </div>
                 </div>
                 <div class="col-lg-7 pt-3">
+                    <% 
+                    let preferredWorkOccupation = JSON.parse(row[0].preferred_work_occupation); 
+                    preferredWorkOccupation.type_work_occupation
+                    %>
                     <div>Preferred Work Occupation</div>
+                    <div><%=  %></div>
                     <input type="hidden" name="preferred_work_occupation" value="{}">
                     <div class="row">
                         <div class="mt-2">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input type_work_occupation" type="checkbox" id="local" value="local">
+                                <input class="form-check-input type_work_occupation" type="checkbox" id="local" value="local"
+                                <% if(preferredWorkOccupation.type_work_occupation === "local"){ %>
+                                checked
+                                <% } %>
+                                >
                                 <label class="form-check-label" for="local">Local 
                                     <span>(specify cities/municipalities)</span>
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input type_work_occupation" type="checkbox" id="overseas" value="overseas">
+                                <input class="form-check-input type_work_occupation" type="checkbox" id="overseas" value="overseas"
+                                <% if(preferredWorkOccupation.type_work_occupation === "overseas"){ %>
+                                checked
+                                <% } %>
+                                >
                                 <label class="form-check-label" for="overseas">Overseas
                                     <span>(specify countries)</span>
                                 </label>
                             </div>
+                            <% let location = JSON.parse(row[0].work_occupation); %>
                             <input type="hidden" name="work_occupation" value="{}">
                             <div class="mt-3">
                                 <label>Work Location 1</label>
-                                <input class="form-control input_address location1" type="text">                        
+                                <%
+                                let location1 = "";
+                                if(location.location1 !== ""){
+                                    location1 = location.location1;
+                                }
+                                %>
+                                <input value="<%= location1 %>" class="form-control input_address location1" type="text">                        
                             </div>
                             <div class="mt-3">
                                 <label>Work Location 2</label>
-                                <input class="form-control input_address location2" type="text">                        
+                                <%
+                                let location2 = "";
+                                if(location.location2 !== ""){
+                                    location2 = location.location2;
+                                }
+                                %>
+                                <input value="<%= location2 %>" class="form-control input_address location2" type="text">                        
                             </div>
                             <div class="mt-3">
                                 <label>Work Location 3</label>
-                                <input class="form-control input_address location3" type="text">                        
+                                <%
+                                let location3 = "";
+                                if(location.location3 !== ""){
+                                    location3 = location.location3;
+                                }
+                                %>
+                                <input value="<%= location3 %>" class="form-control input_address location3" type="text">                        
                             </div>
                         </div>
                     </div>
@@ -578,49 +608,179 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <% 
+                            let language1 = "";
+                            let englishKey = "";
+                            if(row[0].language1 !== "" && row[0].language1 !== "{}"){
+                                language1 = JSON.parse(row[0].language1);
+                                englishKey = Object.keys(language1.english);
+                            }
+                            %>
                             <input type="hidden" name="language1" value="{}">
                             <th scope="row">English</th>
-                            <td><input type="checkbox" class="checkbox_language1" value="read"></td>
-                            <td><input type="checkbox" class="checkbox_language1" value="write"></td>
-                            <td><input type="checkbox" class="checkbox_language1" value="speak"></td>
-                            <td><input type="checkbox" class="checkbox_language1" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language1" value="read"
+                            <%  for(let i = 0; i < englishKey.length; i++){ 
+                                    if(englishKey[i] === "read"){   %>
+                                    checked
+                            <%      } 
+                                } %>
+                            >
+                            </td>
+                            <td><input type="checkbox" class="checkbox_language1" value="write"
+                            <%  for(let i = 0; i < englishKey.length; i++){ 
+                                    if(englishKey[i] === "write"){   %>
+                                    checked
+                            <%      } 
+                                } %>    
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language1" value="speak"
+                            <%  for(let i = 0; i < englishKey.length; i++){ 
+                                    if(englishKey[i] === "speak"){   %>
+                                    checked
+                            <%      } 
+                                } %>    
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language1" value="understand"
+                            <%  for(let i = 0; i < englishKey.length; i++){ 
+                                    if(englishKey[i] === "understand"){   %>
+                                    checked
+                            <%      } 
+                                } %>    
+                            ></td>
                         </tr>
                         <tr>
+                            <% 
+                            let language2 = "";
+                            let filipinoKey = "";
+                            if(row[0].language2 !== "" && row[0].language2 !== "{}"){
+                                language2 = JSON.parse(row[0].language2);
+                                filipinoKey = Object.keys(language2.filipino);
+                            }
+                            %>
                             <input type="hidden" name="language2" value="{}">
                             <th scope="row">Filipino</th>
-                            <td><input type="checkbox" class="checkbox_language2" value="read"></td>
-                            <td><input type="checkbox" class="checkbox_language2" value="write"></td>
-                            <td><input type="checkbox" class="checkbox_language2" value="speak"></td>
-                            <td><input type="checkbox" class="checkbox_language2" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="read"
+                            <%  for(let i = 0; i < filipinoKey.length; i++){ 
+                                    if(filipinoKey[i] === "read"){   %>
+                                    checked
+                            <%      } 
+                                } %>     
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="write"
+                            <%  for(let i = 0; i < filipinoKey.length; i++){ 
+                                    if(filipinoKey[i] === "write"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="speak"
+                            <%  for(let i = 0; i < filipinoKey.length; i++){ 
+                                    if(filipinoKey[i] === "speak"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language2" value="understand"
+                            <%  for(let i = 0; i < filipinoKey.length; i++){ 
+                                    if(filipinoKey[i] === "understand"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
                         </tr>
                         <tr>
+                            <%
+                            let language3 = "";
+                            let mandarinKey = "";
+                            if(row[0].language3 !== "" && row[0].language3 !== "{}"){
+                                language3 = JSON.parse(row[0].language3);
+                                mandarinKey = Object.keys(language3.mandarin);
+                            }
+                            %>
                             <input type="hidden" name="language3" value="{}">
                             <th scope="row">Mandarin</th>
-                            <td><input type="checkbox" class="checkbox_language3" value="read"></td>
-                            <td><input type="checkbox" class="checkbox_language3" value="write"></td>
-                            <td><input type="checkbox" class="checkbox_language3" value="speak"></td>
-                            <td><input type="checkbox" class="checkbox_language3" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="read"
+                            <%  for(let i = 0; i < mandarinKey.length; i++){ 
+                                    if(mandarinKey[i] === "read"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="write"
+                            <%  for(let i = 0; i < mandarinKey.length; i++){ 
+                                    if(mandarinKey[i] === "write"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="speak"
+                            <%  for(let i = 0; i < mandarinKey.length; i++){ 
+                                    if(mandarinKey[i] === "speak"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_language3" value="understand"
+                            <%  for(let i = 0; i < mandarinKey.length; i++){ 
+                                    if(mandarinKey[i] === "understand"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
                         </tr>
                         <tr>
-                            <input type="hidden" name="other_language" value="{}">
-                            <th scope="row"><input class="form-control input_other_language" type="text" placeholder="Others"></th>
-                            <td><input type="checkbox" class="checkbox_other_language" value="read" disabled></td>
-                            <td><input type="checkbox" class="checkbox_other_language" value="write" disabled></td>
-                            <td><input type="checkbox" class="checkbox_other_language" value="speak" disabled></td>
-                            <td><input type="checkbox" class="checkbox_other_language" value="understand" disabled></td>
+                            <%
+                            let otherLanguage = ""; 
+                            let otherLanguageKey = "";
+                            let otherLanguageObj = "";
+                            if(row[0].other_language !== "" && row[0].other_language !== "{}"){
+                                otherLanguage = JSON.parse(row[0].other_language);
+                                otherLanguageKey = Object.keys(otherLanguage)[0];
+                                otherLanguageObj = Object.keys(otherLanguage[`${otherLanguageKey}`]);
+                            }
+                            %>
+                            
+                            <th scope="row"><%= otherLanguageKey %></th>
+                            <td><input type="checkbox" class="checkbox_other_language" value="read"
+                            <%  for(let i = 0; i < otherLanguageObj.length; i++){ 
+                                    if(otherLanguageObj[i] === "read"){   %>
+                                    checked
+                            <%      } 
+                                } %>     
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_other_language" value="write"
+                            <%  for(let i = 0; i < otherLanguageObj.length; i++){ 
+                                    if(otherLanguageObj[i] === "write"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_other_language" value="speak"
+                            <%  for(let i = 0; i < otherLanguageObj.length; i++){ 
+                                    if(otherLanguageObj[i] === "speak"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
+                            <td><input type="checkbox" class="checkbox_other_language" value="understand"
+                            <%  for(let i = 0; i < otherLanguageObj.length; i++){ 
+                                    if(otherLanguageObj[i] === "understand"){   %>
+                                    checked
+                            <%      } 
+                                } %> 
+                            ></td>
                         </tr>
                     </tbody>
                   </table>
             </div>
-            
             <div class="text-end">
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-next">Next</button>
             </div>    
         </form>
         <!-- Educational Background -->
-        <form class="col-md-9 col-sm-9 col-12 form-content educational-background" id="page4">
-            <header>
+        <form class="col-md-9 col-sm-9 col-12 form-content educational-background border" id="page4">
+            <header >
                 <a href="">Go Back</a>
                 <h4>INSTRUCTIONS:</h4>
                 <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
@@ -629,10 +789,10 @@
                 <div class="col-lg-12 mt-2">
                     <div>Elementary</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="elementary_school" type="text" placeholder="School">
+                        <input value="hshshshs" class="form-control" name="elementary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="elementary_course" type="text" placeholder="Course">
+                        <input value="<%= row[0].elementary_course %>" class="form-control" name="elementary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
@@ -1128,16 +1288,16 @@
         </div>
     </div>
     <!-- Form libraries -->
-    <script src="/js/header.js"></script>
-    <script src="/js/personalInfo.js"></script>
-    <script src="/js/jobPreference.js"></script>
-    <script src="/js/languageDialectProficiency.js"></script>
-    <script src="/js/educationalBackground.js"></script>
-    <script src="/js/technicalVocationalTraining.js"></script>
-    <script src="/js/eligibilityProfessionalLicense.js"></script>
-    <script src="/js/workExperience.js"></script>
-    <script src="/js/skillsAcquired.js"></script>
-    <script src="/js/footer.js"></script>
+    <!-- <script src="/js/header.js"></script> -->
+    <!-- <script src="/js/personalInfo.js"></script> -->
+    <!-- <script src="/js/jobPreference.js"></script> -->
+    <!-- <script src="/js/languageDialectProficiency.js"></script> -->
+    <!-- <script src="/js/educationalBackground.js"></script> -->
+    <!-- <script src="/js/technicalVocationalTraining.js"></script> -->
+    <!-- <script src="/js/eligibilityProfessionalLicense.js"></script> -->
+    <!-- <script src="/js/workExperience.js"></script> -->
+    <!-- <script src="/js/skillsAcquired.js"></script> -->
+    <script src="/js/admin_control.js"></script>
     <!-- jQuery plugins floating label -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.placeholder.label.js"></script>
