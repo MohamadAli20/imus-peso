@@ -1,3 +1,18 @@
+// Prevent mouse events on all checkboxes
+document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.style.pointerEvents = "none";
+});
+
+// Prevent mouse events on all radio buttons
+document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+    radio.style.pointerEvents = "none";
+});
+
+// Prevent mouse events on all input fields
+document.querySelectorAll('input[type="text"]').forEach(function(input) {
+    input.style.pointerEvents = "none";
+});
+
 /*
 * show side bar ehrn arrow forward is clicked
 * change the arrow forward with arrow back
@@ -17,31 +32,31 @@ let closeSideBar = () => {
 }
 
 // Add event listener to handle window resize events
-// window.addEventListener('resize', () => {
-//     if (window.innerWidth > 576) {
-//         // Ensure sidebar is visible and positioned correctly
-//         $(".form-section").css("left", "0px");
-//         $("#arrow-forward").css("display", "none");
-//         $("#arrow-back").css("display", "block");
-//     }
-//     if (window.innerWidth < 575) {
-//         $(".form-section").css("left", "-70%");
-//         $("#arrow-forward").css("display", "block");
-//         $("#arrow-back").css("display", "none");
-//     }
-// });
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 576) {
+        // Ensure sidebar is visible and positioned correctly
+        $(".form-section").css("left", "0px");
+        $("#arrow-forward").css("display", "none");
+        $("#arrow-back").css("display", "block");
+    }
+    if (window.innerWidth < 575) {
+        $(".form-section").css("left", "-70%");
+        $("#arrow-forward").css("display", "block");
+        $("#arrow-back").css("display", "none");
+    }
+});
 
-// // Initial check to handle the case when the script runs
-// if(window.innerWidth > 576){
-//     $(".form-section").css("left", "0px");
-//     $("#arrow-forward").css("display", "none");
-//     $("#arrow-back").css("display", "block");
-// }
-// if(window.innerWidth < 575){
-//     $(".form-section").css("left", "-70%");
-//     $("#arrow-forward").css("display", "block");
-//     $("#arrow-back").css("display", "none");
-// }
+// Initial check to handle the case when the script runs
+if(window.innerWidth > 576){
+    $(".form-section").css("left", "0px");
+    $("#arrow-forward").css("display", "none");
+    $("#arrow-back").css("display", "block");
+}
+if(window.innerWidth < 575){
+    $(".form-section").css("left", "-70%");
+    $("#arrow-forward").css("display", "block");
+    $("#arrow-back").css("display", "none");
+}
 
 /* Open the side bar when arrow forward icon is clicked */
 $(document).on('click', "#arrow-forward", function(){
@@ -70,7 +85,7 @@ let currentPage = 1;
 $("a").click(function(){
     /* Remove the current form or page */
     $(`#page${currentPage}`).css("display", "none");
-    checkInputField($(`#page${currentPage}`));
+    // checkInputField($(`#page${currentPage}`));
 
     let pageNo = $(this).prop("class");
     let lastCharacter = pageNo[pageNo.length - 1];
@@ -78,10 +93,18 @@ $("a").click(function(){
     $(".side-bar-links").find("a").css("font-weight", "100");
     $(this).css("font-weight", "bold")
     /* Display the selected form */
-    $(`#${pageNo}`).css("display", "block");
+    $(`#${pageNo}`).css({
+        "display": "block",
+    });
+    $("form").each(function() {
+        $(this).find("label").css("margin-top", "-12px");
+    });
+    
 
     /* Update the currentPage value */
     currentPage = parseInt(lastCharacter);
+
+    closeSideBar();
 })
 
 
@@ -106,21 +129,19 @@ $(".btn-prev").off("click").on("click", function(e){
 * Next button (also submits form)
 */
 $(".btn-next").off("click").on("click", function(e){
-    // e.preventDefault();
-    
-    // $(`.page${currentPage}`).css("font-weight", "100"); 
-    // $(`#page${currentPage}`).css("display", "none");
+    e.preventDefault();
+
+    $(`.page${currentPage}`).css("font-weight", "100"); 
+    $(`#page${currentPage}`).css("display", "none");
 
 
-    // /* increment the value of the current page */
-    // currentPage += 1;
-    // $(`#page${currentPage}`).css("display", "block");
-    // /* bold the selected link or the current page label in the sidebar */
-    // $(`.page${currentPage}`).css("font-weight", "bold");
+    /* increment the value of the current page */
+    currentPage += 1;
+    $(`#page${currentPage}`).css("display", "block");
+    /* bold the selected link or the current page label in the sidebar */
+    $(`.page${currentPage}`).css("font-weight", "bold");
 
-    let currentForm = $(this).parent().parent()[0]
-    $(currentForm).css("display", "none");
-    $(".educational-background").css({
-        "visibility": "visible"
-    })
+    $("form").each(function() {
+        $(this).find("label").css("margin-top", "-12px");
+    });
 });

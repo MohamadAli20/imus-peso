@@ -46,9 +46,9 @@
             </div>
         </div>
     </nav>
-    <div><%= row[0].id %></div>
     <!-- Main -->
     <main class="row m-0">
+        <!-- Sidebar link -->
         <div class="col-md-3 col-sm-3 form-section">
             <div class="side-bar-links">
                 <a class="page1" href="#">Personal Information</a>
@@ -59,7 +59,6 @@
                 <a class="page6" href="#">Eligibility / Professional License</a>
                 <a class="page7" href="#">Work Experience</a>
                 <a class="page8" href="#">Other Skills Acquired with Formal Training</a>
-                <a class="page9" href="#">Certification and Authorization</a>
             </div>
             <figure id="arrow-icon" class="col-sm-2">
                 <img id="arrow-forward" src="/images/arrow_forward.svg" alt="Arrow forward icon">
@@ -70,8 +69,7 @@
         <form class="col-md-9 col-sm-9 col-12 form-content personal-information" id="page1">
             <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Personal Information</h4>
             </header>   
             <div class="row custom-form">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
@@ -199,7 +197,6 @@
                 <!-- Employed -->
                 <div class="col-lg-6 col-md-12 mt-3 employed">
                     <div class="form-check">
-                        <!-- {"employment_status":"unemployed","how_long_l -->
                         <input class="form-check-input" id="employed" type="checkbox" value="employed"
                         <% if(employmentStatus.employment_status === "employed"){ %>
                         checked
@@ -454,8 +451,7 @@
         <form class="col-md-9 col-sm-9 col-12 form-content job-preference" id="page2">
             <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Job Preference</h4>    
             </header>
             <div class="row">
                 <div class="col-lg-5 pt-3">
@@ -592,8 +588,7 @@
         <form class="col-md-9 col-sm-9 col-12 form-content language-dialect-proficiency" id="page3">
             <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Language/Dialect Proficiency</h4>    
             </header>
             <div class="table-responsive">
                 <table class="table">
@@ -779,23 +774,22 @@
             </div>    
         </form>
         <!-- Educational Background -->
-        <form class="col-md-9 col-sm-9 col-12 form-content educational-background border" id="page4">
-            <header >
+        <form class="col-md-9 col-sm-9 col-12 form-content educational-background" id="page4">
+            <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Educational Background</h4>    
             </header>
             <div class="row">
                 <div class="col-lg-12 mt-2">
                     <div>Elementary</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="hshshshs" class="form-control" name="elementary_school" type="text" placeholder="School">
+                        <input value="<%= row[0].elementary_school %>" class="form-control" name="elementary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input value="<%= row[0].elementary_course %>" class="form-control" name="elementary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
+                        <input value="<%= row[0].elementary_year_graduated %>" class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <input type="hidden" name="if_elementary_undergraduate" value="{}">
@@ -814,13 +808,13 @@
                 <div class="col-lg-12 mt-2">
                     <div>Secondary</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="secondary_school" type="text" placeholder="School">
+                        <input value="<%= row[0].secondary_school %>" class="form-control" name="secondary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="secondary_course" type="text" placeholder="Course">
+                        <input value="<%= row[0].secondary_course %>" class="form-control" name="secondary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="secondary_year_graduated" type="text" placeholder="Year graduated">
+                        <input value="<%= row[0].secondary_year_graduated %>" class="form-control" name="secondary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <input type="hidden" name="if_secondary_undergraduate" value="{}">
@@ -839,13 +833,13 @@
                 <div class="col-lg-12 mt-2">
                     <div>Tertiary</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="tertiary_school" type="text" placeholder="School">
+                        <input value="<%= row[0].tertiary_school %>" class="form-control" name="tertiary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="tertiary_course" type="text" placeholder="Course">
+                        <input value="<%= row[0].tertiary_course %>" class="form-control" name="tertiary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="tertiary_year_graduated" type="text" placeholder="Year graduated">
+                        <input value="<%= row[0].tertiary_year_graduated %>" class="form-control" name="tertiary_year_graduated" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <input type="hidden" name="if_tertiary_undergraduate" value="{}">
@@ -864,13 +858,13 @@
                 <div class="col-lg-12 mt-2">
                     <div>Graduate Studies</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="graduate_studies_school" type="text" placeholder="School">
+                        <input value="<%= row[0].graduate_studies_school %>" class="form-control" name="graduate_studies_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="graduate_studies_course" type="text" placeholder="Course">
+                        <input value="<%= row[0].graduate_studies_course %>" class="form-control" name="graduate_studies_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="gradudate_studies_year_attended" type="text" placeholder="Year graduated">
+                        <input value="<%= row[0].gradudate_studies_year_attended %>" class="form-control" name="gradudate_studies_year_attended" type="text" placeholder="Year graduated">
                     </div>
                 </div>
                 <input type="hidden" name="if_graduate_studies_undergraduate" value="{}">
@@ -896,62 +890,63 @@
         <form class="col-md-9 col-sm-9 col-12 form-content technical-vocational-training" id="page5">
             <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Technical/Vocational And Other Training</h4>    
             </header>
             <div class="row">
-                <input type="hidden" name="courses" value="">
-                <input type="hidden" name="institutions" value="">
-                <input type="hidden" name="date_from" value="">
-                <input type="hidden" name="date_to" value="">
-                <input type="hidden" name="certificates" value="">
-                <div><div>Technical/Vocational And Other Training</div></div>
+                <%
+                let course = JSON.parse(row[0].course);
+                let dateFrom = JSON.parse(row[0].date_from);
+                let dateTo = JSON.parse(row[0].date_to);
+                let institution = JSON.parse(row[0].institution);
+                let award = JSON.parse(row[0].certificate);
+                %>
+                <div>Technical/Vocational And Other Training</div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control courses" type="text" placeholder="1.Training/Vocational Course">
+                    <input value="<%= course.course1 %>" class="form-control courses" type="text" placeholder="1.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_from" type="date" placeholder="Date From">
+                    <input value="<%= dateFrom.date_from1 %>"  class="form-control d-inline-block date_from" type="text" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_to" type="date" placeholder="Date To">
+                    <input value="<%= dateTo.date_to1 %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control institutions" type="text" placeholder="Training Institution">
+                    <input value="<%= institution.institution1 %>" class="form-control institutions" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control certificates" type="text" placeholder="Certificates Received">
+                    <input value="<%= award.certificate1 %>" class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
                 <div class="border-bottom col-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control courses" type="text" placeholder="2.Training/Vocational Course">
+                    <input value="<%= course.course2 %>" class="form-control courses" type="text" placeholder="2.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_from" type="date" placeholder="Date From">
+                    <input value="<%= dateFrom.date_from2 %>" class="form-control d-inline-block date_from" type="text" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_to" type="date" placeholder="Date To">
+                    <input value="<%= dateTo.date_to2 %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control institutions" type="text" placeholder="Training Institution">
+                    <input value="<%= institution.institution2 %>" class="form-control institutions" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control certificates" type="text" placeholder="Certificates Received">
+                    <input value="<%= award.certificate2 %>" class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
                 <div class="border-bottom col-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control courses" type="text" placeholder="3.Training/Vocational Course">
+                    <input value="<%= course.course3 %>" class="form-control courses" type="text" placeholder="3.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_from" type="date" placeholder="Date From">
+                    <input value="<%= dateFrom.date_from3 %>" class="form-control d-inline-block date_from" type="text" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_to" type="date" placeholder="Date To">
+                    <input value="<%= dateTo.date_to3 %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control institutions" type="text" placeholder="Training Institution">
+                    <input value="<%= institution.institution3 %>" class="form-control institutions" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control certificates" type="text" placeholder="Certificates Received">
+                    <input value="<%= award.certificate3 %>" class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
             </div>
             <div class="text-end">
@@ -963,48 +958,51 @@
         <form class="col-md-9 col-sm-9 col-12 form-content eligibility-professional-license" id="page6">
             <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Eligibility/Professional License</h4>
             </header>
             <div class="row">
-                <div>Eligibility/Professional License</div>
                 <!-- Eligibility -->
-                <input type="hidden" name="eligibility" value="">
-                <input type="hidden" name="rating" value="">
-                <input type="hidden" name="date_exam" value="">
+                <%
+                let eligibility = JSON.parse(row[0].eligibility);
+                let rating = JSON.parse(row[0].rating);
+                let dateExam = JSON.parse(row[0].date_exam);
+                %>
+                <div>Eligibility/Professional License</div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control eligibility" type="text" placeholder="1.Eligibility (Civil Service)">
+                    <input value="<%= eligibility.eligibility1 %>" class="form-control eligibility" type="text" placeholder="1.Eligibility (Civil Service)">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control rating" type="text" placeholder="Rating">
+                    <input value="<%= rating.rating1 %>" class="form-control rating" type="text" placeholder="Rating">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control date_exam" type="date" placeholder="Date of Examination">
+                    <input value="<%= dateExam.date_exam1 %>" class="form-control date_exam" type="text" placeholder="Date of Examination">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control eligibility" type="text" placeholder="2.Eligibility (Civil Service)">
+                    <input value="<%= eligibility.eligibility2 %>" class="form-control eligibility" type="text" placeholder="2.Eligibility (Civil Service)">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control rating" type="text" placeholder="Rating">
+                    <input value="<%= rating.rating2 %>" class="form-control rating" type="text" placeholder="Rating">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input class="form-control date_exam" type="date" placeholder="Date of Examination">
+                    <input value="<%= dateExam.date_exam2 %>" class="form-control date_exam" type="text" placeholder="Date of Examination">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <!-- Professional License -->
-                <input type="hidden" name="professional_license" value="">
-                <input type="hidden" name="valid_until" value="">
+                <%
+                let professionalLicense = JSON.parse(row[0].professional_license);
+                let validUntil = JSON.parse(row[0].valid_until);
+                %>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input class="form-control professional_license" type="text" placeholder="1.Professional License (PRC)">
+                    <input value="<%= professionalLicense.profLicense1 %>" class="form-control professional_license" type="text" placeholder="1.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6  mt-3">
-                    <input class="form-control valid_until" type="date" placeholder="Valid until">
+                    <input value="<%= validUntil.validUntil1 %>" class="form-control valiUntil" type="text" placeholder="Valid until">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input class="form-control professional_license" type="text" placeholder="2.Professional License (PRC)">
+                    <input value="<%= professionalLicense.profLicense2 %>" class="form-control professional_license" type="text" placeholder="2.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input class="form-control valid_until" type="date" placeholder="Valid until">
+                    <input value="<%= validUntil.validUntil2 %>" class="form-control valid_until" type="text" placeholder="Valid until">
                 </div>
             </div>
             <div class="text-end">
@@ -1016,65 +1014,66 @@
         <form class="col-md-9 col-sm-9 col-12 form-content work-experience" id="page7">
             <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Work Experience</h4>
             </header>
             <div class="row row-work-experience">
+                <%
+                let companyName = JSON.parse(row[0].company_name);
+                let companyAddress = JSON.parse(row[0].company_address);
+                let position = JSON.parse(row[0].position);
+                let inclusiveDate = JSON.parse(row[0].inclusive_date);
+                let status = JSON.parse(row[0].status);
+                %>
                 <div>Work Experience</div>
-                <input type="hidden" name="company_name" value="">
-                <input type="hidden" name="company_address" value="">
-                <input type="hidden" name="position" value="">
-                <input type="hidden" name="inclusive_date" value="">
-                <input type="hidden" name="status" value="">
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control company_name"type="text" placeholder="1.Company name">
+                    <input value="<%= companyName.company_name1 %>" class="form-control company_name" type="text" placeholder="1.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input value="<%= companyAddress.company_address1 %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control position" type="text" placeholder="Position">
+                    <input value="<%= position.position1 %>" class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
+                    <input value="<%= inclusiveDate.inclusive_date1 %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control status" type="text" placeholder="Status">
+                    <input value="<%= status.status1 %>" class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control company_name" type="text" placeholder="2.Company name">
+                    <input value="<%= companyName.company_name2 %>" class="form-control company_name" type="text" placeholder="2.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input value="<%= companyAddress.company_address2 %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-lg-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control position" type="text" placeholder="Position">
+                    <input value="<%= position.position2 %>" class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
+                    <input value="<%= inclusiveDate.inclusive_date2 %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control status" type="text" placeholder="Status">
+                    <input value="<%= status.status2 %>" class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control company_name" type="text" placeholder="3.Company name">
+                    <input value="<%= companyName.company_name3 %>" class="form-control company_name" type="text" placeholder="3.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input value="<%= companyAddress.company_address3 %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input class="form-control position" type="text" placeholder="Position">
+                    <input value="<%= position.position3 %>" class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
+                    <input value="<%= inclusiveDate.inclusive_date3 %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control status" type="text" placeholder="Status">
+                    <input value="<%= status.status3 %>" class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="col-lg-12 divider"></div>
             </div>
@@ -1087,133 +1086,176 @@
         <form class="col-md-9 col-sm-9 col-12 form-content other-skills-acquired" id="page8">
             <header>
                 <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered. Indicate "NA" if not applicable.</p>
+                <h4>Other Skills Acquired Without Formal Training</h4>
             </header>
             <input type="hidden" name="skills" value="">
             <div class="row">
+                <%
+                let skill = JSON.parse(row[0].skills);
+                %>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="automechanic" id="autoMechanic">
+                        <input class="form-check-input skills" type="checkbox" value="automechanic" id="autoMechanic"
+                        <% if(Object.values(skill).includes('automechanic')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="autoMechanic">Auto Mechanic</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="beautician" id="beautician">
+                        <input class="form-check-input skills" type="checkbox" value="beautician" id="beautician"
+                        <% if(Object.values(skill).includes('beautician')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="beautician">Beautician</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="carpentry" id="carpentry">
+                        <input class="form-check-input skills" type="checkbox" value="carpentry" id="carpentry"
+                        <% if(Object.values(skill).includes('carpentry')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="carpentry">Carpentry Work</label>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="computer literate" id="computer_literate">
+                        <input class="form-check-input skills" type="checkbox" value="computer literate" id="computer_literate"
+                        <% if(Object.values(skill).includes('computer literate')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="computer_literate">Computer Literate</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="domestic chores" id="domestic_chores">
+                        <input class="form-check-input skills" type="checkbox" value="domestic chores" id="domestic_chores"
+                        <% if(Object.values(skill).includes('domestic chores')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="domestic_chores">Domestic Chores</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="driver" id="driver">
+                        <input class="form-check-input skills" type="checkbox" value="driver" id="driver"
+                        <% if(Object.values(skill).includes('driver')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="driver">Driver</label>
                     </div> 
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="electrician" id="electrician">
+                        <input class="form-check-input skills" type="checkbox" value="electrician" id="electrician"
+                        <% if(Object.values(skill).includes('electrician')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="electrician">Electrician</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="embroidery" id="embroidery">
+                        <input class="form-check-input skills" type="checkbox" value="embroidery" id="embroidery"
+                        <% if(Object.values(skill).includes('embroidery')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="embroidery">Embroidery</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="gardening" id="gardening">
+                        <input class="form-check-input skills" type="checkbox" value="gardening" id="gardening"
+                        <% if(Object.values(skill).includes('gardening')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="gardening">Gardening</label>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="masonry" id="masonry">
+                        <input class="form-check-input skills" type="checkbox" value="masonry" id="masonry"
+                        <% if(Object.values(skill).includes('masonry')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="masonry">Masonry</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="painter/artist" id="painter_artist">
+                        <input class="form-check-input skills" type="checkbox" value="painter/artist" id="painter_artist"
+                        <% if(Object.values(skill).includes('painter/artist')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="painter_artist">Painter/Artist</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="painting" id="painting">
+                        <input class="form-check-input skills" type="checkbox" value="painting" id="painting"
+                        <% if(Object.values(skill).includes('painting')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="painting">Painting Jobs</label>
                     </div> 
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="photography" id="photography">
+                        <input class="form-check-input skills" type="checkbox" value="photography" id="photography"
+                        <% if(Object.values(skill).includes('photography')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="photography">Photography</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="plumbing" id="plumbing">
+                        <input class="form-check-input skills" type="checkbox" value="plumbing" id="plumbing"
+                        <% if(Object.values(skill).includes('plumbing')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="plumbing">Plumbing</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="sewing" id="sewing">
+                        <input class="form-check-input skills" type="checkbox" value="sewing" id="sewing"
+                        <% if(Object.values(skill).includes('sewing')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="sewing">Sewing Dresses</label>
                     </div> 
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="stenography" id="stenography">
+                        <input class="form-check-input skills" type="checkbox" value="stenography" id="stenography"
+                        <% if(Object.values(skill).includes('stenography')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="stenography">Stenography</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input skills" type="checkbox" value="tailoring" id="tailoring">
+                        <input class="form-check-input skills" type="checkbox" value="tailoring" id="tailoring"
+                        <% if(Object.values(skill).includes('tailoring')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="tailoring">Tailoring</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input other_skill" type="checkbox" id="other_skill">
+                        <input class="form-check-input other_skill" type="checkbox" id="other_skill"
+                        <% if(skill.hasOwnProperty('other')){ %>
+                            checked
+                        <% } %>
+                        >
                         <label class="form-check-label" for="other_skill">Others:</label>
                     </div>
                     <div>
-                        <input class="form-control input_other_skill" type="text">
+                        <%
+                        let otherSkill = ""; 
+                        if(Object.keys(skill).includes("other")){ 
+                            otherSkill = skill['other'];
+                        }
+                        %>
+                        <input value="<%= otherSkill %>" class="form-control input_other_skill" type="text">
                     </div>
                 </div>
             </div>
             <div class="text-end">
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
-                <button class="d-inline-block btn btn-primary my-3 btn-next">Next</button>
             </div>
-        </form>
-        <!-- Certification / Authorization -->
-        <form class="col-md-9 col-sm-9 col-12 form-content certification-authorization" id="page9">
-            <header>
-                <a href="">Go Back</a>
-                <h4>INSTRUCTIONS:</h4>
-                <p>Check appropriate boxes. Please do not leave any items unanswered.</p>
-            </header>
-            <div class="row">
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input certify-authorize" type="checkbox" value="agree" id="certify">
-                        <label class="form-check-label" for="certify">
-                            This is to certify that all data/information that I have provided in this form are true to the best of my knowledge.
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input certify-authorize" type="checkbox" value="agree" id="authorize">
-                        <label class="form-check-label" for="authorize">
-                            This is also to authorized the DOLE to include my profile in the PESO Employment Information System , which is a subsystem of the PhilJobNet.
-                            It is understood that my name shall be made available to employers who have access to the Registry.
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input certify-authorize" type="checkbox" value="agree" id="aware">
-                        <label class="form-check-label" for="aware">
-                            I am also aware that DOLE is not obliged to seek employment on my behalf.
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="text-end">
-                <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
-                <button class="d-inline-block btn btn-primary my-3 btn-submit">Submit</button>
-            </div>
-            <button id="btnSuccess" type="button" class="m-0 btn bg-primary text-white mx-1" data-bs-toggle="modal" data-bs-target="#successModal"></button>
         </form>
     </main>
     <!-- Logout Modal -->
@@ -1265,43 +1307,11 @@
             </div>
         </div>
     </div>
-    <!-- Successful Registration Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div id="messageAlert row">
-            <div class="message col-lg-5 col-md-7 col-sm-7 m-auto"></div>
-        </div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-                    <a href="/"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
-                </div>
-                <div class="modal-body">
-                    <p class="text-success">Successfully registered!</p>
-                </div>
-                <div class="modal-footer row-fluid py-0 pb-2">
-                    <div class="">
-                        <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Form libraries -->
-    <!-- <script src="/js/header.js"></script> -->
-    <!-- <script src="/js/personalInfo.js"></script> -->
-    <!-- <script src="/js/jobPreference.js"></script> -->
-    <!-- <script src="/js/languageDialectProficiency.js"></script> -->
-    <!-- <script src="/js/educationalBackground.js"></script> -->
-    <!-- <script src="/js/technicalVocationalTraining.js"></script> -->
-    <!-- <script src="/js/eligibilityProfessionalLicense.js"></script> -->
-    <!-- <script src="/js/workExperience.js"></script> -->
-    <!-- <script src="/js/skillsAcquired.js"></script> -->
     <script src="/js/admin_control.js"></script>
     <!-- jQuery plugins floating label -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.placeholder.label.js"></script>
-
 	<script type="text/javascript">
 		$(document).ready(function (){
 			$('input[placeholder]').placeholderLabel();

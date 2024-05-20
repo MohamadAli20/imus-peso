@@ -182,6 +182,10 @@ class User{
             LEFT JOIN job_preference ON personal_information.id = job_preference.id
             LEFT JOIN language_dialect_proficiency ON personal_information.id = language_dialect_proficiency.id
             LEFT JOIN educational_background ON personal_information.id = educational_background.id
+            LEFT JOIN technical_vocational_training ON personal_information.id = technical_vocational_training.id
+            LEFT JOIN eligibility_professional_license ON personal_information.id = eligibility_professional_license.id 
+            LEFT JOIN work_experience ON personal_information.id = work_experience.id     
+            LEFT JOIN other_skills ON personal_information.id = other_skills.id     
             WHERE personal_information.id = ?;`,
             [ id ],
             (error, row) => {

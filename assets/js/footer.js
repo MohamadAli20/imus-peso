@@ -5,11 +5,11 @@ $(".btn-prev").off("click").on("click", function(e){
     e.preventDefault();
     
     $(`.page${currentPage}`).css("font-weight", "100"); 
-    $(`#page${currentPage}`).css("display", "none");
+    $(`#page${currentPage}`).css("visibility", "hidden");
 
     /* decrement the value of the current page */
     currentPage -= 1;
-    $(`#page${currentPage}`).css("display", "block");
+    $(`#page${currentPage}`).css("visibility", "visible");
     /* bold the selected link or the current page label in the sidebar */
     $(`.page${currentPage}`).css("font-weight", "bold");
 });
@@ -21,13 +21,13 @@ $(".btn-next").off("click").on("click", function(e){
     e.preventDefault();
     
     $(`.page${currentPage}`).css("font-weight", "100"); 
-    $(`#page${currentPage}`).css("display", "none");
+    $(`#page${currentPage}`).css("visibility", "hidden");
 
     checkInputField($(`#page${currentPage}`))
 
     /* increment the value of the current page */
     currentPage += 1;
-    $(`#page${currentPage}`).css("display", "block");
+    $(`#page${currentPage}`).css("visibility", "visible");
     /* bold the selected link or the current page label in the sidebar */
     $(`.page${currentPage}`).css("font-weight", "bold");
 });
