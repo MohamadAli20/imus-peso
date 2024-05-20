@@ -7,20 +7,17 @@
 */
 let addDisability = () => {
     let disabilityObj =  {}
-    let disability = document.querySelectorAll(".disability");
     
     let num = 1;
-    for(let i = 0; i < disability.length; i++){
-        let checkbox = $(disability)[i];
-        
-        if($(checkbox).prop("checked")){
-            console.log($(checkbox).val());
-            disabilityObj[`disability${num}`] = $(checkbox).val();
+    for(let i = 0; i < $(".disability").length; i++){
+        let disability = $(".disability")[i];
+        if($(disability).prop("checked")){
+            disabilityObj[`disability${num}`] = $(disability).val();
             num++;
         }
     }
     if($(".other_disability").prop("checked")){
-        disabilityObj[`disability${num}`] = $(".input_other_disability").val();;
+        disabilityObj[`other`] = $(".input_other_disability").val();;
         num++;
     }
     $("input[name='disability']").val(JSON.stringify(disabilityObj));
@@ -149,44 +146,32 @@ $(".self_employed").change(function(){
     $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
 })
 /* Job checkboxes */
-$(".job").click(function(){
-    if($(this).prop("checked")){
-        $(".other_job").prop("checked", false);   
-        $(".job").prop("checked", false); /* checkboxes under employed */
-        $(".input_other_job").val("");
-        
-        $(this).prop("checked", true);
-        
-        let job = $(this).val();
-        employeeStatusObj["job"] = job;
+let addJob = () => {
+    let jobObj =  {}
+    
+    let num = 1;
+    for(let i = 0; i < $(".job").length; i++){
+        let job = $(".job")[i];
+        if($(job).prop("checked")){
+            jobObj[`job${num}`] = $(job).val();
+            num++;
+        }
+    }
+    if($(".other_job").prop("checked")){
+        jobObj[`other`] = $(".input_other_job").val();;
+        num++;
+    }
+    $("input[name='job']").val(JSON.stringify(jobObj));
+}
 
-        
-    }
-    else{
-        delete  employeeStatusObj["job"];
-    }
-    $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+$(".job").click(function(){
+    addJob();
 });
 $(".other_job").click(function(){
-    // console.log(this) $(this).prop("checked")
-    if($(this).prop("checked")){
-        $(".job").prop("checked", false);
-
-        let job = $(".input_other_job").val();
-        employeeStatusObj["job"] = job;
-        $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
-    }
-    else{
-        delete employeeStatusObj["job"]; /* remove the key from the nested object */
-        $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
-    }
+    addJob();
 });
 $(".input_other_job").on("input", function(){
-    if($(".other_job").prop("checked")){
-        let job = $(".input_other_job").val();
-        employeeStatusObj["job"] = job;
-        $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
-    }
+    addJob();
 });
 
 /* Unemployed checkboxes and input */
