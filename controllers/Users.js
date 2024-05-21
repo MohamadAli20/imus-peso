@@ -54,10 +54,7 @@ class Users{
                 console.error(error);
             }
             if(row){
-                // console.log(row)
                 res.json(row);
-                res.render('admin_dashboard', { row });
-
             }
         })
     }

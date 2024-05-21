@@ -66,13 +66,20 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-7"><%= row[i].firstname + " " + row[i].surname %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 email"><%= row[i].email %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-3 action">
-                    <a href="/view_application/<%=row[i].id%>"><img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
+                    <a href="/view_application/<%=row[i].id%>">
+                        <img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
                     <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 </div>
             </div>
             <% } %>
         </div>
-        
+        <footer class="">
+            <!-- <img src="/images/arrow_back.svg" alt="Arrow back icon"> -->
+            <% for(let page = 1; page <=  Math.ceil(total[0].total/9); page++){ %>
+            <a href="/dashboard/<%=page%>"><%= page %></a>
+            <% } %>
+            <!-- <img src="/images/arrow_forward.svg" alt="Arrow forward icon"> -->
+        </footer>
     </main>
     <!-- Delete Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
