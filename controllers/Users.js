@@ -25,8 +25,9 @@ class Users{
                 res.render('admin_form', { row });
             }
         })
-
-        
+    }
+    admin_apply(req, res){
+        res.render('admin_apply');
     }
     dashboard(req, res){
         const page = req.params.page;

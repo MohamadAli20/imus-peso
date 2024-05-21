@@ -16,6 +16,7 @@ Router.post('/addInformation', FormController.add);
 Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
 Router.get('/view_application/:id', UserController.admin_form);
+Router.get('/admin_apply', UserController.admin_apply);
 Router.post('/search/:name', UserController.search);
 Router.delete('/delete/:id', UserController.delete);
 

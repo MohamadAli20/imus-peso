@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>PESO Imus</title>
     <link rel="icon" type="image/png" href="/images/peso-logo.png">
     <!-- jQuery 3.3.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -33,7 +33,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Data Analytics</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/admin_apply">Fill-Up Form</a>
                     </li>
                     <li class="nav-item custom-nav-item d-flex justify-content-end align-items-center">
@@ -72,13 +72,7 @@
             </div>
             <% } %>
         </div>
-        <footer class="">
-            <!-- <img src="/images/arrow_back.svg" alt="Arrow back icon"> -->
-            <% for(let page = 1; page <=  Math.ceil(total[0].total/9); page++){ %>
-            <a href="/dashboard/<%=page%>"><%= page %></a>
-            <% } %>
-            <!-- <img src="/images/arrow_forward.svg" alt="Arrow forward icon"> -->
-        </footer>
+        
     </main>
     <!-- Delete Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
