@@ -8,20 +8,6 @@ body{
 .custom-nav{
     position: fixed;
 }
-/* Responsive links */
-@media screen and (max-width: 989px){
-    .custom-links{
-        z-index: 5;
-        position: absolute;
-        top: 100%;
-        background-color: rgba(3, 138, 255, 0.8);
-        width: 100%;
-        padding: 10px 0;
-        /* -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75); */
-    }
-}
 /* Main */
 main{
     height: 100vh;

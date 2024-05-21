@@ -73,7 +73,6 @@ class User{
             "SELECT * FROM users WHERE email = ?",
             [ credentials.email ],
             (error, row) => {
-                console.log(row);
                 let verified = false;
                 if(error){
                     console.error(error);
@@ -84,7 +83,8 @@ class User{
                     verified = bcrypt.compareSync(credentials.password, row[0].password);
                     const information = {
                         username: row[0].username,
-                        email: row[0].email
+                        email: row[0].email,
+                        is_admin: row[0].is_admin
                     }
                     callback(null, verified, information);
                 }

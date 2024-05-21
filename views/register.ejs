@@ -8,12 +8,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/register.css">
     <script src="/js/loginModal.js"></script>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg text-white">
+    <nav class="navbar navbar-expand-lg text-white custom-nav">
         <div class="container-fluid">
             <a class="navbar-brand logo-title" href="#">PESO IMUS</a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,22 +23,19 @@
             </button>
             <div class="collapse navbar-collapse row custom-links" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item close-icon-container" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <img id="close-icon" src="/images/close.svg" alt="Close icon">
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">PESO</a>
+                    </li> -->
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="/apply">Apply Now</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/apply">Apply Now</a>
-                    </li>
-                    <li class="nav-item d-flex justify-content-end align-items-center">
-                        <div class="m-0 p-0" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                            <p class="d-inline-block py-0 my-0 mx-1"></p> 
-                            <img class="d-inline-block" src="/images/arrow_down.svg" alt="Arrow down icon">
+                    <li class="nav-item custom-nav-item d-flex justify-content-end align-items-center">
+                        <div class="" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                            <p class="m-0"></p>
+                            <img class="" src="/images/arrow_down.svg" alt="Arrow down icon">
                         </div>
                         <button id="navLoginBtn" type="button" class="m-0 btn bg-primary text-white mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
                     </li>

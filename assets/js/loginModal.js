@@ -18,7 +18,7 @@ $(document).ready(() => {
     $("#btnLogout").click(function(){
         localStorage.removeItem('username');
         checkUserLogin();
-        location.reload();
+        window.location.href = "/";
     });
     
 
@@ -38,7 +38,12 @@ $(document).ready(() => {
                     localStorage.setItem('username', response.username)
                     $("#username").css("display", "block");
                     $("#navLoginBtn").css("display", "none");
-                    location.reload();
+                    if(response.isAdmin == 1){
+                        window.location.href = "/dashboard";
+                    }
+                    else{
+                        window.location.href = "/";
+                    }
                 }
                 else{
                     $(".message").css({

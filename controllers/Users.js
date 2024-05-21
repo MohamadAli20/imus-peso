@@ -89,12 +89,13 @@ class Users{
                 if(verified){
                     /* Store in session */
                     req.session.username = information.username;
-                    res.json({ success: true, username: information.username });
+                    res.json({ success: true, username: information.username, isAdmin: information.is_admin});
                 }
                 if(!verified){
                     result = "Login Failed";
                     res.send(result);
                 }
+                
             });
         }
         else {

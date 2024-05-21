@@ -10,6 +10,7 @@ body{
     width: 100%;
     background: #038aff;
     z-index: 1;
+    /* position: fixed; */
 }
     .logo-title, .logo-title:hover{
         font-weight: bold;
@@ -69,11 +70,17 @@ body{
     #close-icon{
         display: none;
     }
-@media screen and (max-width: 991px){
+@media screen and (max-width: 989px){
     .custom-links{
-        -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+        z-index: 5;
+        position: absolute;
+        top: 100%;
+        background-color: rgba(3, 138, 255, 0.8);
+        width: 100%;
+        padding: 10px;
+        /* -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
         -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75); */
     }
         .custom-links ul li{
             width: 100%;
