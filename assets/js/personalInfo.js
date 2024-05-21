@@ -161,7 +161,9 @@ let addJob = () => {
         jobObj[`other`] = $(".input_other_job").val();;
         num++;
     }
-    $("input[name='job']").val(JSON.stringify(jobObj));
+    employeeStatusObj['job'] = jobObj;
+    $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj))
+        
 }
 
 $(".job").click(function(){
@@ -191,6 +193,7 @@ $(".how_long_looking_for_work").on("input", function(){
 });
 $(".unemployed_type").click(function(){
     $(".unemployed_type").prop("checked", false); /* checkboxes under employed */
+    $(".other_unemployed_type").prop("checked", false);    
     $(this).prop("checked", true);
     let unemployed_type = $(this).val();
     if($(this).prop("checked")){
@@ -231,14 +234,17 @@ $(".input_laid_off_abroad").on("input", function(){
 
 })
 $(".other_unemployed_type").click(function(){
+    $(".unemployed_type").prop("checked", false); /* checkboxes under employed */
+    $(this).prop("checked", true);
     if($(this).prop("checked")){
         let unemployed_type = $(".input_other_unemployed_type").val();
-        employeeStatusObj["unemployed_type"] = unemployed_type;
+        employeeStatusObj["other"] = unemployed_type;
         $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
     }
     else{
-        delete employeeStatusObj["unemployed_type"]; /* remove the key from the nested object */
+        delete employeeStatusObj["other"]; /* remove the key from the nested object */
         $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
+        $(".input_other_unemployed_type").val("");
     }
 });
 $(".input_other_unemployed_type").on("input", function(){
@@ -246,11 +252,11 @@ $(".input_other_unemployed_type").on("input", function(){
         let unemployed_type = $(".input_other_unemployed_type").val();
         if(unemployed_type === ""){
             if("country" in employeeStatusObj){
-                delete employeeStatusObj["unemployed_type"];
+                delete employeeStatusObj["other"];
             }
         }
         else{
-            employeeStatusObj["unemployed_type"] = unemployed_type;
+            employeeStatusObj["other"] = unemployed_type;
         }
     }
     $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));

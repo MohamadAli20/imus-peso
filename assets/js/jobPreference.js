@@ -1,99 +1,81 @@
-let preferredOccupationObj = JSON.parse($("input[name='preferred_occupation']").val());
-let occupationObj = JSON.parse($("input[name='occupation']").val());
-let obj = {
-    occupation1: "",
-    occupation2: "",
-    occupation3: ""
-};
-$(".type_preferred_occupation").click(function(){
-    if($(this).prop("checked")){
-        $(".type_preferred_occupation").prop("checked", false);
-        $(this).prop("checked", true);
 
-        let type_preferred_occupation = $(this).val();
-        preferredOccupationObj["type_preferred_occupation"] = type_preferred_occupation;
+let addPreferredOccupation = () => {
+    let preferredOccupationObj = {};
+    let occupationObj = {};
+
+    /* add checkboxes value */
+    for(let i = 0; i < $(".type_preferred_occupation").length; i++){
+        let checkbox = $(".type_preferred_occupation")[i];
+
+        if($(checkbox).prop("checked")){
+            preferredOccupationObj["type_preferred_occupation"] = $(checkbox).val();
+            console.log($(checkbox));
+        }
     }
-    else{
-        delete preferredOccupationObj["type_preferred_occupation"];
-        delete occupationObj["occupation"];
-        $(".input_occupation").val("");
+    /* add input fields value */
+    let num = 1;
+    for(let i = 0; i < $(".input_occupation").length; i++){
+        let input = $(".input_occupation")[i];
+        occupationObj[`occupation${num}`] = $(input).val();
+
+        num++;
     }
+
     $("input[name='preferred_occupation']").val(JSON.stringify(preferredOccupationObj));
     $("input[name='occupation']").val(JSON.stringify(occupationObj));
+}
+$(".type_preferred_occupation").click(function(){
+    $(".type_preferred_occupation").prop("checked", false);
+    $(this).prop("checked", true);
+
+    addPreferredOccupation();
 });
 
 /* Specified occupation */ 
 $(".preferred_occupation1").on("input", function(){
-    if($(".type_preferred_occupation").prop("checked")){
-        let occupation = $(this).val();
-        obj["occupation1"] = occupation;
-        occupationObj["occupation"] = obj;
-    }
-    $("input[name='occupation']").val(JSON.stringify(occupationObj));
+    addPreferredOccupation();
 }); 
 $(".preferred_occupation2").on("input", function(){
-    if($(".type_preferred_occupation").prop("checked")){
-        let occupation = $(this).val();
-        obj["occupation2"] = occupation;
-        occupationObj["occupation"] = obj;
-    }
-    $("input[name='occupation']").val(JSON.stringify(occupationObj));
+    addPreferredOccupation();
 });
 $(".preferred_occupation3").on("input", function(){
-    if($(".type_preferred_occupation").prop("checked")){
-        let occupation = $(this).val();
-        obj["occupation3"] = occupation;
-        occupationObj["occupation"] = obj;
-    }
-    $("input[name='occupation']").val(JSON.stringify(occupationObj));
+    addPreferredOccupation();
 });  
 
 /* Work location */
-let typeWorkOccupationObj = JSON.parse($("input[name='preferred_work_occupation']").val());
-let workOccupationObj = JSON.parse($("input[name='work_occupation']").val());
-let workOccupation = {
-    location1: "",
-    location2: "",
-    location3: ""
-}
-$(".type_work_occupation").click(function(){
-    if($(this).prop("checked")){
-        $(".type_work_occupation").prop("checked", false);
-        $(this).prop("checked", true);
+let addWorkLocation = () => {
+    let preferredWorkOccupationObj = {};
+    let workOccupationObj = {};
 
-        let type_work_occupation = $(this).val();
-        typeWorkOccupationObj["type_work_occupation"] = type_work_occupation;
+    /* add checkboxes value */
+    for(let i = 0; i < $(".type_work_occupation").length; i++){
+        let checkbox = $(".type_work_occupation")[i];
+
+        if($(checkbox).prop("checked")){
+            preferredWorkOccupationObj["type_work_occupation"] = $(checkbox).val();
+        }
     }
-    else{
-        delete typeWorkOccupationObj["location"];
-        // delete addressObj["address"];
-        $(".input_address").val("");
+    /* add input fields value */
+    let num = 1;
+    for(let i = 0; i < $(".input_address").length; i++){
+        let input = $(".input_address")[i];
+        workOccupationObj[`location${num}`] = $(input).val();
+
+        num++;
     }
-    $("input[name='preferred_work_occupation']").val(JSON.stringify(typeWorkOccupationObj));
+
+    $("input[name='preferred_work_occupation']").val(JSON.stringify(preferredWorkOccupationObj));
     $("input[name='work_occupation']").val(JSON.stringify(workOccupationObj));
+}
+
+$(".type_work_occupation").click(function(){
+    $(".type_work_occupation").prop("checked", false);
+    $(this).prop("checked", true);
+
+    addWorkLocation();
 });
 /* Input work location */ 
-$(".location1").on("input", function(){
-    if($(".type_work_occupation").prop("checked")){
-        let val = $(this).val();
-        workOccupation["location1"] = val;
-        workOccupationObj["location"] = workOccupation;
-    }
-    $("input[name='work_occupation']").val(JSON.stringify(workOccupationObj));
+$(".input_address").on("input", function(){
+    addWorkLocation();
 });
-$(".location2").on("input", function(){
-    if($(".type_work_occupation").prop("checked")){
-        let val = $(this).val();
-        workOccupation["location2"] = val;
-        workOccupationObj["location"] = workOccupation;
-    }
-    $("input[name='work_occupation']").val(JSON.stringify(workOccupationObj));
-});
-$(".location3").on("input", function(){
-    if($(".type_work_occupation").prop("checked")){
-        let val = $(this).val();
-        workOccupation["location3"] = val;
-        workOccupationObj["location"] = workOccupation;
-    }
-    $("input[name='work_occupation']").val(JSON.stringify(workOccupationObj));
-});
+

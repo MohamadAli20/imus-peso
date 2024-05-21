@@ -14,7 +14,7 @@ let addSkill = () => {
         }
     }
     if($(".other_skill").prop("checked")){
-        skillsObj[`skill${num}`] = $(".input_other_skill").val();
+        skillsObj[`other`] = $(".input_other_skill").val();
     }
     $("input[name='skills']").val(JSON.stringify(skillsObj));
 }
@@ -25,7 +25,6 @@ $(".skills").click(function(){
 
 $(".other_skill").click(function(){
     addSkill();
-
 });
 
 $(".input_other_skill").on("input", function(){
