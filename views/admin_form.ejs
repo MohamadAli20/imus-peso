@@ -526,7 +526,7 @@
                         %>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input type_preferred_occupation" type="checkbox" id="part-time" value="part time"
-                            <% if(preferredOccupation.type_preferred_occupation === "part time"){ %>
+                            <% if(preferredOccupation && preferredOccupation.type_preferred_occupation === "part time"){ %>
                             checked
                             <% } %>
                             >
@@ -534,7 +534,7 @@
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input type_preferred_occupation" type="checkbox" id="full-time" value="full time"
-                            <% if(preferredOccupation.type_preferred_occupation === "full time"){ %>
+                            <% if(preferredOccupation && preferredOccupation.type_preferred_occupation === "full time"){ %>
                             checked
                             <% } %>
                             >
@@ -548,7 +548,7 @@
                     <div class="mt-3">
                         <%
                         let occupation1 = "";
-                        if(occupation.occupation1 !== ""){
+                        if(occupation && occupation.occupation1 !== ""){
                             occupation1 = occupation.occupation1;
                         }
                         %>
@@ -558,7 +558,7 @@
                     <div class="mt-3">
                         <%
                         let occupation2 = "";
-                        if(occupation.occupation2 !== ""){
+                        if(occupation && occupation.occupation2 !== ""){
                             occupation2 = occupation.occupation2;
                         }
                         %>
@@ -568,7 +568,7 @@
                     <div class="mt-3">
                         <%
                         let occupation3 = "";
-                        if(occupation.occupation3 !== ""){
+                        if(occupation && occupation.occupation3 !== ""){
                             occupation3 = occupation.occupation3;
                         }
                         %>
@@ -579,7 +579,6 @@
                 <div class="col-lg-7 pt-3">
                     <% 
                     let preferredWorkOccupation = JSON.parse(row[0].preferred_work_occupation); 
-                    preferredWorkOccupation.type_work_occupation
                     %>
                     <div>Preferred Work Occupation</div>
                     <div><%=  %></div>
@@ -588,7 +587,7 @@
                         <div class="mt-2">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input type_work_occupation" type="checkbox" id="local" value="local"
-                                <% if(preferredWorkOccupation.type_work_occupation === "local"){ %>
+                                <% if(preferredWorkOccupation && preferredWorkOccupation.type_work_occupation === "local"){ %>
                                 checked
                                 <% } %>
                                 >
@@ -598,7 +597,7 @@
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input type_work_occupation" type="checkbox" id="overseas" value="overseas"
-                                <% if(preferredWorkOccupation.type_work_occupation === "overseas"){ %>
+                                <% if(preferredWorkOccupation && preferredWorkOccupation.type_work_occupation === "overseas"){ %>
                                 checked
                                 <% } %>
                                 >
@@ -612,7 +611,7 @@
                                 <label>Work Location 1</label>
                                 <%
                                 let location1 = "";
-                                if(location.location1 !== ""){
+                                if(location && location.location1 !== ""){
                                     location1 = location.location1;
                                 }
                                 %>
@@ -622,7 +621,7 @@
                                 <label>Work Location 2</label>
                                 <%
                                 let location2 = "";
-                                if(location.location2 !== ""){
+                                if(location && location.location2 !== ""){
                                     location2 = location.location2;
                                 }
                                 %>
@@ -632,7 +631,7 @@
                                 <label>Work Location 3</label>
                                 <%
                                 let location3 = "";
-                                if(location.location3 !== ""){
+                                if(location && location.location3 !== ""){
                                     location3 = location.location3;
                                 }
                                 %>
@@ -669,7 +668,7 @@
                             <% 
                             let language1 = "";
                             let englishKey = "";
-                            if(row[0].language1 !== "" && row[0].language1 !== "{}"){
+                            if(row[0].language1 !== "" && row[0].language1){
                                 language1 = JSON.parse(row[0].language1);
                                 englishKey = Object.keys(language1.english);
                             }
@@ -710,7 +709,7 @@
                             <% 
                             let language2 = "";
                             let filipinoKey = "";
-                            if(row[0].language2 !== "" && row[0].language2 !== "{}"){
+                            if(row[0].language2 !== "" && row[0].language2){
                                 language2 = JSON.parse(row[0].language2);
                                 filipinoKey = Object.keys(language2.filipino);
                             }
@@ -750,7 +749,7 @@
                             <%
                             let language3 = "";
                             let mandarinKey = "";
-                            if(row[0].language3 !== "" && row[0].language3 !== "{}"){
+                            if(row[0].language3 !== "" && row[0].language3){
                                 language3 = JSON.parse(row[0].language3);
                                 mandarinKey = Object.keys(language3.mandarin);
                             }
@@ -791,7 +790,7 @@
                             let otherLanguage = ""; 
                             let otherLanguageKey = "";
                             let otherLanguageObj = "";
-                            if(row[0].other_language !== "" && row[0].other_language !== "{}"){
+                            if(row[0].other_language !== "" && row[0].other_language){
                                 otherLanguage = JSON.parse(row[0].other_language);
                                 otherLanguageKey = Object.keys(otherLanguage)[0];
                                 otherLanguageObj = Object.keys(otherLanguage[`${otherLanguageKey}`]);
@@ -862,13 +861,13 @@
                     %>
                     <div>If undergraduate</div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= elementaryUnderGraduate.what_level %>" class="form-control elem_what_level" type="text" placeholder="What level?">
+                        <input value="<%= (elementaryUnderGraduate) ? elementaryUnderGraduate.what_level : '' %>" class="form-control elem_what_level" type="text" placeholder="What level?">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= elementaryUnderGraduate.last_year_attended %>" class="form-control elem_last_year_attended" type="text" placeholder="Year last attended">
+                        <input value="<%= (elementaryUnderGraduate) ? elementaryUnderGraduate.last_year_attended : '' %>" class="form-control elem_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= elementaryUnderGraduate.awards_received %>" class="form-control elem_awards_received" type="text" placeholder="Awards received">
+                        <input value="<%= (elementaryUnderGraduate) ? elementaryUnderGraduate.awards_received : '' %>" class="form-control elem_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
@@ -890,13 +889,13 @@
                     %>
                     <div>If undergraduate</div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= secondaryUnderGraduate.what_level %>" class="form-control secondary_what_level" type="text" placeholder="What level?">
+                        <input value="<%= (secondaryUnderGraduate) ? secondaryUnderGraduate.what_level : '' %>" class="form-control secondary_what_level" type="text" placeholder="What level?">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= secondaryUnderGraduate.last_year_attended %>" class="form-control secondary_last_year_attended" type="text" placeholder="Year last attended">
+                        <input value="<%= (secondaryUnderGraduate) ? secondaryUnderGraduate.last_year_attended : '' %>" class="form-control secondary_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= secondaryUnderGraduate.awards_received %>" class="form-control secondary_awards_received" type="text" placeholder="Awards received">
+                        <input value="<%= (secondaryUnderGraduate) ? secondaryUnderGraduate.awards_received : '' %>" class="form-control secondary_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
@@ -917,14 +916,14 @@
                     let tertiaryUnderGraduate = JSON.parse(row[0].if_tertiary_undergraduate);
                     %>
                     <div>If undergraduate</div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= tertiaryUnderGraduate.what_level %>" class="form-control tertiary_what_level" type="text" placeholder="What level?">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
+                        <input value="<%= (tertiaryUnderGraduate) ? tertiaryUnderGraduate.what_level : '' %>" class="form-control tertiary_what_level" type="text" placeholder="What level?">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= tertiaryUnderGraduate.last_year_attended %>" class="form-control tertiary_last_year_attended" type="text" placeholder="Year last attended">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
+                        <input value="<%= (tertiaryUnderGraduate) ? tertiaryUnderGraduate.last_year_attended : '' %>" class="form-control tertiary_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
-                    <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= tertiaryUnderGraduate.awards_received %>" class="form-control tertiary_awards_received" type="text" placeholder="Awards received">
+                    <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
+                        <input value="<%= (tertiaryUnderGraduate) ? tertiaryUnderGraduate.awards_received : '' %>" class="form-control tertiary_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="col-lg-12 mt-2">
@@ -946,13 +945,13 @@
                     %>
                     <div>If undergraduate</div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= graduateStudiesUnderGraduate.what_level %>" class="form-control graduate_studies_what_level" type="text" placeholder="What level?">
+                        <input value="<%= (graduateStudiesUnderGraduate) ? graduateStudiesUnderGraduate.what_level : '' %>" class="form-control graduate_studies_what_level" type="text" placeholder="What level?">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= graduateStudiesUnderGraduate.last_year_attended %>" class="form-control graduate_studies_last_year_attended" type="text" placeholder="Year last attended">
+                        <input value="<%= (graduateStudiesUnderGraduate) ? graduateStudiesUnderGraduate.last_year_attended : '' %>" class="form-control graduate_studies_last_year_attended" type="text" placeholder="Year last attended">
                     </div>
                     <div class="col-lg-3  col-sm-12 col-12 d-inline-block mt-3">
-                        <input value="<%= graduateStudiesUnderGraduate.awards_received %>" class="form-control graduate_studies_awards_received" type="text" placeholder="Awards received">
+                        <input value="<%= (graduateStudiesUnderGraduate) ? graduateStudiesUnderGraduate.awards_received : '' %>" class="form-control graduate_studies_awards_received" type="text" placeholder="Awards received">
                     </div>
                 </div>
                 <div class="text-end">
@@ -977,51 +976,51 @@
                 %>
                 <div>Technical/Vocational And Other Training</div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= course.course1 %>" class="form-control courses" type="text" placeholder="1.Training/Vocational Course">
+                    <input value="<%= (course) ? course.course1 : '' %>" class="form-control courses" type="text" placeholder="1.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= dateFrom.date_from1 %>"  class="form-control d-inline-block date_from" type="text" placeholder="Date From">
+                    <input value="<%= (dateFrom) ? dateFrom.date_from1 : '' %>"  class="form-control d-inline-block date_from" type="text" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= dateTo.date_to1 %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
+                    <input value="<%= (dateTo) ? dateTo.date_to1 : '' %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= institution.institution1 %>" class="form-control institutions" type="text" placeholder="Training Institution">
+                    <input value="<%= (institution) ? institution.institution1 : '' %>" class="form-control institutions" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= award.certificate1 %>" class="form-control certificates" type="text" placeholder="Certificates Received">
+                    <input value="<%= (award) ? award.certificate1 : '' %>" class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
                 <div class="border-bottom col-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= course.course2 %>" class="form-control courses" type="text" placeholder="2.Training/Vocational Course">
+                    <input value="<%= (course) ? course.course2 : '' %>" class="form-control courses" type="text" placeholder="2.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= dateFrom.date_from2 %>" class="form-control d-inline-block date_from" type="text" placeholder="Date From">
+                    <input value="<%= (dateFrom) ? dateFrom.date_from2 : '' %>" class="form-control d-inline-block date_from" type="text" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= dateTo.date_to2 %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
+                    <input value="<%= (dateTo) ? dateTo.date_to2 : '' %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= institution.institution2 %>" class="form-control institutions" type="text" placeholder="Training Institution">
+                    <input value="<%= (institution) ? institution.institution2 : '' %>" class="form-control institutions" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= award.certificate2 %>" class="form-control certificates" type="text" placeholder="Certificates Received">
+                    <input value="<%= (award) ? award.certificate2 : '' %>" class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
                 <div class="border-bottom col-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= course.course3 %>" class="form-control courses" type="text" placeholder="3.Training/Vocational Course">
+                    <input value="<%= (course) ? course.course3 : '' %>" class="form-control courses" type="text" placeholder="3.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= dateFrom.date_from3 %>" class="form-control d-inline-block date_from" type="text" placeholder="Date From">
+                    <input value="<%= (dateFrom) ? dateFrom.date_from3 : '' %>" class="form-control d-inline-block date_from" type="text" placeholder="Date From">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= dateTo.date_to3 %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
+                    <input value="<%= (dateTo) ? dateTo.date_to3 : '' %>" class="form-control d-inline-block date_to" type="text" placeholder="Date To">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= institution.institution3 %>" class="form-control institutions" type="text" placeholder="Training Institution">
+                    <input value="<%= (institution) ? institution.institution3 : '' %>" class="form-control institutions" type="text" placeholder="Training Institution">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= award.certificate3 %>" class="form-control certificates" type="text" placeholder="Certificates Received">
+                    <input value="<%= (award) ? award.certificate3 : '' %>" class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
             </div>
             <div class="text-end">
@@ -1044,22 +1043,22 @@
                 %>
                 <div>Eligibility/Professional License</div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= eligibility.eligibility1 %>" class="form-control eligibility" type="text" placeholder="1.Eligibility (Civil Service)">
+                    <input value="<%= (eligibility) ? eligibility.eligibility1 : '' %>" class="form-control eligibility" type="text" placeholder="1.Eligibility (Civil Service)">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input value="<%= rating.rating1 %>" class="form-control rating" type="text" placeholder="Rating">
+                    <input value="<%= (rating) ? rating.rating1 : '' %>" class="form-control rating" type="text" placeholder="Rating">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input value="<%= dateExam.date_exam1 %>" class="form-control date_exam" type="text" placeholder="Date of Examination">
+                    <input value="<%= (dateExam) ? dateExam.date_exam1 : '' %>" class="form-control date_exam" type="text" placeholder="Date of Examination">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= eligibility.eligibility2 %>" class="form-control eligibility" type="text" placeholder="2.Eligibility (Civil Service)">
+                    <input value="<%= (eligibility) ? eligibility.eligibility2 : '' %>" class="form-control eligibility" type="text" placeholder="2.Eligibility (Civil Service)">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input value="<%= rating.rating2 %>" class="form-control rating" type="text" placeholder="Rating">
+                    <input value="<%= (rating) ? rating.rating2 : '' %>" class="form-control rating" type="text" placeholder="Rating">
                 </div>
                 <div class="col-lg-3 col-md-6 mt-3">
-                    <input value="<%= dateExam.date_exam2 %>" class="form-control date_exam" type="text" placeholder="Date of Examination">
+                    <input value="<%= (dateExam) ? dateExam.date_exam2 : '' %>" class="form-control date_exam" type="text" placeholder="Date of Examination">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <!-- Professional License -->
@@ -1068,16 +1067,16 @@
                 let validUntil = JSON.parse(row[0].valid_until);
                 %>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input value="<%= professionalLicense.profLicense1 %>" class="form-control professional_license" type="text" placeholder="1.Professional License (PRC)">
+                    <input value="<%= (professionalLicense) ? professionalLicense.profLicense1 : '' %>" class="form-control professional_license" type="text" placeholder="1.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6  mt-3">
-                    <input value="<%= validUntil.validUntil1 %>" class="form-control valiUntil" type="text" placeholder="Valid until">
+                    <input value="<%= (validUntil) ? validUntil.validUntil1 : '' %>" class="form-control valiUntil" type="text" placeholder="Valid until">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input value="<%= professionalLicense.profLicense2 %>" class="form-control professional_license" type="text" placeholder="2.Professional License (PRC)">
+                    <input value="<%= (professionalLicense) ? professionalLicense.profLicense2 : '' %>" class="form-control professional_license" type="text" placeholder="2.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input value="<%= validUntil.validUntil2 %>" class="form-control valid_until" type="text" placeholder="Valid until">
+                    <input value="<%= (validUntil) ? validUntil.validUntil2 : '' %>" class="form-control valid_until" type="text" placeholder="Valid until">
                 </div>
             </div>
             <div class="text-end">
@@ -1101,54 +1100,54 @@
                 %>
                 <div>Work Experience</div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= companyName.company_name1 %>" class="form-control company_name" type="text" placeholder="1.Company name">
+                    <input value="<%= (companyName) ? companyName.company_name1 : '' %>" class="form-control company_name" type="text" placeholder="1.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= companyAddress.company_address1 %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input value="<%= (companyAddress) ? companyAddress.company_address1 : '' %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= position.position1 %>" class="form-control position" type="text" placeholder="Position">
+                    <input value="<%= (position) ? position.position1 : '' %>" class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= inclusiveDate.inclusive_date1 %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
+                    <input value="<%= (inclusiveDate) ? inclusiveDate.inclusive_date1 : '' %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= status.status1 %>" class="form-control status" type="text" placeholder="Status">
+                    <input value="<%= (status) ? status.status1 : '' %>" class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= companyName.company_name2 %>" class="form-control company_name" type="text" placeholder="2.Company name">
+                    <input value="<%= (companyName) ? companyName.company_name2 : '' %>" class="form-control company_name" type="text" placeholder="2.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= companyAddress.company_address2 %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input value="<%= (companyAddress) ? companyAddress.company_address2 : '' %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-lg-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= position.position2 %>" class="form-control position" type="text" placeholder="Position">
+                    <input value="<%= (position) ? position.position2 : '' %>" class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= inclusiveDate.inclusive_date2 %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
+                    <input value="<%= (inclusiveDate) ? inclusiveDate.inclusive_date2 : '' %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= status.status2 %>" class="form-control status" type="text" placeholder="Status">
+                    <input value="<%= (status) ? status.status2 : '' %>" class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= companyName.company_name3 %>" class="form-control company_name" type="text" placeholder="3.Company name">
+                    <input value="<%= (companyName) ? companyName.company_name3 : '' %>" class="form-control company_name" type="text" placeholder="3.Company name">
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= companyAddress.company_address3 %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
+                    <input value="<%= (companyAddress) ? companyAddress.company_address3 : '' %>" class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
                 <div class="col-12"></div>
                 <div class="col-lg-6 mt-3">
-                    <input value="<%= position.position3 %>" class="form-control position" type="text" placeholder="Position">
+                    <input value="<%= (position) ? position.position3 : '' %>" class="form-control position" type="text" placeholder="Position">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= inclusiveDate.inclusive_date3 %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
+                    <input value="<%= (inclusiveDate) ? inclusiveDate.inclusive_date3 : '' %>" class="form-control inclusive_date" type="text" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input value="<%= status.status3 %>" class="form-control status" type="text" placeholder="Status">
+                    <input value="<%= (status) ? status.status3 : '' %>" class="form-control status" type="text" placeholder="Status">
                 </div>
                 <div class="col-lg-12 divider"></div>
             </div>
@@ -1171,7 +1170,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="automechanic" id="autoMechanic"
-                        <% if(Object.values(skill).includes('automechanic')){ %>
+                        <% if(skill && Object.values(skill).includes('automechanic')){ %>
                             checked
                         <% } %>
                         >
@@ -1179,7 +1178,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="beautician" id="beautician"
-                        <% if(Object.values(skill).includes('beautician')){ %>
+                        <% if(skill && Object.values(skill).includes('beautician')){ %>
                             checked
                         <% } %>
                         >
@@ -1187,7 +1186,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="carpentry" id="carpentry"
-                        <% if(Object.values(skill).includes('carpentry')){ %>
+                        <% if(skill && Object.values(skill).includes('carpentry')){ %>
                             checked
                         <% } %>
                         >
@@ -1195,7 +1194,7 @@
                     </div> 
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="computer literate" id="computer_literate"
-                        <% if(Object.values(skill).includes('computer literate')){ %>
+                        <% if(skill && Object.values(skill).includes('computer literate')){ %>
                             checked
                         <% } %>
                         >
@@ -1203,7 +1202,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="domestic chores" id="domestic_chores"
-                        <% if(Object.values(skill).includes('domestic chores')){ %>
+                        <% if(skill && Object.values(skill).includes('domestic chores')){ %>
                             checked
                         <% } %>
                         >
@@ -1211,7 +1210,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="driver" id="driver"
-                        <% if(Object.values(skill).includes('driver')){ %>
+                        <% if(skill && Object.values(skill).includes('driver')){ %>
                             checked
                         <% } %>
                         >
@@ -1221,7 +1220,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="electrician" id="electrician"
-                        <% if(Object.values(skill).includes('electrician')){ %>
+                        <% if(skill && Object.values(skill).includes('electrician')){ %>
                             checked
                         <% } %>
                         >
@@ -1229,7 +1228,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="embroidery" id="embroidery"
-                        <% if(Object.values(skill).includes('embroidery')){ %>
+                        <% if(skill && Object.values(skill).includes('embroidery')){ %>
                             checked
                         <% } %>
                         >
@@ -1237,7 +1236,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="gardening" id="gardening"
-                        <% if(Object.values(skill).includes('gardening')){ %>
+                        <% if(skill && Object.values(skill).includes('gardening')){ %>
                             checked
                         <% } %>
                         >
@@ -1245,7 +1244,7 @@
                     </div> 
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="masonry" id="masonry"
-                        <% if(Object.values(skill).includes('masonry')){ %>
+                        <% if(skill && Object.values(skill).includes('masonry')){ %>
                             checked
                         <% } %>
                         >
@@ -1253,7 +1252,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="painter/artist" id="painter_artist"
-                        <% if(Object.values(skill).includes('painter/artist')){ %>
+                        <% if(skill && Object.values(skill).includes('painter/artist')){ %>
                             checked
                         <% } %>
                         >
@@ -1261,7 +1260,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="painting" id="painting"
-                        <% if(Object.values(skill).includes('painting')){ %>
+                        <% if(skill && Object.values(skill).includes('painting')){ %>
                             checked
                         <% } %>
                         >
@@ -1271,7 +1270,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="photography" id="photography"
-                        <% if(Object.values(skill).includes('photography')){ %>
+                        <% if(skill && Object.values(skill).includes('photography')){ %>
                             checked
                         <% } %>
                         >
@@ -1279,7 +1278,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="plumbing" id="plumbing"
-                        <% if(Object.values(skill).includes('plumbing')){ %>
+                        <% if(skill && Object.values(skill).includes('plumbing')){ %>
                             checked
                         <% } %>
                         >
@@ -1287,7 +1286,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="sewing" id="sewing"
-                        <% if(Object.values(skill).includes('sewing')){ %>
+                        <% if(skill && Object.values(skill).includes('sewing')){ %>
                             checked
                         <% } %>
                         >
@@ -1295,7 +1294,7 @@
                     </div> 
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="stenography" id="stenography"
-                        <% if(Object.values(skill).includes('stenography')){ %>
+                        <% if(skill && Object.values(skill).includes('stenography')){ %>
                             checked
                         <% } %>
                         >
@@ -1303,7 +1302,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input skills" type="checkbox" value="tailoring" id="tailoring"
-                        <% if(Object.values(skill).includes('tailoring')){ %>
+                        <% if(skill && Object.values(skill).includes('tailoring')){ %>
                             checked
                         <% } %>
                         >
@@ -1311,7 +1310,7 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input other_skill" type="checkbox" id="other_skill"
-                        <% if(skill.hasOwnProperty('other')){ %>
+                        <% if(skill && skill.hasOwnProperty('other')){ %>
                             checked
                         <% } %>
                         >
@@ -1320,7 +1319,7 @@
                     <div>
                         <%
                         let otherSkill = ""; 
-                        if(Object.keys(skill).includes("other")){ 
+                        if(skill && Object.keys(skill).includes("other")){ 
                             otherSkill = skill['other'];
                         }
                         %>
