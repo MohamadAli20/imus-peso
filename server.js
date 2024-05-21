@@ -32,6 +32,7 @@ app.use('/register', routes);
 app.use('/dashboard', routes);
 app.use('/admin_form', routes);
 app.use('/admin_apply', routes);
+app.use('/data_analytics', routes);
 
 app.listen(3000, () => {
     console.log('http://localhost:3000');

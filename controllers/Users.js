@@ -12,26 +12,16 @@ class Users{
     register(req, res){
         res.render('register');
     }
-
-    /* For admin */
-    admin_form(req, res){
-        const id = req.params.id;
-        model.get_application_by_id(id, (error, row) => {
-            if(error){
-                console.error(error);
-            }
-            if(row){
-                console.log(row);
-                res.render('admin_form', { row });
-            }
-        })
-    }
+    /* For admin*/
     admin_apply(req, res){
         res.render('admin_apply');
     }
+    data_analytics(req, res){
+        res.render('admin_data_analytics');
+    }
+    /* Interact with the model */
     dashboard(req, res){
         const page = req.params.page;
-
         model.applications(page, (error, row) => {
             if(error){
                 console.error(error);
@@ -47,31 +37,6 @@ class Users{
             })
         })
     }
-    search(req, res){
-        let name = req.params.name;
-        model.get_application_by_name(name, (error, row) =>{
-            if(error){
-                console.error(error);
-            }
-            if(row){
-                res.json(row);
-            }
-        })
-    }
-    delete(req, res){
-        let id = req.params.id;
-        model.delete_application_by_id(id, (error, result) => {
-            if(error, result){
-                console.error(error);
-            }
-            if(result){
-                res.send("Successfully deleted");
-                // console.log(result)
-            }
-        });
-    }
-
-
     /* Account registration, user authentication and authorization */
     create(req, res){
         let result = "";

@@ -15,9 +15,17 @@ Router.post('/addInformation', FormController.add);
 /* For admin */
 Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
-Router.get('/view_application/:id', UserController.admin_form);
+Router.get('/view_application/:id', FormController.admin_form);
 Router.get('/admin_apply', UserController.admin_apply);
-Router.post('/search/:name', UserController.search);
-Router.delete('/delete/:id', UserController.delete);
+Router.get('/data_analytics', UserController.data_analytics);
+Router.post('/search/:name', FormController.search);
+Router.delete('/delete/:id', FormController.delete);
+Router.get('/count_form', FormController.count_form);
+Router.get('/count_male', FormController.count_male);
+Router.get('/count_female', FormController.count_female);
+Router.get('/get_top_five_occupation', FormController.get_top_five_occupation);
+Router.get('/get_top_five_location', FormController.get_top_five_location);
+Router.get('/get_top_unemployed', FormController.get_top_unemployed);
+
 
 module.exports = Router;
