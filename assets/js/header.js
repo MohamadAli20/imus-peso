@@ -1,3 +1,13 @@
+let categories = [
+    "personalInformation",
+    "jobPreference",
+    "languageDialectProficiency",
+    "educationalBackground",
+    "techicalVocationalTraining",
+    "eligibilityProfessionalLicense",
+    "workExperience",
+    "otherSkills"
+]
 let finalInformation = {
     personalInformation: [],
     jobPreference: [],
@@ -136,24 +146,61 @@ let addToObject = (formData) => {
 * The following are the Next and Previous button 
 * for every sections of the form
 */
-
+let isEmptyField = undefined;
 let checkInputField = (form) => {
     let formData = $(form).serializeArray();
-    addToObject(formData);
+    $(".custom-message").remove();
+
+    for(let i = 0; i < formData.length; i++){
+        if(formData[i].value === ""){
+            let p = document.createElement('p');
+            p.className = "alert alert-danger col-lg-5 col-md-5 col-sm-6 col-12 custom-message"
+            p.style.color = 'red';
+            p.style.margin = "0 auto";
+            p.innerText = 'Please check all the boxes.';
+            $("#message").append(p);
+            $("#message").css({
+                "display": "block",
+                "position": "fixed",
+                "top": "0",
+                "z-index": "5"
+            });
+            setTimeout(function(){
+                $(".custom-message").remove();
+            }, 3000);
+            isEmptyField = true;
+            break;
+        }
+        else{
+            isEmptyField = false;
+        }
+    }  
+    if(isEmptyField === false){
+        addToObject(formData);
+    }
 }
 $("a").click(function(){
-    /* Remove the current form or page */
-    $(`#page${currentPage}`).css("display", "none");
     checkInputField($(`#page${currentPage}`));
 
-    let pageNo = $(this).prop("class");
-    let lastCharacter = pageNo[pageNo.length - 1];
+    if(isEmptyField === false){
+        /* Remove the current form or page */
+        $(`#page${currentPage}`).css("display", "none");
+    
 
-    $(".side-bar-links").find("a").css("font-weight", "100");
-    $(this).css("font-weight", "bold")
-    /* Display the selected form */
-    $(`#${pageNo}`).css("display", "block");
+        let pageNo = $(this).prop("class");
+        let lastCharacter = pageNo[pageNo.length - 1];
 
-    /* Update the currentPage value */
-    currentPage = parseInt(lastCharacter);
+        $(".side-bar-links").find("a").css("font-weight", "100");
+        $(".side-bar-links").find("a").css("background-color", "#053774");
+
+        $(this).css({
+            "font-weight": "bold",
+            "background-color": "rgba(3, 138, 255, 0.1)"
+        });
+        /* Display the selected form */
+        $(`#${pageNo}`).css("display", "block");
+
+        /* Update the currentPage value */
+        currentPage = parseInt(lastCharacter);
+    }
 })

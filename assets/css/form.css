@@ -13,7 +13,8 @@ main{
     height: 100vh;
 }
 .form-section{
-    background-color: #038aff;
+    /* #053774 */
+    background-color:  rgb(8, 72, 151);
     border-top: 1px solid #F3F4F8;
     position: fixed;
     height: 100vh;
@@ -27,7 +28,10 @@ main{
         display: block;
         text-decoration: none;
         color: #F3F4F8;
-        padding-bottom: 15px;
+        padding: 10px;
+    }
+    a:hover{
+        background-color: rgba(165, 179, 197, 0.1);
     }
     #personal-information{
         font-weight: bold;
@@ -52,7 +56,7 @@ main{
         border: none;
         margin-top: 0;
         padding-top: 0;
-        top: 10%;
+        top: 9%;
     }
     #arrow-icon{
         position: absolute;
@@ -133,6 +137,9 @@ input[type=date]:focus {
 #message{
     width: 100%;
     margin: 0 auto;
-    display: none;
+    /* display: none; */
     text-align: center;
+    position: fixed;
+    top: 0;
+    background-color: "red";
 }
