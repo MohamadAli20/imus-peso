@@ -4,5 +4,4 @@ const config = {
     password: 'Admin@123',
     database: 'peso_db'
 };
-// Pogi
 module.exports = config;
