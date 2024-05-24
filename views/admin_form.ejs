@@ -668,7 +668,7 @@
                             <% 
                             let language1 = "";
                             let englishKey = "";
-                            if(row[0].language1 !== "" && row[0].language1){
+                            if(row[0].language1 !== "{}" && row[0].language1){
                                 language1 = JSON.parse(row[0].language1);
                                 englishKey = Object.keys(language1.english);
                             }
@@ -709,7 +709,7 @@
                             <% 
                             let language2 = "";
                             let filipinoKey = "";
-                            if(row[0].language2 !== "" && row[0].language2){
+                            if(row[0].language2 !== "{}" && row[0].language2){
                                 language2 = JSON.parse(row[0].language2);
                                 filipinoKey = Object.keys(language2.filipino);
                             }
@@ -749,7 +749,7 @@
                             <%
                             let language3 = "";
                             let mandarinKey = "";
-                            if(row[0].language3 !== "" && row[0].language3){
+                            if(row[0].language3 !== "{}" && row[0].language3){
                                 language3 = JSON.parse(row[0].language3);
                                 mandarinKey = Object.keys(language3.mandarin);
                             }
@@ -790,7 +790,7 @@
                             let otherLanguage = ""; 
                             let otherLanguageKey = "";
                             let otherLanguageObj = "";
-                            if(row[0].other_language !== "" && row[0].other_language){
+                            if(row[0].other_language !== "{}" && row[0].other_language){
                                 otherLanguage = JSON.parse(row[0].other_language);
                                 otherLanguageKey = Object.keys(otherLanguage)[0];
                                 otherLanguageObj = Object.keys(otherLanguage[`${otherLanguageKey}`]);
