@@ -32,7 +32,7 @@ $(".btn-next").off("click").on("click", function(e){
         /* bold the selected link or the current page label in the sidebar */
         $(`.page${currentPage}`).css({
             "font-weight": "bold",
-            "color": "red"
+            "background-color": "rgba(3, 138, 255, 0.1)"
         });
     }
 });

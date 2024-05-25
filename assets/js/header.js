@@ -179,25 +179,24 @@ let checkInputField = (form) => {
         addToObject(formData);
     }
 }
-$("side-bar-links a").click(function(){
+$(".side-bar-links a").click(function(){
     checkInputField($(`#page${currentPage}`));
 
     if(isEmptyField === false){
         /* Remove the current form or page */
         $(`#page${currentPage}`).css("display", "none");
     
-
         let pageNo = $(this).prop("class");
         let lastCharacter = pageNo[pageNo.length - 1];
 
         $(".side-bar-links").find("a").css("font-weight", "100");
-        $(".side-bar-links").find("a").css("background-color", "#053774");
+        $(".side-bar-links").find("a").css("background-color", "rgb(8, 72, 151)");
 
         $(this).css({
             "font-weight": "bold",
             "background-color": "rgba(3, 138, 255, 0.1)"
         });
-        /* Display the selected form */
+        // /* Display the selected form */
         $(`#${pageNo}`).css("display", "block");
 
         /* Update the currentPage value */
