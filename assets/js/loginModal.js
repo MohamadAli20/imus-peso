@@ -17,6 +17,7 @@ $(document).ready(() => {
 
     $("#btnLogout").click(function(){
         localStorage.removeItem('username');
+        localStorage.removeItem('isAdmin');
         checkUserLogin();
         window.location.href = "/";
     });
@@ -35,6 +36,7 @@ $(document).ready(() => {
             data: {email, password},
             success: function(response){
                 if(response.success){
+                    localStorage.setItem('isAdmin', response.isAdmin);
                     localStorage.setItem('username', response.username)
                     $("#username").css("display", "block");
                     $("#navLoginBtn").css("display", "none");

@@ -157,7 +157,7 @@ let checkInputField = (form) => {
             p.className = "alert alert-danger col-lg-5 col-md-5 col-sm-6 col-12 custom-message"
             p.style.color = 'red';
             p.style.margin = "0 auto";
-            p.innerText = 'Please check all the boxes.';
+            p.innerText = 'Please fill up all the information.';
             $("#message").append(p);
             $("#message").css({
                 "display": "block",
