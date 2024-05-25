@@ -8,9 +8,10 @@ body{
 /* Navbar */
 .custom-nav{
     width: 100%;
-    background: #038aff;
+    background: rgb(5, 55, 116);
     z-index: 1;
     /* position: fixed; */
+    /* border-bottom: 3px solid black; */
 }
     .logo-title, .logo-title:hover{
         font-weight: bold;
