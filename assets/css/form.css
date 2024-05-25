@@ -50,13 +50,13 @@ main{
 /* Hide the sidebar */
 @media screen and (max-width: 575px){
     .form-section{
-        position: fixed;
+        /* position: fixed; */
         width: 70%;
         z-index: 1;
         border: none;
         margin-top: 0;
         padding-top: 0;
-        top: 9%;
+        top: 10%;
     }
     #arrow-icon{
         position: absolute;
@@ -101,6 +101,7 @@ input[type=date]:focus {
 }
 .page1{
     font-weight: bold;
+    background-color: rgba(165, 179, 197, 0.1);
 }
 .form-check-label span{
     font-size: 14px;

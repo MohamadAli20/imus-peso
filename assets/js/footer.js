@@ -30,7 +30,10 @@ $(".btn-next").off("click").on("click", function(e){
         currentPage += 1;
         $(`#page${currentPage}`).css("display", "block");
         /* bold the selected link or the current page label in the sidebar */
-        $(`.page${currentPage}`).css("font-weight", "bold");
+        $(`.page${currentPage}`).css({
+            "font-weight": "bold",
+            "color": "red"
+        });
     }
 });
 
