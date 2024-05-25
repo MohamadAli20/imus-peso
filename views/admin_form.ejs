@@ -13,8 +13,9 @@
     <!-- CSS and JavaScript -->
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/loginModal.css">
-    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/admin_form.css">
     <script src="/js/loginModal.js"></script>
+    <script src="/js/admin_control.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -70,7 +71,7 @@
             <header>
                 <h4>Personal Information</h4>
             </header>   
-            <div class="row custom-form">
+            <div class="row custom-form complete-name">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input value="<%= row[0].surname %>" class="form-control" type="text" name="surname" placeholder="Surname">
                 </div>
@@ -84,7 +85,7 @@
                     <input value="<%= row[0].suffix %>" class="form-control" type="text" name="suffix" placeholder="Suffix">
                 </div>
             </div>
-            <div class="row custom-form">
+            <div class="row custom-form second-info">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input value="<%= row[0].birthdate %>" class="form-control" type="text" name="birthdate" placeholder="Birthdate">
                 </div>
@@ -165,14 +166,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row custom-form pt-3">
+            <div class="row custom-form pt-3 religion">
                 <div class="col-md-3 col-sm-6 mt-3">
                     <input value="<%= row[0].religion %>" class="form-control" type="text" name="religion" placeholder="Religion">
                 </div>
                 <div class="col-md-3 col-sm-6 mt-3">
                 </div>
             </div>
-            <div class="row custom-form pt-3">
+            <div class="row custom-form pt-3 address">
                 <% let address = JSON.parse(row[0].address); %>
                 <div class="col-md-12 col-sm-12">Present Address</div>
                 <input name="address" type="hidden" value="na">
@@ -1374,7 +1375,7 @@
         </div>
     </div>
     <!-- Form libraries -->
-    <script src="/js/admin_control.js"></script>
+    <!-- <script src="/js/admin_control.js"></script> -->
     <!-- jQuery plugins floating label -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.placeholder.label.js"></script>

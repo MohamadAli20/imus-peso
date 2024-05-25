@@ -167,6 +167,7 @@ let checkInputField = (form) => {
             });
             setTimeout(function(){
                 $(".custom-message").remove();
+                
             }, 3000);
             isEmptyField = true;
             break;
