@@ -1,17 +1,24 @@
 $(document).ready(function(){
 
     let isAdmin = localStorage.getItem('isAdmin');
-    if(isAdmin == 1){
-        window.location.href = "/dashboard";
+    let checkAccount = () => {
+        if(isAdmin == 1){
+            window.location.href = "/dashboard";
+        }
+        if(isAdmin == 0){
+            window.location.href = "/";
+        } 
     }
-    if(isAdmin == 0){
-        window.location.href = "/";
-    }
-    if(isAdmin == null){
-        // window.location.href = "/";
-    }
-    // $(".apply-now").click(function(){
-        
-    // });
+    checkAccount();
+    
+    $(".apply-now").click(function(){
+        // checkAccount();
+        if(isAdmin == null){
+            $("#navLoginBtn").trigger('click');
+        }
+        else{
+            window.location.href = "/apply"
+        }
+    });
 
 });
