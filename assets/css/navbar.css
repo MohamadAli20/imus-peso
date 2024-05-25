@@ -27,8 +27,8 @@ body{
     .navbar-nav .nav-link.active{
         color: #F3F4F8;
         font-weight: bold;
+        background-color: rgba(165, 179, 197, 0.1);
     }
-    
     .custom-links ul li{
         width: 150px;
         text-align: center;
@@ -40,6 +40,9 @@ body{
         }
         .custom-links ul li a:hover{
             color: #F3F4F8;
+        }
+        a:hover{
+            background-color: rgba(165, 179, 197, 0.1);
         }
     .custom-nav-item{
         width: 200px !important;

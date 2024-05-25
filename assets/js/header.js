@@ -179,7 +179,7 @@ let checkInputField = (form) => {
         addToObject(formData);
     }
 }
-$("a").click(function(){
+$("side-bar-links a").click(function(){
     checkInputField($(`#page${currentPage}`));
 
     if(isEmptyField === false){
