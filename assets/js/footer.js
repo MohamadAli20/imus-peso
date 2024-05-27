@@ -9,9 +9,15 @@ $(".btn-prev").off("click").on("click", function(e){
 
     /* decrement the value of the current page */
     currentPage -= 1;
+    $(".side-bar-links").find("a").css("font-weight", "100");
+    $(".side-bar-links").find("a").css("background-color", "rgb(8, 72, 151)");
+
     $(`#page${currentPage}`).css("display", "block");
     /* bold the selected link or the current page label in the sidebar */
-    $(`.page${currentPage}`).css("font-weight", "bold");
+    $(`.page${currentPage}`).css({
+        "font-weight": "bold",
+        "background-color": "rgba(3, 138, 255, 0.1)"
+    });
    
 });
 
@@ -28,6 +34,9 @@ $(".btn-next").off("click").on("click", function(e){
         $(`#page${currentPage}`).css("display", "none")    
         /* increment the value of the current page */
         currentPage += 1;
+        $(".side-bar-links").find("a").css("font-weight", "100");
+        $(".side-bar-links").find("a").css("background-color", "rgb(8, 72, 151)");
+
         $(`#page${currentPage}`).css("display", "block");
         /* bold the selected link or the current page label in the sidebar */
         $(`.page${currentPage}`).css({
