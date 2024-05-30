@@ -247,11 +247,10 @@ class Form{
             }
         );
     }
-    
     select_top_unemployed(callback) {
         this.connection.query(
-            `SELECT JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status')) AS employment_status, 
-                    JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.unemployed_type')) AS unemployed_type, 
+            `SELECT UPPER(JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status'))) AS employment_status, 
+                    UPPER(JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.unemployed_type'))) AS unemployed_type, 
                     COUNT(*) AS count 
              FROM personal_information 
              WHERE UPPER(JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status'))) = UPPER('unemployed') 
@@ -267,6 +266,6 @@ class Form{
             }
         );
     }
-    
+        
 }
 module.exports = new Form();
