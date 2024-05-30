@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/index.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/index.js"></script>
-    <script src="/js/checkLocalStorage.js"></script>
+    <link rel="stylesheet" href="/css/peso.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -28,13 +28,13 @@
             <div class="collapse navbar-collapse row custom-links" id="navbarNav">
                 <ul class="navbar-nav p-0"> 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link peso-link">PESO</a>
+                        <a class="nav-link peso-link active">PESO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link apply-now-link">Apply Now</a>
+                        <a class="nav-link apply-now" href="/apply">Apply Now</a>
                     </li>
                     <li class="nav-item custom-nav-item d-flex justify-content-end align-items-center">
                         <div class="" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
@@ -47,34 +47,14 @@
             </div>
         </div>
     </nav>
-    <!-- Carousel -->
-    <div id="carousel" class="carousel slide row-fluid" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/images/peso_imus_main.jpg" class="d-block w-100" alt="PESO main image">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/newcityhall.jpg" class="d-block w-100" alt="Imus City Hall">
-            </div>
+    <main class="row-fluid">
+        <div class="col-lg-7 col-md-11 col-sm-11 col-12 p-3">
+            <h1>PESO</h1>
+            <h2>What is the PESO?</h2>
+            <p>The Public Employment Service Office (PESO) is a non-fee charging multi-employment service facility or entity established or accredited pursuant to Republic Act No. 8759, otherwise known as the PESO Act of 1999. The Act provides that in order to carry out full employment and equality of employment opportunities for all, and to strengthen and expand the existing employment facilitation service machinery of the government particularly at the local levels, there shall be established in all capital towns of provinces, key cities, and other strategic areas a Public Employment Service Office.</p>
+            <p>The PESO's are community-based and maintained largely by local government units (LGU's) and a number of non-governmental organizations (NGO's) or community-based organizations (CBO's) and state universities and colleges (SUC's). The PESO's are linked to the regional offices of the Department of Labor and Employment (DOLE) for coordination and technical supervision, and to the DOLE central office, to constitute the national employment service network.</p>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <!-- Text content -->
-    <div class="text-content row py-2 m-0">
-        <h4 class="col-md-12 py-2">Find a job?</h4>
-    <!--To access the jobseeker registration form, applicants need to register an account and fill-up the appropriate information required to submit the form.-->
-        <div class="col-md-12">
-            <p class="">To access the jobseeker registration form, applicants need to register an account and fill-up the appropriate information required to submit the form.</p>
-            <a href="/apply"><button class="btn btn-primary">Apply Now</button></a>
-        </div>
-    </div>
+    </main>
     <!-- Login Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div id="messageAlert row">

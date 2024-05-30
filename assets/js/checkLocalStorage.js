@@ -23,11 +23,20 @@ $(document).ready(function() {
     checkAccount();
     
     // Event handler for the .apply-now button click
-    $(".apply-now").click(function() {
+    $(".peso-link").click(function() {
+        if (isAdmin === null) {
+            $("#navLoginBtn").trigger('click');
+        } 
+        else {
+            window.location.href = "/peso";
+        }
+    });
+    $(".apply-now-link").click(function() {
         if (isAdmin === null) {
             $("#navLoginBtn").trigger('click');
         } else {
             window.location.href = "/apply";
         }
     });
+    
 });

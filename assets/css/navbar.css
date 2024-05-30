@@ -29,6 +29,9 @@ body{
         font-weight: bold;
         background-color: rgba(165, 179, 197, 0.1);
     }
+    .nav-item{
+        cursor: pointer;
+    }
     .custom-links ul li{
         width: 150px;
         text-align: center;

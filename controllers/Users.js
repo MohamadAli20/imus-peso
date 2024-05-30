@@ -12,6 +12,9 @@ class Users{
     register(req, res){
         res.render('register');
     }
+    peso(req, res){
+        res.render("peso");
+    }
     /* For admin*/
     admin_apply(req, res){
         res.render('admin_apply');

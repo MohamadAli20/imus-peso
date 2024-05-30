@@ -11,6 +11,7 @@ Router.get('/register', UserController.register);
 Router.post('/create', UserController.create);
 Router.post('/authenticate', UserController.authenticate);
 Router.post('/addInformation', FormController.add);
+Router.get('/peso', UserController.peso);
 
 /* For admin */
 Router.get('/dashboard/:page', UserController.dashboard);
