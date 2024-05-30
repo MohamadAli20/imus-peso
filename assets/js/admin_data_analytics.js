@@ -135,7 +135,9 @@ window.onload = async function () {
         let len = locations.location.length;
         for(let i = 0; i < len; i++){
             let location = locations.location[i].work_occupation;
-            let yValue = (parseInt(locations.location[i].count)/total * 100);
+            let count = parseInt(locations.location[i].count);
+            let yValue = Math.round((count / total) * 100); // Round to nearest integer
+            // let yValue = (parseInt(locations.location[i].count)/total * 100);
 
             // location_data_points.push({ label: location, y: yValue })
             location_data_points.push({ y: yValue, label: `${yValue}%`, indexLabel: location });

@@ -214,19 +214,30 @@ class Form{
         )
     }
 
-    select_top_five_location(callback){
+    select_top_five_location(callback) {
         this.connection.query(
-            "SELECT location AS work_occupation, COUNT(*) AS count FROM ( SELECT JSON_UNQUOTE(JSON_EXTRACT(`work_occupation`, '$.location1')) AS location FROM job_preference UNION ALL SELECT JSON_UNQUOTE(JSON_EXTRACT(`work_occupation`, '$.location2')) AS location FROM job_preference UNION ALL SELECT JSON_UNQUOTE(JSON_EXTRACT(`work_occupation`, '$.location3')) AS location FROM job_preference ) AS subquery WHERE location != '' GROUP BY location ORDER BY count DESC LIMIT 10",
+            `SELECT UPPER(location) AS work_occupation, COUNT(*) AS count
+             FROM (
+                 SELECT JSON_UNQUOTE(JSON_EXTRACT(work_occupation, '$.location1')) AS location FROM job_preference
+                 UNION ALL
+                 SELECT JSON_UNQUOTE(JSON_EXTRACT(work_occupation, '$.location2')) AS location FROM job_preference
+                 UNION ALL
+                 SELECT JSON_UNQUOTE(JSON_EXTRACT(work_occupation, '$.location3')) AS location FROM job_preference
+             ) AS subquery
+             WHERE location != ''
+             GROUP BY UPPER(location)
+             ORDER BY count DESC
+             LIMIT 10`,
             (error, rows) => {
-                if(error){
+                if (error) {
                     callback(error, null);
-                }
-                if(rows){
+                } else {
                     callback(null, rows);
                 }
             }
-        )
+        );
     }
+    
     select_top_unemployed(callback){
         this.connection.query(
             "SELECT JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status')) AS employment_status, JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.unemployed_type')) AS unemployed_type, COUNT(*) AS count FROM personal_information WHERE JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status')) = 'unemployed' GROUP BY employment_status ORDER BY count DESC LIMIT 10; ",
