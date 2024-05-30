@@ -193,7 +193,6 @@ class Forms{
                 if(employment_status.hasOwnProperty("unemployed_type")){
                     content += `\nUnemployed type: ${employment_status["unemployed_type"]}`;
                 }
-                // employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
                 content += `\nAre you an OFW? ${((JSON.parse(is_ofw).is_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_ofw).is_ofw}` : "No"}`
 
                 let formerOfw = JSON.parse(is_former_ofw);
@@ -205,6 +204,55 @@ class Forms{
                 else{
                     content += `\nAre you former OFW? ${((JSON.parse(is_former_ofw).is_former_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_former_ofw).is_former_ofw}` : "No"}`
                 }
+                let is4ps = JSON.parse(is_4ps_beneficiary);
+                content += `\nAre you a 4Ps beneficiary? ${is4ps.is_4ps_beneficiary.toLowerCase() === "no" ? "No" : "Yes\nHousehold ID No:" + is4ps.household_no}`;
+                
+                content += "\n\nJOB PREFERENCE";
+
+                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation).toUpperCase()}:`;
+                content += " " + Object.values(JSON.parse(occupation)).filter(value => value !== "").join(', ');
+                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation).toUpperCase()}:`;
+                content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
+                
+                // language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
+     
+                content += "\n\nLANGUAGE / DIALECT PROFICIENCY";
+                if(language1 !== undefined){
+                    let language1Obj = JSON.parse(language1);
+                    if(language1Obj.hasOwnProperty("english")){
+                        content += `\nEnglish: ${Object.entries(language1Obj.english) .map(([key, value]) => key) .join(', ')}`
+                    }
+                }
+                if(language2 !== undefined){
+                    let language2Obj = JSON.parse(language2);
+                    if(language2Obj.hasOwnProperty("filipino")){
+                        content += `\nFilipino: ${Object.entries(language2Obj.filipino) .map(([key, value]) => key) .join(', ')}`
+                    }
+                }
+                if(language3 !== undefined){
+                    let language3Obj = JSON.parse(language3);
+                    if(language3Obj.hasOwnProperty("filipino")){
+                        content += `\nMandarin: ${Object.entries(language3Obj.mandarin) .map(([key, value]) => key) .join(', ')}`
+                    }
+                }
+                
+                // let firstKey = Object.keys(otherLanguageObj)[0]
+                // console.log(other_language)
+                // let language4Obj = JSON.parse(other_language);
+                // // // console.log(language4Obj)
+                if(other_language !== '{}'){
+                    let otherLanguageObj = JSON.parse(other_language);
+                    if(Object.keys(otherLanguageObj).length > 0) {
+                        let otherLanguage = Object.keys(otherLanguageObj)[0];
+                        content += `\n${otherLanguage}: ${Object.entries(otherLanguageObj[otherLanguage]) .map(([key, value]) => key) .join(', ')}`
+                    }
+                    // console.log(language4Obj)
+                    // content += `\n${language4Obj}: ${Object.entries(language4Obj) .map(([key, value]) => key) .join(', ')}`
+                }
+                // console.log(language4Obj)
+
+
+
                 doc.fontSize(12).text(content, 50, 90);
 
                 // doc.moveTo(40, 130).lineTo(570, 130).stroke();
