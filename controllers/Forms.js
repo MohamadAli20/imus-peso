@@ -2,6 +2,7 @@ const modelForm = require("../models/Form");
 const model = require("../models/User"); /* move the controller methods to Form model */
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
+const { jsPDF } = require("jspdf");
 
 class Forms{
     add(req, res){
@@ -122,114 +123,94 @@ class Forms{
         })
     }
     download_form(req, res){
-        const id = req.body.applicationId;
+        const id = req.params.id;
 
         model.get_application_by_id(id, (error, row) => {
             if(error){
                 console.error(error);
             }
             if(row){
+                let { surname, firstname, middlename, suffix, birthdate, email, contact, height, gender, civil_status, disability, religion, address, employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
+                suffix = suffix.toLowerCase() === "na" ? "" : suffix;
+                
+                if(suffix.toLowerCase() === "na"){
+                    suffix = "";
+                }
+                if(disability === '{}' || disability === "") {
+                    disability = "NA";
+                }
+                else{
+                    disability = Object.values(JSON.parse(disability)).join(', ');
+                }
+                if(address !== '{}' && address !== "") {
+                    const obj = JSON.parse(address);
+                    for (const key in obj) {
+                        if (obj.hasOwnProperty(key)) {
+                            if (!obj[key] || obj[key].trim() === '') {
+                                obj[key] = "NA";
+                            }
+                        }
+                    }
+                    address = Object.values(obj).join(', ');
+                }
                 // Create a new PDF document
                 const doc = new PDFDocument();
-            
-                // Set margins
                 const margin = 40;
-                const headerHeight = 40; // Height of the header
-            
-                // Extract data from the object
-                const {
-                    surname,
-                    firstname,
-                    middlename,
-                    suffix,
-                    birthdate,
-                    email,
-                    contact,
-                    height,
-                    gender,
-                    civil_status,
-                    religion,
-                    address,
-                    employment_status,
-                    occupation,
-                    preferred_work_occupation,
-                    language1,
-                    language2,
-                    other_language,
-                    elementary_school,
-                    elementary_year_graduated,
-                    secondary_school,
-                    secondary_year_graduated,
-                    tertiary_school,
-                    tertiary_course,
-                    tertiary_year_graduated,
-                    skills
-                } = row[0];
-            
-                const skillValues = Object.values(JSON.parse(skills));
-            
-                function drawHeader(margin) {
-                    doc.fontSize(20).text('Applicant Information', margin);
+
+                // Add border around content
+                const startX = margin;
+                const startY = margin; // Adjusted for the title height
+                const width = 530;
+                const borderHeight = 710;
+                doc.rect(startX, startY, width, borderHeight);
+                
+                const toCapitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+                
+                // Write content to PDF
+                doc.fontSize(18).text(`${firstname} ${middlename} ${surname} ${suffix}`, 50, 50);
+                let content = `PERSONAL INFORMATION\n\nBirthdate: ${birthdate}\nEmail: ${email}\nContact: ${contact}\nHeight: ${height}\nGender: ${gender}\nCivil Status: ${civil_status}\nDisability: ${disability}\nReligion: ${religion}\nAddress: ${address}`;
+                
+
+                
+                // employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
+                employment_status = JSON.parse(employment_status);
+                content += `\n\nEMPLOYMENT STATUS / TYPE\n\nEmployment Status: ${employment_status.employment_status}`
+                if(employment_status.hasOwnProperty("how_long_looking_for_work")) {
+                    content += `\nHow long have you been looking for work? ${employment_status["how_long_looking_for_work"]}`;
                 }
-            
-                // Draw header on the first page with margin
-                drawHeader(margin);
-            
-                // Construct content
-                let content = `
-                ${surname}, ${firstname} ${middlename} ${suffix}
-            
-                Personal Information:
-            
-                Date of Birth: ${birthdate}
-                Email: ${email}
-                Contact: ${contact}
-                Height: ${height}
-                Gender: ${gender}
-                Civil Status: ${civil_status}
-                Religion: ${religion}
-                Address: ${JSON.parse(address).house_no_street}, ${JSON.parse(address).barangay}, ${JSON.parse(address).city_municipality}, ${JSON.parse(address).province}
-            
-                Education Attainment:
-            
-                Elementary Level:
-                ${elementary_school}, Graduated ${elementary_year_graduated}
-                Secondary:
-                ${secondary_school}, Graduated ${secondary_year_graduated}
-                Tertiary:
-                ${tertiary_school}, ${tertiary_course} - ${tertiary_year_graduated}
-            
-                Employment Status: ${JSON.parse(employment_status).employment_status}
-                Preferred Work Occupation: ${JSON.parse(preferred_work_occupation).type_work_occupation}
-                Occupation: ${JSON.parse(occupation).occupation1}
-            
-                Languages:
-                • English: ${JSON.parse(language1).read === 1 ? 'Read, ' : ''}${JSON.parse(language1).write === 1 ? 'Write, ' : ''}${JSON.parse(language1).speak === 1 ? 'Speak, ' : ''}${JSON.parse(language1).understand === 1 ? 'Understand' : ''}
-                • Filipino: ${JSON.parse(language2).read === 1 ? 'Read, ' : ''}${JSON.parse(language2).write === 1 ? 'Write, ' : ''}${JSON.parse(language2).speak === 1 ? 'Speak, ' : ''}${JSON.parse(language2).understand === 1 ? 'Understand' : ''}
-                • Other Languages: ${Object.keys(JSON.parse(other_language)).join(', ')}
-            
-                Skills: ${skillValues}
-                `;
+                if(employment_status.hasOwnProperty("unemployed_type")){
+                    content += `\nUnemployed type: ${employment_status["unemployed_type"]}`;
+                }
+
+                doc.fontSize(12).text(content, 50, 90);
+
+                // doc.moveTo(40, 130).lineTo(570, 130).stroke();
+                // doc.fontSize(14).text("------------------------------------------------------------", 50, 135);
+                // doc.fontSize(14).text("SURNAME", 50, 135);
+                // doc.fontSize(14).text("FIRST NAME", 215, 135);
+                // doc.fontSize(14).text("MIDDLE NAME", 415, 135);
+                // doc.fontSize(14).text("SUFFIX", 500, 135);
+
+                // let content = `${firstname} ${middlename} ${surname} ${modifiedSuffix}
+                // \nPersonal Information
+                // \n
+                // `;
+                // doc.fontSize(14).text(content, 40, 80);
+                // // Add a line
                 
-                // Draw horizontal line
-                doc.moveTo(margin, margin + headerHeight + doc.currentLineHeight())
-                    .lineTo(doc.page.width - margin, margin + headerHeight + doc.currentLineHeight())
-                    .stroke();
-            
-                // Write content to PDF with margin
-                let y = margin + headerHeight + doc.currentLineHeight();
-                doc.fontSize(12).text(content, 0, y, { width: 700, align: 'left' });
-                
-                    // Finalize the PDF
-                    const buffers = [];
-                    doc.on("data", buffers.push.bind(buffers));
-                    doc.on("end", function() {
-                        const pdfData = Buffer.concat(buffers);
-                        res.setHeader("Content-Type", "application/pdf");
-                        res.setHeader("Content-Disposition", `attachment; filename=${surname},${firstname} ${middlename}.pdf`);
-                        res.send(pdfData);
-                    });
-                    doc.end();
+
+                // Finalize the PDF
+                const buffers = [];
+                doc.on("data", buffers.push.bind(buffers));
+                doc.on("end", function() {
+                    const pdfData = Buffer.concat(buffers);
+                    res.setHeader("Content-Type", "application/pdf");
+                    res.setHeader("Content-Disposition", "attachment; filename=example.pdf");
+                    res.send(pdfData);
+                });
+                doc.end();
+        
             }
         })
         

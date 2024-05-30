@@ -17,6 +17,8 @@
     <script src="/js/loginModal.js"></script>
     <script src="/js/dashboard.js"></script>
     <script src="/js/checkLocalStorage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     </head>
 <body>
     <!-- Navigation -->
@@ -61,7 +63,7 @@
                 <li class="col-lg-3 col-md-3 col-sm-3 col-3">Action</li>
             </ul>
             <% for(let i = 0; i < row.length; i++){ %>
-            <form method="post" action="/download_form" class="row py-2 application">
+            <div class="row py-2 application">
                 <input value="<%=row[i].id%>" type="hidden" name="applicationId">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-6"><%= row[i].firstname + " " + row[i].surname %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 email"><%= row[i].email %></div>
@@ -88,11 +90,11 @@
                         <img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
                     <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
                     <button type="submit">
-                        <img id="download-icon" src="/images/download.svg" alt="Download icon">
+                        <img class="download-icon" src="/images/download.svg" alt="Download icon">
                     </button>
                     <!-- <input type="submit" target="_blank"></a> -->
                 </div>
-            </form>
+            </div>
             <% } %>
         </div>
         <footer class="">

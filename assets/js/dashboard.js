@@ -126,34 +126,23 @@ $(document).ready(function(){
 	});
 
 	/* Download */
-	$(".download-button").click(function(){
+	$(".download-icon").click(function(){
 		
-		// e.preventDefault();
-		let id = $(this).parent().parent().find("input").val();
+		// // e.preventDefault();
+		const id = $(this).parent().parent().parent().find("input").val();
+		// console.log(id);
 
-		$.ajax({
-			url: "/retrieve_by_id/"+id,
-			type: "GET",
-			success: function(response){
-				if(response.length > 0 ){
-					
-					$.ajax({
-						url: "/download_form",
-						type: "POST",
-						data: { response },
-						success: function(response){
-							// console.log(response);
-						}, 
-						error: function(error){
-							console.error(error);
-						}
-					})
-		
-				}
-			},
-			error: function(error){
-				console.error(error);
-			}
-		})
+		const link = document.createElement('a');
+		link.href = `/download_form/${id}`;
+		link.download = 'form.pdf';
+
+		// Append the link to the body (required for Firefox)
+		document.body.appendChild(link);
+
+		// Trigger a click on the link to download the file
+		link.click();
+
+		// Remove the link from the document
+		document.body.removeChild(link);
 	});
 });
