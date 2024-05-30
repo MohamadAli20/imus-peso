@@ -226,7 +226,7 @@ class Forms{
                     doc.on("end", function() {
                         const pdfData = Buffer.concat(buffers);
                         res.setHeader("Content-Type", "application/pdf");
-                        res.setHeader("Content-Disposition", "attachment; filename=example.pdf");
+                        res.setHeader("Content-Disposition", `attachment; filename=${surname},${firstname} ${middlename}.pdf`);
                         res.send(pdfData);
                     });
                     doc.end();
