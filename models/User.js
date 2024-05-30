@@ -102,7 +102,7 @@ class User{
             page = (page - 1) * 9;
         }
         this.connection.query(
-            `SELECT * FROM personal_information ORDER BY firstname ASC LIMIT 9 OFFSET ${page}`,
+            `SELECT * FROM personal_information LIMIT 9 OFFSET ${page}`,
             (error, row) => {
                 if(error){
                     console.error(error);
