@@ -4,6 +4,7 @@ const app = express();
 const routes = require('./routes')
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const port = 3000;
 
 app.use(session({
     secret: 'keyboardkitteh',
@@ -34,6 +35,6 @@ app.use('/admin_form', routes);
 app.use('/admin_apply', routes);
 app.use('/data_analytics', routes);
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('http://localhost:3000');
 })
