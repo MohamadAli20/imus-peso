@@ -166,23 +166,45 @@ class Forms{
                 
                 const toCapitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
-                
                 // Write content to PDF
                 doc.fontSize(18).text(`${firstname} ${middlename} ${surname} ${suffix}`, 50, 50);
                 let content = `PERSONAL INFORMATION\n\nBirthdate: ${birthdate}\nEmail: ${email}\nContact: ${contact}\nHeight: ${height}\nGender: ${gender}\nCivil Status: ${civil_status}\nDisability: ${disability}\nReligion: ${religion}\nAddress: ${address}`;
                 
-
-                
-                // employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
                 employment_status = JSON.parse(employment_status);
                 content += `\n\nEMPLOYMENT STATUS / TYPE\n\nEmployment Status: ${employment_status.employment_status}`
+                if(employment_status.hasOwnProperty("employed_type")){
+                    content += `\nEmployed type: ${employment_status["employed_type"]}`;
+                }
+                if(employment_status.hasOwnProperty("job") && employment_status["job"] !== '{}' && employment_status["job"] !== "") {
+                    let obj = employment_status['job'];
+                    for (const key in obj) {
+                        console.log(key)
+                        if (obj.hasOwnProperty(key)) {
+                            if (!obj[key] || obj[key].trim() === '') {
+                                obj[key] = "NA";
+                            }
+                        }
+                    }
+                    content += "\nJobs: " + Object.values(obj).join(', ');
+                }
                 if(employment_status.hasOwnProperty("how_long_looking_for_work")) {
                     content += `\nHow long have you been looking for work? ${employment_status["how_long_looking_for_work"]}`;
                 }
                 if(employment_status.hasOwnProperty("unemployed_type")){
                     content += `\nUnemployed type: ${employment_status["unemployed_type"]}`;
                 }
+                // employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
+                content += `\nAre you an OFW? ${((JSON.parse(is_ofw).is_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_ofw).is_ofw}` : "No"}`
 
+                let formerOfw = JSON.parse(is_former_ofw);
+                if(formerOfw.hasOwnProperty("country") && formerOfw.hasOwnProperty("month_year")){
+                    content += `\nAre you former OFW? Yes`
+                    content += `\nLatest country of deployment: ${formerOfw.country}`
+                    content += `\nMonth and year of return to Philippines: ${formerOfw.month_year}`
+                }
+                else{
+                    content += `\nAre you former OFW? ${((JSON.parse(is_former_ofw).is_former_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_former_ofw).is_former_ofw}` : "No"}`
+                }
                 doc.fontSize(12).text(content, 50, 90);
 
                 // doc.moveTo(40, 130).lineTo(570, 130).stroke();
