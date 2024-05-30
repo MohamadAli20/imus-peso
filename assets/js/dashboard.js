@@ -125,4 +125,35 @@ $(document).ready(function(){
 		});
 	});
 
+	/* Download */
+	$(".download-button").click(function(){
+		
+		// e.preventDefault();
+		let id = $(this).parent().parent().find("input").val();
+
+		$.ajax({
+			url: "/retrieve_by_id/"+id,
+			type: "GET",
+			success: function(response){
+				if(response.length > 0 ){
+					
+					$.ajax({
+						url: "/download_form",
+						type: "POST",
+						data: { response },
+						success: function(response){
+							// console.log(response);
+						}, 
+						error: function(error){
+							console.error(error);
+						}
+					})
+		
+				}
+			},
+			error: function(error){
+				console.error(error);
+			}
+		})
+	});
 });

@@ -26,6 +26,7 @@ Router.get('/count_female', FormController.count_female);
 Router.get('/get_top_five_occupation', FormController.get_top_five_occupation);
 Router.get('/get_top_five_location', FormController.get_top_five_location);
 Router.get('/get_top_unemployed', FormController.get_top_unemployed);
-
+Router.get('/retrieve_by_id/:id', FormController.retrieve_application_by_id);
+Router.post('/download_form', FormController.download_form);
 
 module.exports = Router;

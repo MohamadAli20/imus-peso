@@ -57,6 +57,11 @@ main{
         .application div{
             overflow: auto;
         }
+        button[type='submit']{
+            border: none;
+            padding: 0;
+            background-color: white;
+        }
     footer{
         text-align: right;
         margin: 0;

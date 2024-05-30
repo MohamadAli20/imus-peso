@@ -17,7 +17,7 @@
     <script src="/js/loginModal.js"></script>
     <script src="/js/dashboard.js"></script>
     <script src="/js/checkLocalStorage.js"></script>
-</head>
+    </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg text-white custom-nav">
@@ -61,7 +61,7 @@
                 <li class="col-lg-3 col-md-3 col-sm-3 col-3">Action</li>
             </ul>
             <% for(let i = 0; i < row.length; i++){ %>
-            <div class="row py-2 application">
+            <form method="post" action="/download_form" class="row py-2 application">
                 <input value="<%=row[i].id%>" type="hidden" name="applicationId">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-2"><%= row[i].id %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-7"><%= row[i].firstname + " " + row[i].surname %></div>
@@ -70,8 +70,12 @@
                     <a href="/view_application/<%=row[i].id%>">
                         <img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
                     <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    <button type="submit">
+                        <img id="download-icon" src="/images/download.svg" alt="Download icon">
+                    </button>
+                    <!-- <input type="submit" target="_blank"></a> -->
                 </div>
-            </div>
+            </form>
             <% } %>
         </div>
         <footer class="">
