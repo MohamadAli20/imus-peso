@@ -31,6 +31,14 @@ $(document).ready(function() {
             window.location.href = "/peso";
         }
     });
+    $(".about-link").click(function() {
+        if (isAdmin === null) {
+            $("#navLoginBtn").trigger('click');
+        } 
+        else {
+            window.location.href = "/about";
+        }
+    });
     $(".apply-now-link").click(function() {
         if (isAdmin === null) {
             $("#navLoginBtn").trigger('click');

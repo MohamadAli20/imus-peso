@@ -15,6 +15,9 @@ class Users{
     peso(req, res){
         res.render("peso");
     }
+    about(req, res){
+        res.render("about");
+    }
     /* For admin*/
     admin_apply(req, res){
         res.render('admin_apply');

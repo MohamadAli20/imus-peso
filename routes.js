@@ -3,6 +3,7 @@ const Router = express.Router();
 
 const UserController = require("./controllers/Users");
 const FormController = require("./controllers/Forms");
+const User = require('./models/User');
 
 /* For user */
 Router.get('/', UserController.index);
@@ -12,6 +13,7 @@ Router.post('/create', UserController.create);
 Router.post('/authenticate', UserController.authenticate);
 Router.post('/addInformation', FormController.add);
 Router.get('/peso', UserController.peso);
+Router.get('/about', UserController.about);
 
 /* For admin */
 Router.get('/dashboard/:page', UserController.dashboard);
