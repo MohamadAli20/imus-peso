@@ -174,7 +174,7 @@ class Form{
     }
     get_all_male(callback){
         this.connection.query(
-            "SELECT count(*) AS total FROM personal_information WHERE gender = ?",
+            "SELECT count(*) AS total FROM personal_information WHERE UPPER(gender) = UPPER(?)",
             [ "male" ],
             (error, total) => {
                 if(error){
@@ -186,32 +186,42 @@ class Form{
             }
         )
     }
-    get_all_female(callback){
+    get_all_female(callback) {
         this.connection.query(
-            "SELECT count(*) AS total FROM personal_information WHERE gender = ?",
+            "SELECT COUNT(*) AS total FROM personal_information WHERE UPPER(gender) = UPPER(?)",
             [ "female" ],
             (error, total) => {
-                if(error){
+                if (error) {
                     callback(error, null);
-                }
-                if(total){
-                    callback(null, total)
+                } else {
+                    callback(null, total);
                 }
             }
-        )
+        );
     }
-    select_top_five_occupation(callback){
+    
+    select_top_five_occupation(callback) {
         this.connection.query(
-            "SELECT occupation, COUNT(*) AS count FROM ( SELECT JSON_UNQUOTE(JSON_EXTRACT(`occupation`, '$.occupation1')) AS occupation FROM job_preference UNION ALL SELECT JSON_UNQUOTE(JSON_EXTRACT(`occupation`, '$.occupation2')) AS occupation FROM job_preference UNION ALL SELECT JSON_UNQUOTE(JSON_EXTRACT(`occupation`, '$.occupation3')) AS occupation FROM job_preference ) AS subquery WHERE occupation != '' GROUP BY occupation ORDER BY count DESC LIMIT 10;",
+            `SELECT UPPER(occupation) AS occupation, COUNT(*) AS count
+             FROM (
+                 SELECT JSON_UNQUOTE(JSON_EXTRACT(occupation, '$.occupation1')) AS occupation FROM job_preference
+                 UNION ALL
+                 SELECT JSON_UNQUOTE(JSON_EXTRACT(occupation, '$.occupation2')) AS occupation FROM job_preference
+                 UNION ALL
+                 SELECT JSON_UNQUOTE(JSON_EXTRACT(occupation, '$.occupation3')) AS occupation FROM job_preference
+             ) AS subquery
+             WHERE occupation != ''
+             GROUP BY UPPER(occupation)
+             ORDER BY count DESC
+             LIMIT 10;`,
             (error, rows) => {
-                if(error){
+                if (error) {
                     callback(error, null);
-                }
-                if(rows){
+                } else {
                     callback(null, rows);
                 }
             }
-        )
+        );
     }
 
     select_top_five_location(callback) {
@@ -238,18 +248,25 @@ class Form{
         );
     }
     
-    select_top_unemployed(callback){
+    select_top_unemployed(callback) {
         this.connection.query(
-            "SELECT JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status')) AS employment_status, JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.unemployed_type')) AS unemployed_type, COUNT(*) AS count FROM personal_information WHERE JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status')) = 'unemployed' GROUP BY employment_status ORDER BY count DESC LIMIT 10; ",
+            `SELECT JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status')) AS employment_status, 
+                    JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.unemployed_type')) AS unemployed_type, 
+                    COUNT(*) AS count 
+             FROM personal_information 
+             WHERE UPPER(JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status'))) = UPPER('unemployed') 
+             GROUP BY employment_status 
+             ORDER BY count DESC 
+             LIMIT 10;`,
             (error, rows) => {
-                if(error){
+                if (error) {
                     callback(error, null);
-                }
-                if(rows){
+                } else {
                     callback(null, rows);
                 }
             }
-        )
+        );
     }
+    
 }
 module.exports = new Form();

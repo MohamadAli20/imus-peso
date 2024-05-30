@@ -28,6 +28,7 @@ window.onload = async function () {
         console.error(error);
     }
 
+    /* TOTAL APPLICATION AND TOTAL GENDER (MALE AND FEMALE) */
     const date = new Date();
     const monthName = date.toLocaleString('default', { month: 'long' });
     let options = {
@@ -53,8 +54,49 @@ window.onload = async function () {
             ]
         }]
     };
-    $("#pieGraph").CanvasJSChart(options);
+    $("#pieGraph").CanvasJSChart(options); /* Add data to the graph */
+    
+    /*UNEMPLOYED*/
+    let unemployedPieGraph = {
+        title: {
+            text: "Unemployed"
+        },
+        subtitles: [{
+            text: `As of ${monthName}, ${date.getFullYear()}`
+        }],
+        theme: "light2",
+        animationEnabled: true,
+        data: [{
+            type: "pie",
+            startAngle: 40,
+            toolTipContent: "<b>{label}</b>: {y}%",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}%",
+            dataPoints: []
+        }]
+    };
+    let unemployed_data_points = unemployedPieGraph.data[0].dataPoints;
+    try{
+        const arr = await $.ajax({
+            url: "/get_top_unemployed",
+            type: "GET"
+        })
+        
+        let unemployed = arr.unemployed
+        for(let i = 0; i < unemployed.length; i++){
+            let empType = unemployed[i].unemployed_type;
+            let yValue = Math.round(parseInt(unemployed[i].count)/total * 100);
+            unemployed_data_points.push({ y: yValue, label: empType });
+        }
 
+    } catch (error) {
+        console.error(error);
+    }
+    $("#unemployedPieGraph").CanvasJSChart(unemployedPieGraph); /* Add data to the graph */
+    
+    /*PREFERRED OCCUPATION*/
     var employmentStatus = {
         animationEnabled: true,
         title: {
@@ -83,7 +125,7 @@ window.onload = async function () {
         let len = response5.occupation.length;
         for(let i = 0; i < len; i++){
             let occupation = response5.occupation[i].occupation;
-            let yValue = (parseInt(response5.occupation[i].count)/total * 100);
+            let yValue = Math.round(parseInt(response5.occupation[i].count)/total * 100);
 
             data_points.push({ label: occupation, y: yValue })
         }
@@ -92,9 +134,12 @@ window.onload = async function () {
         console.error(error);
     }
 
-    $("#barGraph").CanvasJSChart(employmentStatus);
+    $("#barGraph").CanvasJSChart(employmentStatus); /* Add data to the graph */
 
-
+    /* LOCATION */
+    
+    
+    /*PREFERRED WORK LOCATION*/
     var workLocation = {
         animationEnabled: true,
 	title: {
@@ -126,6 +171,7 @@ window.onload = async function () {
 		dataPoints: []
 	}]
     }
+    
     let location_data_points = workLocation.data[0].dataPoints;
     try{
         const locations = await $.ajax({
@@ -148,45 +194,6 @@ window.onload = async function () {
         console.error(error);
     }
     $("#location").CanvasJSChart(workLocation);
-
-
-
-    let unemployedPieGraph = {
-        title: {
-            text: "Unemployed"
-        },
-        subtitles: [{
-            text: `As of ${monthName}, ${date.getFullYear()}`
-        }],
-        theme: "light2",
-        animationEnabled: true,
-        data: [{
-            type: "pie",
-            startAngle: 40,
-            toolTipContent: "<b>{label}</b>: {y}%",
-            showInLegend: "true",
-            legendText: "{label}",
-            indexLabelFontSize: 16,
-            indexLabel: "{label} - {y}%",
-            dataPoints: []
-        }]
-    };
-    let unemployed_data_points = unemployedPieGraph.data[0].dataPoints;
-    try{
-        const arr = await $.ajax({
-            url: "/get_top_unemployed",
-            type: "GET"
-        })
-        
-        let unemployed = arr.unemployed
-        for(let i = 0; i < unemployed.length; i++){
-            let empType = unemployed[i].unemployed_type;
-            let yValue = (parseInt(unemployed[i].count)/total * 100);
-            unemployed_data_points.push({ y: yValue, label: empType });
-        }
-
-    } catch (error) {
-        console.error(error);
-    }
-    $("#unemployedPieGraph").CanvasJSChart(unemployedPieGraph);
+    
+    
 };
