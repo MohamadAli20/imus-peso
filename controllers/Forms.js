@@ -130,7 +130,7 @@ class Forms{
                 console.error(error);
             }
             if(row){
-                let { surname, firstname, middlename, suffix, birthdate, email, contact, height, gender, civil_status, disability, religion, address, employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
+                let { surname, firstname, middlename, suffix, birthdate, email, contact, height, gender, civil_status, disability, religion, address, employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, graduate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
                 suffix = suffix.toLowerCase() === "na" ? "" : suffix;
                 
                 if(suffix.toLowerCase() === "na"){
@@ -164,8 +164,6 @@ class Forms{
                 const borderHeight = 710;
                 doc.rect(startX, startY, width, borderHeight);
                 
-                const toCapitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-
                 // Write content to PDF
                 doc.fontSize(18).text(`${firstname} ${middlename} ${surname} ${suffix}`, 50, 50);
                 let content = `PERSONAL INFORMATION\n\nBirthdate: ${birthdate}\nEmail: ${email}\nContact: ${contact}\nHeight: ${height}\nGender: ${gender}\nCivil Status: ${civil_status}\nDisability: ${disability}\nReligion: ${religion}\nAddress: ${address}`;
@@ -214,8 +212,6 @@ class Forms{
                 content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation).toUpperCase()}:`;
                 content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
                 
-                // language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, gradudate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
-     
                 content += "\n\nLANGUAGE / DIALECT PROFICIENCY";
                 if(language1 !== undefined){
                     let language1Obj = JSON.parse(language1);
@@ -232,43 +228,115 @@ class Forms{
                 if(language3 !== undefined){
                     let language3Obj = JSON.parse(language3);
                     if(language3Obj.hasOwnProperty("filipino")){
-                        content += `\nMandarin: ${Object.entries(language3Obj.mandarin) .map(([key, value]) => key) .join(', ')}`
+                        content += `\nMandarin: ${Object.entries(language3Obj.mandarin).map(([key, value]) => key).join(', ')}`
                     }
                 }
-                
-                // let firstKey = Object.keys(otherLanguageObj)[0]
-                // console.log(other_language)
-                // let language4Obj = JSON.parse(other_language);
-                // // // console.log(language4Obj)
                 if(other_language !== '{}'){
                     let otherLanguageObj = JSON.parse(other_language);
                     if(Object.keys(otherLanguageObj).length > 0) {
                         let otherLanguage = Object.keys(otherLanguageObj)[0];
-                        content += `\n${otherLanguage}: ${Object.entries(otherLanguageObj[otherLanguage]) .map(([key, value]) => key) .join(', ')}`
+                        content += `\n${otherLanguage}: ${Object.entries(otherLanguageObj[otherLanguage]).map(([key, value]) => key) .join(', ')}`
                     }
-                    // console.log(language4Obj)
-                    // content += `\n${language4Obj}: ${Object.entries(language4Obj) .map(([key, value]) => key) .join(', ')}`
                 }
-                // console.log(language4Obj)
+                content += "\n\nEDUCATIONAL ATTAINMENT";
+                if(elementary_school !== "" && elementary_year_graduated.toLowerCase() !== "na"){
+                    content += `\n\nElementary:\n${elementary_school} - ${elementary_year_graduated}`
+                }
+                if(JSON.parse(if_elementary_undergraduate).hasOwnProperty("awards_received")){
+                    content += `\nAwards: ${JSON.parse(if_elementary_undergraduate).awards_received}`;
+                }
+                if(secondary_school .toLowerCase()!== "" && secondary_year_graduated.toLowerCase() !== "na"){
+                    content += `\n\nSecondary:\n${secondary_school} - ${secondary_year_graduated}`
+                }
+                if(JSON.parse(if_secondary_undergraduate).hasOwnProperty("awards_received")){
+                    content += `\nAwards: ${JSON.parse(if_secondary_undergraduate).awards_received}`;
+                }
+                if(tertiary_school .toLowerCase()!== "" && tertiary_year_graduated.toLowerCase() !== "na"){
+                    content += `\n\nTertiary:\n${tertiary_school} - ${tertiary_year_graduated}`
+                }
+                if(JSON.parse(if_tertiary_undergraduate).hasOwnProperty("awards_received")){
+                    content += `\nAwards: ${JSON.parse(if_tertiary_undergraduate).awards_received}`;
+                }
+                if(graduate_studies_school.toLowerCase()!== "" && graduate_studies_year_attended.toLowerCase() !== "na"){
+                    content += `\n\nGraduate_studies:\n${graduate_studies_school} - ${graduate_studies_year_attended}\n${graduate_studies_course}`
+                }
+                if(JSON.parse(if_graduate_studies_undergraduate).hasOwnProperty("awards_received")){
+                    content += `\nAwards: ${JSON.parse(if_graduate_studies_undergraduate).awards_received}`;
+                }
+                content += `\n\nTECHNICAL / VOCATIONAL AND OTHER TRAINING`;
+                if(JSON.parse(institution) !== '{}'){
+                    const courseEntries = Object.entries(JSON.parse(course));
+                    const institutionEntries = Object.entries(JSON.parse(institution));
+                    const durationFrom = Object.entries(JSON.parse(date_from));
+                    const durationTo = Object.entries(JSON.parse(date_to));
+                    const certificateEntries = Object.entries(JSON.parse(certificate));
 
+                    content += `\n${institutionEntries.map(([instKey, instValue], index) => {
+                        const dateFromValue = durationFrom[index] ? durationFrom[index][1] : "";
+                        const dateToValue = durationTo[index] ? durationTo[index][1] : ""
+                        const courseValue = courseEntries[index] ? courseEntries[index][1] : "";
+                        const certificateValue = certificateEntries[index] ? certificateEntries[index][1] : "";
+                        if (instValue !== "" || dateFromValue !== "" || dateToValue !== "" || courseValue !== "" || certificateValue !== "") {
+                            return `\n${courseValue} ${instValue} - from ${dateFromValue} to ${dateToValue}\nCerticate Received: ${certificateValue}`;
+                        }
+                        return "\n";
+                    }).filter(value => value !== "").join('\n')}`;
 
+                }
+                content += `ELIGIBILITY / PROFESSIONAL LICENSE`;
+                if(JSON.parse(eligibility) !== '{}'){
+                    const eligibilityEntries = Object.entries(JSON.parse(eligibility));
+                    const ratingEntries = Object.entries(JSON.parse(rating));
+                    const dateExamEntries = Object.entries(JSON.parse(date_exam));
 
+                    content += `\n${eligibilityEntries.map(([instKey, instValue], index) => {
+                        const ratingValue = ratingEntries[index] ? ratingEntries[index][1] : "";
+                        const dateExamValue = dateExamEntries[index] ? dateExamEntries[index][1] : ""
+                        if (instValue !== "" || ratingValue !== "" || dateExamValue !== "") {
+                            return `\nCivil Service: ${instValue}\nRating: ${ratingValue}\nDate of examination: ${dateExamValue}`;
+                        }
+                        return "\n";
+                    }).filter(value => value !== "").join('\n')}`;
+                }
+                if(JSON.parse(professional_license) !== '{}'){
+                    const professional_licenseEntries = Object.entries(JSON.parse(professional_license));
+                    const valid_untilEntries = Object.entries(JSON.parse(valid_until));
+
+                    content += `\n${professional_licenseEntries.map(([instKey, instValue], index) => {
+                        const valid_untilValue = valid_untilEntries[index] ? valid_untilEntries[index][1] : "";
+                        if (instValue !== "" || valid_untilValue !== "") {
+                            return `\nProfessional license: ${instValue}\nValid until: ${valid_untilValue}`;
+                        }
+                        return;
+                    }).filter(value => value !== "").join('\n')}`;
+                }
+                content += `\n\nWORK EXPERIENCE`;
+                if(JSON.parse(company_name) !== '{}'){
+                    const companyNameEntries = Object.entries(JSON.parse(company_name));
+                    const companyAddressEntries = Object.entries(JSON.parse(company_address));
+                    const positionEntries = Object.entries(JSON.parse(position));
+                    const inclusiveEntries = Object.entries(JSON.parse(inclusive_date));
+                    const statusEntries = Object.entries(JSON.parse(status));
+
+                    content += `\n${companyNameEntries.map(([instKey, instValue], index) => {
+                        const addressValue = companyAddressEntries[index] ? companyAddressEntries[index][1] : "";
+                        const positionValue = positionEntries[index] ? positionEntries[index][1] : "";
+                        const inclusiveValue = inclusiveEntries[index] ? inclusiveEntries[index][1] : "";
+                        const statusValue = statusEntries[index] ? statusEntries[index][1] : "";
+                        if (instValue !== "" || addressValue !== "" || positionValue !== "" || inclusiveValue !== "" || statusValue !== "") {
+                            return `\n${positionValue} - ${inclusiveValue} ${statusValue}\n${instValue}, ${addressValue}`;
+                        }
+                        return;
+                    }).filter(value => value !== "").join('\n')}`;
+                }
+                content += `\nOTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING`;
+                if(JSON.parse(skills) !== '{}'){
+                    content += `\n${Object.entries(JSON.parse(skills))
+                    .map(([key, value]) => "- " + value)
+                    .filter(value => value !== "")
+                    .join('\n')}`;
+                }
                 doc.fontSize(12).text(content, 50, 90);
-
-                // doc.moveTo(40, 130).lineTo(570, 130).stroke();
-                // doc.fontSize(14).text("------------------------------------------------------------", 50, 135);
-                // doc.fontSize(14).text("SURNAME", 50, 135);
-                // doc.fontSize(14).text("FIRST NAME", 215, 135);
-                // doc.fontSize(14).text("MIDDLE NAME", 415, 135);
-                // doc.fontSize(14).text("SUFFIX", 500, 135);
-
-                // let content = `${firstname} ${middlename} ${surname} ${modifiedSuffix}
-                // \nPersonal Information
-                // \n
-                // `;
-                // doc.fontSize(14).text(content, 40, 80);
-                // // Add a line
-                
 
                 // Finalize the PDF
                 const buffers = [];
