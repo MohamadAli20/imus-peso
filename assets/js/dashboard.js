@@ -17,9 +17,15 @@ $(document).ready(function(){
 						/* container*/
 						let container = document.createElement("div");
 						container.className = "row py-2 application";
+						{/* <input value="<%=row[i].id%>" type="hidden" name="applicationId"></input> */}
+
+						let idInput = document.createElement("input");
+						idInput.setAttribute("name", "applicationId");
+						idInput.setAttribute("value", response[i].id);
+						idInput.setAttribute("type", "hidden");
 
 						let divName = document.createElement("div");
-						divName.className = "col-lg-3 col-md-3 col-sm-3 col-7";
+						divName.className = "col-lg-3 col-md-3 col-sm-3 col-6";
 						divName.textContent = response[i].firstname + " " + response[i].surname;
 
 						let divEmail = document.createElement("div");
@@ -27,7 +33,7 @@ $(document).ready(function(){
 						divEmail.textContent = response[i].email;
 
 						let divDate = document.createElement("div");
-						divDate.className = "col-lg-3 col-md-3 col-sm-3";
+						divDate.className = "col-lg-3 col-md-3 col-sm-3 col-3";
 
 						let createdAt = new Date(response[i].created_at); 
 						let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -65,13 +71,23 @@ $(document).ready(function(){
 						deleteIcon.setAttribute("alt", "Delete icon");
 						deleteIcon.setAttribute("data-bs-toggle", "modal");
 						deleteIcon.setAttribute("data-bs-target", "#deleteModal");
-
 						divAction.append(deleteIcon);
+
+						let downloadButton = document.createElement("button");
+						downloadButton.setAttribute("type", "submit");
+						let downloadIcon = document.createElement("img");
+						downloadIcon.className = "download-icon";
+						downloadIcon.setAttribute("src", "/images/download.svg");
+						downloadIcon.setAttribute("alt", "Download icon");
+						downloadButton.append(downloadIcon);
+						divAction.append(downloadButton);
+						
+						container.append(idInput);
 						container.append(divName);
 						container.append(divEmail);
 						container.append(divDate);
 						container.append(divAction);
-
+						
 						$(".content").append(container);
 
 						/* Footer */
@@ -140,23 +156,20 @@ $(document).ready(function(){
 	});
 
 	/* Download */
-	$(".download-icon").click(function(){
-		
-		// // e.preventDefault();
+	$(document).on("click", ".download-icon", function(){
 		const id = $(this).parent().parent().parent().find("input").val();
-		// console.log(id);
-
 		const link = document.createElement('a');
 		link.href = `/download_form/${id}`;
 		link.download = 'form.pdf';
-
+	
 		// Append the link to the body (required for Firefox)
 		document.body.appendChild(link);
-
+	
 		// Trigger a click on the link to download the file
 		link.click();
-
+	
 		// Remove the link from the document
 		document.body.removeChild(link);
 	});
+	
 });
