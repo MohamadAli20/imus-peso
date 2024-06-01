@@ -207,9 +207,9 @@ class Forms{
                 
                 content += "\n\nJOB PREFERENCE";
 
-                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation).toUpperCase()}:`;
+                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation)}:`;
                 content += " " + Object.values(JSON.parse(occupation)).filter(value => value !== "").join(', ');
-                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation).toUpperCase()}:`;
+                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation)}:`;
                 content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
                 
                 content += "\n\nLANGUAGE / DIALECT PROFICIENCY";

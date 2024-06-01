@@ -19,36 +19,15 @@ let finalInformation = {
     otherSkills: []
 }
 
-/* Display alert message */
 let alertMessage = (message) => {
-    $(".message").css({
-        "position": "absolute",
-        "top": "0",
-        "z-index": "10",
-        "display": "block",
-        "width": "50%",
-        "text-align": "center",
-        "left": "50%",
-        "transform": "translateX(-50%)"
-    })
+    // $(".message").empty(); // Clear any previous messages
 
-    let p = document.createElement('p');
-    p.className = "alert alert-danger"
-    p.style.color = 'red';
-    p.innerText = message;
-    $(".message").append(p);
+    let p = $("<p>").addClass("alert alert-danger").text(message);
+    // document.append(p);
 
-    /* remove and restyle element */
-    setTimeout(function(){
-        $(".message .alert").remove();
-        $(".message").css({
-            "position": "none",
-            "top": "0",
-            "z-index": "10",
-            "display": "none"
-        })
-    }, 3000);
+    // Remove the message after a timeout
 }
+
 
 /*
 * show side bar ehrn arrow forward is clicked
