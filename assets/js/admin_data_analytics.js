@@ -16,13 +16,13 @@ window.onload = async function () {
             url: "/count_male",
             type: "GET"
         });
-        totalMale = (parseInt(response2.total_male)/total) * 100;
+        totalMale = Math.round((parseInt(response2.total_male)/total) * 100);
 
         const response3 = await $.ajax({
             url: "/count_female",
             type: "GET"
         })
-        totalFemale = (parseInt(response3.total_female)/total) * 100;
+        totalFemale = Math.round((parseInt(response3.total_female)/total) * 100);
 
     } catch (error) {
         console.error(error);
