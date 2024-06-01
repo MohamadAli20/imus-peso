@@ -313,10 +313,10 @@ window.onload = async function () {
 		indexLabelFontSize: 16,
 		toolTipContent: "<span style=\"color:#62C9C3\">{indexLabel}:</span> <span style=\"color:#CD853F\"><strong>{y}</strong></span>",
 		indexLabelPlacement: "inside",
-		indexLabelFontColor: "black",
+		indexLabelFontColor: "orange",
 		indexLabelFontWeight: 600,
 		indexLabelFontFamily: "Verdana",
-		color: "#62C9C3",
+		color: "#32393d",
 		type: "bar",
 		dataPoints: []
 	}]
