@@ -207,9 +207,9 @@ class Forms{
                 
                 content += "\n\nJOB PREFERENCE";
 
-                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation).toUpperCase()}:`;
+                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation)}:`;
                 content += " " + Object.values(JSON.parse(occupation)).filter(value => value !== "").join(', ');
-                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation).toUpperCase()}:`;
+                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation)}:`;
                 content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
                 
                 content += "\n\nLANGUAGE / DIALECT PROFICIENCY";
@@ -242,22 +242,23 @@ class Forms{
                 if(elementary_school !== "" && elementary_year_graduated.toLowerCase() !== "na"){
                     content += `\n\nElementary:\n${elementary_school} - ${elementary_year_graduated}`
                 }
-                if(JSON.parse(if_elementary_undergraduate).hasOwnProperty("awards_received")){
+                console.log(if_elementary_undergraduate.hasOwnProperty("awards_received"))
+                if(if_elementary_undergraduate.hasOwnProperty("awards_received")){
                     content += `\nAwards: ${JSON.parse(if_elementary_undergraduate).awards_received}`;
                 }
-                if(secondary_school .toLowerCase()!== "" && secondary_year_graduated.toLowerCase() !== "na"){
+                if(secondary_school.toLowerCase() !== "" && secondary_year_graduated.toLowerCase() !== "na"){
                     content += `\n\nSecondary:\n${secondary_school} - ${secondary_year_graduated}`
                 }
                 if(JSON.parse(if_secondary_undergraduate).hasOwnProperty("awards_received")){
                     content += `\nAwards: ${JSON.parse(if_secondary_undergraduate).awards_received}`;
                 }
-                if(tertiary_school .toLowerCase()!== "" && tertiary_year_graduated.toLowerCase() !== "na"){
+                if(tertiary_school.toLowerCase() !== "" && tertiary_year_graduated.toLowerCase() !== "na"){
                     content += `\n\nTertiary:\n${tertiary_school} - ${tertiary_year_graduated}`
                 }
                 if(JSON.parse(if_tertiary_undergraduate).hasOwnProperty("awards_received")){
                     content += `\nAwards: ${JSON.parse(if_tertiary_undergraduate).awards_received}`;
                 }
-                if(graduate_studies_school.toLowerCase()!== "" && graduate_studies_year_attended.toLowerCase() !== "na"){
+                if(graduate_studies_school.toLowerCase() !== "" && graduate_studies_year_attended.toLowerCase() !== "na"){
                     content += `\n\nGraduate_studies:\n${graduate_studies_school} - ${graduate_studies_year_attended}\n${graduate_studies_course}`
                 }
                 if(JSON.parse(if_graduate_studies_undergraduate).hasOwnProperty("awards_received")){
@@ -338,13 +339,24 @@ class Forms{
                 }
                 doc.fontSize(12).text(content, 50, 90);
 
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = today.getMonth() + 1; // Note: January is 0, so we add 1
+                const day = today.getDate();
+
+                // Pad month and day with leading zeros if necessary
+                const formattedMonth = month < 10 ? `0${month}` : month;
+                const formattedDay = day < 10 ? `0${day}` : day;
+
+                const filename = `${surname}-${year}-${formattedMonth}-${formattedDay}.pdf`;
+                
                 // Finalize the PDF
                 const buffers = [];
                 doc.on("data", buffers.push.bind(buffers));
                 doc.on("end", function() {
                     const pdfData = Buffer.concat(buffers);
                     res.setHeader("Content-Type", "application/pdf");
-                    res.setHeader("Content-Disposition", "attachment; filename=example.pdf");
+                    res.setHeader("Content-Disposition", `attachment; filename=${filename}`);
                     res.send(pdfData);
                 });
                 doc.end();

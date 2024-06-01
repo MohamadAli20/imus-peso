@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    console.log("hdhfdh");
     let isAdmin = localStorage.getItem('isAdmin');
     
     // Function to check account status and redirect accordingly
