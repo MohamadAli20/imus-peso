@@ -207,9 +207,9 @@ class Forms{
                 
                 content += "\n\nJOB PREFERENCE";
 
-                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation)}:`;
+                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation).toUpperCase()}:`;
                 content += " " + Object.values(JSON.parse(occupation)).filter(value => value !== "").join(', ');
-                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation)}:`;
+                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation).toUpperCase()}:`;
                 content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
                 
                 content += "\n\nLANGUAGE / DIALECT PROFICIENCY";
@@ -239,29 +239,45 @@ class Forms{
                     }
                 }
                 content += "\n\nEDUCATIONAL ATTAINMENT";
-                if(elementary_school !== "" && elementary_year_graduated.toLowerCase() !== "na"){
+                if(elementary_school !== "" && 
+                elementary_year_graduated.toLowerCase() !== "na" && 
+                elementary_year_graduated.toLowerCase() !== "n/a"){
                     content += `\n\nElementary:\n${elementary_school} - ${elementary_year_graduated}`
                 }
-                console.log(if_elementary_undergraduate.hasOwnProperty("awards_received"))
-                if(if_elementary_undergraduate.hasOwnProperty("awards_received")){
+                if(JSON.parse(if_elementary_undergraduate).hasOwnProperty("awards_received") &&
+                JSON.parse(if_elementary_undergraduate).awards_received.toLowerCase() !== "na" &&
+                JSON.parse(if_elementary_undergraduate).awards_received.toLowerCase() !== "n/a"){
                     content += `\nAwards: ${JSON.parse(if_elementary_undergraduate).awards_received}`;
                 }
-                if(secondary_school.toLowerCase() !== "" && secondary_year_graduated.toLowerCase() !== "na"){
+                if(secondary_school.toLowerCase() !== "" && 
+                secondary_year_graduated.toLowerCase() !== "na" && 
+                secondary_year_graduated.toLowerCase() !== "n/a"){
                     content += `\n\nSecondary:\n${secondary_school} - ${secondary_year_graduated}`
                 }
-                if(JSON.parse(if_secondary_undergraduate).hasOwnProperty("awards_received")){
+                if(JSON.parse(if_secondary_undergraduate).hasOwnProperty("awards_received") &&
+                JSON.parse(if_secondary_undergraduate).awards_received.toLowerCase() !== "na" &&
+                JSON.parse(if_secondary_undergraduate).awards_received.toLowerCase() !== "n/a"){
                     content += `\nAwards: ${JSON.parse(if_secondary_undergraduate).awards_received}`;
                 }
-                if(tertiary_school.toLowerCase() !== "" && tertiary_year_graduated.toLowerCase() !== "na"){
+                if(tertiary_school.toLowerCase() !== "" && 
+                tertiary_year_graduated.toLowerCase() !== "na" && 
+                tertiary_year_graduated.toLowerCase() !== "n/a"){
                     content += `\n\nTertiary:\n${tertiary_school} - ${tertiary_year_graduated}`
                 }
-                if(JSON.parse(if_tertiary_undergraduate).hasOwnProperty("awards_received")){
+                if(JSON.parse(if_tertiary_undergraduate).hasOwnProperty("awards_received") &&
+                JSON.parse(if_tertiary_undergraduate).awards_received.toLowerCase() !== "na" &&
+                JSON.parse(if_tertiary_undergraduate).awards_received.toLowerCase() !== "n/a"){
                     content += `\nAwards: ${JSON.parse(if_tertiary_undergraduate).awards_received}`;
                 }
-                if(graduate_studies_school.toLowerCase() !== "" && graduate_studies_year_attended.toLowerCase() !== "na"){
+                console.log();
+                if(graduate_studies_school.toLowerCase() !== "" && 
+                graduate_studies_year_attended.toLowerCase() !== "na" && 
+                graduate_studies_year_attended.toLowerCase() !== "n/a"){
                     content += `\n\nGraduate_studies:\n${graduate_studies_school} - ${graduate_studies_year_attended}\n${graduate_studies_course}`
                 }
-                if(JSON.parse(if_graduate_studies_undergraduate).hasOwnProperty("awards_received")){
+                if(JSON.parse(if_graduate_studies_undergraduate).hasOwnProperty("awards_received") && 
+                JSON.parse(if_graduate_studies_undergraduate).awards_received.toLowerCase() !== "na" &&
+                JSON.parse(if_graduate_studies_undergraduate).awards_received.toLowerCase() !== "n/a"){
                     content += `\nAwards: ${JSON.parse(if_graduate_studies_undergraduate).awards_received}`;
                 }
                 content += `\n\nTECHNICAL / VOCATIONAL AND OTHER TRAINING`;
