@@ -130,6 +130,16 @@ class Forms{
             }
         })
     }
+    get_top_position(req, res){
+        modelForm.select_top_position((error, result) => {
+            if(error){
+                console.error(error);
+            }
+            if(result){
+                res.json({"position": result})
+            }
+        })
+    }
     retrieve_application_by_id(req, res){
         const id = req.params.id;
         // console.log(id);

@@ -306,7 +306,30 @@ class Form{
             }
         )
     }
-    
+    select_top_position(callback){
+        this.connection.query(
+            `SELECT position, COUNT(position) AS count
+            FROM (
+                SELECT JSON_EXTRACT(position, '$.position1') AS position FROM work_experience
+                UNION ALL
+                SELECT JSON_EXTRACT(position, '$.position2') AS position FROM work_experience
+                UNION ALL
+                SELECT JSON_EXTRACT(position, '$.position3') AS position FROM work_experience
+            ) AS positions
+            WHERE position != 'N/A' AND position != 'n/a' AND position != 'na' AND position != ''
+            GROUP BY position
+            ORDER BY count DESC
+            LIMIT 10;
+            `,
+            (error, rows) => {
+                if (error) {
+                    callback(error, null);
+                } else {
+                    callback(null, rows);
+                }
+            }
+        )
+    }
     
         
 }

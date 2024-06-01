@@ -88,9 +88,9 @@ window.onload = async function () {
         let employed = arr.employed
         totalEmployed = parseInt(employed[0].self_employed_count) + parseInt(employed[0].wage_employed_count)
         employedPieGraph.subtitles[0].text = "Total: " + totalEmployed;
-        let totalSelfEmployed = Math.round(parseInt(employed[0].self_employed_count)/total * 100);
+        let totalSelfEmployed = Math.round(parseInt(employed[0].self_employed_count)/totalEmployed * 100);
         employed_data_points.push({ y: totalSelfEmployed, label: "SELF EMPLOYED" });
-        let totalWageEmployed = Math.round(parseInt(employed[0].wage_employed_count)/total * 100);
+        let totalWageEmployed = Math.round(parseInt(employed[0].wage_employed_count)/totalEmployed * 100);
         employed_data_points.push({ y: totalWageEmployed, label: "WAGE EMPLOYED" });
         
     } catch (error) {
@@ -126,11 +126,15 @@ window.onload = async function () {
             url: "/get_top_unemployed",
             type: "GET"
         })
-        
-        let unemployed = arr.unemployed
+        let unemployed = arr.unemployed;
+        let totalUnemployed = 0;
+        for(let j = 0; j < unemployed.length; j++){
+            totalUnemployed += parseInt(unemployed[j].count);
+        }
         for(let i = 0; i < unemployed.length; i++){
+            totalEmployed += parseInt(unemployed[i].count);
             let empType = unemployed[i].unemployed_type;
-            let yValue = Math.round(parseInt(unemployed[i].count)/total * 100);
+            let yValue = Math.round(parseInt(unemployed[i].count)/totalUnemployed * 100);
             unemployed_data_points.push({ y: yValue, label: empType });
         }
 
@@ -143,7 +147,7 @@ window.onload = async function () {
     var employmentStatus = {
         animationEnabled: true,
         title: {
-            text: `Preferred Occupation - ${date.getFullYear()}`
+            text: `Preferred Occupation`
         },
         axisY: {
             title: "Percentage",
@@ -161,16 +165,21 @@ window.onload = async function () {
     let data_points = employmentStatus.data[0].dataPoints;
 
     try{
-        const response5 = await $.ajax({
+        const occupation = await $.ajax({
             url: "/get_top_five_occupation",
             type: "GET"
         })
-        let len = response5.occupation.length;
-        for(let i = 0; i < len; i++){
-            let occupation = response5.occupation[i].occupation;
-            let yValue = Math.round(parseInt(response5.occupation[i].count)/total * 100);
+        //  {occupation: 'PROFESSIONAL GAMER', count: 3}
+        let occupationArr = occupation.occupation;
+        let totalOccupation = 0;
+        for(let j = 0; j < occupationArr.length; j++){
+            totalOccupation += parseInt(occupationArr[j].count);
+        }
+        for(let i = 0; i < occupationArr.length; i++){
+            let occupation = occupationArr[i].occupation;
+            let occupationYValue = Math.round(parseInt(occupationArr[i].count)/totalOccupation * 100);
 
-            data_points.push({ label: occupation, y: yValue })
+            data_points.push({ label: occupation, y: occupationYValue })
         }
 
     } catch (error) {
@@ -219,18 +228,18 @@ window.onload = async function () {
             url: "/get_top_five_location",
             type: "GET"
         })
-        let len = locations.location.length;
-        for(let i = 0; i < len; i++){
-            let location = locations.location[i].work_occupation;
-            let count = parseInt(locations.location[i].count);
-            let yValue = Math.round((count / total) * 100); // Round to nearest integer
-            // let yValue = (parseInt(locations.location[i].count)/total * 100);
-
-            // location_data_points.push({ label: location, y: yValue })
-            location_data_points.push({ y: yValue, label: `${yValue}%`, indexLabel: location });
-            // console.log(locations.location[i].work_occupation)
+        let locationArr = locations.location;
+        let totalLocation = 0;
+        for(let j = 0; j < locationArr.length; j++){
+            totalLocation += parseInt(locationArr[j].count);
         }
+        for(let i = 0; i < locationArr.length; i++){
+            // {work_occupation: 'MANILA', count: 3}
+            let location = locationArr[i].work_occupation;
+            let locationYValue = Math.round(parseInt(locationArr[i].count)/totalLocation * 100);
 
+            location_data_points.push({ label: locationYValue + "%", y: locationYValue, indexLabel: location })
+        }
     } catch (error) {
         console.error(error);
     }
@@ -262,10 +271,15 @@ window.onload = async function () {
             type: "GET"
         })
         let companyArr = topCompany.company;
+        let totalCompany = 0;
+        for(let j = 0; j < companyArr.length; j++){
+            totalCompany += parseInt(companyArr[j].count);
+        }
+        console.log(totalCompany);
         for(let i = 0; i < companyArr.length; i++){
             // {company_name: '"Toei Animation"', count: 1}
             let company = companyArr[i].company_name;
-            let companyYValue = Math.round(parseInt(companyArr[i].count)/total * 100);
+            let companyYValue = Math.round(parseInt(companyArr[i].count)/totalCompany * 100);
 
             topCompanyDataPoints.push({ label: company, y: companyYValue })
         }
@@ -275,6 +289,59 @@ window.onload = async function () {
 
     $("#topCompany").CanvasJSChart(topCompany); /* Add data to the graph */
 
+    /*TOP 10 POSITION*/
+    var topPosition = {
+        animationEnabled: true,
+	title: {
+		text: "TOP POSITIONS",                
+		fontColor: "Peru"
+	},	
+	axisY: {
+		tickThickness: 0,
+		lineThickness: 0,
+		valueFormatString: " ",
+		includeZero: true,
+		gridThickness: 0                    
+	},
+	axisX: {
+		tickThickness: 0,
+		lineThickness: 0,
+		labelFontSize: 18,
+		labelFontColor: "Peru"				
+	},
+	data: [{
+		indexLabelFontSize: 16,
+		toolTipContent: "<span style=\"color:#62C9C3\">{indexLabel}:</span> <span style=\"color:#CD853F\"><strong>{y}</strong></span>",
+		indexLabelPlacement: "inside",
+		indexLabelFontColor: "black",
+		indexLabelFontWeight: 600,
+		indexLabelFontFamily: "Verdana",
+		color: "#62C9C3",
+		type: "bar",
+		dataPoints: []
+	}]
+    }
     
+    let positionDataPoints = topPosition.data[0].dataPoints;
+    try{
+        const position = await $.ajax({
+            url: "/get_top_position",
+            type: "GET"
+        })
+        let positionArr = position.position;
+        let totalPosition = 0;
+        for(let j = 0; j < positionArr.length; j++){
+            totalPosition += parseInt(positionArr[j].count);
+        }
+        for(let i = 0; i < positionArr.length; i++){
+            let position = positionArr[i].position;
+            let positionYValue = Math.round((parseInt(positionArr[i].count)/totalPosition) * 100); // Round to nearest integer
+            positionDataPoints.push({ y: positionYValue, label: `${positionYValue}%`, indexLabel: position });
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+    $("#topPosition").CanvasJSChart(topPosition);
     
 };
