@@ -18,17 +18,32 @@ $(document).ready(function(){
 						let container = document.createElement("div");
 						container.className = "row py-2 application";
 
-						let divId = document.createElement("div");
-						divId.className = "col-lg-3 col-md-3 col-sm-3 col-2";
-						divId.textContent = response[i].id;
-
 						let divName = document.createElement("div");
 						divName.className = "col-lg-3 col-md-3 col-sm-3 col-7";
 						divName.textContent = response[i].firstname + " " + response[i].surname;
 
 						let divEmail = document.createElement("div");
 						divEmail.className = "col-lg-3 col-md-3 col-sm-3 email";
-						divEmail.textContent = response[i].email
+						divEmail.textContent = response[i].email;
+
+						let divDate = document.createElement("div");
+						divDate.className = "col-lg-3 col-md-3 col-sm-3";
+
+						let createdAt = new Date(response[i].created_at); 
+						let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+						let monthName = months[createdAt.getMonth()]; // Get the month name from the array
+						let date = createdAt.getDate();
+						let year = createdAt.getFullYear();
+						let hours = createdAt.getHours();
+						let minutes = createdAt.getMinutes();
+						let period = hours >= 12 ? 'PM' : 'AM';
+						
+						hours = hours % 12;
+						hours = hours ? hours : 12; // The hour '0' should be '12'
+						
+						let formattedDate = monthName + ' ' + date + ', ' + year + ' ' + hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + period;
+                    
+						divDate.textContent = formattedDate;
 
 						let divAction = document.createElement("div");
 						divAction.className = "col-lg-3 col-md-3 col-sm-3 col-3 action";
@@ -52,10 +67,9 @@ $(document).ready(function(){
 						deleteIcon.setAttribute("data-bs-target", "#deleteModal");
 
 						divAction.append(deleteIcon);
-
-						container.append(divId);
 						container.append(divName);
 						container.append(divEmail);
+						container.append(divDate);
 						container.append(divAction);
 
 						$(".content").append(container);
