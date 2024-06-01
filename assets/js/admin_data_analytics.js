@@ -38,7 +38,7 @@ window.onload = async function () {
         subtitles: [{
             text: `As of ${monthName}, ${date.getFullYear()} there are ${total} applications submitted`
         }],
-        theme: "light2",
+        theme: "light1",
         animationEnabled: true,
         data: [{
             type: "pie",
@@ -56,6 +56,49 @@ window.onload = async function () {
     };
     $("#pieGraph").CanvasJSChart(options); /* Add data to the graph */
     
+    /*EMPLOYED*/
+    let totalEmployed = 0;
+    let employedPieGraph = {
+        title: {
+            text: "Employed"
+        },
+        subtitles: [{
+            text: `Total: ${totalEmployed}`
+        }],
+        theme: "light2",
+        animationEnabled: true,
+        data: [{
+            type: "pie",
+            startAngle: 40,
+            toolTipContent: "<b>{label}</b>: {y}%",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}%",
+            dataPoints: []
+        }]
+    };
+    let employed_data_points = employedPieGraph.data[0].dataPoints;
+    try{
+        const arr = await $.ajax({
+            url: "/get_top_employed",
+            type: "GET"
+        })
+        
+        let employed = arr.employed
+        totalEmployed = parseInt(employed[0].self_employed_count) + parseInt(employed[0].wage_employed_count)
+        employedPieGraph.subtitles[0].text = "Total: " + totalEmployed;
+        let totalSelfEmployed = Math.round(parseInt(employed[0].self_employed_count)/total * 100);
+        employed_data_points.push({ y: totalSelfEmployed, label: "SELF EMPLOYED" });
+        let totalWageEmployed = Math.round(parseInt(employed[0].wage_employed_count)/total * 100);
+        employed_data_points.push({ y: totalWageEmployed, label: "WAGE EMPLOYED" });
+        
+    } catch (error) {
+        console.error(error);
+    }
+    $("#employedPieGraph").CanvasJSChart(employedPieGraph); /* Add data to the graph */
+    
+
     /*UNEMPLOYED*/
     let unemployedPieGraph = {
         title: {
@@ -64,7 +107,7 @@ window.onload = async function () {
         subtitles: [{
             text: `As of ${monthName}, ${date.getFullYear()}`
         }],
-        theme: "light2",
+        theme: "light5",
         animationEnabled: true,
         data: [{
             type: "pie",
@@ -136,8 +179,6 @@ window.onload = async function () {
 
     $("#barGraph").CanvasJSChart(employmentStatus); /* Add data to the graph */
 
-    /* LOCATION */
-    
     
     /*PREFERRED WORK LOCATION*/
     var workLocation = {
@@ -194,6 +235,46 @@ window.onload = async function () {
         console.error(error);
     }
     $("#location").CanvasJSChart(workLocation);
+    
+    /*TOP COMPANY*/
+    var topCompany = {
+        animationEnabled: true,
+        title: {
+            text: `TOP COMPANIES`
+        },
+        axisY: {
+            title: "Percentage",
+            suffix: "%"
+        },
+        axisX: {
+            title: "Companies"
+        },
+        data: [{
+            type: "column",
+            yValueFormatString: "#,##0.0#"%"",
+            dataPoints: []
+        }]
+    };
+    let topCompanyDataPoints = topCompany.data[0].dataPoints;
+    try{
+        const topCompany = await $.ajax({
+            url: "/get_top_company",
+            type: "GET"
+        })
+        let companyArr = topCompany.company;
+        for(let i = 0; i < companyArr.length; i++){
+            // {company_name: '"Toei Animation"', count: 1}
+            let company = companyArr[i].company_name;
+            let companyYValue = Math.round(parseInt(companyArr[i].count)/total * 100);
+
+            topCompanyDataPoints.push({ label: company, y: companyYValue })
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+    $("#topCompany").CanvasJSChart(topCompany); /* Add data to the graph */
+
     
     
 };

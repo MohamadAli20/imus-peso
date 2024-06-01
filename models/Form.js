@@ -266,6 +266,48 @@ class Form{
             }
         );
     }
+    select_top_employed(callback) {
+        this.connection.query(
+            `SELECT
+                SUM(CASE WHEN JSON_VALUE(employment_status, '$.employed_type') = 'self employed' THEN 1 ELSE 0 END) AS self_employed_count,
+                SUM(CASE WHEN JSON_VALUE(employment_status, '$.employed_type') = 'wage employed' THEN 1 ELSE 0 END) AS wage_employed_count
+            FROM
+                personal_information;
+            `,
+            (error, rows) => {
+                if (error) {
+                    callback(error, null);
+                } else {
+                    callback(null, rows);
+                }
+            }
+        );
+    }
+    select_top_company(callback){
+        this.connection.query(
+            `SELECT company_name, COUNT(company_name) AS count
+            FROM (
+                SELECT JSON_EXTRACT(company_name, '$.company_name1') AS company_name FROM work_experience
+                UNION ALL
+                SELECT JSON_EXTRACT(company_name, '$.company_name2') AS company_name FROM work_experience
+                UNION ALL
+                SELECT JSON_EXTRACT(company_name, '$.company_name3') AS company_name FROM work_experience
+            ) AS companies
+            WHERE company_name != 'N/A' AND company_name != 'n/a' AND company_name != 'na' AND company_name != ''
+            GROUP BY company_name
+            ORDER BY count DESC
+            LIMIT 10;`,
+            (error, rows) => {
+                if (error) {
+                    callback(error, null);
+                } else {
+                    callback(null, rows);
+                }
+            }
+        )
+    }
+    
+    
         
 }
 module.exports = new Form();

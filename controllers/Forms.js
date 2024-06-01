@@ -110,6 +110,26 @@ class Forms{
             }
         })
     }
+    get_top_employed(req, res){
+        modelForm.select_top_employed((error, result) => {
+            if(error){
+                console.error(error);
+            }
+            if(result){
+                res.json({"employed": result})
+            }
+        })
+    }
+    get_top_company(req, res){
+        modelForm.select_top_company((error, result) => {
+            if(error){
+                console.error(error);
+            }
+            if(result){
+                res.json({"company": result})
+            }
+        })
+    }
     retrieve_application_by_id(req, res){
         const id = req.params.id;
         // console.log(id);
