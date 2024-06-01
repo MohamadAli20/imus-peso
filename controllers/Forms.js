@@ -300,7 +300,7 @@ class Forms{
                     }).filter(value => value !== "").join('\n')}`;
 
                 }
-                content += `ELIGIBILITY / PROFESSIONAL LICENSE`;
+                content += `\nELIGIBILITY / PROFESSIONAL LICENSE`;
                 if(JSON.parse(eligibility) !== '{}'){
                     const eligibilityEntries = Object.entries(JSON.parse(eligibility));
                     const ratingEntries = Object.entries(JSON.parse(rating));
