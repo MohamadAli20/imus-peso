@@ -1,16 +1,16 @@
 
-const config = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'peso_db'
-};
-
 // const config = {
 //     host: 'localhost',
 //     user: 'root',
-//     password: 'Admin@123',
+//     password: '',
 //     database: 'peso_db'
 // };
+
+const config = {
+    host: 'localhost',
+    user: 'root',
+    password: 'Admin@123',
+    database: 'peso_db'
+};
 
 module.exports = config; 

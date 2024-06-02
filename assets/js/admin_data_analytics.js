@@ -336,7 +336,7 @@ window.onload = async function () {
         for(let i = 0; i < positionArr.length; i++){
             let position = positionArr[i].position;
             let positionYValue = Math.round((parseInt(positionArr[i].count)/totalPosition) * 100); // Round to nearest integer
-            positionDataPoints.push({ y: positionYValue, label: `${positionYValue}%`, indexLabel: position });
+            positionDataPoints.push({ y: positionYValue, label: `${positionYValue}%`, indexLabel: position.toUpperCase() });
         }
 
     } catch (error) {
