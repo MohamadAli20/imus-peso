@@ -281,7 +281,7 @@ window.onload = async function () {
             let company = companyArr[i].company_name;
             let companyYValue = Math.round(parseInt(companyArr[i].count)/totalCompany * 100);
 
-            topCompanyDataPoints.push({ label: company, y: companyYValue })
+            topCompanyDataPoints.push({ label: company.toUpperCase(), y: companyYValue })
         }
     } catch (error) {
         console.error(error);
