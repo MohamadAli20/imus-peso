@@ -6,18 +6,25 @@ $(document).ready(function() {
     let checkAccount = () => {
         console.log("checkAccount called, isAdmin:", isAdmin);
         
-        if(isAdmin === '1' && window.location.pathname !== "/dashboard"){
+        if(isAdmin === '1'){
             console.log("Redirecting to /dashboard");
             window.location.href = "/dashboard";
+
+            return true;
         } 
-        else if(isAdmin === '0' && window.location.pathname !== "/"){
+        else if(isAdmin === '0'){
             console.log("Redirecting to /");
-            window.location.href = "/";
+            // window.location.href = "/";
+            return true;
         }
-        else if(isAdmin === null && window.location.pathname !== "/"){
+        else if(isAdmin === null && isAdmin === undefined){
             console.log("Redirecting to /");
-            window.location.href = "/";
+            // window.location.href = "/";
+            return false;
         }
+
+
+    
     };
     
     // Perform account check once when the document is ready
@@ -25,12 +32,16 @@ $(document).ready(function() {
     
     // Event handler for the .apply-now button click
     $(".peso-link").click(function() {
+
         if (isAdmin === null) {
             $("#navLoginBtn").trigger('click');
         } 
-        else {
+        else{
+            // localStorage.setItem("url", "/peso");
             window.location.href = "/peso";
         }
+
+        console.log($(this));
     });
     $(".about-link").click(function() {
         if (isAdmin === null) {
@@ -40,10 +51,14 @@ $(document).ready(function() {
             window.location.href = "/about";
         }
     });
-    $(".apply-now-link").click(function() {
+    $(".apply-now").click(function(e) {
+        e.preventDefault();
+        let result = checkAccount();
+        console.log(result);
         if (isAdmin === null) {
             $("#navLoginBtn").trigger('click');
-        } else {
+        }
+        if(result === true){
             window.location.href = "/apply";
         }
     });

@@ -14,7 +14,7 @@ main{
     }
     @media (min-width: 1024px){
         .custom-form{
-            width: 50%;
+            width: 35%;
         }
     }
     .custom-label{
@@ -26,6 +26,14 @@ main{
         .custom-label label{
             padding: 0 5px;
         }
+        .custom-label div{
+            position: relative;
+        }
+            .custom-label div img{
+                position: absolute;
+                top: 5px;
+                right: 10px;
+            }
         .custom-label input{
             border: 0;
             outline: 0;

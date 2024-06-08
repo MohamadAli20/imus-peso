@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/register.css">
     <script src="/js/loginModal.js"></script>
-    <!-- <script src="/js/checkLocalStorage"></script> -->
-    <!-- <script src="/js/removeAccount.js"></script> -->
+    <script src="/js/register.js"></script>
+    <script src="/js/removeAccount.js"></script>
+    <script src="/js/checkLocalStorage.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -29,13 +30,13 @@
                         <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link apply-now">Apply Now</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link peso-link" href="/peso">PESO</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link about-link" href="/about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Apply Now</a>
                     </li>
                     <li class="nav-item custom-nav-item d-flex justify-content-end">
                         <div class="" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
@@ -49,7 +50,7 @@
         </div>
     </nav>
     <main class="p-3">
-        <form action="/create" method="POST" class="container custom-form">
+        <form action="/create" method="POST" class="container custom-form m-auto">
             <div class="row">
                 <h3 class="p-0">Registration</h3>
                 <div class="col-lg-12 col-md-8 col-sm-12 p-0">
@@ -75,13 +76,19 @@
                 <div class="col-lg-12 col-md-8 col-sm-12 p-0"> <!-- Same widths for consistency -->
                     <div class="mb-3 d-block custom-label">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <div class="password-container">
+                            <input type="password" class="form-control" id="password" name="password">
+                            <img class="visible-password" src="/images/visibility_off.svg" alt="Visible icon">   
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-8 col-sm-12 p-0"> <!-- Same widths for consistency -->
                     <div class="mb-3 d-block custom-label ">
                         <label for="confirm_password" class="form-label">Confirm password</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                        <div class="confirm-password-container">
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                            <img class="visible-confirm-password" src="/images/visibility_off.svg" alt="Visible off icon">   
+                        </div>
                     </div>
                 </div>
                 <p class="col-lg-10 col-md-6 my-1 py-1 p-0">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></p>
