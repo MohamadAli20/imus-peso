@@ -347,10 +347,10 @@ window.onload = async function () {
     /*AGE*/
     let age = {
         title: {
-            text: "Age"
+            text: "Age of applicants"
         },
         subtitles: [{
-            text: `As of `
+            text: ""
         }],
         theme: "light1",
         animationEnabled: true,
@@ -365,26 +365,29 @@ window.onload = async function () {
             dataPoints: []
         }]
     };
-    $("#pieGraph").CanvasJSChart(age); /* Add data to the graph */
-    
+    let age_data_points = age.data[0].dataPoints;
     try{
         const birthyear = await $.ajax({
             url: "/get_top_age",
             type: "GET"
         })
         let yearArr = birthyear.birthdate;
-        // let totalBirthdate = 0;
+        // console.log(yearArr.length);
+        let totalAge = 0;
         for(let j = 0; j < yearArr.length; j++){
-            // console.log(yearArr[j].year);
-            console.log(2024 - yearArr[j].year);
+            // let age = 2024 - yearArr[j].year;
+            // let count = yearArr[j].count;
+            totalAge += parseInt(yearArr[j].count);
         }
-        // for(let i = 0; i < positionArr.length; i++){
-        //     let position = positionArr[i].position;
-        //     let positionYValue = Math.round((parseInt(positionArr[i].count)/totalPosition) * 100); // Round to nearest integer
-        //     positionDataPoints.push({ y: positionYValue, label: `${positionYValue}%`, indexLabel: position.toUpperCase() });
-        // }
+        console.log(totalAge)
+        for(let i = 0; i < yearArr.length; i++){
+            let age = 2024 - yearArr[i].year;
+            // let countYValue = Math.round((parseInt(yearArr[i].count)/totalAge) * 100); // Round to nearest integer
+            age_data_points.push({label: `${age} years old`, y: yearArr[i].count });
+        }
 
     } catch (error) {
         console.error(error);
     }
+    $("#ageGraph").CanvasJSChart(age); /* Add data to the graph */
 };

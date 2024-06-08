@@ -171,17 +171,31 @@ class Forms{
             }
             if(row){
                 let { surname, firstname, middlename, suffix, birthdate, email, contact, height, gender, civil_status, disability, religion, address, employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, preferred_occupation, occupation, preferred_work_occupation, work_occupation, language1, language2, language3, other_language, elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, graduate_studies_year_attended, if_graduate_studies_undergraduate, course, institution, date_from, date_to, certificate, eligibility, rating, date_exam, professional_license, valid_until, company_name, company_address, position, inclusive_date, status, skills } = row[0];
-                suffix = suffix.toLowerCase() === "na" ? "" : suffix;
                 
-                if(suffix.toLowerCase() === "na"){
-                    suffix = "";
-                }
+                surname = surname.toUpperCase();
+                firstname = firstname.toUpperCase();
+                middlename = middlename.toUpperCase();
+                suffix = (suffix.toLowerCase() !== "na" && suffix.toLowerCase() !== "n/a") ? suffix.toUpperCase() : "";
+
+                let inputDate = birthdate;
+                const date = new Date(inputDate);
+                const month = date.toLocaleString('default', { month: 'long' });
+                const day = date.getDate();
+                const year = date.getFullYear();
+                birthdate = `${month} ${day}, ${year}`;
+                
                 if(disability === '{}' || disability === "") {
                     disability = "NA";
                 }
                 else{
-                    disability = Object.values(JSON.parse(disability)).join(', ');
+                    const parsedDisability = JSON.parse(disability);
+
+                    const filteredValues = Object.values(parsedDisability).filter(value => value.toLowerCase() !== 'na' && value !== '');
+                    const result = filteredValues.join(', ');
+
+                   disability = result;
                 }
+
                 if(address !== '{}' && address !== "") {
                     const obj = JSON.parse(address);
                     for (const key in obj) {
@@ -203,13 +217,28 @@ class Forms{
                 const width = 530;
                 const borderHeight = 710;
                 doc.rect(startX, startY, width, borderHeight);
-                
                 // Write content to PDF
                 doc.fontSize(18).text(`${firstname} ${middlename} ${surname} ${suffix}`, 50, 50);
-                let content = `PERSONAL INFORMATION\n\nBirthdate: ${birthdate}\nEmail: ${email}\nContact: ${contact}\nHeight: ${height}\nGender: ${gender}\nCivil Status: ${civil_status}\nDisability: ${disability}\nReligion: ${religion}\nAddress: ${address}`;
+
+                // PERSONAL INFORMATION
+                let content = "--------------------------------------------------------------------------------------------------------------------------";
+                content += "PERSONAL INFORMATION\n";
+                
+                content += `\nBirthdate: ${birthdate}\nEmail: ${email}\nContact: ${contact}\nHeight: ${height}\nGender: ${gender}\nCivil Status: ${civil_status}\n`;
+                
+                if(disability !== ""){
+                    content += `Disability: ${disability}\n`;
+                }
+                if(religion.toLowerCase() !== "na"){
+                    content += `Religion: ${religion}\n`;
+                }
+                content += `Address: ${address}`;
                 
                 employment_status = JSON.parse(employment_status);
-                content += `\n\nEMPLOYMENT STATUS / TYPE\n\nEmployment Status: ${employment_status.employment_status}`
+
+                // EMPLOYMENT STATUS / TYPE
+                content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                content += `\nEMPLOYMENT STATUS / TYPE\n\nEmployment Status: ${employment_status.employment_status}`
                 if(employment_status.hasOwnProperty("employed_type")){
                     content += `\nEmployed type: ${employment_status["employed_type"]}`;
                 }
@@ -245,14 +274,19 @@ class Forms{
                 let is4ps = JSON.parse(is_4ps_beneficiary);
                 content += `\nAre you a 4Ps beneficiary? ${is4ps.is_4ps_beneficiary.toLowerCase() === "no" ? "No" : "Yes\nHousehold ID No:" + is4ps.household_no}`;
                 
-                content += "\n\nJOB PREFERENCE";
+                // JOB PREFERENCE
+                content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                content += "\nJOB PREFERENCE";
 
                 content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation)}:`;
+                console.log((JSON.parse(preferred_occupation).type_preferred_occupation))
                 content += " " + Object.values(JSON.parse(occupation)).filter(value => value !== "").join(', ');
                 content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation)}:`;
                 content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
                 
-                content += "\n\nLANGUAGE / DIALECT PROFICIENCY";
+                // LANGUAGE / DIALECT PROFICIENCY
+                content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                content += "\nLANGUAGE / DIALECT PROFICIENCY";
                 if(language1 !== undefined){
                     let language1Obj = JSON.parse(language1);
                     if(language1Obj.hasOwnProperty("english")){
@@ -278,7 +312,9 @@ class Forms{
                         content += `\n${otherLanguage}: ${Object.entries(otherLanguageObj[otherLanguage]).map(([key, value]) => key) .join(', ')}`
                     }
                 }
-                content += "\n\nEDUCATIONAL ATTAINMENT";
+                // EDUCATIONAL ATTAINMENT
+                content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                content += "\nEDUCATIONAL ATTAINMENT";
                 if(elementary_school !== "" && 
                 elementary_year_graduated.toLowerCase() !== "na" && 
                 elementary_year_graduated.toLowerCase() !== "n/a"){
@@ -299,6 +335,7 @@ class Forms{
                 JSON.parse(if_secondary_undergraduate).awards_received.toLowerCase() !== "n/a"){
                     content += `\nAwards: ${JSON.parse(if_secondary_undergraduate).awards_received}`;
                 }
+                console.log(tertiary_school);
                 if(tertiary_school.toLowerCase() !== "" && 
                 tertiary_year_graduated.toLowerCase() !== "na" && 
                 tertiary_year_graduated.toLowerCase() !== "n/a"){
@@ -309,7 +346,6 @@ class Forms{
                 JSON.parse(if_tertiary_undergraduate).awards_received.toLowerCase() !== "n/a"){
                     content += `\nAwards: ${JSON.parse(if_tertiary_undergraduate).awards_received}`;
                 }
-                console.log();
                 if(graduate_studies_school.toLowerCase() !== "" && 
                 graduate_studies_year_attended.toLowerCase() !== "na" && 
                 graduate_studies_year_attended.toLowerCase() !== "n/a"){
@@ -320,8 +356,10 @@ class Forms{
                 JSON.parse(if_graduate_studies_undergraduate).awards_received.toLowerCase() !== "n/a"){
                     content += `\nAwards: ${JSON.parse(if_graduate_studies_undergraduate).awards_received}`;
                 }
-                content += `\n\nTECHNICAL / VOCATIONAL AND OTHER TRAINING`;
+                // TECHNICAL / VOCATIONAL AND OTHER TRAINING
+                content += "\n--------------------------------------------------------------------------------------------------------------------------";
                 if(JSON.parse(institution) !== '{}'){
+                    content += `\nTECHNICAL / VOCATIONAL AND OTHER TRAINING`;
                     const courseEntries = Object.entries(JSON.parse(course));
                     const institutionEntries = Object.entries(JSON.parse(institution));
                     const durationFrom = Object.entries(JSON.parse(date_from));
@@ -329,82 +367,107 @@ class Forms{
                     const certificateEntries = Object.entries(JSON.parse(certificate));
 
                     content += `\n${institutionEntries.map(([instKey, instValue], index) => {
+                        let techVoc = "";
                         const dateFromValue = durationFrom[index] ? durationFrom[index][1] : "";
                         const dateToValue = durationTo[index] ? durationTo[index][1] : ""
                         const courseValue = courseEntries[index] ? courseEntries[index][1] : "";
                         const certificateValue = certificateEntries[index] ? certificateEntries[index][1] : "";
-                        if (instValue !== "" || dateFromValue !== "" || dateToValue !== "" || courseValue !== "" || certificateValue !== "") {
-                            return `\n${courseValue} ${instValue} - from ${dateFromValue} to ${dateToValue}\nCerticate Received: ${certificateValue}`;
+                        if (instValue !== "" && dateFromValue !== "" && dateToValue !== "" && courseValue !== "" ) {
+                            techVoc += `${courseValue} ${instValue} - from ${dateFromValue} to ${dateToValue}`;
                         }
-                        return "\n";
-                    }).filter(value => value !== "").join('\n')}`;
-
+                        if(certificateValue !== "" && certificateValue.toLowerCase() !== "na" && certificateValue.toLowerCase() !== "n/a"){
+                            techVoc += `\nCerticate Received: ${certificateValue}`;
+                        }
+                        return techVoc;
+                    }).filter(value => value !== "").join('')}`;
                 }
-                content += `\n\nELIGIBILITY / PROFESSIONAL LICENSE`;
                 if(JSON.parse(eligibility) !== '{}'){
+                    let count = 1;
                     const eligibilityEntries = Object.entries(JSON.parse(eligibility));
                     const ratingEntries = Object.entries(JSON.parse(rating));
                     const dateExamEntries = Object.entries(JSON.parse(date_exam));
 
                     content += `\n${eligibilityEntries.map(([instKey, instValue], index) => {
+                        let eligibilityContent = "";
                         const ratingValue = ratingEntries[index] ? ratingEntries[index][1] : "";
-                        const dateExamValue = dateExamEntries[index] ? dateExamEntries[index][1] : ""
-                        if (instValue !== "" || ratingValue !== "" || dateExamValue !== "") {
-                            return `\nCivil Service: ${instValue}\nRating: ${ratingValue}\nDate of examination: ${dateExamValue}`;
+                        const dateExamValue = dateExamEntries[index] ? dateExamEntries[index][1] : "";
+                        if(count === 1 && instValue !== "" && ratingValue !== "" && dateExamValue !== ""){
+                            eligibilityContent += `\n\nELIGIBILITY`;
+                            count++;
                         }
-                        return "\n";
-                    }).filter(value => value !== "").join('\n')}`;
+                        if (instValue !== "" && ratingValue !== "" && dateExamValue !== "") {
+                            eligibilityContent += `\nCivil Service: ${instValue}\nRating: ${ratingValue}\nDate of examination: ${dateExamValue}`;
+                        }
+                        return eligibilityContent;
+                    }).filter(value => value !== "").join('')}`;
                 }
                 if(JSON.parse(professional_license) !== '{}'){
+                    let count = 1;
                     const professional_licenseEntries = Object.entries(JSON.parse(professional_license));
                     const valid_untilEntries = Object.entries(JSON.parse(valid_until));
 
-                    content += `\n${professional_licenseEntries.map(([instKey, instValue], index) => {
+                    content += `${professional_licenseEntries.map(([instKey, instValue], index) => {
+                        let profLicenseContent = "";
                         const valid_untilValue = valid_untilEntries[index] ? valid_untilEntries[index][1] : "";
-                        if (instValue !== "" || valid_untilValue !== "") {
-                            return `\nProfessional license: ${instValue}\nValid until: ${valid_untilValue}`;
+                        if(count === 1 && instValue !== "" && valid_untilValue !== ""){
+                            profLicenseContent += `\n\nPROFESSIONAL LICENSE`;
+                            count++;
                         }
-                        return;
-                    }).filter(value => value !== "").join('\n')}`;
+                        if (instValue !== "" && valid_untilValue !== "") {
+                            profLicenseContent += `\nProfessional license: ${instValue}\nValid until: ${valid_untilValue}`;
+                        }
+                        return profLicenseContent;
+                    }).filter(value => value !== "").join('')}`;
                 }
-                content += `\n\nWORK EXPERIENCE`;
+                
+                // WORK EXPERIENCE
                 if(JSON.parse(company_name) !== '{}'){
+                    let count = 1;
+                    
                     const companyNameEntries = Object.entries(JSON.parse(company_name));
                     const companyAddressEntries = Object.entries(JSON.parse(company_address));
                     const positionEntries = Object.entries(JSON.parse(position));
                     const inclusiveEntries = Object.entries(JSON.parse(inclusive_date));
                     const statusEntries = Object.entries(JSON.parse(status));
-
                     content += `\n${companyNameEntries.map(([instKey, instValue], index) => {
+                        let workExpContent = "";
                         const addressValue = companyAddressEntries[index] ? companyAddressEntries[index][1] : "";
                         const positionValue = positionEntries[index] ? positionEntries[index][1] : "";
                         const inclusiveValue = inclusiveEntries[index] ? inclusiveEntries[index][1] : "";
                         const statusValue = statusEntries[index] ? statusEntries[index][1] : "";
-                        if (instValue !== "" || addressValue !== "" || positionValue !== "" || inclusiveValue !== "" || statusValue !== "") {
-                            return `\n${positionValue} - ${inclusiveValue} ${statusValue}\n${instValue}, ${addressValue}`;
+                        if(count === 1 && instValue !== "" && addressValue !== "" && positionValue !== "" && inclusiveValue !== "" && statusValue !== ""){
+                            workExpContent += "\n--------------------------------------------------------------------------------------------------------------------------";
+                            workExpContent += `WORK EXPERIENCE`;
+                            count++;
                         }
-                        return;
-                    }).filter(value => value !== "").join('\n')}`;
+                        if (instValue !== "" && addressValue !== "" && positionValue !== "" && inclusiveValue !== "" && statusValue !== "") {
+                            workExpContent += `\n${positionValue} - ${inclusiveValue} ${statusValue}\n${instValue}, ${addressValue}`;
+                        }
+                        return workExpContent;
+                    }).filter(value => value !== "").join('')}`;
                 }
-                content += `\nOTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING`;
+                // OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
                 if(JSON.parse(skills) !== '{}'){
-                    content += `\n${Object.entries(JSON.parse(skills))
+                    content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                    content += `\nOTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING`;
+                    content += `\n\n${Object.entries(JSON.parse(skills))
                     .map(([key, value]) => "- " + value)
                     .filter(value => value !== "")
                     .join('\n')}`;
                 }
-                doc.fontSize(12).text(content, 50, 90);
 
-                const today = new Date();
-                const year = today.getFullYear();
-                const month = today.getMonth() + 1; // Note: January is 0, so we add 1
-                const day = today.getDate();
+                doc.fontSize(12).text(content, 50, 70);
+
+                const todayFile = new Date();
+                const yearFile = todayFile.getFullYear();
+                const monthFile = todayFile.getMonth() + 1; // Note: January is 0, so we add 1
+                const dayFile = todayFile.getDate();
 
                 // Pad month and day with leading zeros if necessary
-                const formattedMonth = month < 10 ? `0${month}` : month;
-                const formattedDay = day < 10 ? `0${day}` : day;
+                const formattedMonth = monthFile < 10 ? `0${monthFile}` : monthFile;
+                const formattedDay = dayFile < 10 ? `0${dayFile}` : dayFile;
 
-                const filename = `${surname}-${year}-${formattedMonth}-${formattedDay}.pdf`;
+                const filename = `${surname}-${yearFile}-${formattedMonth}-${formattedDay}.pdf`;
                 
                 // Finalize the PDF
                 const buffers = [];
@@ -416,7 +479,6 @@ class Forms{
                     res.send(pdfData);
                 });
                 doc.end();
-        
             }
         })
         

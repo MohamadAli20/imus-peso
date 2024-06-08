@@ -332,7 +332,7 @@ class Form{
     }
     select_top_age(callback){
         this.connection.query(
-            "SELECT YEAR(birthdate) AS year FROM personal_information",
+            `SELECT COUNT(*) AS count, YEAR(birthdate) AS year FROM personal_information GROUP BY YEAR(birthdate)`,
             (error, rows) => {
                 if(error){
                     callback(error, null);
@@ -342,7 +342,6 @@ class Form{
                 }
             }
         )
-    }
-        
+    }        
 }
 module.exports = new Form();

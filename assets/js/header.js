@@ -139,15 +139,15 @@ let checkInputField = (form) => {
             p.innerText = 'Please fill up all the information.';
             $("#message").append(p);
             $("#message").css({
-                "display": "block",
-                "position": "fixed",
-                "top": "0",
+                // "display": "block",
+                // "position": "fixed",
+                "top": "50px",
                 "z-index": "5"
             });
             setTimeout(function(){
                 $(".custom-message").remove();
                 
-            }, 3000);
+            }, 1000);
             isEmptyField = true;
             break;
         }

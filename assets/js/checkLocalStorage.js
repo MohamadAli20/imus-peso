@@ -52,9 +52,9 @@ $(document).ready(function() {
         }
     });
     $(".apply-now").click(function(e) {
+        localStorage.setItem("currentPage", "form")
         e.preventDefault();
         let result = checkAccount();
-        console.log(result);
         if (isAdmin === null) {
             $("#navLoginBtn").trigger('click');
         }

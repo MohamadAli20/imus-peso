@@ -53,7 +53,7 @@
         </div>
     </nav>
     <!-- Main -->
-    <main class="row m-0">
+    <main class="row m-0" id="main-form">
         <div class="col-md-3 col-sm-3 form-section px-0">
             <div class="side-bar-links">
                 <a class="page1" href="#">Personal Information</a>
@@ -138,7 +138,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-check">
-                                <input class="form-check-input disability" type="checkbox" id="none" value="none">
+                                <input class="form-check-input disability" type="checkbox" id="none" value="na">
                                 <label class="form-check-label" for="none">None</label>
                             </div>
                             <div class="form-check">
@@ -385,11 +385,11 @@
                     <input type="hidden" name="preferred_occupation" value="{}">
                     <div class="mt-2">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input type_preferred_occupation" type="checkbox" id="part-time" value="part time">
+                            <input class="form-check-input type_preferred_occupation" type="checkbox" id="part-time" value="Part-Time">
                             <label class="form-check-label" for="part-time">Part-time</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input type_preferred_occupation" type="checkbox" id="full-time" value="full time">
+                            <input class="form-check-input type_preferred_occupation" type="checkbox" id="full-time" value="Full-Time">
                             <label class="form-check-label" for="full-time">Full-time</label>
                         </div>
                     </div>
@@ -413,13 +413,13 @@
                     <div class="row">
                         <div class="col-lg-12 mt-2">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input type_work_occupation" type="checkbox" id="local" value="local">
+                                <input class="form-check-input type_work_occupation" type="checkbox" id="local" value="Local">
                                 <label class="form-check-label" for="local">Local 
                                     <span>(specify cities/municipalities)</span>
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input type_work_occupation" type="checkbox" id="overseas" value="overseas">
+                                <input class="form-check-input type_work_occupation" type="checkbox" id="overseas" value="Overseas">
                                 <label class="form-check-label" for="overseas">Overseas
                                     <span>(specify countries)</span>
                                 </label>
@@ -523,7 +523,7 @@
                         <input class="form-control" name="elementary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="elementary_course" type="text" placeholder="Course">
+                        <input class="form-control" name="elementary_course" type="text" placeholder="Course" disabled>
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
@@ -548,7 +548,7 @@
                         <input class="form-control" name="secondary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="secondary_course" type="text" placeholder="Course">
+                        <input class="form-control" name="secondary_course" type="text" placeholder="Course" disabled>
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="secondary_year_graduated" type="text" placeholder="Year graduated">

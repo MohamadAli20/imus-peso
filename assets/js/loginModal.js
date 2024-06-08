@@ -62,7 +62,7 @@ $(document).ready(() => {
                 else{
                     $(".message").css({
                         'display': 'block',
-                        'zIndex': '5'
+                        'zIndex': '5',
                     });
 
                     let p = document.createElement('p');
@@ -73,7 +73,7 @@ $(document).ready(() => {
                     
                     setTimeout(function(){
                         $(".message .alert").remove();
-                    }, 3000);
+                    }, 1000);
                 }
             },
             error: function(xhr, error, status){
@@ -89,15 +89,11 @@ $(document).ready(() => {
     });
 
     /* For registration */
-    $('#success').delay(3000).fadeOut();
-    $('#error').delay(3000).fadeOut();
+    $('#success').delay(1000).fadeOut();
+    $('#error').delay(1000).fadeOut();
 
-    document.onkeydown = function (e) {
-        // console.log('e: ', e);
-        // console.log('e.keyCode: ', e.keyCode);
+    document.getElementById('exampleModal').onkeydown = function (e) {
         if(e.keyCode === 13){
-            console.log("Enter is clicked.");
-            // nextPage();
             loginSubmit();
         }   
     }

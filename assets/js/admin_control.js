@@ -95,8 +95,14 @@ $(document).ready(function(){
         let pageNo = $(this).prop("class");
         let lastCharacter = pageNo[pageNo.length - 1];
 
-        $(".side-bar-links").find("a").css("font-weight", "100");
-        $(this).css("font-weight", "bold")
+        $(".side-bar-links").find("a").css({
+            "font-weight": "100",
+            "background-color":  "rgb(8, 72, 151)"
+        });
+        $(this).css({
+            "font-weight": "bold",
+            "background-color": "rgba(165, 179, 197, 0.1)"
+        })
         /* Display the selected form */
         $(`#${pageNo}`).css({
             "display": "block",
