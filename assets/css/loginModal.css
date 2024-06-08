@@ -27,3 +27,11 @@
         border: none;
         outline: none;
     }
+    #loginForm label{
+        position: relative;
+    }
+    #loginForm label img{
+        position: absolute;
+        top: 25px;
+        right: 15px;
+    }

@@ -293,7 +293,7 @@ class Form{
                 UNION ALL
                 SELECT JSON_EXTRACT(company_name, '$.company_name3') AS company_name FROM work_experience
             ) AS companies
-            WHERE company_name != 'N/A' AND company_name != 'n/a' AND company_name != 'na' AND company_name != ''
+            WHERE company_name != 'NA' AND company_name != 'N/A' AND company_name != 'n/a' AND company_name != 'na' AND company_name != ''
             GROUP BY company_name
             ORDER BY count DESC
             LIMIT 10;`,
@@ -316,7 +316,7 @@ class Form{
                 UNION ALL
                 SELECT JSON_EXTRACT(position, '$.position3') AS position FROM work_experience
             ) AS positions
-            WHERE position != 'N/A' AND position != 'n/a' AND position != 'na' AND position != ''
+            WHERE position != 'NA' AND position != 'N/A' AND position != 'n/a' AND position != 'na' AND position != ''
             GROUP BY position
             ORDER BY count DESC
             LIMIT 10;
@@ -330,7 +330,19 @@ class Form{
             }
         )
     }
-    
+    select_top_age(callback){
+        this.connection.query(
+            "SELECT YEAR(birthdate) AS year FROM personal_information",
+            (error, rows) => {
+                if(error){
+                    callback(error, null);
+                }
+                else{
+                    callback(null, rows);
+                }
+            }
+        )
+    }
         
 }
 module.exports = new Form();

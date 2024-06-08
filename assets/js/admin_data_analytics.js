@@ -344,4 +344,47 @@ window.onload = async function () {
     }
     $("#topPosition").CanvasJSChart(topPosition);
     
+    /*AGE*/
+    let age = {
+        title: {
+            text: "Age"
+        },
+        subtitles: [{
+            text: `As of `
+        }],
+        theme: "light1",
+        animationEnabled: true,
+        data: [{
+            type: "pie",
+            startAngle: 40,
+            toolTipContent: "<b>{label}</b>: {y}%",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}%",
+            dataPoints: []
+        }]
+    };
+    $("#pieGraph").CanvasJSChart(age); /* Add data to the graph */
+    
+    try{
+        const birthyear = await $.ajax({
+            url: "/get_top_age",
+            type: "GET"
+        })
+        let yearArr = birthyear.birthdate;
+        // let totalBirthdate = 0;
+        for(let j = 0; j < yearArr.length; j++){
+            // console.log(yearArr[j].year);
+            console.log(2024 - yearArr[j].year);
+        }
+        // for(let i = 0; i < positionArr.length; i++){
+        //     let position = positionArr[i].position;
+        //     let positionYValue = Math.round((parseInt(positionArr[i].count)/totalPosition) * 100); // Round to nearest integer
+        //     positionDataPoints.push({ y: positionYValue, label: `${positionYValue}%`, indexLabel: position.toUpperCase() });
+        // }
+
+    } catch (error) {
+        console.error(error);
+    }
 };

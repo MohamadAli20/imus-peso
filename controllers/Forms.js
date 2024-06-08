@@ -140,6 +140,16 @@ class Forms{
             }
         })
     }
+    get_top_age(req, res){
+        modelForm.select_top_age((error, result) => {
+            if(error){
+                console.error(error);
+            }
+            if(result){
+                res.json({"birthdate": result})
+            }
+        })
+    }
     retrieve_application_by_id(req, res){
         const id = req.params.id;
         // console.log(id);

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/loginModal.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/register.js"></script>
     <script src="/js/removeAccount.js"></script>
@@ -20,7 +21,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg text-white custom-nav">
         <div class="container-fluid">
-            <a class="navbar-brand logo-title" href="#">PESO IMUS</a>
+            <a class="navbar-brand logo-title" href="/">PESO IMUS</a>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <img src="/images/menu.svg" alt="Menu icon">
             </button>
@@ -92,7 +93,7 @@
                     </div>
                 </div>
                 <p class="col-lg-10 col-md-6 my-1 py-1 p-0">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></p>
-                <button type="submit" class="col-lg-2 col-md-2 my-1 btn btn-primary py-1">Register</button>
+                <button type="submit" class="col-lg-2 col-md-2 my-1 btn btn-primary py-1 px-0 btn-submit">Register</button>
             </div>
         </form>
     </main>
@@ -116,6 +117,7 @@
                         </label>
                         <label>Password
                             <input type="password" name="password">
+                            <img class="login-password" src="/images/visibility.svg" alt="">
                         </label>
                     </form>
                 </div>

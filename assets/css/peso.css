@@ -4,3 +4,6 @@ main div{
     margin: 20px auto;
     border-radius: 10px;
 }
+main div p{
+    font-size: 20px;
+}

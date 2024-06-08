@@ -8,12 +8,10 @@ $(".checkbox_language1").change(function(){
     if($(this).prop("checked")){
         let key = $(this).val();
         englishObj.english[key] = 1; /* assigning 1 to the nested object */
-
         $("input[name='language1']").val(JSON.stringify(englishObj));
     }
     else{
-        delete englishObj.english[$(this).val()]; /* remove the key from the nested object */
-        
+        delete englishObj.english[$(this).val()]; /* remove the key from the nested object */        
         $("input[name='language1']").val(JSON.stringify(englishObj));
     }
 });
@@ -29,7 +27,6 @@ $(".checkbox_language2").change(function(){
     }
     else{
         delete filipinoObj.filipino[$(this).val()]; /* remove the key from the nested object */
-        
         $("input[name='language2']").val(JSON.stringify(filipinoObj));
     }
 });
@@ -45,7 +42,6 @@ $(".checkbox_language3").change(function(){
     }
     else{
         delete mandarinObj.mandarin[$(this).val()]; /* remove the key from the nested object */
-        
         $("input[name='language3']").val(JSON.stringify(mandarinObj));
     }
 });
@@ -88,4 +84,22 @@ $(".checkbox_other_language").change(function(){
         $("input[name='other_language']").val(JSON.stringify(specifyLanguageObj));
     }
 });
+let isCheck = false;
+$(".check-all").click(function(){
+    let checkboxes = $(this).parent().parent();
+    if(!isCheck){
+        $(checkboxes).find("input[type='checkbox']").prop("checked", true)
+        isCheck = true;
+        let obj = JSON.parse($(checkboxes).find("input[type='hidden']").val());        
+        let checkbox =  $(checkboxes).find("input[type='checkbox']");
+        for(let i = 0; i < checkbox.length; i++){
+            let val = $(checkbox)[i];
+            
+        }
+    }
+    else{
+        $(checkboxes).find("input[type='checkbox']").prop("checked", false)
+        isCheck = false;
+    }
+})
 

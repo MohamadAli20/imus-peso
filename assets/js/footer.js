@@ -24,9 +24,7 @@ $(".btn-prev").off("click").on("click", function(e){
 /*
 * Next button (also submits form)
 */
-$(".btn-next").off("click").on("click", function(e){
-    e.preventDefault();
-
+let nextPage = () => {
     checkInputField($(`#page${currentPage}`))
 
     if(isEmptyField === false){
@@ -44,6 +42,11 @@ $(".btn-next").off("click").on("click", function(e){
             "background-color": "rgba(3, 138, 255, 0.1)"
         });
     }
+}
+$(".btn-next").off("click").on("click", function(e){
+    e.preventDefault();
+
+    nextPage();
 });
 
 /*
@@ -97,3 +100,9 @@ $(".btn-submit").click(function(e){
         }, 3000);
     }
 })
+document.onkeydown = function (e) {
+    if(e.keyCode === 13){
+        console.log("Enter is clicked.");
+        nextPage();
+    }   
+}

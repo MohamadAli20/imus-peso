@@ -17,8 +17,14 @@ let addDisability = () => {
         }
     }
     if($(".other_disability").prop("checked")){
-        disabilityObj[`other`] = $(".input_other_disability").val();;
+        $(".input_other_disability").removeAttr("disabled");
+        disabilityObj[`other`] = $(".input_other_disability").val();
         num++;
+    }
+    if(!$(".other_disability").prop("checked")){
+        $(".input_other_disability").val("")
+        $(".input_other_disability").attr("disabled", "disabled");
+        disabilityObj[`other`] = $(".input_other_disability").val();
     }
     $("input[name='disability']").val(JSON.stringify(disabilityObj));
 }
@@ -115,8 +121,10 @@ $(".wage_employed").change(function(){
         $(".self_employed").prop("checked", false);
         employeeStatusObj["employed_type"] = "wage employed"; /* add key value pair */
 
-        $(".job").prop("disabled", false);
-        $(".other_job").prop("disabled", false);
+        $(".job").prop("disabled", true);
+        $(".other_job").prop("disabled", true);
+        $(".job").prop("checked", false);
+        $(".other_job").prop("checked", false);
     }
     else{
         delete  employeeStatusObj["employed_type"]; /* remove the key from the nested object */

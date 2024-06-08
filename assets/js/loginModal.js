@@ -14,6 +14,20 @@ $(document).ready(() => {
         }
     }
     checkUserLogin();
+    
+    let passwordVisible = false;
+    $(".login-password").click(function(){
+        if(passwordVisible === false){
+            passwordVisible = true;
+            $("#loginForm label input").attr("type", "text");
+            $("#loginForm label img").attr("src", "/images/visibility.svg");
+        }
+        else{
+            passwordVisible = false;
+            $("#loginForm label input").attr("type", "password");
+            $("#loginForm label img").attr("src", "/images/visibility_off.svg");
+        }
+    })
 
     $("#btnLogout").click(function(){
         localStorage.removeItem('username');
@@ -24,9 +38,7 @@ $(document).ready(() => {
     
 
     let form = $(".modal-body form");
-    $("#btnLogin").click(function(){
-        $(".message .alert").remove();
-
+    let loginSubmit = () => {
         let email = $(form).find("input[name='email']").val();
         let password = $(form).find("input[name='password']").val();
     
@@ -68,9 +80,25 @@ $(document).ready(() => {
                 console.error(error);
             }
         })
+    }
+
+    $("#btnLogin").click(function(){
+        $(".message .alert").remove();
+
+        loginSubmit();
     });
 
     /* For registration */
     $('#success').delay(3000).fadeOut();
     $('#error').delay(3000).fadeOut();
+
+    document.onkeydown = function (e) {
+        // console.log('e: ', e);
+        // console.log('e.keyCode: ', e.keyCode);
+        if(e.keyCode === 13){
+            console.log("Enter is clicked.");
+            // nextPage();
+            loginSubmit();
+        }   
+    }
 });
