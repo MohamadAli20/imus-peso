@@ -6,7 +6,6 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 
-const express = require("express");
 const serverless = require("serverless-http");
 const router = express.Router();
 
