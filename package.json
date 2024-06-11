@@ -1,12 +1,13 @@
 {
   "name": "client",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "netlify deploy --prod"
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,7 +18,12 @@
     "express-session": "^1.18.0",
     "jspdf": "^2.5.1",
     "mysql": "^2.18.1",
+    "netlify-cli": "^17.26.2",
+    "netlify-lambda": "^2.0.16",
     "nodemon": "^3.1.0",
-    "pdfkit": "^0.15.0"
-  }
+    "pdfkit": "^0.15.0",
+    "serverless-http": "^3.2.0"
+  },
+  "keywords": [],
+  "description": ""
 }

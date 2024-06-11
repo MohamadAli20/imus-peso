@@ -6,6 +6,17 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 
+const express = require("express");
+const serverless = require("serverless-http");
+const router = express.Router();
+
+router.get("/", (req, res) => {
+    res.send("App is running..");
+});
+
+app.use("/.netlify/functions/app", router);
+module.exports.handler = serverless(app);
+
 app.use(session({
     secret: 'keyboardkitteh',
     resave: false,

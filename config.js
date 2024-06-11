@@ -1,6 +1,6 @@
 
 const config = {
-    host: 'nodedatabase.cfs824sq80z7.ap-southeast-1.rds.amazonaws.com',
+    host: 'nodedatabase.cvs0gk08cfhh.ap-southeast-2.rds.amazonaws.com',
     user: 'admin',
     password: 'testing123',
     database: 'peso_db'
