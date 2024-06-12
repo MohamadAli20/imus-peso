@@ -8,6 +8,9 @@ body{
 .carousel-inner{
     padding-top: 56px;
 }
+    #carousel button{
+        padding-top: 56px;
+    }
 /* Login Modal */
 .modal-dialog{
     position: absolute;
