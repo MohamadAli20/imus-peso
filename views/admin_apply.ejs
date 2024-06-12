@@ -16,13 +16,6 @@
     <link rel="stylesheet" href="/css/form.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/removeAccount.js"></script>
-    <script>
-        let isAdmin = localStorage.getItem('isAdmin');
-
-        if(isAdmin === null){
-            window.location.href = "/";
-        }
-    </script>
 </head>
 <body>
     <!-- Warning message -->
@@ -57,7 +50,8 @@
         </div>
     </nav>
     <!-- Main -->
-    <main class="row m-0">
+    <!-- Main -->
+    <main class="row m-0" id="main-form">
         <div class="col-md-3 col-sm-3 form-section px-0">
             <div class="side-bar-links">
                 <a class="page1" href="#">Personal Information</a>
@@ -86,7 +80,7 @@
                     <input class="form-control" type="text" name="surname" placeholder="Surname">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="firstname" placeholder="First name">
+                    <input class="form-control" type="text" name="firstname" placeholder="First name" required>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="text" name="middlename" placeholder="Middle name">
@@ -103,17 +97,17 @@
                     <input class="form-control" type="email" name="email" placeholder="Email">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="contact" placeholder="Contact">
+                    <input class="form-control" type="number" name="contact" placeholder="Contact">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="text" name="height" placeholder="Height">
+                    <input class="form-control" type="text" name="height" placeholder="Height (ft.)">
                 </div>
             </div>
             <div class="row custom-form">
                 <div class="col-md-3 col-sm-6 col-6 mt-3">
                     Gender
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
                         <label class="form-check-label" for="male">Male</label>
                     </div>
                     <div class="form-check">
@@ -124,7 +118,7 @@
                 <div class="col-md-3 col-sm-6 col-6 mt-3">
                     Civil Status
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="civil_status" id="single" value="single" checked>
+                        <input class="form-check-input" type="radio" name="civil_status" id="single" value="single">
                         <label class="form-check-label" for="single">Single</label>
                     </div>
                     <div class="form-check">
@@ -141,6 +135,10 @@
                     <input name="disability" type="hidden" value="{}">
                     <div class="row">
                         <div class="col-lg-6">
+                            <div class="form-check">
+                                <input class="form-check-input disability" type="checkbox" id="none" value="na">
+                                <label class="form-check-label" for="none">None</label>
+                            </div>
                             <div class="form-check">
                                 <input class="form-check-input disability" type="checkbox" id="visual" value="visual">
                                 <label class="form-check-label" for="visual">Visual</label>
@@ -208,7 +206,7 @@
                         <label class="form-check-label" for="employed">Employed</label>
                     </div>
                     <div>
-                        <div class="form-check">
+                        <div class="form-check mb-3">
                             <input class="form-check-input employed_type wage_employed" type="checkbox" value="wage employed" disabled>
                             <label class="form-check-label" for="checkbox">Wage Employed</label>
                         </div>
@@ -316,7 +314,7 @@
                     <div>Are you an OFW?</div>
                     <input type="hidden" name="is_ofw" value="{}">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="yes_ofw" value="na">
+                        <input class="form-check-input" type="checkbox" id="yes_ofw" value="">
                         <label class="form-check-label" for="yes_ofw">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -411,7 +409,7 @@
                     <div>Preferred Work Occupation</div>
                     <input type="hidden" name="preferred_work_occupation" value="{}">
                     <div class="row">
-                        <div class="col-lg-6 mt-2">
+                        <div class="col-lg-12 mt-2">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input type_work_occupation" type="checkbox" id="local" value="local">
                                 <label class="form-check-label" for="local">Local 
@@ -455,22 +453,25 @@
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                      <tr>
-                        <th scope="col">Language/Dialect</th>
-                        <th scope="col">Read</th>
-                        <th scope="col">Write</th>
-                        <th scope="col">Speak</th>
-                        <th scope="col">Understand</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">Language/Dialect</th>
+                            <th scope="col">Read</th>
+                            <th scope="col">Write</th>
+                            <th scope="col">Speak</th>
+                            <th scope="col">Understand</th>
+                            <!-- <th scope="col">All</th> -->
+                        </tr>
                     </thead>
                     <tbody>
+                        <!-- <input type="hidden" name="language" value=""> -->
                         <tr>
-                            <input type="hidden" name="language1" value="{}">
+                            <input type="hidden" name="language1" value="[]">
                             <th scope="row">English</th>
                             <td><input type="checkbox" class="checkbox_language1" value="read"></td>
                             <td><input type="checkbox" class="checkbox_language1" value="write"></td>
                             <td><input type="checkbox" class="checkbox_language1" value="speak"></td>
                             <td><input type="checkbox" class="checkbox_language1" value="understand"></td>
+                            <!-- <td><input type="checkbox" class="check-all"></td> -->
                         </tr>
                         <tr>
                             <input type="hidden" name="language2" value="{}">
@@ -479,6 +480,7 @@
                             <td><input type="checkbox" class="checkbox_language2" value="write"></td>
                             <td><input type="checkbox" class="checkbox_language2" value="speak"></td>
                             <td><input type="checkbox" class="checkbox_language2" value="understand"></td>
+                            <!-- <td><input type="checkbox" class="check-all"></td> -->
                         </tr>
                         <tr>
                             <input type="hidden" name="language3" value="{}">
@@ -487,6 +489,7 @@
                             <td><input type="checkbox" class="checkbox_language3" value="write"></td>
                             <td><input type="checkbox" class="checkbox_language3" value="speak"></td>
                             <td><input type="checkbox" class="checkbox_language3" value="understand"></td>
+                            <!-- <td><input type="checkbox" class="check-all"></td> -->
                         </tr>
                         <tr>
                             <input type="hidden" name="other_language" value="{}">
@@ -495,11 +498,11 @@
                             <td><input type="checkbox" class="checkbox_other_language" value="write" disabled></td>
                             <td><input type="checkbox" class="checkbox_other_language" value="speak" disabled></td>
                             <td><input type="checkbox" class="checkbox_other_language" value="understand" disabled></td>
+                            <!-- <td><input type="checkbox" class="checkbox_other_language check-all" disabled></td> -->
                         </tr>
                     </tbody>
                   </table>
             </div>
-            
             <div class="text-end">
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-next">Next</button>
@@ -518,7 +521,7 @@
                         <input class="form-control" name="elementary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="elementary_course" type="text" placeholder="Course" value="na" disabled>
+                        <input class="form-control" name="elementary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
@@ -543,7 +546,7 @@
                         <input class="form-control" name="secondary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="secondary_course" type="text" placeholder="Course" value="na" disabled>
+                        <input class="form-control" name="secondary_course" type="text" placeholder="Course">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="secondary_year_graduated" type="text" placeholder="Year graduated">
@@ -755,7 +758,9 @@
                 <div class="col-lg-6 mt-3">
                     <input class="form-control company_address" type="text" placeholder="Address (City/Municipality)">
                 </div>
-                <div class="col-12"></div>
+                <div class="col-12">
+
+                </div>
                 <div class="col-lg-6 mt-3">
                     <input class="form-control position" type="text" placeholder="Position">
                 </div>
@@ -763,7 +768,13 @@
                     <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control status" type="text" placeholder="Status">
+                    <select class="form-control status" placeholder="Status">
+                        <option class="option-status" value="" disabled selected>Status</option>
+                        <option value="permanent">Permanent</option>
+                        <option value="contractual">Contractual</option>
+                        <option value="part-time">Part-time</option>
+                        <option value="probationary">Probationary</option>
+                    </select>
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
@@ -780,7 +791,13 @@
                     <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control status" type="text" placeholder="Status">
+                    <select class="form-control status" placeholder="Status">
+                        <option value="" disabled selected>Status</option>
+                        <option value="permanent">Permanent</option>
+                        <option value="contractual">Contractual</option>
+                        <option value="part-time">Part-time</option>
+                        <option value="probationary">Probationary</option>
+                    </select>
                 </div>
                 <div class="border-bottom col-lg-12 mt-3"></div>
                 <div class="col-lg-6 mt-3">
@@ -797,7 +814,13 @@
                     <input class="form-control inclusive_date" type="date" placeholder="Inclusive Dates">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control status" type="text" placeholder="Status">
+                    <select class="form-control status" placeholder="Status">
+                        <option value="" disabled selected>Status</option>
+                        <option value="permanent">Permanent</option>
+                        <option value="contractual">Contractual</option>
+                        <option value="part-time">Part-time</option>
+                        <option value="probationary">Probationary</option>
+                    </select>
                 </div>
                 <div class="col-lg-12 divider"></div>
             </div>
