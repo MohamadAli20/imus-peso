@@ -314,11 +314,11 @@ class Forms{
                 }
                 // EDUCATIONAL ATTAINMENT
                 content += "\n--------------------------------------------------------------------------------------------------------------------------";
-                content += "\nEDUCATIONAL ATTAINMENT";
+                content += "\nEDUCATIONAL ATTAINMENT\n";
                 if(elementary_school !== "" && 
                 elementary_year_graduated.toLowerCase() !== "na" && 
                 elementary_year_graduated.toLowerCase() !== "n/a"){
-                    content += `\n\nElementary:\n${elementary_school} - ${elementary_year_graduated}`
+                    content += `\nElementary:\n${elementary_school} - ${elementary_year_graduated}`
                 }
                 if(JSON.parse(if_elementary_undergraduate).hasOwnProperty("awards_received") &&
                 JSON.parse(if_elementary_undergraduate).awards_received.toLowerCase() !== "na" &&
