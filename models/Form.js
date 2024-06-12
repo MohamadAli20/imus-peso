@@ -79,7 +79,7 @@ class Form{
         )
         /* educational background */
         this.connection.query(
-            'INSERT INTO educationaL_background(elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, graduate_studies_year_attended, if_graduate_studies_undergraduate, created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            'INSERT INTO educationaL_background(elementary_school, elementary_course, elementary_year_graduated, if_elementary_undergraduate, secondary_school, secondary_course, secondary_year_graduated, if_secondary_undergraduate, tertiary_school, tertiary_course, tertiary_year_graduated, if_tertiary_undergraduate, graduate_studies_school, graduate_studies_course, graduate_studies_year_attended, if_graduate_studies_undergraduate, created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
             [
                 info.educationalBackground[0].value, // elementary_school
                 info.educationalBackground[1].value, // elementary_course
