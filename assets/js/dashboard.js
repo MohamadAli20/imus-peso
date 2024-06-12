@@ -25,7 +25,7 @@ $(document).ready(function(){
 						idInput.setAttribute("type", "hidden");
 
 						let divName = document.createElement("div");
-						divName.className = "col-lg-3 col-md-3 col-sm-3 col-6";
+						divName.className = "col-lg-3 col-md-3 col-sm-3 col-4";
 						divName.textContent = response[i].firstname + " " + response[i].surname;
 
 						let divEmail = document.createElement("div");
@@ -33,26 +33,19 @@ $(document).ready(function(){
 						divEmail.textContent = response[i].email;
 
 						let divDate = document.createElement("div");
-						divDate.className = "col-lg-3 col-md-3 col-sm-3 col-3";
+						divDate.className = "col-lg-3 col-md-3 col-sm-3 col-4";
 
 						let createdAt = new Date(response[i].created_at); 
 						let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 						let monthName = months[createdAt.getMonth()]; // Get the month name from the array
 						let date = createdAt.getDate();
 						let year = createdAt.getFullYear();
-						let hours = createdAt.getHours();
-						let minutes = createdAt.getMinutes();
-						let period = hours >= 12 ? 'PM' : 'AM';
-						
-						hours = hours % 12;
-						hours = hours ? hours : 12; // The hour '0' should be '12'
-						
-						let formattedDate = monthName + ' ' + date + ', ' + year + ' ' + hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + period;
+						let formattedDate = monthName + ' ' + date + ', ' + year;
                     
 						divDate.textContent = formattedDate;
 
 						let divAction = document.createElement("div");
-						divAction.className = "col-lg-3 col-md-3 col-sm-3 col-3 action";
+						divAction.className = "col-lg-3 col-md-3 col-sm-3 col-4 action";
 
 						let a = document.createElement("a");
 						a.setAttribute("href", "/view_application/"+response[i].id);
