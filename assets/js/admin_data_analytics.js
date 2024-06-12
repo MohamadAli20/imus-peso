@@ -127,6 +127,7 @@ window.onload = async function () {
             type: "GET"
         })
         let unemployed = arr.unemployed;
+        console.log(unemployed)
         let totalUnemployed = 0;
         for(let j = 0; j < unemployed.length; j++){
             totalUnemployed += parseInt(unemployed[j].count);

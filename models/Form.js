@@ -254,7 +254,7 @@ class Form{
                     COUNT(*) AS count 
              FROM personal_information 
              WHERE UPPER(JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status'))) = UPPER('unemployed') 
-             GROUP BY employment_status 
+             GROUP BY unemployed_type 
              ORDER BY count DESC 
              LIMIT 10;`,
             (error, rows) => {

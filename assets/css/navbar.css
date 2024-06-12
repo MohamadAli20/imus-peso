@@ -10,7 +10,7 @@ body{
     width: 100%;
     background: rgb(5, 55, 116);
     z-index: 2;
-    /* position: fixed; */
+    position: fixed;
     /* border-bottom: 3px solid black; */
 }
     .logo-title, .logo-title:hover{
