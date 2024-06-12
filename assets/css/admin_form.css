@@ -25,8 +25,8 @@ label{
     padding-top: 0;
 }
     .form-section, .form-content{
-        padding-top: 70px;
-        display: block;
+        padding-top: 55px;
+        /* display: block; */
     }
     .form-section a{
         display: block;
@@ -50,6 +50,7 @@ label{
     overflow: auto;
     position: absolute;
     right: 0;
+    top: 10px;
 }
 .complete-name label,
 .second-info label,
@@ -65,9 +66,7 @@ label{
         width: 70%;
         z-index: 1;
         border: none;
-        margin-top: 0;
-        padding-top: 0;
-        top: 10%;
+        padding-top: 55px;
     }
     #arrow-icon{
         position: absolute;
