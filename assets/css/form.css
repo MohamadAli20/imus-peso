@@ -22,7 +22,7 @@ main{
     padding-top: 0;
 }
     .form-section, .form-content{
-        padding-top: 70px;
+        padding-top: 55px;
     }
     .form-section a{
         display: block;
@@ -57,9 +57,7 @@ main{
         width: 70%;
         z-index: 1;
         border: none;
-        margin-top: 0;
-        padding-top: 0;
-        top: 10%;
+        padding-top: 55px;
     }
     #arrow-icon{
         position: absolute;
