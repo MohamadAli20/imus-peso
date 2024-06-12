@@ -33,12 +33,4 @@ $(document).ready(function(){
             $(".btn-submit").trigger("click");
         }   
     }
-    // const form = document.querySelector('.custom-form');
-
-    // form.addEventListener('keydown', function(event) {
-    //     if (event.keyCode === 13) {
-    //         // event.preventDefault();  // Prevent the default action to avoid unexpected behavior
-    //         form.submit();  // Submit the form
-    //     }
-    // }); 
 });

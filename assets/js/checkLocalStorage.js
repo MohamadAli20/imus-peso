@@ -1,14 +1,13 @@
 $(document).ready(function() {
     let isAdmin = localStorage.getItem('isAdmin');
-    
+
     // Function to check account status and redirect accordingly
     let checkAccount = () => {
-        console.log("checkAccount called, isAdmin:", isAdmin);
-        
+        // console.log("checkAccount called, isAdmin:", isAdmin);
 
         if(isAdmin === '1'){
             console.log("Redirecting to /dashboard");
-            window.location.href = "/dashboard";
+            // window.location.href = "/dashboard";
 
             return true;
         } 
@@ -17,14 +16,12 @@ $(document).ready(function() {
             // window.location.href = "/";
             return true;
         }
-        else if(isAdmin === null && isAdmin === undefined){
+        else if(isAdmin === null){
             console.log("Redirecting to /");
             // window.location.href = "/";
+            // loop += 1
             return false;
         }
-
-
-    
     };
     
     // Perform account check once when the document is ready

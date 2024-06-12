@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="/css/form.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/removeAccount.js"></script>
+    <script>
+        let isAdmin = localStorage.getItem('isAdmin');
+
+        if(isAdmin === null){
+            window.location.href = "/";
+        }
+    </script>
 </head>
 <body>
     <!-- Warning message -->

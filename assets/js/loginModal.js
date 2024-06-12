@@ -38,6 +38,7 @@ $(document).ready(() => {
         localStorage.removeItem('isAdmin');
         checkUserLogin();
         window.location.href = "/";
+        // location.reload();
     });
     
 
