@@ -272,6 +272,7 @@ window.onload = async function () {
             type: "GET"
         })
         let companyArr = topCompany.company;
+        console.log(companyArr)
         let totalCompany = 0;
         for(let j = 0; j < companyArr.length; j++){
             totalCompany += parseInt(companyArr[j].count);

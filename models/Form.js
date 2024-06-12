@@ -283,17 +283,17 @@ class Form{
             }
         );
     }
-    select_top_company(callback){
+    select_top_company(callback) {
         this.connection.query(
-            `SELECT company_name, COUNT(company_name) AS count
+            `SELECT UPPER(REPLACE(company_name, '"', '')) AS company_name, COUNT(company_name) AS count
             FROM (
-                SELECT JSON_EXTRACT(company_name, '$.company_name1') AS company_name FROM work_experience
+                SELECT UPPER(REPLACE(JSON_EXTRACT(company_name, '$.company_name1'), '"', '')) AS company_name FROM work_experience
                 UNION ALL
-                SELECT JSON_EXTRACT(company_name, '$.company_name2') AS company_name FROM work_experience
+                SELECT UPPER(REPLACE(JSON_EXTRACT(company_name, '$.company_name2'), '"', '')) AS company_name FROM work_experience
                 UNION ALL
-                SELECT JSON_EXTRACT(company_name, '$.company_name3') AS company_name FROM work_experience
+                SELECT UPPER(REPLACE(JSON_EXTRACT(company_name, '$.company_name3'), '"', '')) AS company_name FROM work_experience
             ) AS companies
-            WHERE company_name != 'NA' AND company_name != 'N/A' AND company_name != 'n/a' AND company_name != 'na' AND company_name != ''
+            WHERE company_name NOT IN ('NA', 'N/A', '')
             GROUP BY company_name
             ORDER BY count DESC
             LIMIT 10;`,
@@ -304,8 +304,9 @@ class Form{
                     callback(null, rows);
                 }
             }
-        )
+        );
     }
+     
     select_top_position(callback){
         this.connection.query(
             `SELECT position, COUNT(position) AS count
