@@ -8,9 +8,11 @@ body{
 /* Main */
 main{
     text-align: left;
+    padding-top: 100px;
+
 }
     .custom-form{
-        margin-left: 0;
+        margin: 55px auto;
     }
     @media (min-width: 1024px){
         .custom-form{
