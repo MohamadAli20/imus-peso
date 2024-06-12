@@ -357,9 +357,9 @@ class Forms{
                     content += `\nAwards: ${JSON.parse(if_graduate_studies_undergraduate).awards_received}`;
                 }
                 // TECHNICAL / VOCATIONAL AND OTHER TRAINING
-                content += "--------------------------------------------------------------------------------------------------------------------------";
+                content += "\n--------------------------------------------------------------------------------------------------------------------------";
                 if(JSON.parse(institution) !== '{}'){
-                    content += `TECHNICAL / VOCATIONAL AND OTHER TRAINING`;
+                    content += `\nTECHNICAL / VOCATIONAL AND OTHER TRAINING\n`;
                     const courseEntries = Object.entries(JSON.parse(course));
                     const institutionEntries = Object.entries(JSON.parse(institution));
                     const durationFrom = Object.entries(JSON.parse(date_from));
@@ -436,8 +436,8 @@ class Forms{
                         const inclusiveValue = inclusiveEntries[index] ? inclusiveEntries[index][1] : "";
                         const statusValue = statusEntries[index] ? statusEntries[index][1] : "";
                         if(count === 1 && instValue !== "" && addressValue !== "" && positionValue !== "" && inclusiveValue !== "" && statusValue !== ""){
-                            workExpContent += "--------------------------------------------------------------------------------------------------------------------------";
-                            workExpContent += `WORK EXPERIENCE\n`;
+                            workExpContent += "\n--------------------------------------------------------------------------------------------------------------------------";
+                            workExpContent += `\nWORK EXPERIENCE\n`;
                             count++;
                         }
                         if (instValue !== "" && addressValue !== "" && positionValue !== "" && inclusiveValue !== "" && statusValue !== "") {
@@ -449,8 +449,8 @@ class Forms{
                 console.log(content);
                 // OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
                 if(JSON.parse(skills) !== '{}'){
-                    content += "--------------------------------------------------------------------------------------------------------------------------";
-                    content += `OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING`;
+                    content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                    content += `\nOTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING\n`;
                     content += `\n${Object.entries(JSON.parse(skills))
                     .map(([key, value]) => "- " + value)
                     .filter(value => value !== "")
