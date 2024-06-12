@@ -1,5 +1,9 @@
 $(document).ready(() => {
 
+    $("#navLoginBtn").click(function(){
+        $(".message .alert").remove();
+    });
+
     let checkUserLogin = () => {
         let username = localStorage.getItem('username');
         if(username){
@@ -19,12 +23,12 @@ $(document).ready(() => {
     $(".login-password").click(function(){
         if(passwordVisible === false){
             passwordVisible = true;
-            $("#loginForm label input").attr("type", "text");
+            $("#loginForm label input[name='password']").attr("type", "text");
             $("#loginForm label img").attr("src", "/images/visibility.svg");
         }
         else{
             passwordVisible = false;
-            $("#loginForm label input").attr("type", "password");
+            $("#loginForm label input[name='password']").attr("type", "password");
             $("#loginForm label img").attr("src", "/images/visibility_off.svg");
         }
     })
@@ -64,16 +68,16 @@ $(document).ready(() => {
                         'display': 'block',
                         'zIndex': '5',
                     });
-
+                    $(".message .alert").remove();
                     let p = document.createElement('p');
                     p.className = "alert alert-danger"
                     p.style.color = 'red';
                     p.innerText = response;
                     $(".message").append(p);
                     
-                    setTimeout(function(){
-                        $(".message .alert").remove();
-                    }, 1000);
+                    // setTimeout(function(){
+                    //     $(".message .alert").remove();
+                    // }, 1000);
                 }
             },
             error: function(xhr, error, status){
@@ -98,3 +102,4 @@ $(document).ready(() => {
         }   
     }
 });
+

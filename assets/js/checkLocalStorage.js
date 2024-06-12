@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    console.log("hdhfdh");
     let isAdmin = localStorage.getItem('isAdmin');
     
     // Function to check account status and redirect accordingly
     let checkAccount = () => {
         console.log("checkAccount called, isAdmin:", isAdmin);
         
+
         if(isAdmin === '1'){
             console.log("Redirecting to /dashboard");
             window.location.href = "/dashboard";
@@ -32,24 +32,10 @@ $(document).ready(function() {
     
     // Event handler for the .apply-now button click
     $(".peso-link").click(function() {
-
-        if (isAdmin === null) {
-            $("#navLoginBtn").trigger('click');
-        } 
-        else{
-            // localStorage.setItem("url", "/peso");
-            window.location.href = "/peso";
-        }
-
-        console.log($(this));
+        window.location.href = "/peso";
     });
     $(".about-link").click(function() {
-        if (isAdmin === null) {
-            $("#navLoginBtn").trigger('click');
-        } 
-        else {
-            window.location.href = "/about";
-        }
+        window.location.href = "/about";
     });
     $(".apply-now").click(function(e) {
         localStorage.setItem("currentPage", "form")
