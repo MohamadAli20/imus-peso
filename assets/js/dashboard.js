@@ -172,14 +172,4 @@ $(document).ready(function(){
 		document.body.removeChild(link);
 	});
 	
-	// 
-	// Listen for the popstate event to handle back navigation
-    window.addEventListener('popstate', function(event) {
-        let isAdmin = localStorage.getItem('isAdmin');
-
-    if(isAdmin === null){
-        window.location.href = "/";
-    }
-    });
-	
 });

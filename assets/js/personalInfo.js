@@ -268,11 +268,12 @@ $(".input_other_unemployed_type").on("input", function(){
         }
     }
     $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
-})
+});
 
 /* Are you an OFW? */
 let isOfwObj = JSON.parse($("input[name='is_ofw']").val());
 $("#no_ofw").click(function(){
+    // console.log("No is clicked");
     if($(this).prop("checked")){
         isOfwObj["is_ofw"] = "no";
         $("input[name='is_ofw']").val(JSON.stringify(isOfwObj));
@@ -285,6 +286,7 @@ $("#no_ofw").click(function(){
     }
 });
 $("#yes_ofw").click(function(){
+    // console.log("Yes is clicked");
     if($(this).prop("checked")){
         isOfwObj["is_ofw"] = $(".input_ofw_country").val();
         $("input[name='is_ofw']").val(JSON.stringify(isOfwObj));
