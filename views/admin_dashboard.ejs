@@ -59,15 +59,15 @@
             <ul class="row my-2 p-0">
                 <li class="col-lg-3 col-md-3 col-sm-3 col-4">Name</li>
                 <li class="col-lg-3 col-md-3 col-sm-3 email">Email</li>
-                <li class="col-lg-3 col-md-3 col-sm-3 col-5">Submission Date</li>
-                <li class="col-lg-3 col-md-3 col-sm-3 col-3">Action</li>
+                <li class="col-lg-3 col-md-3 col-sm-3 col-4">Date</li>
+                <li class="col-lg-3 col-md-3 col-sm-3 col-4">Action</li>
             </ul>
             <% for(let i = 0; i < row.length; i++){ %>
             <div class="row py-2 application">
                 <input value="<%=row[i].id%>" type="hidden" name="applicationId">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-4"><%= row[i].firstname + " " + row[i].surname %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 email"><%= row[i].email %></div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-5">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-4">
                     <% 
                       let createdAt = new Date(row[i].created_at); 
                       let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -81,11 +81,11 @@
                       hours = hours % 12;
                       hours = hours ? hours : 12; // The hour '0' should be '12'
                       
-                      let formattedDate = monthName + ' ' + date + ', ' + year + ' ' + hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + period;
+                      let formattedDate = monthName + ' ' + date + ', ' + year;
                     %>
                     <%= formattedDate %>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3 action">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-4 action">
                     <a href="/view_application/<%=row[i].id%>">
                         <img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
                     <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
