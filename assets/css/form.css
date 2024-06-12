@@ -46,6 +46,7 @@ main{
     overflow: auto;
     position: absolute;
     right: 0;
+    top: 10px;
 }
 .status{
     color: rgb(137, 137, 137);
