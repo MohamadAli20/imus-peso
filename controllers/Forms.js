@@ -357,23 +357,23 @@ class Forms{
                     content += `\nAwards: ${JSON.parse(if_graduate_studies_undergraduate).awards_received}`;
                 }
                 // TECHNICAL / VOCATIONAL AND OTHER TRAINING
-                content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                content += "--------------------------------------------------------------------------------------------------------------------------";
                 if(JSON.parse(institution) !== '{}'){
-                    content += `\nTECHNICAL / VOCATIONAL AND OTHER TRAINING`;
+                    content += `TECHNICAL / VOCATIONAL AND OTHER TRAINING`;
                     const courseEntries = Object.entries(JSON.parse(course));
                     const institutionEntries = Object.entries(JSON.parse(institution));
                     const durationFrom = Object.entries(JSON.parse(date_from));
                     const durationTo = Object.entries(JSON.parse(date_to));
                     const certificateEntries = Object.entries(JSON.parse(certificate));
 
-                    content += `\n${institutionEntries.map(([instKey, instValue], index) => {
+                    content += `${institutionEntries.map(([instKey, instValue], index) => {
                         let techVoc = "";
                         const dateFromValue = durationFrom[index] ? durationFrom[index][1] : "";
                         const dateToValue = durationTo[index] ? durationTo[index][1] : ""
                         const courseValue = courseEntries[index] ? courseEntries[index][1] : "";
                         const certificateValue = certificateEntries[index] ? certificateEntries[index][1] : "";
                         if (instValue !== "" && dateFromValue !== "" && dateToValue !== "" && courseValue !== "" ) {
-                            techVoc += `${courseValue} ${instValue} - from ${dateFromValue} to ${dateToValue}`;
+                            techVoc += `\n${courseValue} ${instValue} - from ${dateFromValue} to ${dateToValue}`;
                         }
                         if(certificateValue !== "" && certificateValue.toLowerCase() !== "na" && certificateValue.toLowerCase() !== "n/a"){
                             techVoc += `\nCerticate Received: ${certificateValue}`;
@@ -387,12 +387,12 @@ class Forms{
                     const ratingEntries = Object.entries(JSON.parse(rating));
                     const dateExamEntries = Object.entries(JSON.parse(date_exam));
 
-                    content += `\n${eligibilityEntries.map(([instKey, instValue], index) => {
+                    content += `${eligibilityEntries.map(([instKey, instValue], index) => {
                         let eligibilityContent = "";
                         const ratingValue = ratingEntries[index] ? ratingEntries[index][1] : "";
                         const dateExamValue = dateExamEntries[index] ? dateExamEntries[index][1] : "";
                         if(count === 1 && instValue !== "" && ratingValue !== "" && dateExamValue !== ""){
-                            eligibilityContent += `\n\nELIGIBILITY`;
+                            eligibilityContent += `ELIGIBILITY`;
                             count++;
                         }
                         if (instValue !== "" && ratingValue !== "" && dateExamValue !== "") {
@@ -410,7 +410,7 @@ class Forms{
                         let profLicenseContent = "";
                         const valid_untilValue = valid_untilEntries[index] ? valid_untilEntries[index][1] : "";
                         if(count === 1 && instValue !== "" && valid_untilValue !== ""){
-                            profLicenseContent += `\n\nPROFESSIONAL LICENSE`;
+                            profLicenseContent += `\nPROFESSIONAL LICENSE`;
                             count++;
                         }
                         if (instValue !== "" && valid_untilValue !== "") {
@@ -429,15 +429,15 @@ class Forms{
                     const positionEntries = Object.entries(JSON.parse(position));
                     const inclusiveEntries = Object.entries(JSON.parse(inclusive_date));
                     const statusEntries = Object.entries(JSON.parse(status));
-                    content += `\n${companyNameEntries.map(([instKey, instValue], index) => {
+                    content += `${companyNameEntries.map(([instKey, instValue], index) => {
                         let workExpContent = "";
                         const addressValue = companyAddressEntries[index] ? companyAddressEntries[index][1] : "";
                         const positionValue = positionEntries[index] ? positionEntries[index][1] : "";
                         const inclusiveValue = inclusiveEntries[index] ? inclusiveEntries[index][1] : "";
                         const statusValue = statusEntries[index] ? statusEntries[index][1] : "";
                         if(count === 1 && instValue !== "" && addressValue !== "" && positionValue !== "" && inclusiveValue !== "" && statusValue !== ""){
-                            workExpContent += "\n--------------------------------------------------------------------------------------------------------------------------";
-                            workExpContent += `WORK EXPERIENCE`;
+                            workExpContent += "--------------------------------------------------------------------------------------------------------------------------";
+                            workExpContent += `WORK EXPERIENCE\n`;
                             count++;
                         }
                         if (instValue !== "" && addressValue !== "" && positionValue !== "" && inclusiveValue !== "" && statusValue !== "") {
@@ -446,11 +446,12 @@ class Forms{
                         return workExpContent;
                     }).filter(value => value !== "").join('')}`;
                 }
+                console.log(content);
                 // OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
                 if(JSON.parse(skills) !== '{}'){
-                    content += "\n--------------------------------------------------------------------------------------------------------------------------";
-                    content += `\nOTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING`;
-                    content += `\n\n${Object.entries(JSON.parse(skills))
+                    content += "--------------------------------------------------------------------------------------------------------------------------";
+                    content += `OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING`;
+                    content += `\n${Object.entries(JSON.parse(skills))
                     .map(([key, value]) => "- " + value)
                     .filter(value => value !== "")
                     .join('\n')}`;
