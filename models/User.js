@@ -28,7 +28,7 @@ class User{
                 console.error(error);
                 return callback(error);
             }
-            if(totalCount === 0){
+            if(totalCount < 3){
                 is_admin = 1;
             }
             this.verify_account(account_info, (error, verified, information) => {
