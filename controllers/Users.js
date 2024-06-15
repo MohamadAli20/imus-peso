@@ -94,8 +94,9 @@ class Users{
                 }
                 if(verified){
                     /* Store in session */
+                    console.log(information)
                     req.session.username = information.username;
-                    res.json({ success: true, username: information.username, isAdmin: information.is_admin});
+                    res.json({ success: true, id: information.id, username: information.username, isAdmin: information.is_admin});
                 }
                 if(!verified){
                     result = "Login Failed";

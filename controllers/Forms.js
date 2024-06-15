@@ -12,6 +12,18 @@ class Forms{
             }
         })
     }
+    check_form(req, res){
+        const id = req.params.id;
+        model.get_application_by_user_id(id, (error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                // res.render('user_view_form', { row });
+                res.json(row);
+            }
+        })
+    }
     /* For admin */
     admin_form(req, res){
         const id = req.params.id;
@@ -386,13 +398,13 @@ class Forms{
                     const eligibilityEntries = Object.entries(JSON.parse(eligibility));
                     const ratingEntries = Object.entries(JSON.parse(rating));
                     const dateExamEntries = Object.entries(JSON.parse(date_exam));
-
                     content += `${eligibilityEntries.map(([instKey, instValue], index) => {
                         let eligibilityContent = "";
                         const ratingValue = ratingEntries[index] ? ratingEntries[index][1] : "";
                         const dateExamValue = dateExamEntries[index] ? dateExamEntries[index][1] : "";
                         if(count === 1 && instValue !== "" && ratingValue !== "" && dateExamValue !== ""){
-                            eligibilityContent += `ELIGIBILITY`;
+                            eligibilityContent += "\n--------------------------------------------------------------------------------------------------------------------------";
+                            eligibilityContent += `\nELIGIBILITY`;
                             count++;
                         }
                         if (instValue !== "" && ratingValue !== "" && dateExamValue !== "") {
@@ -410,6 +422,7 @@ class Forms{
                         let profLicenseContent = "";
                         const valid_untilValue = valid_untilEntries[index] ? valid_untilEntries[index][1] : "";
                         if(count === 1 && instValue !== "" && valid_untilValue !== ""){
+                            profLicenseContent += "\n--------------------------------------------------------------------------------------------------------------------------";
                             profLicenseContent += `\nPROFESSIONAL LICENSE`;
                             count++;
                         }

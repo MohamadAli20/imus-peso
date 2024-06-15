@@ -82,6 +82,7 @@ class User{
                 if(row.length !== 0){
                     verified = bcrypt.compareSync(credentials.password, row[0].password);
                     const information = {
+                        id: row[0].id,
                         username: row[0].username,
                         email: row[0].email,
                         is_admin: row[0].is_admin
@@ -187,6 +188,29 @@ class User{
             LEFT JOIN work_experience ON personal_information.id = work_experience.id     
             LEFT JOIN other_skills ON personal_information.id = other_skills.id     
             WHERE personal_information.id = ?;`,
+            [ id ],
+            (error, row) => {
+                if(error){
+                    callback(error, null);
+                }
+                if(row){
+                    callback(null, row);
+                }
+            }
+        )
+    }
+    get_application_by_user_id(id, callback){
+        this.connection.query(
+            `SELECT * 
+            FROM personal_information
+            LEFT JOIN job_preference ON personal_information.id = job_preference.id
+            LEFT JOIN language_dialect_proficiency ON personal_information.id = language_dialect_proficiency.id
+            LEFT JOIN educational_background ON personal_information.id = educational_background.id
+            LEFT JOIN technical_vocational_training ON personal_information.id = technical_vocational_training.id
+            LEFT JOIN eligibility_professional_license ON personal_information.id = eligibility_professional_license.id 
+            LEFT JOIN work_experience ON personal_information.id = work_experience.id     
+            LEFT JOIN other_skills ON personal_information.id = other_skills.id     
+            WHERE personal_information.user_id = ?;`,
             [ id ],
             (error, row) => {
                 if(error){

@@ -15,9 +15,12 @@ Router.post('/addInformation', FormController.add);
 Router.get('/peso', UserController.peso);
 Router.get('/about', UserController.about);
 
+Router.get('/check_form/:id', FormController.check_form);
+
 /* For admin */
 Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
+
 Router.get('/view_application/:id', FormController.admin_form);
 Router.get('/admin_apply', UserController.admin_apply);
 Router.get('/data_analytics', UserController.data_analytics);

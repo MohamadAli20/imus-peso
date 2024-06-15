@@ -1,3 +1,5 @@
+let userId = localStorage.getItem("userId");
+
 let categories = [
     "personalInformation",
     "jobPreference",
@@ -9,6 +11,7 @@ let categories = [
     "otherSkills"
 ]
 let finalInformation = {
+    id: userId,
     personalInformation: [],
     jobPreference: [],
     languageDialectProficiency: [],
@@ -20,12 +23,7 @@ let finalInformation = {
 }
 
 let alertMessage = (message) => {
-    // $(".message").empty(); // Clear any previous messages
-
     let p = $("<p>").addClass("alert alert-danger").text(message);
-    // document.append(p);
-
-    // Remove the message after a timeout
 }
 
 

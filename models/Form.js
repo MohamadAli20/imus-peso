@@ -7,13 +7,15 @@ class Form{
     }
     /* Insert information to the database */
     insert(info, callback){
+        console.log(info)
         const date = new Date();
         const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
         /* personal information */
         this.connection.query(
-            'INSERT INTO personal_information(surname, firstname, middlename, suffix, birthdate, email, contact, height, gender, civil_status, disability, religion, address, employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            'INSERT INTO personal_information(user_id, surname, firstname, middlename, suffix, birthdate, email, contact, height, gender, civil_status, disability, religion, address, employment_status, is_ofw, is_former_ofw, is_4ps_beneficiary, created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
             [
+                info.id,
                 info.personalInformation[0].value, // surname
                 info.personalInformation[1].value, // first name
                 info.personalInformation[2].value, // middle name

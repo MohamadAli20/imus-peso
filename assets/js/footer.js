@@ -67,6 +67,7 @@ $(document).ready(function(){
             }
         }
         if(isChecked){
+            // Send the data to the database
             $.ajax({
                 url: "/addInformation",
                 type: "POST",

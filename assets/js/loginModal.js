@@ -54,7 +54,8 @@ $(document).ready(() => {
             success: function(response){
                 if(response.success){
                     localStorage.setItem('isAdmin', response.isAdmin);
-                    localStorage.setItem('username', response.username)
+                    localStorage.setItem('username', response.username);
+                    localStorage.setItem('userId', response.id);
                     $("#username").css("display", "block");
                     $("#navLoginBtn").css("display", "none");
                     if(response.isAdmin == 1){
