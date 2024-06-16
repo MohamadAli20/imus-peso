@@ -1,9 +1,10 @@
 let id = localStorage.getItem("userId");
+$("label").css("margin-top", "-12px");
 $.ajax({
     url: "/check_form/"+id  ,
     type: "GET",
     success: function(response){
-        console.log(response)
+        // $("label").css("margin-top", "-12px");
         // Personal information
         $("input[name='surname']").val(response[0].surname);
         $("input[name='firstname']").val(response[0].firstname);
@@ -313,6 +314,61 @@ $.ajax({
                     }
                 }
             }
+        }
+
+        // Educational background
+        $("input[name='elementary_school']").val(response[0].elementary_school);
+        $("input[name='elementary_course']").val(response[0].elementary_course);
+        $("input[name='elementary_year_graduated']").val(response[0].elementary_year_graduated);
+        let elemUndergrad = JSON.parse(response[0].if_elementary_undergraduate);
+        if(elemUndergrad !== "{}"){
+            // console.log(elemUndergrad);
+            $(".elem_what_level").val(elemUndergrad.what_level);
+            $(".elem_last_year_attended").val(elemUndergrad.last_year_attended);
+            $(".elem_awards_received").val(elemUndergrad.awards_received);
+        }
+        $("input[name='if_elementary_undergraduate']").val(response[0].if_elementary_undergraduate);
+        
+        $("input[name='secondary_school']").val(response[0].secondary_school);
+        $("input[name='secondary_course']").val(response[0].secondary_course);
+        $("input[name='secondary_year_graduated']").val(response[0].secondary_year_graduated);        
+        let secondaryUndergrad = JSON.parse(response[0].if_secondary_undergraduate);
+        if(secondaryUndergrad !== "{}"){
+            // console.log(elemUndergrad);
+            $(".secondary_what_level").val(secondaryUndergrad.what_level);
+            $(".secondary_last_year_attended").val(secondaryUndergrad.last_year_attended);
+            $(".secondary_awards_received").val(secondaryUndergrad.awards_received);
+        }
+        $("input[name='if_secondary_undergraduate']").val(response[0].if_secondary_undergraduate);
+
+        $("input[name='tertiary_school']").val(response[0].tertiary_school);
+        $("input[name='tertiary_course']").val(response[0].tertiary_course);
+        $("input[name='tertiary_year_graduated']").val(response[0].tertiary_year_graduated);  
+        let tertiaryUndergrad = JSON.parse(response[0].if_tertiary_undergraduate);
+        if(tertiaryUndergrad !== "{}"){
+            // console.log(elemUndergrad);
+            $(".tertiary_what_level").val(tertiaryUndergrad.what_level);
+            $(".tertiary_last_year_attended").val(tertiaryUndergrad.last_year_attended);
+            $(".tertiary_awards_received").val(tertiaryUndergrad.awards_received);
+        }
+        $("input[name='if_tertiary_undergraduate']").val(response[0].if_tertiary_undergraduate);
+        
+        $("input[name='graduate_studies_school']").val(response[0].graduate_studies_school);
+        $("input[name='graduate_studies_course']").val(response[0].graduate_studies_course);
+        $("input[name='graduate_studies_year_attended']").val(response[0].graduate_studies_year_attended);        
+        let graduateStudiesUndergrad = JSON.parse(response[0].if_graduate_studies_undergraduate);
+        if(graduateStudiesUndergrad !== "{}"){
+            // console.log(elemUndergrad);
+            $(".graduate_studies_what_level").val(graduateStudiesUndergrad.what_level);
+            $(".graduate_studies_last_year_attended").val(graduateStudiesUndergrad.last_year_attended);
+            $(".graduate_studies_awards_received").val(graduateStudiesUndergrad.awards_received);
+        }
+        $("input[name='if_graduate_studies_undergraduate']").val(response[0].if_graduate_studies_undergraduate);
+
+        // Technical/Vocational And Other Training
+        let techVocObj = JSON.parse(response[0].course);
+        if(techVocObj.course1 !== ""){
+
         }
     },
     error: function(error){
