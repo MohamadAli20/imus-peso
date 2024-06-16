@@ -77,7 +77,7 @@ class Forms{
             }
             if(total){
                 let val = total[0].total
-                res.json({"total_male": val})
+                res.json({"total_male": val});
             }
         })
     }

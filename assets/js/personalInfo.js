@@ -68,7 +68,7 @@ $(".house_no_street").on("input", function(){
 */
 let employeeStatusObj = JSON.parse($("input[name='employment_status']").val());
 let setEmployeeStatus = (status) => {
-    employeeStatusObj = {}
+    employeeStatusObj = {};
     employeeStatusObj["employment_status"] = status;
     $("input[name='employment_status']").val(JSON.stringify(employeeStatusObj));
 }
@@ -160,6 +160,7 @@ let addJob = () => {
     let num = 1;
     for(let i = 0; i < $(".job").length; i++){
         let job = $(".job")[i];
+        console.log($(job).val());
         if($(job).prop("checked")){
             jobObj[`job${num}`] = $(job).val();
             num++;

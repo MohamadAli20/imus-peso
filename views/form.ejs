@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/form.css">
-    <script src="/js/check_form_exist.js"></script>
+    <!-- <script src="/js/check_form_exist.js"></script> -->
     <script src="/js/loginModal.js"></script>
     <script src="/js/removeAccount.js"></script>
 </head>
@@ -220,7 +220,7 @@
                     </div>
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input job" type="checkbox" value="fisherman/fisherfolk" disabled>
+                            <input class="form-check-input job" type="checkbox" id="fisherman" value="fisherman/fisherfolk" disabled>
                             <label class="form-check-label" for="fisherman">Fisherman/Fisherfolk</label>
                         </div>
                         <div class="form-check">
@@ -468,39 +468,39 @@
                     <tbody>
                         <!-- <input type="hidden" name="language" value=""> -->
                         <tr>
-                            <input type="hidden" name="language1" value="[]">
+                            <input type="hidden" name="language1" value="{}">
                             <th scope="row">English</th>
-                            <td><input type="checkbox" class="checkbox_language1" value="read"></td>
-                            <td><input type="checkbox" class="checkbox_language1" value="write"></td>
-                            <td><input type="checkbox" class="checkbox_language1" value="speak"></td>
-                            <td><input type="checkbox" class="checkbox_language1" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language1 english_read" value="read"></td>
+                            <td><input type="checkbox" class="checkbox_language1 english_write" value="write"></td>
+                            <td><input type="checkbox" class="checkbox_language1 english_speak" value="speak"></td>
+                            <td><input type="checkbox" class="checkbox_language1 english_understand" value="understand"></td>
                             <!-- <td><input type="checkbox" class="check-all"></td> -->
                         </tr>
                         <tr>
                             <input type="hidden" name="language2" value="{}">
                             <th scope="row">Filipino</th>
-                            <td><input type="checkbox" class="checkbox_language2" value="read"></td>
-                            <td><input type="checkbox" class="checkbox_language2" value="write"></td>
-                            <td><input type="checkbox" class="checkbox_language2" value="speak"></td>
-                            <td><input type="checkbox" class="checkbox_language2" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language2 filipino_read" value="read"></td>
+                            <td><input type="checkbox" class="checkbox_language2 filipino_write" value="write"></td>
+                            <td><input type="checkbox" class="checkbox_language2 filipino_speak" value="speak"></td>
+                            <td><input type="checkbox" class="checkbox_language2 filipino_understand" value="understand"></td>
                             <!-- <td><input type="checkbox" class="check-all"></td> -->
                         </tr>
                         <tr>
                             <input type="hidden" name="language3" value="{}">
                             <th scope="row">Mandarin</th>
-                            <td><input type="checkbox" class="checkbox_language3" value="read"></td>
-                            <td><input type="checkbox" class="checkbox_language3" value="write"></td>
-                            <td><input type="checkbox" class="checkbox_language3" value="speak"></td>
-                            <td><input type="checkbox" class="checkbox_language3" value="understand"></td>
+                            <td><input type="checkbox" class="checkbox_language3 mandarin_read" value="read"></td>
+                            <td><input type="checkbox" class="checkbox_language3 mandarin_write" value="write"></td>
+                            <td><input type="checkbox" class="checkbox_language3 mandarin_speak" value="speak"></td>
+                            <td><input type="checkbox" class="checkbox_language3 mandarin_understand" value="understand"></td>
                             <!-- <td><input type="checkbox" class="check-all"></td> -->
                         </tr>
                         <tr>
                             <input type="hidden" name="other_language" value="{}">
-                            <th scope="row"><input class="form-control input_other_language" type="text" placeholder="Others"></th>
-                            <td><input type="checkbox" class="checkbox_other_language" value="read" disabled></td>
-                            <td><input type="checkbox" class="checkbox_other_language" value="write" disabled></td>
-                            <td><input type="checkbox" class="checkbox_other_language" value="speak" disabled></td>
-                            <td><input type="checkbox" class="checkbox_other_language" value="understand" disabled></td>
+                            <th scope="row"><input class="form-control input_other_language" type="text"></th>
+                            <td><input type="checkbox" class="checkbox_other_language other_language_read" value="read" disabled></td>
+                            <td><input type="checkbox" class="checkbox_other_language other_language_write" value="write" disabled></td>
+                            <td><input type="checkbox" class="checkbox_other_language other_language_speak" value="speak" disabled></td>
+                            <td><input type="checkbox" class="checkbox_other_language other_language_understand" value="understand" disabled></td>
                             <!-- <td><input type="checkbox" class="checkbox_other_language check-all" disabled></td> -->
                         </tr>
                     </tbody>
@@ -1045,6 +1045,7 @@
     <script src="/js/workExperience.js"></script>
     <script src="/js/skillsAcquired.js"></script>
     <script src="/js/footer.js"></script>
+    <script src="/js/check_form_exist.js"></script>
     <!-- jQuery plugins floating label -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.placeholder.label.js"></script>
