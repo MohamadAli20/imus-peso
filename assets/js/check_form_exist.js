@@ -5,6 +5,8 @@ $(document).ready(function(){
         type: "GET",
         success: function(response){
             if(response.length !== 0){
+                $("#btnApplication").trigger("click");
+
                 $("label").css("margin-top", "-12px");
                 // Personal information
                 $("input[name='surname']").val(response[0].surname);
@@ -498,10 +500,18 @@ $(document).ready(function(){
 
     $(".btn-update").click(function(e){
         e.preventDefault();
-        
-        // Send the data to the database
+        // console.log(finalInformation);
+        let category = ['personalInformation', 'jobPreference', 'languageDialectProficiency', 'educationalBackground', 'techicalVocationalTraining', 'eligibilityProfessionalLicense', 'workExperience', 'otherSkills'];
+        for(let i = 0; i < document.querySelectorAll("form").length - 2; i++){
+            let form = document.querySelectorAll("form")[i];
+            let formData = $(form).serializeArray();
+
+            finalInformation[category[i]] = formData;
+        }
+        // console.log(finalInformation)
+
         $.ajax({
-            url: "/addInformation",
+            url: "/updateInformation",
             type: "POST",
             contentType : "application/json",
             data: JSON.stringify(finalInformation),

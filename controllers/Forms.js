@@ -12,6 +12,14 @@ class Forms{
             }
         })
     }
+    update(req, res){
+        console.log(req.body);
+        modelForm.update(req.body, (error) => {
+            if(error){
+                console.error(error);
+            }
+        })
+    }
     check_form(req, res){
         const id = req.params.id;
         model.get_application_by_user_id(id, (error, row) => {

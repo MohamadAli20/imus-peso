@@ -126,7 +126,7 @@ let addToObject = (formData) => {
 let isEmptyField = undefined;
 let checkInputField = (form) => {
     let formData = $(form).serializeArray();
-    console.log(formData);
+    // console.log(formData);
     $(".custom-message").remove();
 
     for(let i = 0; i < formData.length; i++){
