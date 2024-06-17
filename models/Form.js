@@ -5,6 +5,21 @@ class Form{
     constructor(){
         this.connection = mysql.createConnection(config);
     }
+    /* Get notification by id */
+    select_notification_by_id(id, callback){
+        this.connection.query(
+            'SELECT * FROM notifications WHERE user_id = ? ORDER BY created_at DESC',
+            [ id ],
+            (error, row) => {
+                if(error){
+                    callback(error, null);
+                }
+                if(row){
+                    callback(null, row);
+                }
+            },
+        )
+    }
     /* Insert information to the database */
     insert(info, callback){
         console.log(info)

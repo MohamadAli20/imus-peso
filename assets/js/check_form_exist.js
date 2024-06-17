@@ -487,6 +487,7 @@ $(document).ready(function(){
 
                 // Authorize
                 $(".certify-authorize").prop("checked", true);
+                
                 // $(".certification-authorization div div div label").css("margin-top", "0px");
                 document.querySelector(".btn-submit").style.setProperty("display", "none", "important");
 
@@ -500,30 +501,55 @@ $(document).ready(function(){
 
     $(".btn-update").click(function(e){
         e.preventDefault();
-        // console.log(finalInformation);
-        let category = ['personalInformation', 'jobPreference', 'languageDialectProficiency', 'educationalBackground', 'techicalVocationalTraining', 'eligibilityProfessionalLicense', 'workExperience', 'otherSkills'];
-        for(let i = 0; i < document.querySelectorAll("form").length - 2; i++){
-            let form = document.querySelectorAll("form")[i];
-            let formData = $(form).serializeArray();
-
-            finalInformation[category[i]] = formData;
-        }
-        // console.log(finalInformation)
-
-        $.ajax({
-            url: "/updateInformation",
-            type: "POST",
-            contentType : "application/json",
-            data: JSON.stringify(finalInformation),
-            success: function(response){
-                console.log(response);
-            },
-            error: function(error){
-                console.error(error);
+        let isChecked = true;
+        let certifyAuthorize = document.querySelectorAll(".certify-authorize")
+        for(let i = 0; i < certifyAuthorize.length; i++){
+            let checkbox = $(certifyAuthorize)[i];
+            if($(checkbox).prop("checked") === false){
+                isChecked = false;
             }
-        });
+        }
+        if(isChecked){
+            let category = ['personalInformation', 'jobPreference', 'languageDialectProficiency', 'educationalBackground', 'techicalVocationalTraining', 'eligibilityProfessionalLicense', 'workExperience', 'otherSkills'];
+            for(let i = 0; i < document.querySelectorAll("form").length - 2; i++){
+                let form = document.querySelectorAll("form")[i];
+                let formData = $(form).serializeArray();
 
-
+                finalInformation[category[i]] = formData;
+            }
+            // Update existing application
+            $.ajax({
+                url: "/updateInformation",
+                type: "POST",
+                contentType : "application/json",
+                data: JSON.stringify(finalInformation),
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(error){
+                    console.error(error);
+                }
+            });
+            $("#btnUpdateApplication").trigger("click");
+        }
+        else{
+            let p = document.createElement('p');
+            p.className = "alert alert-danger col-lg-5 col-md-5 col-sm-6 col-12 custom-message"
+            p.style.color = 'red';
+            p.style.margin = "0 auto";
+            p.innerText = 'Please check all the boxes.';
+            $("#message").append(p);
+            $("#message").css({
+                "display": "block",
+                "position": "absolute",
+                "top": "0",
+                "z-index": "5"
+            });
+            
+            setTimeout(function(){
+                $(".custom-message").remove();
+            }, 1000);
+        }
     });
                 
 

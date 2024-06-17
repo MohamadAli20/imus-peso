@@ -13,6 +13,7 @@ Router.post('/create', UserController.create);
 Router.post('/authenticate', UserController.authenticate);
 Router.post('/addInformation', FormController.add);
 Router.post('/updateInformation', FormController.update);
+Router.get('/notification/:id', FormController.get_notification)
 Router.get('/peso', UserController.peso);
 Router.get('/about', UserController.about);
 

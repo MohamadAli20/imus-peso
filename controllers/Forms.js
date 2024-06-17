@@ -17,6 +17,20 @@ class Forms{
         modelForm.update(req.body, (error) => {
             if(error){
                 console.error(error);
+                res.status(500).json({"success": false, "message": "An error occurred while updating the record."});
+            }
+        });
+    }
+    get_notification(req, res){
+        const id = req.params.id;
+        // console.log(id);
+        modelForm.select_notification_by_id(id, (error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                console.log(row);
+                res.json(row);
             }
         })
     }
