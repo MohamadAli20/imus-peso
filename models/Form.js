@@ -34,10 +34,61 @@ class Form{
             },
         )
     }
+    update_application_status_by_id(info, callback){
+        console.log(info.newStatus);
+        // { id: '4', newStatus: 'on-process' }
 
+        const date = new Date();
+        const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+        // console.log(`UPDATE applications SET status = ${info.newStatus}, updated_at = ${today} WHERE user_id = ${info.id}`)
+        this.connection.query(
+            'UPDATE applications SET status = ?, updated_at = ? WHERE id = ?',
+            [
+                info.newStatus,
+                today,
+                info.id
+            ],
+            (error) => {
+                if (error) {
+                    console.error(error);
+                    callback(error);
+                    return;
+                }
+            }
+        )
+
+        this.connection.query(
+            'SELECT username FROM users WHERE id = ?',
+            [
+                info.userId
+            ],
+            (error, row) => {
+                if(row){
+                    let username = row[0].username
+                    // insert activity to the notification
+                    this.connection.query(
+                        'INSERT INTO notifications(user_id, description, created_at) VALUES(?,?,?)',
+                        [
+                            info.userId,
+                            `${username}'s application status is ${info.newStatus}`,
+                            today
+                        ],
+                        (error) => {
+                            console.error(error);
+                            callback(error);
+                            return;
+                        }
+                    )
+                }
+            }
+        )
+
+        
+    }
     /* Insert information to the database */
     insert(info, callback){
-        console.log(info)
+        // console.log(info)
         const date = new Date();
         const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
@@ -203,6 +254,20 @@ class Form{
                 info.id,
                 info.otherSkills[0].value, // skills
                 today // created_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        )
+        // insert to the application table
+        this.connection.query(
+            'INSERT INTO applications(user_id, status, created_at)',
+            [
+                info.id,
+                'pending',
+                today
             ],
             (error) => {
                 console.error(error);

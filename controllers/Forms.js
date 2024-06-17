@@ -12,12 +12,19 @@ class Forms{
             }
         })
     }
+    // Update application information
     update(req, res){
-        console.log(req.body);
         modelForm.update(req.body, (error) => {
             if(error){
                 console.error(error);
                 res.status(500).json({"success": false, "message": "An error occurred while updating the record."});
+            }
+        });
+    }
+    update_application_status(req, res){
+        modelForm.update_application_status_by_id(req.body, (error) => {
+            if(error){
+                console.error(error);
             }
         });
     }
@@ -29,7 +36,7 @@ class Forms{
                 console.error(error);
             }
             if(row){
-                console.log(row);
+                // console.log(row);
                 res.json(row);
             }
         })
@@ -40,7 +47,7 @@ class Forms{
                 console.error(error);
             }
             if(row){
-                console.log(row);
+                // console.log(row);
                 res.json(row);
             }
         })

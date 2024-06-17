@@ -103,7 +103,9 @@ class User{
             page = (page - 1) * 9;
         }
         this.connection.query(
-            `SELECT * FROM personal_information ORDER BY created_at DESC LIMIT 9 OFFSET ${page} `,
+            `SELECT personal_information.*, applications.status FROM personal_information 
+            LEFT JOIN applications ON personal_information.id = applications.id
+            ORDER BY personal_information.created_at DESC LIMIT 9 OFFSET ${page} `,
             (error, row) => {
                 if(error){
                     console.error(error);
@@ -111,6 +113,7 @@ class User{
                     return;
                 }
                 if(row){
+
                     callback(null, row);
                 }
             }
@@ -135,7 +138,9 @@ class User{
         if(name !== ""){
             const searchTerm = name + '%';
             this.connection.query(
-                "SELECT * FROM personal_information WHERE surname LIKE ? OR firstname LIKE ?",
+                `SELECT personal_information.*, applications.status FROM personal_information 
+                LEFT JOIN applications ON personal_information.id = applications.id
+                WHERE surname LIKE ? OR firstname LIKE ?`,
                 [searchTerm, searchTerm],
                 (error, row) => {
                     if(error){

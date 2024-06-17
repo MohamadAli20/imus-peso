@@ -1,0 +1,14 @@
+.notification-container{
+    position: absolute;
+    top: 10px;
+    left: 350px;
+    width: 50%;
+    height: 90vh;
+    z-index: 5;
+    background-color: #F3F4F8;
+    overflow: auto;
+    display: none;
+}
+.navbar{
+    display: none;
+}

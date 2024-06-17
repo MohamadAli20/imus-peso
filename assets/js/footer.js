@@ -101,6 +101,9 @@ $(document).ready(function(){
                 $(".custom-message").remove();
             }, 1000);
         }
+    });
+    $(".btn-exit").click(function(){
+        window.location.href = "/dashboard"
     })
     // document.onkeydown = function (e) {
     //     if(e.keyCode === 13){

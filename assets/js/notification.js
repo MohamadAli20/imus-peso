@@ -78,6 +78,7 @@ $(document).ready(function(){
     }
     getNotification();
     
+    let notificationTimeout; // Variable to store the timeout ID
     let showNotif = false;
     $(".notif-logo").click(function(){
         if(!showNotif){
@@ -90,6 +91,27 @@ $(document).ready(function(){
             showNotif = false;
         }
     });
+
+    // Function to hide notification after 5 seconds
+    function hideNotification() {
+        notificationTimeout = setTimeout(function() {
+            $(".notification-container").fadeOut(); // You can use fadeOut() for a smoother hide effect
+            showNotif = false;
+        }, 5000);
+    }
+
+    // Call hideNotification function initially
+    hideNotification();
+
+    // Check if cursor is hovering over .notification-container
+    $(".notification-container").hover(
+        function() {
+            clearTimeout(notificationTimeout); // Cancel timeout if hovering
+        },
+        function() {
+            hideNotification(); // Restart timeout when not hovering
+        }
+    );
 
     
 })

@@ -164,6 +164,9 @@ body{
 .notification-container{
     overflow: auto;
 }
+.div-notif{
+    cursor: pointer;
+}
 .div-notif:hover{
     background-color: rgb(5, 55, 116);
     color: white;

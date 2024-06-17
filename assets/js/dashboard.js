@@ -1,5 +1,23 @@
 $(document).ready(function(){
+	// Update status
+	$("select[name='status-application']").change(function(){
+		alert("ddf")
+		const appId = $(this).parent().parent().find("input[name='applicationId']").val();
+		const userId = $(this).parent().parent().find("input[name='user_id']").val();
+		const newApplicationStatus = $(this).val();
 
+		$.ajax({
+			url: "/update_application_status",
+			type: "POST",
+			data: { id: appId, newStatus: newApplicationStatus, userId: userId},
+			success: function(response){
+				console.log(response);
+			},
+			error: function(error){
+				console.error(error);
+			}
+		});
+	})
 	/* Display the result every time the inputs search is changed */
 	/* To be fix: Use session to use one controller for default and search application by name */
 	$(".search").on("input", function(){
@@ -16,13 +34,18 @@ $(document).ready(function(){
 					for(let i = 0; i < response.length; i++){
 						/* container*/
 						let container = document.createElement("div");
-						container.className = "row py-2 application";
+						container.className = "row py-2 application d-flex justify-content-center align-items-center";
 						{/* <input value="<%=row[i].id%>" type="hidden" name="applicationId"></input> */}
 
 						let idInput = document.createElement("input");
 						idInput.setAttribute("name", "applicationId");
 						idInput.setAttribute("value", response[i].id);
 						idInput.setAttribute("type", "hidden");
+
+						let userIdInput = document.createElement("input");
+						userIdInput.setAttribute("name", "user_id");
+						userIdInput.setAttribute("value", response[i].user_id);
+						userIdInput.setAttribute("type", "hidden");
 
 						let divName = document.createElement("div");
 						divName.className = "col-lg-3 col-md-3 col-sm-3 col-4";
@@ -33,19 +56,59 @@ $(document).ready(function(){
 						divEmail.textContent = response[i].email;
 
 						let divDate = document.createElement("div");
-						divDate.className = "col-lg-3 col-md-3 col-sm-3 col-4";
-
+						divDate.className = "col-lg-2 col-md-3 col-sm-3 col-4";
 						let createdAt = new Date(response[i].created_at); 
 						let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 						let monthName = months[createdAt.getMonth()]; // Get the month name from the array
 						let date = createdAt.getDate();
 						let year = createdAt.getFullYear();
 						let formattedDate = monthName + ' ' + date + ', ' + year;
-                    
 						divDate.textContent = formattedDate;
 
+						// Create the parent div
+						let divStatus = document.createElement("div");
+						divStatus.className = "col-lg-2 col-md-3 col-sm-3 col-4";
+
+						// Create the <select> element
+						let selectStatus = document.createElement("select");
+						selectStatus.className = "form-control";
+						selectStatus.setAttribute("name", "status-application");
+
+						// Create the options
+						let optionPending = document.createElement("option");
+						optionPending.value = "pending";
+						optionPending.textContent = "Pending";
+						if (response[i].status === "pending") {
+							optionPending.selected = true; // Set as selected if condition is met
+						}
+
+						let optionOnProcess = document.createElement("option");
+						optionOnProcess.value = "on-process";
+						optionOnProcess.textContent = "On-Process";
+						if (response[i].status === "on-process") {
+							optionOnProcess.selected = true; // Set as selected if condition is met
+						}
+
+						let optionRejected = document.createElement("option");
+						optionRejected.value = "rejected";
+						optionRejected.textContent = "Rejected";
+						if (response[i].status === "rejected") {
+							optionRejected.selected = true; // Set as selected if condition is met
+						}
+
+						let optionAccepted = document.createElement("option");
+						optionAccepted.value = "accepted";
+						optionAccepted.textContent = "Accepted";
+						if (response[i].status === "accepted") {
+							optionAccepted.selected = true; // Set as selected if condition is met
+						}
+						selectStatus.append(optionPending, optionOnProcess, optionRejected, optionAccepted);
+
+						divStatus.append(selectStatus);
+
+
 						let divAction = document.createElement("div");
-						divAction.className = "col-lg-3 col-md-3 col-sm-3 col-4 action";
+						divAction.className = "col-lg-2 col-md-3 col-sm-3 col-4 action";
 
 						let a = document.createElement("a");
 						a.setAttribute("href", "/view_application/"+response[i].id);
@@ -76,9 +139,11 @@ $(document).ready(function(){
 						divAction.append(downloadButton);
 						
 						container.append(idInput);
+						container.append(userIdInput);
 						container.append(divName);
 						container.append(divEmail);
 						container.append(divDate);
+						container.append(divStatus);
 						container.append(divAction);
 						
 						$(".content").append(container);
