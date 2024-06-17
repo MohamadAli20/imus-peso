@@ -137,6 +137,9 @@ input[type=date]:focus {
 #btnSuccess{
     display: none;
 }
+.btn-update{
+    display: none;
+}
 /* Message Modal */
 #message{
     width: 100%;

@@ -159,10 +159,11 @@ let checkInputField = (form) => {
     }
 }
 $(".side-bar-links a").click(function(){
-    $("label").css("margin-top", "-12px");
+    
     checkInputField($(`#page${currentPage}`));
 
     if(isEmptyField === false){
+        $("label").css("margin-top", "-12px");
         /* Remove the current form or page */
         $(`#page${currentPage}`).css("display", "none");
     
