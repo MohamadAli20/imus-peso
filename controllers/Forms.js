@@ -34,6 +34,17 @@ class Forms{
             }
         })
     }
+    get_all_notification(req, res){
+        modelForm.select_all_notification((error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                console.log(row);
+                res.json(row);
+            }
+        })
+    }
     check_form(req, res){
         const id = req.params.id;
         model.get_application_by_user_id(id, (error, row) => {

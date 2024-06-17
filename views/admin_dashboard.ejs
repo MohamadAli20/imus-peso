@@ -19,6 +19,7 @@
     <!-- <script src="/js/checkLocalStorage.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="/js/removeAccount.js"></script>
+    <script src="/js/notification.js"></script>
     </head>
 <body>
     <!-- Navigation -->
@@ -48,6 +49,9 @@
                     </li>
                 </ul>
             </div>
+            <div class="notif-logo">
+                <img src="/images/notification.svg" alt="Notification icon">
+            </div>
         </div>
     </nav>
     <main class="row mx-lg-5 pb-0 mt-5">
@@ -59,40 +63,48 @@
             <ul class="row my-2 p-0">
                 <li class="col-lg-3 col-md-3 col-sm-3 col-4">Name</li>
                 <li class="col-lg-3 col-md-3 col-sm-3 email">Email</li>
-                <li class="col-lg-3 col-md-3 col-sm-3 col-4">Date</li>
-                <li class="col-lg-3 col-md-3 col-sm-3 col-4">Action</li>
+                <li class="col-lg-2 col-md-3 col-sm-3 col-4">Date</li>
+                <li class="col-lg-2 col-md-3 col-sm-3 col-4">Status</li>
+                <li class="col-lg-2 col-md-3 col-sm-3 col-4">Action</li>
             </ul>
             <% for(let i = 0; i < row.length; i++){ %>
-            <div class="row py-2 application">
+            <div class="row py-2 application d-flex justify-content-center align-items-center">
                 <input value="<%=row[i].id%>" type="hidden" name="applicationId">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-4"><%= row[i].firstname + " " + row[i].surname %></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 email"><%= row[i].email %></div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-4">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-4">
                     <% 
-                      let createdAt = new Date(row[i].created_at); 
-                      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                      let monthName = months[createdAt.getMonth()]; // Get the month name from the array
-                      let date = createdAt.getDate();
-                      let year = createdAt.getFullYear();
-                      let hours = createdAt.getHours();
-                      let minutes = createdAt.getMinutes();
-                      let period = hours >= 12 ? 'PM' : 'AM';
-                      
-                      hours = hours % 12;
-                      hours = hours ? hours : 12; // The hour '0' should be '12'
-                      
-                      let formattedDate = monthName + ' ' + date + ', ' + year;
+                    let createdAt = new Date(row[i].created_at); 
+                    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    let monthName = months[createdAt.getMonth()]; // Get the month name from the array
+                    let date = createdAt.getDate();
+                    let year = createdAt.getFullYear();
+                    let hours = createdAt.getHours();
+                    let minutes = createdAt.getMinutes();
+                    let period = hours >= 12 ? 'PM' : 'AM';
+                    
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // The hour '0' should be '12'
+                    
+                    let formattedDate = monthName + ' ' + date + ', ' + year;
                     %>
                     <%= formattedDate %>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-4 action">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                    <select class="form-control" name="status-application">
+                        <option value="pending">Pending</option>
+                        <option value="on-process">On-Process</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="accepted">Accepted</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3 col-4 action">
                     <a href="/view_application/<%=row[i].id%>">
                         <img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
                     <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
                     <button type="submit">
                         <img class="download-icon" src="/images/download.svg" alt="Download icon">
                     </button>
-                    <!-- <input type="submit" target="_blank"></a> -->
                 </div>
             </div>
             <% } %>
@@ -170,6 +182,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Notification -->
+    <div class="notification-container container-fluid border p-0">
+        <h2 class="m-2">Notifications</h2>
     </div>
     <script>
         $(document).ready(function() {

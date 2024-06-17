@@ -20,6 +20,21 @@ class Form{
             },
         )
     }
+    /* Get all notification*/
+    select_all_notification(callback){
+        this.connection.query(
+            'SELECT * FROM notifications ORDER BY created_at DESC',
+            (error, row) => {
+                if(error){
+                    callback(error, null);
+                }
+                if(row){
+                    callback(null, row);
+                }
+            },
+        )
+    }
+
     /* Insert information to the database */
     insert(info, callback){
         console.log(info)
@@ -188,6 +203,21 @@ class Form{
                 info.id,
                 info.otherSkills[0].value, // skills
                 today // created_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        )
+
+        // insert activity to the notification
+        this.connection.query(
+            'INSERT INTO notifications(user_id, description, created_at) VALUES(?,?,?)',
+            [
+                info.id,
+                `${info.username} submitted application successfully.`,
+                today
             ],
             (error) => {
                 console.error(error);
@@ -377,6 +407,21 @@ class Form{
                 return;
             }
         );
+
+        // insert activity to the notification
+        this.connection.query(
+            'INSERT INTO notifications(user_id, description, created_at) VALUES(?,?,?)',
+            [
+                info.id,
+                `${info.username} updated application successfully.`,
+                today
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        )
     }
     
     get_all_male(callback){

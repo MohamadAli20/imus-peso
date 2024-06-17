@@ -1,4 +1,5 @@
 let userId = localStorage.getItem("userId");
+let nameUser = localStorage.getItem("username");
 
 let categories = [
     "personalInformation",
@@ -12,6 +13,7 @@ let categories = [
 ]
 let finalInformation = {
     id: userId,
+    username: nameUser,
     personalInformation: [],
     jobPreference: [],
     languageDialectProficiency: [],

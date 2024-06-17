@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/peso.css">
     <script src="/js/removeAccount.js"></script>
     <script src="/js/checkLocalStorage.js"></script>
+    <script src="/js/notification.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -50,6 +51,9 @@
                         <button id="navLoginBtn" type="button" class="btn bg-primary text-white mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
                     </li>
                 </ul>
+            </div>
+            <div class="notif-logo">
+                <img src="/images/notification.svg" alt="Notification icon">
             </div>
         </div>
     </nav>
@@ -109,6 +113,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Notification -->
+    <div class="notification-container container-fluid border p-0">
+        <h2 class="m-2">Notifications</h2>
     </div>
     <script>
         $(document).ready(function() {

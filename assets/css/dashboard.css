@@ -62,6 +62,11 @@ main{
             padding: 0;
             background-color: white;
         }
+        select:focus{
+            /* outline: 1px solid #90EE90; */
+            border: 1px solid #90EE90 !important;
+            box-shadow: none !important;
+        }
     footer{
         text-align: right;
         margin: 0;
