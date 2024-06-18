@@ -1,5 +1,26 @@
 const model = require("../models/User");
 const session = require('express-session');
+const path = require('path');
+const multer = require('multer');
+const fs = require('fs');
+
+// Ensure the uploads directory exists
+const dir = './uploads';
+if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+}
+
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 class Users{
     /* For user */
@@ -18,6 +39,69 @@ class Users{
     about(req, res){
         res.render("about");
     }
+    account_information(req, res){
+        res.render("account_information");
+    }
+    get_user_by_id(req, res){
+        let id = req.body.id;
+        model.select_user_by_id(id, (error, result) => {
+            if(error){
+                console.error(error);
+            }
+            if(result){
+                // console.log(result);
+                res.json(result);
+            }
+        })
+    }
+    upload_image(req, res, next){
+        const uploadSingle = upload.single('image');
+        
+        uploadSingle(req, res, function (err) {
+            if (err) {
+                return res.status(400).send('File upload failed.');
+            }
+            next();
+        });
+    }
+    update_user_by_id(req, res){
+        // Access form data
+
+        // console.log(req.body);
+        const id = req.body.id;
+        const username = req.body.username;
+        const surname = req.body.surname;
+        const firstname = req.body.firstname;
+        const email = req.body.email;
+        const phonenumber = req.body.phonenumber;
+        const birthdate = req.body.birthdate;
+        const civil_status = req.body.civil_status;
+
+        let filePath = req.file ? req.file.path : null;
+        let filename;
+        if(filePath){
+            filename = filePath.replace(/uploads\\/g, '');
+        }
+
+        let user = {
+            id: id,
+            username: username,
+            surname: surname,
+            firstname: firstname,
+            email: email,
+            phonenumber: phonenumber,
+            birthdate: birthdate,
+            civil_status: civil_status,
+            filename: filename
+        }
+
+        model.update_account_by_id(user, (error) => {
+            if(error){
+                console.error(error);
+            }
+        })
+    }   
+
     /* For admin*/
     admin_apply(req, res){
         res.render('admin_apply');

@@ -6,6 +6,48 @@ class User{
     constructor(){
         this.connection = mysql.createConnection(config);
     }
+    update_account_by_id(info, callback) {
+        // Initialize arrays for columns to update and corresponding values
+        let columns = [];
+        let params = [];
+    
+        // Define allowed fields for update
+        const allowedFields = ['username', 'firstname', 'lastname', 'email', 'phonenumber', 'birthdate', 'civil_status', 'image_path'];
+    
+        // Iterate over the allowed fields and add to query and params if provided in info
+        allowedFields.forEach(field => {
+            if (info[field] !== undefined && info[field] !== null && info[field] !== '') {
+                columns.push(`${field} = ?`);
+                params.push(info[field]);
+            }
+        });
+    
+        // Add the user ID to the parameters
+        params.push(info.id);
+    
+        // Construct the SQL query
+        let sql = `UPDATE users SET ${columns.join(', ')} WHERE id = ?`;
+    
+        // Execute the query
+        this.connection.query(sql, params, (error, results) => {
+            callback(error, results);
+        });
+    }    
+    select_user_by_id(id, callback){
+        // console.log(id);
+        this.connection.query(
+            "SELECT * FROM users WHERE id = ?",
+            [ id ],
+            (error, result) => {
+                if(error){
+                    callback(error, null);
+                }
+                if(result){
+                    callback(null, result);
+                }
+            }
+        )
+    }
     count_account(callback){
         this.connection.query(
             "SELECT COUNT(*) as total FROM users",

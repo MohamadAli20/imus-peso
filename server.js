@@ -5,16 +5,7 @@ const routes = require('./routes')
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
-
-const serverless = require("serverless-http");
-const router = express.Router();
-
-router.get("/", (req, res) => {
-    res.send("App is running..");
-});
-
-app.use("/.netlify/functions/app", router);
-module.exports.handler = serverless(app);
+const multer = require('multer');
 
 app.use(session({
     secret: 'keyboardkitteh',
@@ -24,8 +15,6 @@ app.use(session({
 }));
 
 app.use(bodyParser.urlencoded({extended: true}));
-
-// Use body-parser middleware to parse JSON data
 app.use(bodyParser.json());
 
 /*serve by templates*/
@@ -34,6 +23,8 @@ app.set('view engine', 'ejs');
 
 /*serve static files*/
 app.use(express.static("assets"));
+app.use(express.static("uploads"));
+
 
 /*for user*/
 app.use('/', routes);
@@ -44,6 +35,9 @@ app.use('/dashboard', routes);
 app.use('/admin_form', routes);
 app.use('/admin_apply', routes);
 app.use('/data_analytics', routes);
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(port, () => {
     console.log('http://localhost:3000');
