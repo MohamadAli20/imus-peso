@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/loginModal.css">
+    <link rel="stylesheet" href="/css/peso.css">
+    <link rel="stylesheet" href="/css/account_information.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/index.js"></script>
-    <link rel="stylesheet" href="/css/peso.css">
     <script src="/js/removeAccount.js"></script>
     <script src="/js/checkLocalStorage.js"></script>
     <script src="/js/notification.js"></script>
+    <script src="/js/account_setting.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -44,7 +46,7 @@
                         <a class="nav-link about-link" href="/about">About</a>
                     </li>
                     <li class="nav-item custom-nav-item d-flex justify-content-end align-items-center">
-                        <div class="" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                        <div class="" id="username">
                             <p class="m-0"></p>
                             <img class="" src="/images/arrow_down.svg" alt="Arrow down icon">
                         </div>
@@ -52,7 +54,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="notif-logo">
+            <div id="notifLogo" class="notif-logo">
                 <img src="/images/notification.svg" alt="Notification icon">
             </div>
         </div>
@@ -97,6 +99,12 @@
             </div>
         </div>
     </div>
+    <!-- Account modal -->
+    <div id="accountModal" class="account-info-container">
+        <h4 class="border m-0 p-2">Username</h4>
+        <div class="border m-0 p-2">Account Information</div>
+        <button class="m-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+    </div>
     <!-- Logout Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -115,7 +123,7 @@
         </div>
     </div>
     <!-- Notification -->
-    <div class="notification-container container-fluid border p-0">
+    <div id="notificationContainer" class="notification-container container-fluid border p-0">
         <h2 class="m-2">Notifications</h2>
     </div>
     <script>

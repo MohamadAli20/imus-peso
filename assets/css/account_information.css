@@ -1,0 +1,18 @@
+.account-info-container{
+    width: 200px;
+    /* height: 200px; */
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    z-index: 5;
+    background-color: #F3F4F8;
+    cursor: pointer;
+    display: none;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.account-info-container div:hover{
+    background-color: rgb(5, 55, 116);
+    color: white;
+}

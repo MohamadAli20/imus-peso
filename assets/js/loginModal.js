@@ -8,11 +8,13 @@ $(document).ready(() => {
         let username = localStorage.getItem('username');
         if(username){
             $("#username p").text(username);
+            $(".account-info-container h4").text(username);
             $("#username").css("display", "block")
             $("#navLoginBtn").css("display", "none");
         }
         else{
             $("#username p").text("");
+            $(".account-info-container h4").text("");
             $("#username").hide();
             $("#navLoginBtn").show();
         }

@@ -80,17 +80,31 @@ $(document).ready(function(){
     
     let notificationTimeout; // Variable to store the timeout ID
     let showNotif = false;
-    $(".notif-logo").click(function(){
+    $("#notifLogo").click(function(){
         if(!showNotif){
             getNotification();
             $(".notification-container").css("display", "block");
             showNotif = true;
+            $(".account-info-container").css("display", "none");
         }
         else if(showNotif){
             $(".notification-container").css("display", "none");
             showNotif = false;
         }
     });
+
+    let notifWhite = "/images/notification.svg"; 
+    let viewRed = "/images/notification_green.svg";
+    $("#notifLogo img").hover(
+        function(){
+            $(this).attr("src", viewRed);
+        },
+        function(){
+            $(this).attr("src", notifWhite);
+        }
+    );
+
+
 
     // Function to hide notification after 5 seconds
     function hideNotification() {
