@@ -7,32 +7,68 @@ class User{
         this.connection = mysql.createConnection(config);
     }
     update_account_by_id(info, callback) {
-        // Initialize arrays for columns to update and corresponding values
-        let columns = [];
-        let params = [];
+        console.log(info);
     
-        // Define allowed fields for update
-        const allowedFields = ['username', 'firstname', 'lastname', 'email', 'phonenumber', 'birthdate', 'civil_status', 'image_path'];
+        let query = 'UPDATE users SET ';
+        let values = [];
+        let setClauses = [];
     
-        // Iterate over the allowed fields and add to query and params if provided in info
-        allowedFields.forEach(field => {
-            if (info[field] !== undefined && info[field] !== null && info[field] !== '') {
-                columns.push(`${field} = ?`);
-                params.push(info[field]);
-            }
-        });
+        if (info.username !== null && info.username !== "") {
+            setClauses.push('username = ?');
+            values.push(info.username);
+        }
+        if (info.firstname !== null && info.firstname !== "") {
+            setClauses.push('firstname = ?');
+            values.push(info.firstname);
+        }
+        if (info.surname !== null && info.surname !== "") {
+            setClauses.push('lastname = ?');
+            values.push(info.surname);
+        }
+        if (info.email !== null && info.email !== "") {
+            setClauses.push('email = ?');
+            values.push(info.email);
+        }
+        if (info.phonenumber !== null && info.phonenumber !== "") {
+            setClauses.push('phonenumber = ?');
+            values.push(info.phonenumber);
+        }
+        if (info.birthdate !== null && info.birthdate !== "") {
+            setClauses.push('birthdate = ?');
+            values.push(info.birthdate);
+        }
+        if (info.civil_status !== null && info.civil_status !== "") {
+            setClauses.push('civil_status = ?');
+            values.push(info.civil_status);
+        }
+        if (info.filename !== null && info.filename !== undefined) {
+            setClauses.push('image_path = ?');
+            values.push(info.filename);
+        }
     
-        // Add the user ID to the parameters
-        params.push(info.id);
+        // Join all the SET clauses with commas
+        query += setClauses.join(', ');
     
-        // Construct the SQL query
-        let sql = `UPDATE users SET ${columns.join(', ')} WHERE id = ?`;
+        // Add the WHERE clause
+        query += ' WHERE id = ?';
+        values.push(info.id);
+    
+        console.log(query);
+        console.log(values);
     
         // Execute the query
-        this.connection.query(sql, params, (error, results) => {
-            callback(error, results);
-        });
-    }    
+        this.connection.query(
+            query,
+            values,
+            (error) => {
+                if (error) {
+                    return callback(error);
+                }
+                callback(null);
+            }
+        );
+    }
+      
     select_user_by_id(id, callback){
         // console.log(id);
         this.connection.query(

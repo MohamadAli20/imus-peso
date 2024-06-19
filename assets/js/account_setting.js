@@ -51,49 +51,52 @@ $(document).ready(function(){
             success: function(response){
                 let input;
                 let label;
-                if(response[0].username !== ""){
+                if(response[0].username !== null){
                     input = $("input[name='username']");
                     label = $(input).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(input).val(response[0].username);
                 }
-                if(response[0].firstname !== ""){
+                if(response[0].firstname !== null){
                     input = $("input[name='firstname']");
                     label = $(input).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(input).val(response[0].firstname);
                 }
-                if(response[0].lastname !== ""){
+                if(response[0].lastname !== null){
                     input = $("input[name='surname']");
                     label = $(input).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(input).val(response[0].lastname);
                 }
-                if(response[0].email !== ""){
+                if(response[0].email !== null){
                     input = $("input[name='email']");
                     label = $(input).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(input).val(response[0].email);
                 }
-                if(response[0].phonenumber !== ""){
+                if(response[0].phonenumber !== null){
                     input = $("input[name='phonenumber']");
                     label = $(input).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(input).val(response[0].phonenumber);
                 }
-                if(response[0].birthdate !== ""){
+                if(response[0].birthdate !== null){
                     input = $("input[name='birthdate']");
                     label = $(input).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(input).val(response[0].birthdate);
                     $(input).css("color", "black");
                 }
-                if(response[0].civil_status !== ""){
+                if(response[0].civil_status !== "null"){
                     select = $("select[name='civil_status']");
                     label = $(select).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(select).val(response[0].civil_status);
                     $(select).css("color", "black");
+                }
+                if(response[0].civil_status !== null){
+                    console.log($("select[name='civil_status']")[0])
                 }
                 // console.log(response[0].image_path)
                 if(response[0].image_path !== null){
@@ -107,13 +110,24 @@ $(document).ready(function(){
     }
     refreshProfileInfo();
 
+    $("input[name='image']").change(function(){
+        let imageFile = $("input[name='image']")[0].files[0]; // Get the first file (if multiple files are allowed)
+        // Display image preview
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            $('.image').attr('src', e.target.result);
+            $('.image').show();
+        }
+        reader.readAsDataURL(imageFile);
+    })
+
     $(".btn-edit").click(function(e){
         e.preventDefault();
 
         let disabledInput = document.querySelectorAll("input");
         let disabledSelect = document.querySelectorAll("select");
         $(disabledInput).css("border", "1px solid #5cb85c");
-        $(disabledSelect).css("border", "1px solid #5cb85c");        
+        $(disabledSelect).css("border", "1px solid #5cb85c");
         $(disabledInput).prop("disabled", false);
         $(disabledSelect).prop("disabled", false);
 
@@ -142,16 +156,8 @@ $(document).ready(function(){
         formData.append("birthdate", birthdate);
         formData.append("civil_status", civilStatus);
             
-
-        if($('input[type="file"]').val()){
-            console.log("There's image selected.");
-    
-            let imageFile = $("input[name='image']")[0].files[0]; // Get the first file (if multiple files are allowed)
-            formData.append("image", imageFile);
-        }
-        else{
-            // alert("No image is selected.");
-        }
+        let imageFile = $("input[name='image']")[0].files[0]; // Get the first file (if multiple files are allowed)
+        formData.append("image", imageFile);
         $.ajax({
             url: "/update_user_by_id",
             type: "POST",

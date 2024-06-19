@@ -42,9 +42,8 @@ input:disabled, select:disabled{
 }
 /* Change color for the placeholder option */
 .placeholder-option {
-    color: #999; /* Customize the color here */
+    color: #999; /* Customize the color here */   
 }
-
 /* Ensure the color remains when the option is selected */
 select:invalid .placeholder-option {
     color: #999;
