@@ -15,11 +15,19 @@
     <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/admin_form.css">
+    <link rel="stylesheet" href="/css/account_information.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/admin_control.js"></script>
     <script src="/js/notification.js"></script>
+    <script src="/js/account_setting.js"></script>
 </head>
 <body>
+    <div class="row">
+        <div class="d-flex justify-content-end align-items-center col-12 py-2" id="username">
+            <p class="m-0"></p>
+            <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
+        </div>
+    </div>
     <!-- Main -->
     <main class="row m-0">
         <!-- Sidebar link -->
@@ -1323,6 +1331,14 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Account modal -->
+    <div id="accountModal" class="account-info-container">
+        <h4 class="border m-0 p-2">Username</h4>
+        <a href="/account_admin">
+            <div class="border m-0 p-2">Account Information</div>
+        </a>
+        <button class="m-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
     </div>
     <!-- Login Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -42,6 +42,9 @@ class Users{
     account_information(req, res){
         res.render("account_information");
     }
+    admin_account_information(req, res){
+        res.render("admin_account_information");
+    }
     get_user_by_id(req, res){
         let id = req.body.id;
         model.select_user_by_id(id, (error, result) => {

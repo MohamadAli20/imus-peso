@@ -19,6 +19,7 @@ Router.post('/update_application_status', FormController.update_application_stat
 Router.get('/peso', UserController.peso);
 Router.get('/about', UserController.about);
 Router.get('/account', UserController.account_information);
+Router.get('/account_admin', UserController.admin_account_information)
 Router.post('/user_account', UserController.get_user_by_id);
 // Router.post("/update_user_by_id", UserController.update_user_by_id);
 Router.post('/update_user_by_id', UserController.upload_image, UserController.update_user_by_id);
