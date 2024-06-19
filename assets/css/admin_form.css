@@ -1,3 +1,6 @@
+label{
+    margin-top: -12px !important;
+}
 .form-section, .form-content{
     padding-top: 0;
 }

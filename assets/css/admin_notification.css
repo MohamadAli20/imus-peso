@@ -9,6 +9,9 @@
     overflow: auto;
     display: none;
 }
+#notifLogo{
+    margin-right: 15px;
+}
 .navbar{
     display: none;
 }
