@@ -18,3 +18,8 @@ label{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+#username{
+    position: fixed;
+    right: 20px;
+    z-index: 5;
+}

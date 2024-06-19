@@ -15,15 +15,24 @@
     <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/admin_form.css">
+    <link rel="stylesheet" href="/css/account_information.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/removeAccount.js"></script>
     <script src="/js/notification.js"></script>
+    <script src="/js/account_setting.js"></script>
 </head>
 <body>
     <!-- Warning message -->
     <div id="message" class="message alert m-auto row"></div>
+    <div class="row m-1">
+        <div class="d-flex justify-content-end align-items-center col-12 py-2" id="username">
+            <p class="m-0"></p>
+            <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
+        </div>
+    </div>
     <!-- Main -->
     <main class="row m-0" id="main-form">
+        
         <div class="col-md-3 col-sm-3 form-section px-0">
             <div class="side-bar-links">
                 <div class="d-flex justify-content-between align-items-center">
@@ -941,6 +950,14 @@
             <button id="btnSuccess" type="button" class="m-0 btn bg-primary text-white mx-1" data-bs-toggle="modal" data-bs-target="#successModal"></button>
         </form>
     </main>
+    <!-- Account modal -->
+    <div id="accountModal" class="account-info-container">
+        <h4 class="border m-0 p-2">Username</h4>
+        <a href="/account">
+            <div class="border m-0 p-2">Account Information</div>
+        </a>
+        <button class="m-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+    </div>
     <!-- Logout Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

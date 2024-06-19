@@ -34,3 +34,28 @@ body{
 .navbar, .notification-container{
     display: none;
 }
+
+/* Admin search engine */
+.header{
+    position: relative;
+    padding: 5px;
+    border: 1px solid #898989;
+    /* margin: 20px ; */
+    /* width: 35%; */
+    border-radius: 5px;
+    /* margin: 0 auto; */
+    /* margin-right: 0; */
+}
+    .header input{
+        border: none;
+        width: 93%;
+        display: inline-block;
+    }
+    .header img{
+        display: inline-block;
+        position: relative;
+        right: 0;
+    }
+    .header input:focus{
+        outline: none;
+    }

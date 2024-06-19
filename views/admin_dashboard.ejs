@@ -16,12 +16,14 @@
     <link rel="stylesheet" href="/css/admin_notification.css">
     <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/account_information.css">
     <script src="/js/loginModal.js"></script>
     <script src="/js/dashboard.js"></script>
     <!-- <script src="/js/checkLocalStorage.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="/js/removeAccount.js"></script>
     <script src="/js/notification.js"></script>
+    <script src="/js/account_setting.js"></script>
 </head>
 <body class="container-fluid">
     <div class="row">
@@ -44,20 +46,26 @@
                     <a class="nav-link" href="/admin_apply">Fill-Up Form</a>
                 </li>
                 <li class="nav-item p-3 custom-nav-item">
-                    <div class="d-flex" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <!-- <div class="d-flex" id="username">
                         <p class="m-0"></p>
                         <img class="" src="/images/arrow_down.svg" alt="Arrow down icon">
-                    </div>
+                    </div> -->
                     <button id="navLoginBtn" type="button" class="btn bg-primary text-white mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
                 </li>
             </ul>
         </div>
         <main class="col-lg-9">
             <div class="row-fluid">
-                <header class="col-lg-3 col-md-6 col-12">
-                    <input class="search" type="text" placeholder="Search">
-                    <img src="/images/search.svg" alt="">
-                </header>
+                <div class="row m-1">
+                    <div class="col-lg-6 header border">
+                        <input class="search" type="text" placeholder="Search">
+                        <img src="/images/search.svg" alt="">
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center col-6" id="username">
+                        <p class="m-0"></p>
+                        <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
+                    </div>
+                </div>
                 <div class="col-lg-12 text-center content px-2">
                     <ul class="row py-2">
                         <li class="col-lg-3 col-md-3 col-sm-3 col-4">Name</li>
@@ -135,7 +143,15 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+    <!-- Account modal -->
+    <div id="accountModal" class="account-info-container">
+        <h4 class="border m-0 p-2">Username</h4>
+        <a href="/account">
+            <div class="border m-0 p-2">Account Information</div>
+        </a>
+        <button class="m-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+    </div>
     <!-- Login Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div id="messageAlert row">
