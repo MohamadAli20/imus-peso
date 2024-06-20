@@ -263,7 +263,7 @@ class Form{
         )
         // insert to the application table
         this.connection.query(
-            'INSERT INTO applications(user_id, status, created_at)',
+            'INSERT INTO applications(user_id, status, created_at) VALUE(?,?,?)',
             [
                 info.id,
                 'pending',
