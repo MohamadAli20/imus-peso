@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	// Update status
 	$("select[name='status-application']").change(function(){
-		alert("ddf")
 		const appId = $(this).parent().parent().find("input[name='applicationId']").val();
 		const userId = $(this).parent().parent().find("input[name='user_id']").val();
 		const newApplicationStatus = $(this).val();
