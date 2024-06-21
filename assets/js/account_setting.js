@@ -100,7 +100,8 @@ $(document).ready(function(){
                 }
                 // console.log(response[0].image_path)
                 if(response[0].image_path !== null){
-                    $(".image").attr("src", "/"+response[0].image_path);
+                    console.log(response[0].image_path)
+                    $(".image").attr("src", response[0].image_path);
                 }
             },
             error: function(error){
@@ -135,7 +136,6 @@ $(document).ready(function(){
         $(".btn-account-save").prop("disabled", false);
     });
     $("#btn-save-account").click(function(e){
-        // Create a FormData object
         let formData = new FormData();
 
         let id = localStorage.getItem("userId");
@@ -155,9 +155,16 @@ $(document).ready(function(){
         formData.append("phonenumber", phonenumber);
         formData.append("birthdate", birthdate);
         formData.append("civil_status", civilStatus);
-            
-        let imageFile = $("input[name='image']")[0].files[0]; // Get the first file (if multiple files are allowed)
-        formData.append("image", imageFile);
+
+        let imageFile = $(".image").attr('src');
+        if(imageFile === "/images/default_profile.jpg"){
+            formData.append("image", imageFile);
+        }
+        else{
+            imageFile = $("input[name='image']")[0].files[0];
+            formData.append("image", imageFile);
+        }
+        
         $.ajax({
             url: "/update_user_by_id",
             type: "POST",
@@ -185,4 +192,22 @@ $(document).ready(function(){
         $(".btn-edit").prop("disabled", false);
         $(".btn-account-save").prop("disabled", false);
     });
+
+    let closeGray = "/images/close_gray.svg";
+    let closeWhite = "/images/close_white.svg";
+    $(".close_icon").hover(
+        function(){
+            $(this).attr('src', closeWhite);
+        },
+        function(){
+            $(this).attr('src', closeGray);
+        }
+    );
+
+    $(".close_icon").click(function(e){
+        e.preventDefault();
+        $(".image").attr('src', '/images/default_profile.jpg');
+        
+    });
+
 });

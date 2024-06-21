@@ -61,3 +61,13 @@ select:not(:invalid) {
 .submit-account{
     display: none;
 }
+.image-container{
+    position: relative;
+}
+    .close_icon{
+        position: absolute;
+        right: 0;
+    }
+    .close_icon:hover{
+        background-color: #5f6368;
+    }

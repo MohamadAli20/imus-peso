@@ -83,9 +83,11 @@ class Users{
         let filePath = req.file ? req.file.path : null;
         let filename;
         if(filePath){
-            filename = filePath.replace(/uploads\\/g, '');
+            filename = "/" + filePath.replace(/uploads\\/g, '');
         }
-
+        if(req.body.image === '/images/default_profile.jpg'){
+            filename = '/images/default_profile.jpg';
+        }
         let user = {
             id: id,
             username: username,
@@ -97,12 +99,11 @@ class Users{
             civil_status: civil_status,
             filename: filename
         }
-
         model.update_account_by_id(user, (error) => {
             if(error){
                 console.error(error);
             }
-        })
+        });
     }   
 
     /* For admin*/
