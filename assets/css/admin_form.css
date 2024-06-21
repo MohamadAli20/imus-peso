@@ -23,3 +23,9 @@ label{
     right: 20px;
     z-index: 5;
 }
+input:disabled, select:disabled {
+    /* Your styling rules for disabled input */
+    opacity: 0.6; /* Example: reduce opacity */
+    cursor: not-allowed; /* Example: change cursor to not-allowed */
+    /* Add any other styles you want for disabled state */
+}

@@ -80,7 +80,7 @@
             </div>
             <div class="row custom-form">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="date" name="birthdate" placeholder="Birthdate">
+                    <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" min="1960-01-01" max="2004-12-31">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="email" name="email" placeholder="Email">
@@ -383,15 +383,84 @@
                     <input type="hidden" name="occupation" value="{}">
                     <div class="mt-3">
                         <label>Occupation 1</label>
-                        <input class="form-control input_occupation preferred_occupation1" type="text">                        
+                        <!-- <input class="form-control input_occupation preferred_occupation1" type="text">                         -->
+                        <select class="form-control input_occupation preferred_occupation1">
+                            <option value="" disabled selected>Select Occupation</option>
+                            <option value="service_crew">Service Crew</option>
+                            <option value="office_clerk">Office Clerk</option>
+                            <option value="production_worker">Production Worker</option>
+                            <option value="laborer">Laborer</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="utility_worker">Utility Worker</option>
+                            <option value="saleslady">Saleslady</option>
+                            <option value="call_center_agent">Call Center Agent</option>
+                            <option value="data_encoder">Data Encoder</option>
+                            <option value="sales_clerk">Sales Clerk</option>
+                            <option value="street_sweeper">Street Sweeper</option>
+                            <option value="administrative_clerk">Administrative Clerk</option>
+                            <option value="housekeeper_private">Housekeeper (Private)</option>
+                            <option value="bagger">Bagger</option>
+                            <option value="administration_service_aide">Administration Service Aide</option>
+                            <option value="administrative_assistant">Administrative Assistant</option>
+                            <option value="domestic_helper">Domestic Helper</option>
+                            <option value="customer_service_assistant">Customer Service Assistant</option>
+                            <option value="merchandiser">Merchandiser</option>
+                            <option value="construction_laborer">Construction Laborer</option>
+                        </select>
                     </div>
                     <div class="mt-3">
                         <label>Occupation 2</label>
-                        <input class="form-control input_occupation preferred_occupation2" type="text">                        
+                        <!-- <input class="form-control input_occupation preferred_occupation2" type="text">                         -->
+                        <select class="form-control input_occupation preferred_occupation2">
+                            <option value="" disabled selected>Select Occupation</option>
+                            <option value="service_crew">Service Crew</option>
+                            <option value="office_clerk">Office Clerk</option>
+                            <option value="production_worker">Production Worker</option>
+                            <option value="laborer">Laborer</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="utility_worker">Utility Worker</option>
+                            <option value="saleslady">Saleslady</option>
+                            <option value="call_center_agent">Call Center Agent</option>
+                            <option value="data_encoder">Data Encoder</option>
+                            <option value="sales_clerk">Sales Clerk</option>
+                            <option value="street_sweeper">Street Sweeper</option>
+                            <option value="administrative_clerk">Administrative Clerk</option>
+                            <option value="housekeeper_private">Housekeeper (Private)</option>
+                            <option value="bagger">Bagger</option>
+                            <option value="administration_service_aide">Administration Service Aide</option>
+                            <option value="administrative_assistant">Administrative Assistant</option>
+                            <option value="domestic_helper">Domestic Helper</option>
+                            <option value="customer_service_assistant">Customer Service Assistant</option>
+                            <option value="merchandiser">Merchandiser</option>
+                            <option value="construction_laborer">Construction Laborer</option>
+                        </select>
                     </div>
                     <div class="mt-3">
                         <label>Occupation 3</label>
-                        <input class="form-control input_occupation preferred_occupation3" type="text">                        
+                        <!-- <input class="form-control input_occupation preferred_occupation3" type="text">                         -->
+                        <select class="form-control input_occupation preferred_occupation3">
+                            <option value="" disabled selected>Select Occupation</option>
+                            <option value="service_crew">Service Crew</option>
+                            <option value="office_clerk">Office Clerk</option>
+                            <option value="production_worker">Production Worker</option>
+                            <option value="laborer">Laborer</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="utility_worker">Utility Worker</option>
+                            <option value="saleslady">Saleslady</option>
+                            <option value="call_center_agent">Call Center Agent</option>
+                            <option value="data_encoder">Data Encoder</option>
+                            <option value="sales_clerk">Sales Clerk</option>
+                            <option value="street_sweeper">Street Sweeper</option>
+                            <option value="administrative_clerk">Administrative Clerk</option>
+                            <option value="housekeeper_private">Housekeeper (Private)</option>
+                            <option value="bagger">Bagger</option>
+                            <option value="administration_service_aide">Administration Service Aide</option>
+                            <option value="administrative_assistant">Administrative Assistant</option>
+                            <option value="domestic_helper">Domestic Helper</option>
+                            <option value="customer_service_assistant">Customer Service Assistant</option>
+                            <option value="merchandiser">Merchandiser</option>
+                            <option value="construction_laborer">Construction Laborer</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-7 pt-3">
@@ -482,7 +551,7 @@
                         </tr>
                         <tr>
                             <input type="hidden" name="other_language" value="{}">
-                            <th scope="row"><input class="form-control input_other_language" type="text" placeholder="Others"></th>
+                            <th><select class="form-control input_other_language"></select></th>
                             <td><input type="checkbox" class="checkbox_other_language" value="read" disabled></td>
                             <td><input type="checkbox" class="checkbox_other_language" value="write" disabled></td>
                             <td><input type="checkbox" class="checkbox_other_language" value="speak" disabled></td>

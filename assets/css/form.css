@@ -92,16 +92,22 @@ input[type=date] {
 input[type=date]:focus {
     color: black;
 }
+.row_other_language input[type='checkbox']{
+    margin-top: 13px;
+}
+.input_other_language option:selected{
+    color: orange !important;
+}
 /* Form section */
-/* .personal-information, */
+.personal-information,
 .job-preference,
 .language-dialect-proficiency,
 .educational-background,
 .technical-vocational-training,
 .eligibility-professional-license,
 .work-experience,
-.other-skills-acquired,
-.certification-authorization
+.other-skills-acquired
+/* .certification-authorization */
 {
     display: none;  
 }
@@ -154,4 +160,7 @@ input[type=date]:focus {
     position: fixed;
     top: 0;
     background-color: "red";
+}
+.btn-update{
+    display: none !important;
 }

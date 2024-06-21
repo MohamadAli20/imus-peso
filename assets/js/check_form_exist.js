@@ -5,6 +5,8 @@ $(document).ready(function(){
         type: "GET",
         success: function(response){
             if(response.length !== 0){
+
+
                 $("#btnApplication").trigger("click");
 
                 $("label").css("margin-top", "-12px");
@@ -36,7 +38,6 @@ $(document).ready(function(){
                     $("#widowed").prop("checked", true);
                 }
                 let disability = JSON.parse(response[0].disability);
-                // console.log(JSON.stringify(disability));
                 Object.keys(disability)
                     .forEach(key => {
                         if(disability[key] === "na"){ 
@@ -299,7 +300,9 @@ $(document).ready(function(){
                 // $(".checkbox_other_language").prop("disabled", false)
                 let otherLangObj = JSON.parse(response[0].other_language);
                 if(otherLangObj !== "{}"){
+
                     for(let key in otherLangObj){
+                        $(".checkbox_other_language").prop("disabled", false);
                         $(".input_other_language").val(key);
 
                         for(let key2 in (otherLangObj[key])){

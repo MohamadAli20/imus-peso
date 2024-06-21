@@ -50,22 +50,34 @@ $(document).ready(function(){
         nextPage();
     });
 
+    let isChecked = true;
+    $(".certify-authorize").change(function() {
+        let certifyAuthorize = document.querySelectorAll(".certify-authorize");
+        for (let i = 0; i < certifyAuthorize.length; i++) {
+            if (!certifyAuthorize[i].checked) {
+                isChecked = false;
+                break;
+            }
+            if (certifyAuthorize[i].checked) {
+                isChecked = true;
+            }
+        }
+
+        if(isChecked){
+            $(".btn-submit").prop("disabled", false);
+        }
+        else{
+            $(".btn-submit").prop("disabled", true);
+        }
+    });
+
     /*
     * Submit button
     * AJAX to information to the controller
     */
-
     $(".btn-submit").click(function(e){
         e.preventDefault();
 
-        let isChecked = true;
-        let certifyAuthorize = document.querySelectorAll(".certify-authorize")
-        for(let i = 0; i < certifyAuthorize.length; i++){
-            let checkbox = $(certifyAuthorize)[i];
-            if($(checkbox).prop("checked") === false){
-                isChecked = false;
-            }
-        }
         if(isChecked){
             // Send the data to the database
             $.ajax({

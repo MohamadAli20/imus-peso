@@ -49,6 +49,29 @@ $(".checkbox_language3").change(function(){
 * Other language 
 * Set the specified language as the key of the object 
 */
+
+$.ajax({
+    url: 'https://restcountries.com/v3.1/all',
+    method: 'GET',
+    success: function(data){
+        var languages = {};
+        data.forEach(function(country) {
+            if(country.languages){
+                Object.entries(country.languages).forEach(([code, name]) => {
+                    languages[code] = name;
+                });
+            }
+        });
+        languages = Object.values(languages).sort();
+        let selectTag = $('.input_other_language');
+        for(let key in languages){
+            $(selectTag).append($('<option>', { value: languages[key], text: languages[key] }));
+        }
+    },
+    error: function() {
+        alert('Error fetching language data');
+    }
+});
 let specifyLanguageObj = {};
 let inputSpecifyLanguage = $(".input_other_language");
 inputSpecifyLanguage.on("input", function(){

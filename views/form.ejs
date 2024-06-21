@@ -403,15 +403,84 @@
                     <input type="hidden" name="occupation" value="{}">
                     <div class="mt-3">
                         <label>Occupation 1</label>
-                        <input class="form-control input_occupation preferred_occupation1" type="text">                        
+                        <!-- <input class="form-control input_occupation preferred_occupation1" type="text">                         -->
+                        <select class="form-control input_occupation preferred_occupation1">
+                            <option value="" disabled selected>Select Occupation</option>
+                            <option value="service_crew">Service Crew</option>
+                            <option value="office_clerk">Office Clerk</option>
+                            <option value="production_worker">Production Worker</option>
+                            <option value="laborer">Laborer</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="utility_worker">Utility Worker</option>
+                            <option value="saleslady">Saleslady</option>
+                            <option value="call_center_agent">Call Center Agent</option>
+                            <option value="data_encoder">Data Encoder</option>
+                            <option value="sales_clerk">Sales Clerk</option>
+                            <option value="street_sweeper">Street Sweeper</option>
+                            <option value="administrative_clerk">Administrative Clerk</option>
+                            <option value="housekeeper_private">Housekeeper (Private)</option>
+                            <option value="bagger">Bagger</option>
+                            <option value="administration_service_aide">Administration Service Aide</option>
+                            <option value="administrative_assistant">Administrative Assistant</option>
+                            <option value="domestic_helper">Domestic Helper</option>
+                            <option value="customer_service_assistant">Customer Service Assistant</option>
+                            <option value="merchandiser">Merchandiser</option>
+                            <option value="construction_laborer">Construction Laborer</option>
+                        </select>
                     </div>
                     <div class="mt-3">
                         <label>Occupation 2</label>
-                        <input class="form-control input_occupation preferred_occupation2" type="text">                        
+                        <!-- <input class="form-control input_occupation preferred_occupation2" type="text"> -->
+                        <select class="form-control input_occupation preferred_occupation2">
+                            <option value="" disabled selected>Select Occupation</option>
+                            <option value="service_crew">Service Crew</option>
+                            <option value="office_clerk">Office Clerk</option>
+                            <option value="production_worker">Production Worker</option>
+                            <option value="laborer">Laborer</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="utility_worker">Utility Worker</option>
+                            <option value="saleslady">Saleslady</option>
+                            <option value="call_center_agent">Call Center Agent</option>
+                            <option value="data_encoder">Data Encoder</option>
+                            <option value="sales_clerk">Sales Clerk</option>
+                            <option value="street_sweeper">Street Sweeper</option>
+                            <option value="administrative_clerk">Administrative Clerk</option>
+                            <option value="housekeeper_private">Housekeeper (Private)</option>
+                            <option value="bagger">Bagger</option>
+                            <option value="administration_service_aide">Administration Service Aide</option>
+                            <option value="administrative_assistant">Administrative Assistant</option>
+                            <option value="domestic_helper">Domestic Helper</option>
+                            <option value="customer_service_assistant">Customer Service Assistant</option>
+                            <option value="merchandiser">Merchandiser</option>
+                            <option value="construction_laborer">Construction Laborer</option>
+                        </select>                   
                     </div>
                     <div class="mt-3">
                         <label>Occupation 3</label>
-                        <input class="form-control input_occupation preferred_occupation3" type="text">                        
+                        <!-- <input class="form-control input_occupation preferred_occupation3" type="text"> -->
+                        <select class="form-control input_occupation preferred_occupation3">
+                            <option value="" disabled selected>Select Occupation</option>
+                            <option value="service_crew">Service Crew</option>
+                            <option value="office_clerk">Office Clerk</option>
+                            <option value="production_worker">Production Worker</option>
+                            <option value="laborer">Laborer</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="utility_worker">Utility Worker</option>
+                            <option value="saleslady">Saleslady</option>
+                            <option value="call_center_agent">Call Center Agent</option>
+                            <option value="data_encoder">Data Encoder</option>
+                            <option value="sales_clerk">Sales Clerk</option>
+                            <option value="street_sweeper">Street Sweeper</option>
+                            <option value="administrative_clerk">Administrative Clerk</option>
+                            <option value="housekeeper_private">Housekeeper (Private)</option>
+                            <option value="bagger">Bagger</option>
+                            <option value="administration_service_aide">Administration Service Aide</option>
+                            <option value="administrative_assistant">Administrative Assistant</option>
+                            <option value="domestic_helper">Domestic Helper</option>
+                            <option value="customer_service_assistant">Customer Service Assistant</option>
+                            <option value="merchandiser">Merchandiser</option>
+                            <option value="construction_laborer">Construction Laborer</option>
+                        </select>                        
                     </div>
                 </div>
                 <div class="col-lg-7 pt-3">
@@ -500,9 +569,10 @@
                             <td><input type="checkbox" class="checkbox_language3 mandarin_understand" value="understand"></td>
                             <!-- <td><input type="checkbox" class="check-all"></td> -->
                         </tr>
-                        <tr>
+                        <tr class="row_other_language">
                             <input type="hidden" name="other_language" value="{}">
-                            <th scope="row"><input class="form-control input_other_language" type="text"></th>
+                            <!-- <th scope="row"><input  type="text"></th> -->
+                            <th scope="row"><select class="form-control input_other_language"></select></th>
                             <td><input type="checkbox" class="checkbox_other_language other_language_read" value="read" disabled></td>
                             <td><input type="checkbox" class="checkbox_other_language other_language_write" value="write" disabled></td>
                             <td><input type="checkbox" class="checkbox_other_language other_language_speak" value="speak" disabled></td>
@@ -530,7 +600,7 @@
                         <input class="form-control border" name="elementary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="elementary_course" type="text" placeholder="Course">
+                        <input class="form-control" name="elementary_course" type="text" placeholder="Course" value="na" disabled>
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="elementary_year_graduated" type="text" placeholder="Year graduated">
@@ -555,7 +625,7 @@
                         <input class="form-control" name="secondary_school" type="text" placeholder="School">
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
-                        <input class="form-control" name="secondary_course" type="text" placeholder="Course">
+                        <input class="form-control" name="secondary_course" type="text" placeholder="Course" value="na" disabled>
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12 d-inline-block mt-3">
                         <input class="form-control" name="secondary_year_graduated" type="text" placeholder="Year graduated">
@@ -964,7 +1034,7 @@
             </div>
             <div class="text-end">
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
-                <button class="d-inline-block btn btn-primary my-3 btn-submit">Submit</button>
+                <button class="d-inline-block btn btn-primary my-3 btn-submit" disabled>Submit</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-update">Update</button>
             </div>
             <button id="btnSuccess" type="button" class="m-0 btn bg-primary text-white mx-1" data-bs-toggle="modal" data-bs-target="#successModal"></button>
