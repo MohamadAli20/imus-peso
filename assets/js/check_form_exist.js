@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     let id = localStorage.getItem("userId");
     $.ajax({
         url: "/check_form/"+id  ,
@@ -8,7 +9,7 @@ $(document).ready(function(){
                 $(".btn-update").css("display", "block !important");
                 $("#btnApplication").trigger("click");
 
-                $("label").css("margin-top", "-12px");
+                // $("label").css("margin-top", "-12px");
                 // Personal information
                 $("input[name='surname']").val(response[0].surname);
                 $("input[name='firstname']").val(response[0].firstname);
@@ -493,14 +494,26 @@ $(document).ready(function(){
                 // $(".certification-authorization div div div label").css("margin-top", "0px");
                 document.querySelector(".btn-submit").style.setProperty("display", "none", "important");
 
-
+                let inputTag = document.querySelectorAll("input");
+                for(let i = 0; i < inputTag.length;i++){
+                    let input = $(inputTag)[i];
+                    let value = $(input).val();
+                    if(value !== ""){
+                        let label = $(input).siblings()[0];
+                        $(label).css("margin-top", "-12px");
+                    }
+                    if(value === "na"){
+                        let label = $(input).siblings()[0];
+                        $(label).css("margin-top", "-12px");
+                    }
+                }
             }
         },
         error: function(error){
             console.error(error);
         }
     })
-
+                
     $(".btn-update").click(function(e){
         e.preventDefault();
         let isChecked = true;

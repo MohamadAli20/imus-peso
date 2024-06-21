@@ -127,6 +127,9 @@ let addToObject = (formData) => {
 */
 let isEmptyField = undefined;
 let checkInputField = (form) => {
+    $("input[name='elementary_course']").val("na");
+    $("input[name='secondary_course']").val("na");
+    
     let formData = $(form).serializeArray();
     // console.log(formData);
     $(".custom-message").remove();
@@ -165,7 +168,7 @@ $(".side-bar-links a").click(function(){
     checkInputField($(`#page${currentPage}`));
 
     if(isEmptyField === false){
-        $("label").css("margin-top", "-12px");
+        // $("label").css("margin-top", "-12px");
         /* Remove the current form or page */
         $(`#page${currentPage}`).css("display", "none");
     
