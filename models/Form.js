@@ -374,21 +374,21 @@ class Form{
             'UPDATE educational_background SET elementary_school = ?, elementary_course = ?, elementary_year_graduated = ?, if_elementary_undergraduate = ?, secondary_school = ?, secondary_course = ?, secondary_year_graduated = ?, if_secondary_undergraduate = ?, tertiary_school = ?, tertiary_course = ?, tertiary_year_graduated = ?, if_tertiary_undergraduate = ?, graduate_studies_school = ?, graduate_studies_course = ?, graduate_studies_year_attended = ?, if_graduate_studies_undergraduate = ?, updated_at = ? WHERE user_id = ?',
             [
                 info.educationalBackground[0].value, // elementary_school
-                info.educationalBackground[1].value, // elementary_course
-                info.educationalBackground[2].value, // elementary_year_graduated
-                info.educationalBackground[3].value, // if_elementary_undergraduate
-                info.educationalBackground[4].value, // secondary_school
-                info.educationalBackground[5].value, // secondary_course
-                info.educationalBackground[6].value, // secondary_year_graduated
-                info.educationalBackground[7].value, // if_secondary_undergraduate
-                info.educationalBackground[8].value, // tertiary_school
-                info.educationalBackground[9].value, // tertiary_course
-                info.educationalBackground[10].value, // tertiary_year_graduated
-                info.educationalBackground[11].value, // if_tertiary_undergraduate
-                info.educationalBackground[12].value, // graduate_studies_school
-                info.educationalBackground[13].value, // graduate_studies_course
-                info.educationalBackground[14].value, // graduate_studies_year_attended
-                info.educationalBackground[15].value, // if_graduate_studies_undergraduate
+                "na", // elementary_course
+                info.educationalBackground[1].value, // elementary_year_graduated
+                info.educationalBackground[2].value, // if_elementary_undergraduate
+                info.educationalBackground[3].value, // secondary_school
+                "na", // secondary_course
+                info.educationalBackground[4].value, // secondary_year_graduated
+                info.educationalBackground[5].value, // if_secondary_undergraduate
+                info.educationalBackground[6].value, // tertiary_school
+                info.educationalBackground[7].value, // tertiary_course
+                info.educationalBackground[8].value, // tertiary_year_graduated
+                info.educationalBackground[9].value, // if_tertiary_undergraduate
+                info.educationalBackground[10].value, // graduate_studies_school
+                info.educationalBackground[11].value, // graduate_studies_course
+                info.educationalBackground[12].value, // graduate_studies_year_attended
+                info.educationalBackground[13].value, // if_graduate_studies_undergraduate
                 today, // updated_at
                 info.id // user_id
             ],

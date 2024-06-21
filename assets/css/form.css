@@ -148,9 +148,6 @@ input[type=date]:focus {
 #btnUpdateApplication{
     display: none;
 }
-.btn-update{
-    display: none;
-}
 /* Message Modal */
 #message{
     width: 100%;
@@ -160,7 +157,4 @@ input[type=date]:focus {
     position: fixed;
     top: 0;
     background-color: "red";
-}
-.btn-update{
-    display: none !important;
 }

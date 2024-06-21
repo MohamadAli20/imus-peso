@@ -5,8 +5,7 @@ $(document).ready(function(){
         type: "GET",
         success: function(response){
             if(response.length !== 0){
-
-
+                $(".btn-update").css("display", "block !important");
                 $("#btnApplication").trigger("click");
 
                 $("label").css("margin-top", "-12px");

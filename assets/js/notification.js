@@ -2,6 +2,47 @@ $(document).ready(function(){
     
     let idUser = localStorage.getItem("userId");
     let isAdmin = localStorage.getItem("isAdmin");
+
+    let setTime = (response) => {
+        for(let i = 0; i < response.length; i++){
+            const givenDate = new Date(response[i].created_at);
+            const now = new Date();
+            const diffInMilliseconds = now - givenDate;
+
+            const seconds = Math.floor(diffInMilliseconds / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+            const weeks = Math.floor(days / 7);
+
+            let timeAgo;
+            if(weeks > 0){
+                timeAgo = weeks === 1 ? "1 week ago" : `${weeks} weeks ago`;
+            } 
+            else if(days > 0){
+                timeAgo = days === 1 ? "1 day ago" : `${days} days ago`;
+            }
+            else if (hours > 0){
+                timeAgo = hours === 1 ? "1 hour ago" : `${hours} hours ago`;
+            }
+            else if (minutes > 0){
+                timeAgo = minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
+            }
+            else{
+                timeAgo = seconds <= 10 ? "just now" : `${seconds} seconds ago`;
+            }
+
+            let div = document.createElement("div");
+            div.className = "p-2 border div-notif";
+            div.textContent = response[i].description;
+            let span = document.createElement('span');
+            span.textContent = timeAgo;
+            span.className = "d-block";
+            div.append(span);
+            $(".notification-container").append(div);
+        }
+    }
+
     let getNotification = () => {
         if(isAdmin == 0){
             $.ajax({
@@ -10,24 +51,7 @@ $(document).ready(function(){
                 success: function(response){
                     $(".div-notif").remove();
                     if(response.length !== 0){
-                        for(let i = 0; i < response.length; i++){
-                            // Parse the given date string into a Date object
-                            const givenDate = new Date(response[i].created_at);
-                            // Get the current date and time as a Date object
-                            const now = new Date();
-                            // Calculate the difference between the two dates in milliseconds
-                            const diffInMilliseconds = now - givenDate;
-                            // Convert the difference from milliseconds to hours
-                            const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
-                            let div = document.createElement("div");
-                            div.className = "p-2 border div-notif";
-                            div.textContent = response[i].description;
-                            let span = document.createElement('span');
-                            span.textContent = Math.round(diffInHours) + "hr/s ago";
-                            span.className = "d-block";
-                            div.append(span);
-                            $(".notification-container").append(div);
-                        }
+                        setTime(response);
                     }
                 },
                 error: function(error){
@@ -40,34 +64,9 @@ $(document).ready(function(){
                 url: "/all_notification/",
                 type: "GET",
                 success: function(response){
-                    console.log(response)
                     $(".div-notif").remove();
-                    // {id: 1, user_id: 2, description: 'Mohamad Ali successfully submitted application.', created_at: null, updated_at: null}
-                    // {id: 2, user_id: 2, description: 'Mohamad Ali application is on-process', created_at: null, updated_at: null}
-                    // console.log(response);
                     if(response.length !== 0){
-                        for(let i = 0; i < response.length; i++){
-                            // Parse the given date string into a Date object
-                            const givenDate = new Date(response[i].created_at);
-                            
-                            // Get the current date and time as a Date object
-                            const now = new Date();
-                            
-                            // Calculate the difference between the two dates in milliseconds
-                            const diffInMilliseconds = now - givenDate;
-                            
-                            // Convert the difference from milliseconds to hours
-                            const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
-                            
-                            let div = document.createElement("div");
-                            div.className = "p-2 border div-notif";
-                            div.textContent = response[i].description;
-                            let span = document.createElement('span');
-                            span.textContent = Math.round(diffInHours) + "hr/s ago";
-                            span.className = "d-block";
-                            div.append(span);
-                            $(".notification-container").append(div);
-                        }
+                        setTime(response);
                     }
                 },
                 error: function(error){
