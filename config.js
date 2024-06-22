@@ -13,5 +13,4 @@ const config = {
     database: 'peso_db'
 };
 
-
 module.exports = config; 

@@ -6,7 +6,7 @@ $(document).ready(function(){
         type: "GET",
         success: function(response){
             if(response.length !== 0){
-                $(".btn-update").css("display", "block !important");
+                // $(".btn-update").css("display", "block");
                 $("#btnApplication").trigger("click");
 
                 // $("label").css("margin-top", "-12px");
@@ -507,6 +507,9 @@ $(document).ready(function(){
                         $(label).css("margin-top", "-12px");
                     }
                 }
+            }
+            else{
+                document.querySelector(".btn-update").style.setProperty("display", "none", "important");
             }
         },
         error: function(error){
