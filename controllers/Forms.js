@@ -371,29 +371,29 @@ class Forms{
                 if(employment_status.hasOwnProperty("unemployed_type")){
                     content += `\nUnemployed type: ${employment_status["unemployed_type"]}`;
                 }
-                content += `\nAre you an OFW? ${((JSON.parse(is_ofw).is_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_ofw).is_ofw}` : "No"}`
+                // content += `\nAre you an OFW? ${((JSON.parse(is_ofw).is_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_ofw).is_ofw}` : "No"}`
 
-                let formerOfw = JSON.parse(is_former_ofw);
-                if(formerOfw.hasOwnProperty("country") && formerOfw.hasOwnProperty("month_year")){
-                    content += `\nAre you former OFW? Yes`
-                    content += `\nLatest country of deployment: ${formerOfw.country}`
-                    content += `\nMonth and year of return to Philippines: ${formerOfw.month_year}`
-                }
-                else{
-                    content += `\nAre you former OFW? ${((JSON.parse(is_former_ofw).is_former_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_former_ofw).is_former_ofw}` : "No"}`
-                }
-                let is4ps = JSON.parse(is_4ps_beneficiary);
-                content += `\nAre you a 4Ps beneficiary? ${is4ps.is_4ps_beneficiary.toLowerCase() === "no" ? "No" : "Yes\nHousehold ID No:" + is4ps.household_no}`;
+                // let formerOfw = JSON.parse(is_former_ofw);
+                // if(formerOfw.hasOwnProperty("country") && formerOfw.hasOwnProperty("month_year")){
+                //     content += `\nAre you former OFW? Yes`
+                //     content += `\nLatest country of deployment: ${formerOfw.country}`
+                //     content += `\nMonth and year of return to Philippines: ${formerOfw.month_year}`
+                // }
+                // else{
+                //     content += `\nAre you former OFW? ${((JSON.parse(is_former_ofw).is_former_ofw).toLowerCase() !== "no") ? `Yes\nCountry: ${JSON.parse(is_former_ofw).is_former_ofw}` : "No"}`
+                // }
+                // let is4ps = JSON.parse(is_4ps_beneficiary);
+                // content += `\nAre you a 4Ps beneficiary? ${is4ps.is_4ps_beneficiary.toLowerCase() === "no" ? "No" : "Yes\nHousehold ID No:" + is4ps.household_no}`;
                 
                 // JOB PREFERENCE
-                content += "\n--------------------------------------------------------------------------------------------------------------------------";
-                content += "\nJOB PREFERENCE";
+                // content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                // content += "\nJOB PREFERENCE";
 
-                content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation)}:`;
-                console.log((JSON.parse(preferred_occupation).type_preferred_occupation))
-                content += " " + Object.values(JSON.parse(occupation)).filter(value => value !== "").join(', ');
-                content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation)}:`;
-                content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
+                // content += `\n\n${(JSON.parse(preferred_occupation).type_preferred_occupation)}:`;
+                // console.log((JSON.parse(preferred_occupation).type_preferred_occupation))
+                // content += " " + Object.values(JSON.parse(occupation)).filter(value => value !== "").join(', ');
+                // content += `\n${(JSON.parse(preferred_work_occupation).type_work_occupation)}:`;
+                // content += " " + Object.values(JSON.parse(work_occupation)).filter(value => value !== "").join(', ');
                 
                 // LANGUAGE / DIALECT PROFICIENCY
                 content += "\n--------------------------------------------------------------------------------------------------------------------------";
@@ -468,69 +468,69 @@ class Forms{
                     content += `\nAwards: ${JSON.parse(if_graduate_studies_undergraduate).awards_received}`;
                 }
                 // TECHNICAL / VOCATIONAL AND OTHER TRAINING
-                content += "\n--------------------------------------------------------------------------------------------------------------------------";
-                if(JSON.parse(institution) !== '{}'){
-                    content += `\nTECHNICAL / VOCATIONAL AND OTHER TRAINING\n`;
-                    const courseEntries = Object.entries(JSON.parse(course));
-                    const institutionEntries = Object.entries(JSON.parse(institution));
-                    const durationFrom = Object.entries(JSON.parse(date_from));
-                    const durationTo = Object.entries(JSON.parse(date_to));
-                    const certificateEntries = Object.entries(JSON.parse(certificate));
+                // content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                // if(JSON.parse(institution) !== '{}'){
+                //     content += `\nTECHNICAL / VOCATIONAL AND OTHER TRAINING\n`;
+                //     const courseEntries = Object.entries(JSON.parse(course));
+                //     const institutionEntries = Object.entries(JSON.parse(institution));
+                //     const durationFrom = Object.entries(JSON.parse(date_from));
+                //     const durationTo = Object.entries(JSON.parse(date_to));
+                //     const certificateEntries = Object.entries(JSON.parse(certificate));
 
-                    content += `${institutionEntries.map(([instKey, instValue], index) => {
-                        let techVoc = "";
-                        const dateFromValue = durationFrom[index] ? durationFrom[index][1] : "";
-                        const dateToValue = durationTo[index] ? durationTo[index][1] : ""
-                        const courseValue = courseEntries[index] ? courseEntries[index][1] : "";
-                        const certificateValue = certificateEntries[index] ? certificateEntries[index][1] : "";
-                        if (instValue !== "" && dateFromValue !== "" && dateToValue !== "" && courseValue !== "" ) {
-                            techVoc += `\n${courseValue} ${instValue} - from ${dateFromValue} to ${dateToValue}`;
-                        }
-                        if(certificateValue !== "" && certificateValue.toLowerCase() !== "na" && certificateValue.toLowerCase() !== "n/a"){
-                            techVoc += `\nCerticate Received: ${certificateValue}`;
-                        }
-                        return techVoc;
-                    }).filter(value => value !== "").join('')}`;
-                }
-                if(JSON.parse(eligibility) !== '{}'){
-                    let count = 1;
-                    const eligibilityEntries = Object.entries(JSON.parse(eligibility));
-                    const ratingEntries = Object.entries(JSON.parse(rating));
-                    const dateExamEntries = Object.entries(JSON.parse(date_exam));
-                    content += `${eligibilityEntries.map(([instKey, instValue], index) => {
-                        let eligibilityContent = "";
-                        const ratingValue = ratingEntries[index] ? ratingEntries[index][1] : "";
-                        const dateExamValue = dateExamEntries[index] ? dateExamEntries[index][1] : "";
-                        if(count === 1 && instValue !== "" && ratingValue !== "" && dateExamValue !== ""){
-                            eligibilityContent += "\n--------------------------------------------------------------------------------------------------------------------------";
-                            eligibilityContent += `\nELIGIBILITY`;
-                            count++;
-                        }
-                        if (instValue !== "" && ratingValue !== "" && dateExamValue !== "") {
-                            eligibilityContent += `\nCivil Service: ${instValue}\nRating: ${ratingValue}\nDate of examination: ${dateExamValue}`;
-                        }
-                        return eligibilityContent;
-                    }).filter(value => value !== "").join('')}`;
-                }
-                if(JSON.parse(professional_license) !== '{}'){
-                    let count = 1;
-                    const professional_licenseEntries = Object.entries(JSON.parse(professional_license));
-                    const valid_untilEntries = Object.entries(JSON.parse(valid_until));
+                //     content += `${institutionEntries.map(([instKey, instValue], index) => {
+                //         let techVoc = "";
+                //         const dateFromValue = durationFrom[index] ? durationFrom[index][1] : "";
+                //         const dateToValue = durationTo[index] ? durationTo[index][1] : ""
+                //         const courseValue = courseEntries[index] ? courseEntries[index][1] : "";
+                //         const certificateValue = certificateEntries[index] ? certificateEntries[index][1] : "";
+                //         if (instValue !== "" && dateFromValue !== "" && dateToValue !== "" && courseValue !== "" ) {
+                //             techVoc += `\n${courseValue} ${instValue} - from ${dateFromValue} to ${dateToValue}`;
+                //         }
+                //         if(certificateValue !== "" && certificateValue.toLowerCase() !== "na" && certificateValue.toLowerCase() !== "n/a"){
+                //             techVoc += `\nCerticate Received: ${certificateValue}`;
+                //         }
+                //         return techVoc;
+                //     }).filter(value => value !== "").join('')}`;
+                // }
+                // if(JSON.parse(eligibility) !== '{}'){
+                //     let count = 1;
+                //     const eligibilityEntries = Object.entries(JSON.parse(eligibility));
+                //     const ratingEntries = Object.entries(JSON.parse(rating));
+                //     const dateExamEntries = Object.entries(JSON.parse(date_exam));
+                //     content += `${eligibilityEntries.map(([instKey, instValue], index) => {
+                //         let eligibilityContent = "";
+                //         const ratingValue = ratingEntries[index] ? ratingEntries[index][1] : "";
+                //         const dateExamValue = dateExamEntries[index] ? dateExamEntries[index][1] : "";
+                //         if(count === 1 && instValue !== "" && ratingValue !== "" && dateExamValue !== ""){
+                //             eligibilityContent += "\n--------------------------------------------------------------------------------------------------------------------------";
+                //             eligibilityContent += `\nELIGIBILITY`;
+                //             count++;
+                //         }
+                //         if (instValue !== "" && ratingValue !== "" && dateExamValue !== "") {
+                //             eligibilityContent += `\nCivil Service: ${instValue}\nRating: ${ratingValue}\nDate of examination: ${dateExamValue}`;
+                //         }
+                //         return eligibilityContent;
+                //     }).filter(value => value !== "").join('')}`;
+                // }
+                // if(JSON.parse(professional_license) !== '{}'){
+                //     let count = 1;
+                //     const professional_licenseEntries = Object.entries(JSON.parse(professional_license));
+                //     const valid_untilEntries = Object.entries(JSON.parse(valid_until));
 
-                    content += `${professional_licenseEntries.map(([instKey, instValue], index) => {
-                        let profLicenseContent = "";
-                        const valid_untilValue = valid_untilEntries[index] ? valid_untilEntries[index][1] : "";
-                        if(count === 1 && instValue !== "" && valid_untilValue !== ""){
-                            profLicenseContent += "\n--------------------------------------------------------------------------------------------------------------------------";
-                            profLicenseContent += `\nPROFESSIONAL LICENSE`;
-                            count++;
-                        }
-                        if (instValue !== "" && valid_untilValue !== "") {
-                            profLicenseContent += `\nProfessional license: ${instValue}\nValid until: ${valid_untilValue}`;
-                        }
-                        return profLicenseContent;
-                    }).filter(value => value !== "").join('')}`;
-                }
+                //     content += `${professional_licenseEntries.map(([instKey, instValue], index) => {
+                //         let profLicenseContent = "";
+                //         const valid_untilValue = valid_untilEntries[index] ? valid_untilEntries[index][1] : "";
+                //         if(count === 1 && instValue !== "" && valid_untilValue !== ""){
+                //             profLicenseContent += "\n--------------------------------------------------------------------------------------------------------------------------";
+                //             profLicenseContent += `\nPROFESSIONAL LICENSE`;
+                //             count++;
+                //         }
+                //         if (instValue !== "" && valid_untilValue !== "") {
+                //             profLicenseContent += `\nProfessional license: ${instValue}\nValid until: ${valid_untilValue}`;
+                //         }
+                //         return profLicenseContent;
+                //     }).filter(value => value !== "").join('')}`;
+                // }
                 
                 // WORK EXPERIENCE
                 if(JSON.parse(company_name) !== '{}'){
@@ -553,21 +553,21 @@ class Forms{
                             count++;
                         }
                         if (instValue !== "" && addressValue !== "" && positionValue !== "" && inclusiveValue !== "" && statusValue !== "") {
-                            workExpContent += `\n${positionValue} - ${inclusiveValue} ${statusValue}\n${instValue}, ${addressValue}`;
+                            // workExpContent += `\n${positionValue} - ${inclusiveValue} ${statusValue}\n${instValue}, ${addressValue}`;
+                            workExpContent += `\n ${instValue} - ${positionValue}`;
                         }
                         return workExpContent;
                     }).filter(value => value !== "").join('')}`;
                 }
-                console.log(content);
                 // OTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING
-                if(JSON.parse(skills) !== '{}'){
-                    content += "\n--------------------------------------------------------------------------------------------------------------------------";
-                    content += `\nOTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING\n`;
-                    content += `\n${Object.entries(JSON.parse(skills))
-                    .map(([key, value]) => "- " + value)
-                    .filter(value => value !== "")
-                    .join('\n')}`;
-                }
+                // if(JSON.parse(skills) !== '{}'){
+                //     content += "\n--------------------------------------------------------------------------------------------------------------------------";
+                //     content += `\nOTHER SKILLS ACQUIRED WITHOUT FORMAL TRAINING\n`;
+                //     content += `\n${Object.entries(JSON.parse(skills))
+                //     .map(([key, value]) => "- " + value)
+                //     .filter(value => value !== "")
+                //     .join('\n')}`;
+                // }
 
                 doc.fontSize(12).text(content, 50, 70);
 
