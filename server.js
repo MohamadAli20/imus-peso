@@ -24,7 +24,7 @@ app.set('view engine', 'ejs');
 /*serve static files*/
 app.use(express.static("assets"));
 app.use(express.static("uploads"));
-
+app.use(express.static("proofs"));
 
 /*for user*/
 app.use('/', routes);

@@ -2,9 +2,68 @@ const modelForm = require("../models/Form");
 const model = require("../models/User"); /* move the controller methods to Form model */
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
-const { jsPDF } = require("jspdf");
+const multer = require('multer');
+
+// Ensure the uploads directory exists
+const dir = './proofs';
+if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+}
+
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'proofs/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 class Forms{
+    upload_certificate(req, res){
+        // Use multer to handle the upload
+        upload.array('selected-certificate-file[]')(req, res, function (err) {
+            if(err){
+                return res.status(400).send('File upload failed.');
+            }
+            // At this point, req.files contains the uploaded files information
+            if(!req.files || req.files.length === 0){
+                return res.status(400).send('No files uploaded.');
+            }
+            // Log each uploaded file's path
+            let files = {};
+            let num = 0;
+            req.files.forEach(file => {
+                let filename = "/" + file.path.replace(/\\/g, '/'); // Normalize the file path
+                files[num] = filename;
+                num++;
+            });
+            res.json(files);
+        });
+    }
+    upload_eligibility_license(req, res){
+        upload.array('selected-eligibility-license-file[]')(req, res, function (err) {
+            if(err){
+                return res.status(400).send('File upload failed.');
+            }
+            // At this point, req.files contains the uploaded files information
+            if(!req.files || req.files.length === 0){
+                return res.status(400).send('No files uploaded.');
+            }
+            // Log each uploaded file's path
+            let files = {};
+            let num = 0;
+            req.files.forEach(file => {
+                let filename = "/" + file.path.replace(/\\/g, '/'); // Normalize the file path
+                files[num] = filename;
+                num++;
+            });
+            res.json(files);
+        });
+    }
     add(req, res){
         modelForm.insert(req.body, (error) => {
             if(error){

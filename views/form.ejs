@@ -100,7 +100,7 @@
             </div>
             <div class="row custom-form">
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
-                    <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" min="1960-01-01" max="2004-12-31">
+                    <input class="form-control" type="date" name="birthdate" placeholder="Select Birthdate" min="1960-01-01" max="2004-12-31">
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 mt-3">
                     <input class="form-control" type="email" name="email" placeholder="Email">
@@ -717,10 +717,10 @@
                     <input class="form-control courses course1" type="text" placeholder="1.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_from date_from1" type="date" placeholder="Date From">
+                    <input class="form-control d-inline-block date_from date_from1" type="date" placeholder="Select Start Date">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_to date_to1" type="date" placeholder="Date To">
+                    <input class="form-control d-inline-block date_to date_to1" type="date" placeholder="Select End Date">
                 </div>
                 <div class="col-lg-6 mt-3">
                     <input class="form-control institutions institution1" type="text" placeholder="Training Institution">
@@ -733,10 +733,10 @@
                     <input class="form-control courses course2" type="text" placeholder="2.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_from date_from2" type="date" placeholder="Date From">
+                    <input class="form-control d-inline-block date_from date_from2" type="date" placeholder="Select Start Date">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_to date_to2" type="date" placeholder="Date To">
+                    <input class="form-control d-inline-block date_to date_to2" type="date" placeholder="Select End Date">
                 </div>
                 <div class="col-lg-6 mt-3">
                     <input class="form-control institutions institution2" type="text" placeholder="Training Institution">
@@ -749,10 +749,10 @@
                     <input class="form-control courses course3" type="text" placeholder="3.Training/Vocational Course">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_from date_from3" type="date" placeholder="Date From">
+                    <input class="form-control d-inline-block date_from date_from3" type="date" placeholder="Select Start Date">
                 </div>
                 <div class="col-lg-3 col-6 mt-3">
-                    <input class="form-control d-inline-block date_to date_to3" type="date" placeholder="Date To">
+                    <input class="form-control d-inline-block date_to date_to3" type="date" placeholder="Select End Date">
                 </div>
                 <div class="col-lg-6 mt-3">
                     <input class="form-control institutions institution3" type="text" placeholder="Training Institution">
@@ -760,18 +760,19 @@
                 <div class="col-lg-6 mt-3">
                     <input class="form-control certificates certificate3" type="text" placeholder="Certificates Received">
                 </div>
+                <div class="col-lg-12 mt-2">
+                    Certificate File/s (Click to view):
+                </div>
             </div>
             <div class="text-end">
-                <button class="d-inline-block btn btn-primary my-3 btn-add-certificate">Add Certificate</button>
+                <button class="d-inline-block btn btn-primary my-3 btn-add-certificate">
+                    Add Proof Training  / Certificate
+                    <input type="file" name="selected-certificate-file" class="file-input" multiple>
+                </button>                
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-next">Next</button>
             </div>
         </form>
-        <div class="add-certificate-container">
-            <p>Sample information</p>
-            <input type="file">
-        </div>
-
         <!-- Eligibility/Professional License -->
         <form class="col-md-9 col-sm-9 col-12 form-content eligibility-professional-license" id="page6">
             <header>
@@ -810,16 +811,23 @@
                     <input class="form-control professional_license" type="text" placeholder="1.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6  mt-3">
-                    <input class="form-control valid_until" type="date" placeholder="Valid until">
+                    <input class="form-control valid_until" type="date" placeholder="Select Valid Until">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
                     <input class="form-control professional_license" type="text" placeholder="2.Professional License (PRC)">
                 </div>
                 <div class="col-lg-6 col-md-6 mt-3">
-                    <input class="form-control valid_until" type="date" placeholder="Valid until">
+                    <input class="form-control valid_until" type="date" placeholder="Select Valid Until">
+                </div>
+                <div class="col-lg-12 mt-2">
+                    Proof of Eligibility / License (Click to view):
                 </div>
             </div>
             <div class="text-end">
+                <button class="d-inline-block btn btn-primary my-3 btn-add-certificate">
+                    Add Proof Eligibility / License
+                    <input type="file" name="selected-eligibility-license-file" class="file-input" multiple>
+                </button> 
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-next">Next</button>
             </div>
@@ -1195,6 +1203,7 @@
 	<script type="text/javascript" src="/js/jquery.placeholder.label.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function (){
+            
 			$('input[placeholder]').placeholderLabel();
         })
 	</script>

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     /*
     * Previous button
     */
@@ -75,11 +76,64 @@ $(document).ready(function(){
     * Submit button
     * AJAX to information to the controller
     */
-    $(".btn-submit").click(function(e){
+    $(".btn-submit").click(async function(e){
         e.preventDefault();
-
+        
         if(isChecked){
+            let certificateFiles = $("input[name='selected-certificate-file']")[0].files;
+            let eligibilityLicenseFiles = $("input[name='selected-eligibility-license-file']")[0].files;
+            // Create a FormData object to hold the files
+            let certificateData = new FormData();
+            let eligibilityLicenseData = new FormData();
+            for(let i = 0; i < certificateFiles.length; i++){
+                certificateData.append('selected-certificate-file[]', certificateFiles[i]);
+            }
+            for(let i = 0; i < eligibilityLicenseFiles.length; i++){
+                eligibilityLicenseData.append('selected-eligibility-license-file[]', eligibilityLicenseFiles[i]);
+            }
             // Send the data to the database
+
+            if(certificateData){
+                try{
+                    await $.ajax({
+                        url: "/uploadCertificate",
+                        type: "POST",
+                        data: certificateData,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            finalInformation['certificateFile'] = response;
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log('Error uploading files: ' + textStatus);
+                        }
+                    });
+                }
+                catch(error){
+                    console.error(error);
+                }
+            }
+
+            try{
+                await $.ajax({
+                    url: "/uploadEligibilityLicense",
+                    type: "POST",
+                    data: eligibilityLicenseData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response);
+                        finalInformation['eligibilityLicenseFile'] = response;
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('Error uploading files: ' + textStatus);
+                    }
+                });
+            }
+            catch(error){
+                console.error(error);
+            }
+
             $.ajax({
                 url: "/addInformation",
                 type: "POST",

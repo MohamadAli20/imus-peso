@@ -158,3 +158,29 @@ input[type=date]:focus {
     top: 0;
     background-color: "red";
 }
+.file-input {
+    position: absolute;
+    left: -9999px;
+}
+.btn-add-certificate {
+    position: relative;
+    overflow: hidden;
+}
+.btn-add-certificate .file-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.close-certificate:hover{
+    background-color: red;
+}

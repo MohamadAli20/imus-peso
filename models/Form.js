@@ -35,9 +35,6 @@ class Form{
         )
     }
     update_application_status_by_id(info, callback){
-        console.log(info.newStatus);
-        // { id: '4', newStatus: 'on-process' }
-
         const date = new Date();
         const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
@@ -51,7 +48,7 @@ class Form{
             ],
             (error) => {
                 if (error) {
-                    console.error(error);
+                    // console.error(error);
                     callback(error);
                     return;
                 }
@@ -168,21 +165,21 @@ class Form{
             [
                 info.id,
                 info.educationalBackground[0].value, // elementary_school
-                info.educationalBackground[1].value, // elementary_course
-                info.educationalBackground[2].value, // elementary_year_graduated
-                info.educationalBackground[3].value, // if_elementary_undergraduate
-                info.educationalBackground[4].value, // secondary_school
-                info.educationalBackground[5].value, // secondary_school
-                info.educationalBackground[6].value, // secondary_year_graduated
-                info.educationalBackground[7].value, // if_secondary_undergraduate
-                info.educationalBackground[8].value, // tertiary_school
-                info.educationalBackground[9].value, // tertiary_school
-                info.educationalBackground[10].value, // tertiary_year_graduated
-                info.educationalBackground[11].value, // if_tertiary_undergraduate
-                info.educationalBackground[12].value, // graduate_studies_school
-                info.educationalBackground[13].value, // graduate_studies_school
-                info.educationalBackground[14].value, // graduate_studies_year_graduated
-                info.educationalBackground[15].value, // if_graduate_studies_undergraduate
+                "na", // elementary_course
+                info.educationalBackground[1].value, // elementary_year_graduated
+                info.educationalBackground[2].value, // if_elementary_undergraduate
+                info.educationalBackground[3].value, // secondary_school
+                "na",
+                info.educationalBackground[4].value, // secondary_year_graduated
+                info.educationalBackground[5].value, // if_secondary_undergraduate
+                info.educationalBackground[6].value, // tertiary_school
+                info.educationalBackground[7].value, // tertiary course
+                info.educationalBackground[8].value, // tertiary_year_graduated
+                info.educationalBackground[9].value, // if_tertiary_undergraduate
+                info.educationalBackground[10].value, // graduate_studies_school
+                info.educationalBackground[11].value, // graduate_studies_course
+                info.educationalBackground[12].value, // graduate_studies_year_graduated
+                info.educationalBackground[13].value, // if_graduate_studies_undergraduate
                 today // created_at
             ],
             (error) => {
@@ -261,6 +258,35 @@ class Form{
                 return;
             }
         )
+        // Certificate File
+        this.connection.query(
+            'INSERT INTO certificate_file(user_id, certificate_path, created_at) VALUES(?,?,?)',
+            [
+                info.id, // user_id
+                JSON.stringify(info.certificateFile),
+                today, // updated_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        );
+
+        this.connection.query(
+            'INSERT INTO eligibility_license_file(user_id, eligibility_license_path, created_at) VALUES(?,?,?)',
+            [
+                info.id, // user_id
+                JSON.stringify(info.eligibilityLicenseFile),
+                today // updated_at
+            ],
+            (error) => {
+                console.error(error);
+                callback(error);
+                return;
+            }
+        );
+
         // insert to the application table
         this.connection.query(
             'INSERT INTO applications(user_id, status, created_at) VALUE(?,?,?)',
@@ -292,7 +318,6 @@ class Form{
         )
     }
     update(info, callback) {
-        console.log(info)
         const date = new Date();
         const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     
@@ -473,6 +498,40 @@ class Form{
             }
         );
 
+        if(info.certificateFile !== undefined){
+            // Certificate File
+            this.connection.query(
+                'UPDATE certificate_file SET certificate_path = ?, updated_at = ? WHERE user_id = ?',
+                [
+                    JSON.stringify(info.certificateFile),
+                    today, // updated_at
+                    info.id // user_id
+                ],
+                (error) => {
+                    console.error(error);
+                    callback(error);
+                    return;
+                }
+            );
+        }
+
+        if(info.eligibilityLicenseFile !== undefined){
+
+            this.connection.query(
+                'UPDATE eligibility_license_file SET eligibility_license_path = ?, updated_at = ? WHERE user_id = ?',
+                [
+                    JSON.stringify(info.eligibilityLicenseFile),
+                    today, // updated_at
+                    info.id // user_id
+                ],
+                (error) => {
+                    console.error(error);
+                    callback(error);
+                    return;
+                }
+            );
+        }
+
         // insert activity to the notification
         this.connection.query(
             'INSERT INTO notifications(user_id, description, created_at) VALUES(?,?,?)',
@@ -488,7 +547,6 @@ class Form{
             }
         )
     }
-    
     get_all_male(callback){
         this.connection.query(
             "SELECT count(*) AS total FROM personal_information WHERE UPPER(gender) = UPPER(?)",

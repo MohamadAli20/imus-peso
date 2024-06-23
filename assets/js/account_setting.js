@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+    
     let show = false;
     $("#username").click(function(){
         if(!show){
@@ -12,20 +12,17 @@ $(document).ready(function(){
             show = false;
         }
     });
-
     // Get the modal
-    var modal = document.getElementById("accountModal");
-    var notificationContainer = document.getElementById("notificationContainer");
-
+    let modal = document.getElementById("accountModal");
+    let notificationContainer = document.getElementById("notificationContainer");
     // Get the trigger elements
-    var username = document.getElementById("username");
-    var notifLogo = document.getElementById("notifLogo");
-    var navLoginBtn = document.getElementById("navLoginBtn");
-
+    let username = document.getElementById("username");
+    let notifLogo = document.getElementById("notifLogo");
+    let navLoginBtn = document.getElementById("navLoginBtn");
     // Add a click event listener to the document
     document.addEventListener('click', function(event) {
         // Check if the click is outside the modal and the trigger elements
-        if (!modal.contains(event.target) && 
+        if(!modal.contains(event.target) && 
             !notificationContainer.contains(event.target) && 
             event.target !== username && 
             event.target !== navLoginBtn && 
@@ -100,7 +97,6 @@ $(document).ready(function(){
                 }
                 // console.log(response[0].image_path)
                 if(response[0].image_path !== null){
-                    console.log(response[0].image_path)
                     $(".image").attr("src", response[0].image_path);
                 }
             },
@@ -120,7 +116,7 @@ $(document).ready(function(){
             $('.image').show();
         }
         reader.readAsDataURL(imageFile);
-    })
+    });
 
     $(".btn-edit").click(function(e){
         e.preventDefault();

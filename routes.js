@@ -13,6 +13,8 @@ Router.post('/create', UserController.create);
 Router.post('/authenticate', UserController.authenticate);
 Router.post('/addInformation', FormController.add);
 Router.post('/updateInformation', FormController.update);
+Router.post('/uploadCertificate', FormController.upload_certificate);
+Router.post('/uploadEligibilityLicense', FormController.upload_eligibility_license);
 Router.get('/notification/:id', FormController.get_notification);
 Router.get('/all_notification', FormController.get_all_notification);
 Router.post('/update_application_status', FormController.update_application_status);
