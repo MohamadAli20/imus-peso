@@ -309,6 +309,46 @@ class User{
             }
         )
     }
+    select_all_application(callback){
+        const currentYear = new Date().getFullYear();
+        this.connection.query(
+            `SELECT 
+                MONTH(personal_information.created_at) AS month,
+                COUNT(DISTINCT personal_information.id) AS total_records,
+                SUM(CASE 
+                    WHEN JSON_EXTRACT(personal_information.employment_status, '$.employment_status') = 'unemployed' 
+                    THEN 1 
+                    ELSE 0 
+                END) AS total_unemployed,
+                SUM(CASE 
+                    WHEN JSON_EXTRACT(personal_information.employment_status, '$.employment_status') = 'employed' 
+                    THEN 1 
+                    ELSE 0 
+                END) AS total_employed
+            FROM personal_information
+            LEFT JOIN job_preference ON personal_information.id = job_preference.id
+            LEFT JOIN language_dialect_proficiency ON personal_information.id = language_dialect_proficiency.id
+            LEFT JOIN educational_background ON personal_information.id = educational_background.id
+            LEFT JOIN technical_vocational_training ON personal_information.id = technical_vocational_training.id
+            LEFT JOIN eligibility_professional_license ON personal_information.id = eligibility_professional_license.id 
+            LEFT JOIN work_experience ON personal_information.id = work_experience.id     
+            LEFT JOIN other_skills ON personal_information.id = other_skills.id     
+            LEFT JOIN certificate_file ON personal_information.id = certificate_file.id
+            LEFT JOIN eligibility_license_file ON personal_information.id = eligibility_license_file.id
+            WHERE YEAR(personal_information.created_at) = '2024'
+            GROUP BY MONTH(personal_information.created_at)
+            ORDER BY MONTH(personal_information.created_at);`,
+            [currentYear],
+            (error, row) => {
+                if(error){
+                    callback(error, null);
+                }
+                if(row){
+                    callback(null, row);
+                }
+            }
+        )
+    }
 }
 
 module.exports = new User();

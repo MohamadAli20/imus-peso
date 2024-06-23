@@ -87,6 +87,17 @@ class Forms{
             }
         });
     }
+    get_all_application(req, res){
+        model.select_all_application((error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                // console.log(row);
+                res.json(row);
+            }
+        })
+    }
     get_notification(req, res){
         const id = req.params.id;
         // console.log(id);
