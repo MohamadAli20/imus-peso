@@ -26,11 +26,9 @@ Router.post('/user_account', UserController.get_user_by_id);
 // Router.post("/update_user_by_id", UserController.update_user_by_id);
 Router.post('/update_user_by_id', UserController.upload_image, UserController.update_user_by_id);
 Router.get('/check_form/:id', FormController.check_form);
-
-/* For admin */
 Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
-
+Router.get('/report', UserController.report);
 Router.get('/view_application/:id', FormController.admin_form);
 Router.get('/admin_apply', UserController.admin_apply);
 Router.get('/data_analytics', UserController.data_analytics);

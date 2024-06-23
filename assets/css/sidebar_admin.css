@@ -33,7 +33,7 @@ body{
         padding: 0;
     }
     .profile-picture img{
-        width: 40%;
+        width: 25%;
     }
 .navbar, .notification-container{
     display: none;
