@@ -8,6 +8,7 @@ body{
     background: rgb(5, 55, 116);
     color: #F3F4F8;
     height: 100vh;
+    position: fixed;
 }
     .logo-title{
         text-decoration: none;
@@ -37,7 +38,10 @@ body{
 .navbar, .notification-container{
     display: none;
 }
-
+main{
+    position: absolute;
+    right: 0;
+}
 /* Admin search engine */
 .header{
     position: relative;
@@ -62,3 +66,13 @@ body{
     .header input:focus{
         outline: none;
     }
+#notifLogo{
+    cursor: pointer;
+}
+.div-notif{
+    cursor: pointer;
+}
+.div-notif:hover{
+    background-color: rgb(5, 55, 116);
+    color: white;
+}

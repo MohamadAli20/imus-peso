@@ -164,6 +164,7 @@ let checkInputField = (form) => {
     }
 }
 $(".side-bar-links a").click(function(){
+    alert("Nice")
     
     checkInputField($(`#page${currentPage}`));
 

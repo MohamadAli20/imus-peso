@@ -103,9 +103,6 @@ $(document).ready(function(){
         }
     );
 
-
-
-    // Function to hide notification after 5 seconds
     function hideNotification() {
         notificationTimeout = setTimeout(function() {
             $(".notification-container").fadeOut(); // You can use fadeOut() for a smoother hide effect
@@ -113,10 +110,6 @@ $(document).ready(function(){
         }, 5000);
     }
 
-    // Call hideNotification function initially
-    hideNotification();
-
-    // Check if cursor is hovering over .notification-container
     $(".notification-container").hover(
         function() {
             clearTimeout(notificationTimeout); // Cancel timeout if hovering
@@ -126,5 +119,17 @@ $(document).ready(function(){
         }
     );
 
+    $('#notifLogo').click(function(event) {
+        $('.notification-container').toggle();
+        event.stopPropagation();
+    });
+    hideNotification();
+
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.notification-container').length && 
+            !$(event.target).closest('#notifLogo').length) {
+            $('.notification-container').hide();
+        }
+    });
     
 })

@@ -33,7 +33,7 @@ $(document).ready(function(){
 					for(let i = 0; i < response.length; i++){
 						/* container*/
 						let container = document.createElement("div");
-						container.className = "row py-2 application d-flex justify-content-center align-items-center";
+						container.className = "row application d-flex justify-content-center align-items-center";
 						{/* <input value="<%=row[i].id%>" type="hidden" name="applicationId"></input> */}
 
 						let idInput = document.createElement("input");
@@ -47,7 +47,7 @@ $(document).ready(function(){
 						userIdInput.setAttribute("type", "hidden");
 
 						let divName = document.createElement("div");
-						divName.className = "col-lg-3 col-md-3 col-sm-3 col-4";
+						divName.className = "col-lg-3 col-md-3 col-sm-3 col-3";
 						divName.textContent = response[i].firstname + " " + response[i].surname;
 
 						let divEmail = document.createElement("div");
@@ -55,7 +55,7 @@ $(document).ready(function(){
 						divEmail.textContent = response[i].email;
 
 						let divDate = document.createElement("div");
-						divDate.className = "col-lg-2 col-md-3 col-sm-3 col-4";
+						divDate.className = "col-lg-2 col-md-2 col-sm-2 col-3";
 						let createdAt = new Date(response[i].created_at); 
 						let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 						let monthName = months[createdAt.getMonth()]; // Get the month name from the array
@@ -66,7 +66,7 @@ $(document).ready(function(){
 
 						// Create the parent div
 						let divStatus = document.createElement("div");
-						divStatus.className = "col-lg-2 col-md-3 col-sm-3 col-4";
+						divStatus.className = "col-lg-2 col-md-2 col-sm-2 col-3";
 
 						// Create the <select> element
 						let selectStatus = document.createElement("select");
@@ -107,7 +107,7 @@ $(document).ready(function(){
 
 
 						let divAction = document.createElement("div");
-						divAction.className = "col-lg-2 col-md-3 col-sm-3 col-4 action";
+						divAction.className = "col-lg-2 col-md-2 col-sm-2 col-3 action p-0";
 
 						let a = document.createElement("a");
 						a.setAttribute("href", "/view_application/"+response[i].id);
