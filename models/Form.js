@@ -257,14 +257,15 @@ class Form{
                 callback(error);
                 return;
             }
-        )
+        );
+
         // Certificate File
         this.connection.query(
             'INSERT INTO certificate_file(user_id, certificate_path, created_at) VALUES(?,?,?)',
             [
-                info.id, // user_id
+                info.id,
                 JSON.stringify(info.certificateFile),
-                today, // updated_at
+                today,
             ],
             (error) => {
                 console.error(error);
@@ -273,12 +274,13 @@ class Form{
             }
         );
 
+        // Eligibility and License File
         this.connection.query(
             'INSERT INTO eligibility_license_file(user_id, eligibility_license_path, created_at) VALUES(?,?,?)',
             [
-                info.id, // user_id
+                info.id,
                 JSON.stringify(info.eligibilityLicenseFile),
-                today // updated_at
+                today
             ],
             (error) => {
                 console.error(error);
