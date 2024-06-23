@@ -31,6 +31,9 @@ body{
     .side_bar ul li a{
         padding: 0;
     }
+    .profile-picture img{
+        width: 40%;
+    }
 .navbar, .notification-container{
     display: none;
 }

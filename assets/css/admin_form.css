@@ -29,3 +29,8 @@ input:disabled, select:disabled {
     cursor: not-allowed; /* Example: change cursor to not-allowed */
     /* Add any other styles you want for disabled state */
 }
+.certificate-container, .eligibility-license-container{
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+}

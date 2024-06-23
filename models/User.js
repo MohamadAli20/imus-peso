@@ -270,6 +270,8 @@ class User{
             LEFT JOIN eligibility_professional_license ON personal_information.id = eligibility_professional_license.id 
             LEFT JOIN work_experience ON personal_information.id = work_experience.id     
             LEFT JOIN other_skills ON personal_information.id = other_skills.id     
+            LEFT JOIN certificate_file ON personal_information.id = certificate_file.id
+            LEFT JOIN eligibility_license_file ON personal_information.id = eligibility_license_file.id
             WHERE personal_information.id = ?;`,
             [ id ],
             (error, row) => {

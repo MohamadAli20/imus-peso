@@ -53,6 +53,7 @@ $(document).ready(function(){
                     label = $(input).siblings()[0];
                     $(label).css("margin-top", "-12px");
                     $(input).val(response[0].username);
+                    $(".username").text(response[0].username);
                 }
                 if(response[0].firstname !== null){
                     input = $("input[name='firstname']");
@@ -98,6 +99,7 @@ $(document).ready(function(){
                 // console.log(response[0].image_path)
                 if(response[0].image_path !== null){
                     $(".image").attr("src", response[0].image_path);
+                    $(".profile-picture img").attr("src", response[0].image_path);
                 }
             },
             error: function(error){

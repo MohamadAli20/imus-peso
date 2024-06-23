@@ -407,7 +407,7 @@ $(document).ready(function(){
                             let a = document.createElement("a");
                             a.className = "px-3 py-2 border d-block certificate-container";
                             a.style.color = "black";
-                            a.style.borderRadius = "5px";
+                            a.style.borderRadius = "7px";
                             a.style.textDecoration = "none";
                             let relativePath = certificatePath[key].replace('proofs/', '');
                             a.textContent = relativePath.replace(/^[^-]*-/, '');;
@@ -512,7 +512,7 @@ $(document).ready(function(){
                             a.style.borderRadius = "5px";
                             a.style.textDecoration = "none";
                             let relativePath = eligibilityLicensePath[key].replace('proofs/', '');
-                            a.textContent = relativePath.replace(/^[^-]*-/, '');;
+                            a.textContent = relativePath.replace(/^[^-]*-/, '');
                             a.setAttribute('href', relativePath);
                             a.setAttribute('target', "_blank");
                             let closeIcon = document.createElement("img");

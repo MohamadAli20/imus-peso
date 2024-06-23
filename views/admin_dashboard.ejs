@@ -30,12 +30,21 @@
     <!-- Navigation -->
         <div class="side_bar col-lg-3 p-0">
             <div class="d-flex justify-content-between align-items-center">
-                <a class=" logo-title p-3" href="#">PESO IMUS</a>
-                <div id="notifLogo">
-                    <img src="/images/notification.svg" alt="Notification icon">
-                </div>
+                <a class=" logo-title p-3" href="#">Admin Panel</a>
             </div>
             <ul class="navbar-nav p-0">
+                <li class="nav-item p-3 profile-picture">
+                    <img src="/1719151011797-qrpasskey.PNG" alt="">
+                </li>
+                <li class="nav-item p-3">
+                    <p class="nav-link p-0 m-0 username"></p>
+                </li>
+                <li class="nav-item p-3">
+                    <a class="nav-link" href="/account_admin">Admin Information</a>
+                </li>
+                <li id="notifLogo" class="nav-item p-3 m-0">
+                    <a class="nav-link" href="#">Notification</a>
+                </li>
                 <li class="nav-item p-3 active">
                     <a class="nav-link" aria-current="page" href="/dashboard">Record</a>
                 </li>
@@ -44,6 +53,9 @@
                 </li>
                 <li class="nav-item p-3">
                     <a class="nav-link" href="/admin_apply">Fill-Up Form</a>
+                </li>
+                <li class="nav-item px-3 py-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
                 </li>
                 <li class="nav-item p-3 custom-nav-item">
                     <!-- <div class="d-flex" id="username">
@@ -61,26 +73,22 @@
                         <input class="search" type="text" placeholder="Search">
                         <img src="/images/search.svg" alt="">
                     </div>
-                    <div class="d-flex justify-content-end align-items-center col-6" id="username">
-                        <p class="m-0"></p>
-                        <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
-                    </div>
                 </div>
                 <div class="col-lg-12 text-center content px-2">
-                    <ul class="row py-2">
-                        <li class="col-lg-3 col-md-3 col-sm-3 col-4">Name</li>
+                    <ul class="row py-2 px-0">
+                        <li class="col-lg-3 col-md-3 col-sm-3 col-3">Name</li>
                         <li class="col-lg-3 col-md-3 col-sm-3 email">Email</li>
-                        <li class="col-lg-2 col-md-3 col-sm-3 col-4">Date</li>
-                        <li class="col-lg-2 col-md-3 col-sm-3 col-4">Status</li>
-                        <li class="col-lg-2 col-md-3 col-sm-3 col-4">Action</li>
+                        <li class="col-lg-2 col-md-2 col-sm-2 col-3">Date</li>
+                        <li class="col-lg-2 col-md-2 col-sm-2 col-3">Status</li>
+                        <li class="col-lg-2 col-md-2 col-sm-2 col-3">Action</li>
                     </ul>
                     <% for(let i = 0; i < row.length; i++){ %>
                     <div class="row application d-flex justify-content-center align-items-center">
                         <input value="<%=row[i].id%>" type="hidden" name="applicationId">
                         <input value="<%=row[i].user_id%>" type="hidden" name="user_id">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-4"><%= row[i].firstname + " " + row[i].surname %></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3"><%= row[i].firstname + " " + row[i].surname %></div>
                         <div class="col-lg-3 col-md-3 col-sm-3 email"><%= row[i].email %></div>
-                        <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-3">
                             <% 
                             let createdAt = new Date(row[i].created_at); 
                             let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -98,7 +106,7 @@
                             %>
                             <%= formattedDate %>
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3 col-4">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-3">
                             <select class="form-control" name="status-application">
                                 <option value="pending" <%= row[i].status === "pending" ? "selected" : "" %>>Pending</option>
                                 <option value="on-process" <%= row[i].status === "on-process" ? "selected" : "" %>>On-Process</option>
@@ -106,9 +114,9 @@
                                 <option value="accepted" <%= row[i].status === "accepted" ? "selected" : "" %>>Accepted</option>
                             </select>
                         </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3 col-4 action">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-3 action p-0">
                             <a href="/view_application/<%=row[i].id%>">
-                                <img class="viewIcon" src="/images/view_gray.svg" alt="View icon"></a>
+                                <img class="viewIcon " src="/images/view_gray.svg" alt="View icon"></a>
                             <img class="deleteIcon" src="/images/delete_gray.svg" alt="Delete icon" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             <button type="submit">
                                 <img class="download-icon" src="/images/download.svg" alt="Download icon">
@@ -150,7 +158,6 @@
         <a href="/account_admin">
             <div class="border m-0 p-2">Account Information</div>
         </a>
-        <button class="m-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
     </div>
     <!-- Login Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -30,12 +30,24 @@
         <!-- Navigation -->
         <div class="side_bar col-lg-3 p-0">
             <div class="d-flex justify-content-between align-items-center">
-                <a class=" logo-title p-3" href="#">PESO IMUS</a>
-                <div id="notifLogo">
+                <a class=" logo-title p-3" href="#">Admin Panel</a>
+                <!-- <div id="notifLogo">
                     <img src="/images/notification.svg" alt="Notification icon">
-                </div>
+                </div> -->
             </div>
             <ul class="navbar-nav p-0">
+                <li class="nav-item p-3 profile-picture">
+                    <img src="/images/default_profile.jpg" alt="Default profile picture">
+                </li>
+                <li class="nav-item p-3">
+                    <p class="nav-link p-0 m-0 username"></p>
+                </li>
+                <li class="nav-item p-3 active">
+                    <a class="nav-link" href="/account_admin">Admin Information</a>
+                </li>
+                <li id="notifLogo" class="nav-item p-3 m-0">
+                    <a class="nav-link" href="#">Notification</a>
+                </li>
                 <li class="nav-item p-3">
                     <a class="nav-link" href="/dashboard">Record</a>
                 </li>
@@ -44,6 +56,9 @@
                 </li>
                 <li class="nav-item p-3">
                     <a class="nav-link" href="/admin_apply">Fill-Up Form</a>
+                </li>
+                <li class="nav-item px-3 py-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
                 </li>
                 <li class="nav-item p-3 custom-nav-item">
                     <!-- <div class="d-flex" id="username">
@@ -55,10 +70,6 @@
             </ul>
         </div>
         <div class="col-lg-9">
-            <div class="d-flex justify-content-end align-items-center col-12 py-2" id="username">
-                <p class="m-0"></p>
-                <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
-            </div>
             <div id="accountForm" class="row container mt-5">
                 <div class="col-lg-3 image-container p-0">
                     <img class="close_icon" src="/images/close_gray.svg" alt="Close icon">

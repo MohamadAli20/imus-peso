@@ -22,12 +22,6 @@
     <script src="/js/account_setting.js"></script>
 </head>
 <body>
-    <div class="row">
-        <div class="d-flex justify-content-end align-items-center col-12 py-2" id="username">
-            <p class="m-0"></p>
-            <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
-        </div>
-    </div>
     <!-- Main -->
     <main class="row m-0">
         <!-- Sidebar link -->
@@ -1027,6 +1021,7 @@
                 let dateTo = JSON.parse(row[0].date_to);
                 let institution = JSON.parse(row[0].institution);
                 let award = JSON.parse(row[0].certificate);
+                let certificateProof = JSON.parse(row[0].certificate_path);
                 %>
                 <div>Technical/Vocational And Other Training</div>
                 <div class="col-lg-6 mt-3">
@@ -1076,6 +1071,13 @@
                 <div class="col-lg-6 mt-3">
                     <input value="<%= (award) ? award.certificate3 : '' %>" class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
+                <% for(let key in certificateProof){ 
+                let relativePath = certificateProof[key].replace('proofs/', '');
+                %>
+                <div class="col-lg-6 mt-3 d-block certificate-file-wrapper">
+                    <a class="px-3 py-2 border d-block certificate-container" href="<%= relativePath %>" target="_blank"><%= relativePath.replace(/^[^-]*-/, ''); %></a>
+                </div>
+                <% } %>
             </div>
             <div class="text-end">
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
@@ -1131,6 +1133,15 @@
                 <div class="col-lg-6 col-md-6 mt-3">
                     <input value="<%= (validUntil) ? validUntil.validUntil2 : '' %>" class="form-control valid_until" type="text" placeholder="Valid until">
                 </div>
+                <% 
+                let eligibilityLicenseProof = JSON.parse(row[0].eligibility_license_path);
+                for(let key in eligibilityLicenseProof){ 
+                    let relativePath = eligibilityLicenseProof[key].replace('proofs/', '');
+                    %>
+                    <div class="col-lg-6 mt-3 d-block eligibility-license-file-wrapper">
+                        <a class="px-3 py-2 border d-block eligibility-license-container" href="<%= relativePath %>" target="_blank"><%= relativePath.replace(/^[^-]*-/, ''); %></a>
+                    </div>
+                <% } %>
             </div>
             <div class="text-end">
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>

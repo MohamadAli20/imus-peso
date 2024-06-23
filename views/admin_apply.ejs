@@ -24,12 +24,6 @@
 <body>
     <!-- Warning message -->
     <div id="message" class="message alert m-auto row"></div>
-    <div class="row">
-        <div class="d-flex justify-content-end align-items-center col-12 py-2" id="username">
-            <p class="m-0"></p>
-            <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
-        </div>
-    </div>
     <!-- Main -->
     <main class="row m-0" id="main-form">
         <div class="col-md-3 col-sm-3 form-section px-0">
@@ -739,8 +733,15 @@
                 <div class="col-lg-6 mt-3">
                     <input class="form-control certificates" type="text" placeholder="Certificates Received">
                 </div>
+                <div class="col-lg-12 mt-2">
+                    Certificate File/s (Click to view):
+                </div>
             </div>
             <div class="text-end">
+                <button class="d-inline-block btn btn-primary my-3 btn-add-certificate">
+                    Add Proof Training  / Certificate
+                    <input type="file" name="selected-certificate-file" class="file-input" multiple>
+                </button> 
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-next">Next</button>
             </div>
@@ -791,8 +792,15 @@
                 <div class="col-lg-6 col-md-6 mt-3">
                     <input class="form-control valid_until" type="date" placeholder="Valid until">
                 </div>
+                <div class="col-lg-12 mt-2">
+                    Proof of Eligibility / License (Click to view):
+                </div>
             </div>
             <div class="text-end">
+                <button class="d-inline-block btn btn-primary my-3 btn-add-certificate">
+                    Add Proof Eligibility / License
+                    <input type="file" name="selected-eligibility-license-file" class="file-input" multiple>
+                </button> 
                 <button class="d-inline-block btn btn-primary my-3 btn-prev">Previous</button>
                 <button class="d-inline-block btn btn-primary my-3 btn-next">Next</button>
             </div>

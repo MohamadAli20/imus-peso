@@ -27,14 +27,26 @@
         <!-- Navigation -->
         <div class="side_bar col-lg-3 p-0">
             <div class="d-flex justify-content-between align-items-center">
-                <a class=" logo-title p-3" href="#">PESO IMUS</a>
-                <div id="notifLogo">
+                <a class=" logo-title p-3" href="#">Admin Panel</a>
+                <!-- <div id="notifLogo">
                     <img src="/images/notification.svg" alt="Notification icon">
-                </div>
+                </div> -->
             </div>
             <ul class="navbar-nav p-0">
+                <li class="nav-item p-3 profile-picture">
+                    <img src="/1719151011797-qrpasskey.PNG" alt="">
+                </li>
                 <li class="nav-item p-3">
-                    <a class="nav-link" aria-current="page" href="/dashboard">Record</a>
+                    <p class="nav-link p-0 m-0 username"></p>
+                </li>
+                <li class="nav-item p-3">
+                    <a class="nav-link" href="/account_admin">Admin Information</a>
+                </li>
+                <li id="notifLogo" class="nav-item p-3 m-0">
+                    <a class="nav-link" href="#">Notification</a>
+                </li>
+                <li class="nav-item p-3">
+                    <a class="nav-link" href="/dashboard">Record</a>
                 </li>
                 <li class="nav-item p-3 active">
                     <a class="nav-link" href="/data_analytics">Data Analytics</a>
@@ -42,8 +54,11 @@
                 <li class="nav-item p-3">
                     <a class="nav-link" href="/admin_apply">Fill-Up Form</a>
                 </li>
+                <li class="nav-item px-3 py-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+                </li>
                 <li class="nav-item p-3 custom-nav-item">
-                    <!-- <div class="d-flex" id="username" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <!-- <div class="d-flex" id="username">
                         <p class="m-0"></p>
                         <img class="" src="/images/arrow_down.svg" alt="Arrow down icon">
                     </div> -->
@@ -54,10 +69,10 @@
         <!-- Main -->   
         <main class="col-lg-9 border">
             <div class="row m-1">
-                <div class="d-flex justify-content-end align-items-center col-12 py-2" id="username">
+                <!-- <div class="d-flex justify-content-end align-items-center col-12 py-2" id="username">
                     <p class="m-0"></p>
                     <img class="" src="/images/arrow_down_black.svg" alt="Arrow down icon">
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-12 col-12">
                 <div id="pieGraph" style="height: 300px; width: 100%;"></div>
