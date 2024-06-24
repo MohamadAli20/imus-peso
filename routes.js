@@ -47,5 +47,6 @@ Router.get('/get_top_position', FormController.get_top_position);
 Router.get('/get_top_age', FormController.get_top_age);
 Router.get('/retrieve_by_id/:id', FormController.retrieve_application_by_id);
 Router.get('/download_form/:id', FormController.download_form);
+Router.get('/generate_report', FormController.download_report);
 
 module.exports = Router;

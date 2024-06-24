@@ -12,33 +12,6 @@ $(document).ready(function(){
             show = false;
         }
     });
-    // Get the modal
-    let modal = document.getElementById("accountModal");
-    let notificationContainer = document.getElementById("notification-container");
-    // Get the trigger elements
-    let username = document.getElementById("username");
-    let notifLogo = document.getElementById("notifLogo");
-    let navLoginBtn = document.getElementById("btn-logout");
-    // Add a click event listener to the document
-    document.addEventListener('click', function(event) {
-        // Check if the click is outside the modal and the trigger elements
-        // if(!modal.contains(event.target) && 
-        //     !notificationContainer.contains(event.target) && 
-        //     event.target !== username && 
-        //     event.target !== navLoginBtn && 
-        //     !username.contains(event.target) &&
-        //     !notifLogo.contains(event.target)) {
-        //     // Hide the modal
-        //     modal.style.display = "none";
-        //     // Hide the notification container
-        //     notificationContainer.style.display = "none";
-        // }
-        if(!notificationContainer){
-            notificationContainer.style.display = "none";
-
-        }
-    });
-
     $("input[type='date']").change(function() {
         $(this).css('color', 'black');
     });

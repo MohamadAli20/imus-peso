@@ -576,7 +576,6 @@ class Form{
             }
         );
     }
-    
     select_top_five_occupation(callback) {
         this.connection.query(
             `SELECT UPPER(occupation) AS occupation, COUNT(*) AS count
@@ -600,7 +599,6 @@ class Form{
             }
         );
     }
-
     select_top_five_location(callback) {
         this.connection.query(
             `SELECT UPPER(location) AS work_occupation, COUNT(*) AS count
@@ -682,8 +680,7 @@ class Form{
                 }
             }
         );
-    }
-     
+    } 
     select_top_position(callback){
         this.connection.query(
             `SELECT position, COUNT(position) AS count

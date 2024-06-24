@@ -310,10 +310,10 @@ class User{
         )
     }
     select_all_application(callback){
-        const currentYear = new Date().getFullYear();
         this.connection.query(
             `SELECT 
-                MONTH(personal_information.created_at) AS month,
+                DAY(personal_information.created_at) AS day,
+                YEAR(personal_information.created_at) AS year,
                 COUNT(DISTINCT personal_information.id) AS total_records,
                 SUM(CASE 
                     WHEN JSON_EXTRACT(personal_information.employment_status, '$.employment_status') = 'unemployed' 
@@ -335,10 +335,11 @@ class User{
             LEFT JOIN other_skills ON personal_information.id = other_skills.id     
             LEFT JOIN certificate_file ON personal_information.id = certificate_file.id
             LEFT JOIN eligibility_license_file ON personal_information.id = eligibility_license_file.id
-            WHERE YEAR(personal_information.created_at) = '2024'
-            GROUP BY MONTH(personal_information.created_at)
-            ORDER BY MONTH(personal_information.created_at);`,
-            [currentYear],
+            WHERE YEAR(personal_information.created_at) = YEAR(CURDATE())
+            AND MONTH(personal_information.created_at) = MONTH(CURDATE())
+            GROUP BY DAY(personal_information.created_at)
+            ORDER BY DAY(personal_information.created_at);
+            `,
             (error, row) => {
                 if(error){
                     callback(error, null);

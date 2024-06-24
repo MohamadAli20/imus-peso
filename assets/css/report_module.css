@@ -1,0 +1,8 @@
+.montly-report-container{
+    height: 83vh;
+    overflow: auto;
+    /* border: 1px solid black; */
+}
+.total-applicant-container{
+    font-weight: bold;
+}

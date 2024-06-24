@@ -108,7 +108,6 @@ class Users{
             }
         });
     }   
-
     /* For admin*/
     admin_apply(req, res){
         res.render('admin_apply');

@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="/css/sidebar_admin.css">
     <link rel="stylesheet" href="/css/admin_notification.css">
     <link rel="stylesheet" href="/css/loginModal.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/report_module.css">
     <link rel="stylesheet" href="/css/account_information.css">
     <script src="/js/loginModal.js"></script>
-    <script src="/js/dashboard.js"></script>
+    <script src="/js/report_module.js"></script>
+    <!-- <script src="/js/dashboard.js"></script> -->
     <!-- <script src="/js/checkLocalStorage.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="/js/removeAccount.js"></script>
@@ -69,8 +70,8 @@
         </div>
         <main class="col-lg-9 p-0">
             <div class="row m-0">
-                <div class="col-lg-6">
-                    <h3 class="mt-2">Monthly Report</h3>
+                <h3 class="mt-2">Monthly Report</h3>
+                <div class="col-lg-6 montly-report-container">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -80,85 +81,49 @@
                                 <th scope="col">Unemployed</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">January</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">February</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">March</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">April</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">May</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">June</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">July</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">August</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">September</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">October</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">November</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">December</th>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
+                        <tbody id="daysTableBody">
+                                <!-- Insert rows here -->
                         </tbody>
                     </table>
                 </div>
                 <div class="col-lg-6 border">
-                    Add graph here
+                    <div class="row my-2 mx-0 p-0">
+                        <!-- <label for="month" class="p-0">Select Month
+                            <select class="form-control" name="month" id="month">
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </label> -->
+                    </div>
+                    <div class="row my-2 mx-0 p-0">
+                        <!-- <label for="year" class="p-0">Select Year
+                            <select class="form-control" name="year" id="year">
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </label> -->
+                    </div>
+                    <div class="row my-3 mx-0 p-0">
+                        <a href="/generate_report" class="btn btn-primary" download="form.pdf">Generate Report</a>
+                    </div>
                 </div>
+            </div>
+            <div class="m-0 d-flex justify-content-center py-2 total-applicant-container">
+                <div class="">TOTAL APPLICANTS OF <span id="month"></span>: </div>
+                <div class="total-applicant-number"></div>
             </div>
         </main>
     </div>

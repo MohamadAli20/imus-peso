@@ -607,6 +607,115 @@ class Forms{
         })
         
     }
+    download_report(req, res){
+        model.select_all_application((error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                // [
+                //     { day: 23, year: 2024, total_records: 1, total_unemployed: 1, total_employed: 0 },
+                //     { day: 24, year: 2024, total_records: 1, total_unemployed: 0, total_employed: 1 }
+                //   ]
+                // Create a new PDF document
+                const doc = new PDFDocument();
+                const margin = 40;
+
+                let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"];
+                const todayFile = new Date();
+                const yearFile = todayFile.getFullYear();
+                const monthFile = todayFile.getMonth() + 1;
+                const dayFile = todayFile.getDate();
+
+                // Add border around content
+                const startX = margin;
+                const startY = margin;
+                const width = 530;
+                const borderHeight = 710;
+                doc.rect(startX, startY, width, borderHeight);
+                // Write content to PDF
+                doc.fontSize(18).text(`Monthly Report of ${months[monthFile - 1]} ${yearFile}`, 50, 50);
+
+                let header = "--------------------------------------------------------------------------------------------------------------------------";
+                doc.fontSize(12).text(header, 50, 70);
+
+                let monthHeader = "Month";
+                doc.fontSize(12).text(monthHeader, 90, 88);
+                let applicantHeader = "Applicant";
+                doc.fontSize(12).text(applicantHeader, 210, 88);
+                let employedHeader = "Employed";
+                doc.fontSize(12).text(employedHeader, 330, 88);
+                let unemployedHeader = "Unemployed";
+                doc.fontSize(12).text(unemployedHeader, 440, 88);
+                let belowLine = "--------------------------------------------------------------------------------------------------------------------------";
+                doc.fontSize(12).text(belowLine, 50, 105);
+
+                let today = new Date();
+                let currentYear = today.getFullYear();
+                let currentMonth = today.getMonth();
+
+                let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                let contentMargin = 115;
+
+                for(let day = 1; day <= daysInMonth; day++){
+                    let date = new Date(currentYear, currentMonth, day);
+                    let dateString = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+                    doc.fontSize(12).text(dateString, 87, contentMargin);
+                    contentMargin += 20;
+                }
+
+                contentMargin = 115;
+                
+                for(let dayNum = 1; dayNum <= daysInMonth; dayNum++){
+                    let applicantNum = 0;
+                    let employedNum = 0;
+                    let unemployedNum = 0;
+                    for(let i = 0; i < row.length; i++){
+                        if(row[i].day == dayNum){
+                            applicantNum = row[i].total_records;
+                            employedNum = row[i].total_employed;
+                            unemployedNum = row[i].total_unemployed;
+                        }
+                    }
+                    doc.fontSize(12).text(applicantNum, 230, contentMargin);
+                    doc.fontSize(12).text(employedNum, 355, contentMargin);
+                    doc.fontSize(12).text(unemployedNum, 470, contentMargin);
+                    contentMargin += 20;
+                }
+
+                // Second loop to align content based on row data (uncomment and adjust as needed)
+                // for(let i = 0; i < row.length; i++){
+                //     for(let dayNum = 1; dayNum <= daysInMonth; dayNum++){
+                //         let applicantText = 0;
+                //         if(row[i].day == dayNum){
+                //             applicantText = row[i].day;
+                //             // console.log(row[i].day, dayNum);
+                //         }
+                //         console.log(applicantText)
+                //         doc.fontSize(12).text(applicantText, 210, contentMargin);
+                //         contentMargin += 20;
+                //     }
+                // }
+
+                // Pad month and day with leading zeros if necessary
+                const formattedMonth = monthFile < 10 ? `0${monthFile}` : monthFile;
+                const formattedDay = dayFile < 10 ? `0${dayFile}` : dayFile;
+                const filename = `MonthlyReport-${yearFile}-${formattedMonth}-${formattedDay}.pdf`;
+
+                // Finalize the PDF
+                const buffers = [];
+                doc.on("data", buffers.push.bind(buffers));
+                doc.on("end", function() {
+                    const pdfData = Buffer.concat(buffers);
+                    res.setHeader("Content-Type", "application/pdf");
+                    res.setHeader("Content-Disposition", `attachment; filename=${filename}`);
+                    res.send(pdfData);
+                });
+                doc.end();
+            }
+        })
+        
+    }
 }
 
 module.exports = new Forms;
