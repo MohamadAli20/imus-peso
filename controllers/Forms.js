@@ -655,17 +655,15 @@ class Forms{
                 }
 
                 let daysInMonth = getDaysInMonth(currentYear, currentMonth);
-                let contentMargin = 115;
-
+                let contentMargin = 120;
                 for(let day = 1; day <= daysInMonth; day++){
                     let date = new Date(currentYear, currentMonth, day);
                     let dateString = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
                     doc.fontSize(12).text(dateString, 87, contentMargin);
-                    contentMargin += 20;
+                    contentMargin += 18;
                 }
 
-                contentMargin = 115;
-                
+                contentMargin = 120;
                 for(let dayNum = 1; dayNum <= daysInMonth; dayNum++){
                     let applicantNum = 0;
                     let employedNum = 0;
@@ -680,7 +678,8 @@ class Forms{
                     doc.fontSize(12).text(applicantNum, 230, contentMargin);
                     doc.fontSize(12).text(employedNum, 355, contentMargin);
                     doc.fontSize(12).text(unemployedNum, 470, contentMargin);
-                    contentMargin += 20;
+                    // console.log("Margin: ", contentMargin)
+                    contentMargin += 18;
                 }
 
                 // Pad month and day with leading zeros if necessary

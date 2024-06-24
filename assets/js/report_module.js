@@ -1,11 +1,10 @@
 $(document).ready(function(){
-
     let options = {
         title: {
-            text: "Desktop OS Market Share"
+            text: "Applicant By Month"
         },
         subtitles: [{
-            text: "As of November, 2017"
+            text: ""
         }],
             theme: "light2",
         animationEnabled: true,
@@ -16,7 +15,7 @@ $(document).ready(function(){
             showInLegend: "true",
             legendText: "{label}",
             indexLabelFontSize: 12,
-            indexLabel: "{label} - {y}%",
+            indexLabel: "{label} - {y}",
             dataPoints: []
         }]
     };
@@ -25,7 +24,7 @@ $(document).ready(function(){
     let currentYear = today.getFullYear();
     let currentMonth = today.getMonth();
     
-    function getDaysInMonth(year, month) {
+    let getDaysInMonth = (year, month) => {
         return new Date(year, month + 1, 0).getDate();
     }
 
@@ -97,8 +96,10 @@ $(document).ready(function(){
                     }
                 }
                 totalApplicant = totalEmployed + totalUnemployed;
-                let employedPercent = totalEmployed / totalApplicant * 100;
-                let unemployedPercent = totalUnemployed / totalApplicant * 100;
+                // let employedPercent = totalEmployed / totalApplicant * 100;
+                // let unemployedPercent = totalUnemployed / totalApplicant * 100;
+                let employedPercent = totalEmployed;
+                let unemployedPercent = totalUnemployed;
                 applicantArr.push({ y: employedPercent, label: 'Employed'});
                 applicantArr.push({ y: unemployedPercent, label: 'Unemployed' });
                 $("#chartContainer").CanvasJSChart(options);
@@ -107,7 +108,7 @@ $(document).ready(function(){
                 console.error(error);
             }
         });
-    }
+    };
     
     retrieveMonthlyReport(currentMonth, currentYear);
 
@@ -128,6 +129,10 @@ $(document).ready(function(){
     });
 
     $(".generate-report").click(function(e){
+        e.preventDefault();
+        // const month = parseInt($("select[name='month']").val());
+        // const year = parseInt($("select[name='year']").val());
+        // alert("Month: " + month + "\nYear: " + year);
         $.ajax({
             url: '/generate_report',
             type: 'GET',
@@ -136,6 +141,7 @@ $(document).ready(function(){
                 responseType: 'blob'
             },
             success: function(response) {
+                console.log(response);
                 const url = window.URL.createObjectURL(new Blob([response]));
                 const a = document.createElement('a');
                 a.href = url;
@@ -148,6 +154,6 @@ $(document).ready(function(){
                 console.error('Error: ' + textStatus, errorThrown);
             }
         });
-        e.preventDefault();
+        // e.preventDefault();
     });
 });
