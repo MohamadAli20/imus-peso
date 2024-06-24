@@ -309,7 +309,11 @@ class User{
             }
         )
     }
-    select_all_application(callback){
+    select_all_application(info, callback){
+        console.log("Model: ", info)
+        const year = this.connection.escape(parseInt(info.year)); // Example of simple escaping
+        const month = this.connection.escape(parseInt(info.month) + 1); // Example of simple escaping
+
         this.connection.query(
             `SELECT 
                 DAY(personal_information.created_at) AS day,
@@ -335,8 +339,8 @@ class User{
             LEFT JOIN other_skills ON personal_information.id = other_skills.id     
             LEFT JOIN certificate_file ON personal_information.id = certificate_file.id
             LEFT JOIN eligibility_license_file ON personal_information.id = eligibility_license_file.id
-            WHERE YEAR(personal_information.created_at) = YEAR(CURDATE())
-            AND MONTH(personal_information.created_at) = MONTH(CURDATE())
+            WHERE YEAR(personal_information.created_at) = ${year}
+            AND MONTH(personal_information.created_at) = ${month}
             GROUP BY DAY(personal_information.created_at)
             ORDER BY DAY(personal_information.created_at);
             `,

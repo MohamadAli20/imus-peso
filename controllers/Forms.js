@@ -88,7 +88,7 @@ class Forms{
         });
     }
     get_all_application(req, res){
-        model.select_all_application((error, row) => {
+        model.select_all_application(req.body, (error, row) => {
             if(error){
                 console.error(error);
             }
@@ -608,20 +608,16 @@ class Forms{
         
     }
     download_report(req, res){
-        model.select_all_application((error, row) => {
+        model.select_all_application(req.query,(error, row) => {
             if(error){
                 console.error(error);
             }
             if(row){
-                // [
-                //     { day: 23, year: 2024, total_records: 1, total_unemployed: 1, total_employed: 0 },
-                //     { day: 24, year: 2024, total_records: 1, total_unemployed: 0, total_employed: 1 }
-                //   ]
                 // Create a new PDF document
                 const doc = new PDFDocument();
                 const margin = 40;
 
-                let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"];
+                let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                 const todayFile = new Date();
                 const yearFile = todayFile.getFullYear();
                 const monthFile = todayFile.getMonth() + 1;
@@ -634,7 +630,7 @@ class Forms{
                 const borderHeight = 710;
                 doc.rect(startX, startY, width, borderHeight);
                 // Write content to PDF
-                doc.fontSize(18).text(`Monthly Report of ${months[monthFile - 1]} ${yearFile}`, 50, 50);
+                doc.fontSize(18).text(`Monthly Report of ${months[req.query.month]} ${req.query.year}`, 50, 50);
 
                 let header = "--------------------------------------------------------------------------------------------------------------------------";
                 doc.fontSize(12).text(header, 50, 70);
@@ -651,10 +647,14 @@ class Forms{
                 doc.fontSize(12).text(belowLine, 50, 105);
 
                 let today = new Date();
-                let currentYear = today.getFullYear();
-                let currentMonth = today.getMonth();
+                let currentYear = parseInt(req.query.year);
+                let currentMonth = parseInt(req.query.month);
 
-                let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                function getDaysInMonth(year, month) {
+                    return new Date(year, month + 1, 0).getDate();
+                }
+
+                let daysInMonth = getDaysInMonth(currentYear, currentMonth);
                 let contentMargin = 115;
 
                 for(let day = 1; day <= daysInMonth; day++){
@@ -682,20 +682,6 @@ class Forms{
                     doc.fontSize(12).text(unemployedNum, 470, contentMargin);
                     contentMargin += 20;
                 }
-
-                // Second loop to align content based on row data (uncomment and adjust as needed)
-                // for(let i = 0; i < row.length; i++){
-                //     for(let dayNum = 1; dayNum <= daysInMonth; dayNum++){
-                //         let applicantText = 0;
-                //         if(row[i].day == dayNum){
-                //             applicantText = row[i].day;
-                //             // console.log(row[i].day, dayNum);
-                //         }
-                //         console.log(applicantText)
-                //         doc.fontSize(12).text(applicantText, 210, contentMargin);
-                //         contentMargin += 20;
-                //     }
-                // }
 
                 // Pad month and day with leading zeros if necessary
                 const formattedMonth = monthFile < 10 ? `0${monthFile}` : monthFile;

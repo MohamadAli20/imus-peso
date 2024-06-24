@@ -37,7 +37,7 @@ Router.delete('/delete/:id', FormController.delete);
 Router.get('/count_form', FormController.count_form);
 Router.get('/count_male', FormController.count_male);
 Router.get('/count_female', FormController.count_female);
-Router.get('/get_all_application', FormController.get_all_application);
+Router.post('/get_all_application', FormController.get_all_application);
 Router.get('/get_top_five_occupation', FormController.get_top_five_occupation);
 Router.get('/get_top_five_location', FormController.get_top_five_location);
 Router.get('/get_top_unemployed', FormController.get_top_unemployed);
@@ -48,5 +48,6 @@ Router.get('/get_top_age', FormController.get_top_age);
 Router.get('/retrieve_by_id/:id', FormController.retrieve_application_by_id);
 Router.get('/download_form/:id', FormController.download_form);
 Router.get('/generate_report', FormController.download_report);
+// Router.get('/generate_report?month=:month&year=:year', FormController.download_report);
 
 module.exports = Router;
