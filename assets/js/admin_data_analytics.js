@@ -33,10 +33,10 @@ window.onload = async function () {
     const monthName = date.toLocaleString('default', { month: 'long' });
     let options = {
         title: {
-            text: "Application Summary"
+            text: "Applicants Gender"
         },
         subtitles: [{
-            text: `As of ${monthName}, ${date.getFullYear()} there are ${total} applications submitted`
+            text: ``
         }],
         theme: "light1",
         animationEnabled: true,
@@ -349,7 +349,7 @@ window.onload = async function () {
     /*AGE*/
     let age = {
         title: {
-            text: "Age of applicants"
+            text: "List of Applicants Age"
         },
         subtitles: [{
             text: ""
@@ -392,4 +392,49 @@ window.onload = async function () {
         console.error(error);
     }
     $("#ageGraph").CanvasJSChart(age); /* Add data to the graph */
+
+    // TOTAL APPLICANT LINE GRAPH
+    var totalApplicantsGraph = {
+        animationEnabled: true,
+        title: {
+            text: `Total Applicants this ${monthName}`
+        },
+        axisX: {
+            title: "Date",
+            valueFormatString: "MMM DD"
+        },
+        axisY: {
+            title: "No. of applicant",
+            // prefix: ""
+        },
+        data: [{
+            type: "spline",
+            // yValueFormatString: "$#,###",
+            dataPoints: []
+        }]
+    };
+
+    let total_applicants_data_points = totalApplicantsGraph.data[0].dataPoints;
+    try{
+        const totalApplicants = await $.ajax({
+            url: "/get_total_applicant_per_month",
+            type: "GET"
+        })
+        for(let i = 0; i < totalApplicants.length; i++){
+            const year = parseInt(totalApplicants[i].year);
+            const month = parseInt(totalApplicants[i].month) - 1; // minus 1
+            const day = parseInt(totalApplicants[i].day);
+            const applicantTotal = parseInt(totalApplicants[i].total_applicants);
+            total_applicants_data_points.push({ x: new Date(year, month, day), y: applicantTotal });
+            console.log("n")
+        }
+        // { x: new Date(2017, 10), y: 52160 },
+        // console.log(total_applicants_data_points)
+        $("#lineGraphTotalApplicant").CanvasJSChart(totalApplicantsGraph);
+    }
+    catch(error){
+        console.error(error);
+    }
+    
+
 };

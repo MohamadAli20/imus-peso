@@ -284,6 +284,16 @@ class Forms{
             }
         })
     }
+    get_total_applicant_per_month(req, res){
+        modelForm.select_total_applicant_per_month((error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                res.json(row);
+            }
+        })
+    }
     download_form(req, res){
         const id = req.params.id;
 

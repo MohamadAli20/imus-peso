@@ -10,3 +10,6 @@ main div div{
     right: 20px;
     z-index: 5;
 }
+.graph-container div{
+    height: 45vh;
+}

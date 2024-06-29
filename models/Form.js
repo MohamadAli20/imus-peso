@@ -717,6 +717,34 @@ class Form{
                 }
             }
         )
-    }        
+    }
+    select_total_applicant_per_month(callback){
+        this.connection.query(
+            `SELECT 
+                YEAR(created_at) AS year,
+                MONTH(created_at) AS month,
+                DAY(created_at) AS day,
+                COUNT(*) AS total_applicants
+            FROM 
+                personal_information
+            WHERE 
+                YEAR(created_at) = YEAR(CURDATE())
+                AND MONTH(created_at) = MONTH(CURDATE())
+            GROUP BY 
+                year, month, day
+            ORDER BY 
+                year, month, day;
+            `,
+            (error, rows) => {
+                if(error){
+                    callback(error, null);
+                }
+                else{
+                    callback(null, rows);
+                }
+            }
+        )
+
+    }      
 }
 module.exports = new Form();
