@@ -48,13 +48,13 @@
                     <a class="nav-link" href="/admin_apply">Fill-Up Form</a>
                 </li>
                 <li class="nav-item p-3">
-                    <a class="nav-link" href="/data_analytics">Data Analytics</a>
-                </li>
-                <li class="nav-item p-3">
                     <a class="nav-link" href="/dashboard">Record</a>
                 </li>
+                <li class="nav-item p-3">
+                    <a class="nav-link" href="/data_analytics">Data Analytics</a>
+                </li>
                 <li class="nav-item p-3 active">
-                    <a class="nav-link" aria-current="page" href="/report">Report</a>
+                    <a class="nav-link" href="/report">Report</a>
                 </li>
                 <li class="nav-item px-3 py-2">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
@@ -68,8 +68,8 @@
                 </li>
             </ul>
         </div>
-        <main class="col-lg-9 p-0">
-            <div class="row m-0">
+        <main class="col-lg-9 p-0 m-0">
+            <div class="row m-0 p-0">
                 <h3 class="mt-2">Monthly Report</h3>
                 <div class="col-lg-6 montly-report-container">
                     <table class="table table-striped">
@@ -85,8 +85,12 @@
                                 <!-- Insert rows here -->
                         </tbody>
                     </table>
+                    <div class="m-0 d-flex justify-content-center total-applicant-container">
+                        <div class="">TOTAL APPLICANTS OF <span id="month"></span>: </div>
+                        <div class="total-applicant-number"></div>
+                    </div>
                 </div>
-                <div class="col-lg-6 p-0 m-0">
+                <div class="col-lg-6 p-0 m-0 graph-container border">
                     <div class="row p-0 m-0">
                         <div class="col-lg-12 p-0 m-0">
                             <div class="m-0 p-0" id="chartContainer" style="height: 400px; width: 90%;"></div>
@@ -125,10 +129,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="m-0 d-flex justify-content-center py-2 total-applicant-container">
-                <div class="">TOTAL APPLICANTS OF <span id="month"></span>: </div>
-                <div class="total-applicant-number"></div>
             </div>
         </main>
     </div>

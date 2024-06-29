@@ -141,11 +141,21 @@ $(document).ready(function(){
                 responseType: 'blob'
             },
             success: function(response) {
-                console.log(response);
+
+                const todayFile = new Date();
+                const yearFile = todayFile.getFullYear();
+                const monthFile = todayFile.getMonth() + 1;
+                const dayFile = todayFile.getDate();
+
+                // Pad month and day with leading zeros if necessary
+                const formattedMonth = monthFile < 10 ? `0${monthFile}` : monthFile;
+                const formattedDay = dayFile < 10 ? `0${dayFile}` : dayFile;
+                const filename = `MonthlyReport-${yearFile}-${formattedMonth}-${formattedDay}.pdf`;
+
                 const url = window.URL.createObjectURL(new Blob([response]));
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'form.pdf';
+                a.download = `${filename}.pdf`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);

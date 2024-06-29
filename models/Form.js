@@ -586,7 +586,7 @@ class Form{
                  UNION ALL
                  SELECT JSON_UNQUOTE(JSON_EXTRACT(occupation, '$.occupation3')) AS occupation FROM job_preference
              ) AS subquery
-             WHERE occupation != ''
+             WHERE occupation != '' AND occupation != 'null'
              GROUP BY UPPER(occupation)
              ORDER BY count DESC
              LIMIT 10;`,
@@ -691,7 +691,7 @@ class Form{
                 UNION ALL
                 SELECT JSON_EXTRACT(position, '$.position3') AS position FROM work_experience
             ) AS positions
-            WHERE position != 'NA' AND position != 'N/A' AND position != 'n/a' AND position != 'na' AND position != ''
+            WHERE position != 'NA' AND position != 'N/A' AND position != 'n/a' AND position != 'na' AND position != '' AND position != 'null'
             GROUP BY position
             ORDER BY count DESC
             LIMIT 10;
