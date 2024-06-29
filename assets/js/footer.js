@@ -20,7 +20,7 @@ $(document).ready(function(){
             "font-weight": "bold",
             "background-color": "rgba(3, 138, 255, 0.1)"
         });
-    
+        console.log(finalInformation)
     });
 
     /*
@@ -88,6 +88,7 @@ $(document).ready(function(){
             for(let i = 0; i < certificateFiles.length; i++){
                 certificateData.append('selected-certificate-file[]', certificateFiles[i]);
             }
+            // console.log(certificateData);
             for(let i = 0; i < eligibilityLicenseFiles.length; i++){
                 eligibilityLicenseData.append('selected-eligibility-license-file[]', eligibilityLicenseFiles[i]);
             }
@@ -102,7 +103,13 @@ $(document).ready(function(){
                         contentType: false,
                         processData: false,
                         success: function(response) {
+                            // console.log(finalInformation['certificateFile']);
+                            // let retrieveCertificate = document.querySelectorAll(".certificate-file-wrapper");
+                            // console.log($(retrieveCertificate));
+                            // console.log("Response: ", response);
+
                             finalInformation['certificateFile'] = response;
+                            
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                             console.log('Error uploading files: ' + textStatus);

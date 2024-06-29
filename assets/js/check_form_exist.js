@@ -421,7 +421,7 @@ $(document).ready(function(){
                             closeIcon.style.right = "18px";
                             closeIcon.style.top = "10px";
                             div.append(a); 
-                            // div.append(closeIcon); // Close Icon to remove file
+                            div.append(closeIcon); // Close Icon to remove file
 
                             document.querySelector(".technical-vocational-training .row").append(div);
                         }
@@ -523,7 +523,7 @@ $(document).ready(function(){
                             closeIcon.style.right = "18px";
                             closeIcon.style.top = "10px";
                             div.append(a); 
-                            // div.append(closeIcon); // Close Icon to remove file
+                            div.append(closeIcon); // Close Icon to remove file
 
                             document.querySelector(".eligibility-professional-license .row").append(div);
                         }
@@ -580,7 +580,7 @@ $(document).ready(function(){
                 // Assuming .close-certificate elements are created dynamically
                 // Delegate the click event handling to a static parent element
                 $(document).on("click", ".close-certificate", function() {
-                    console.log($(this).parent()[0])
+                    $(this).parent().remove();
                 });
             } else {
                 console.log("No form found for user:", id);
@@ -616,7 +616,7 @@ $(document).ready(function(){
                 certificateData.append('selected-certificate-file[]', certificateFiles[i]);
             }
             if(certificateFiles.length > 0){
-                alert("This is certificate if statement.")
+                // alert("This is certificate if statement.")
                 try{
                     await $.ajax({
                         url: "/uploadCertificate",
@@ -625,6 +625,19 @@ $(document).ready(function(){
                         contentType: false,
                         processData: false,
                         success: function(response) {
+                            let lastKey = 0;
+                            for(let key in response){
+                                lastKey++;
+                            }
+                            // console.log(lastKey);
+                            let retrieveCertificate = document.querySelectorAll(".certificate-file-wrapper");
+                            // console.log("Before: ", response);
+                            for(let i = 0; i < retrieveCertificate.length; i++){
+                                let certificate = $(retrieveCertificate)[i];
+                                response[lastKey] = "/proofs"+$(certificate).find("a").attr("href");
+                                lastKey++;
+                            }
+                            // console.log("After: ", response);
                             finalInformation['certificateFile'] = response;
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
@@ -635,6 +648,17 @@ $(document).ready(function(){
                 catch(error){
                     console.error(error)
                 }
+            }
+            // If no file selected
+            else{
+                let retrieveCertificate = document.querySelectorAll(".certificate-file-wrapper");
+                let certificateObj = {};
+                for(let i = 0; i < retrieveCertificate.length; i++){
+                    let certificate = $(retrieveCertificate)[i];
+                    certificateObj[i] = "/proofs"+$(certificate).find("a").attr("href");
+                }
+                console.log("certificateObj: ", certificateObj);
+                finalInformation['certificateFile'] = certificateObj;
             }
 
             let eligibilityLicenseFiles = $("input[name='selected-eligibility-license-file']")[0].files;
@@ -651,7 +675,19 @@ $(document).ready(function(){
                         contentType: false,
                         processData: false,
                         success: function(response) {
-                            console.log(response);
+                            let lastKey = 0;
+                            for(let key in response){
+                                lastKey++;
+                            }
+                            // console.log(lastKey);
+                            let retrieveEligibilityLicense = document.querySelectorAll(".eligibility-license-file-wrapper");
+                            // console.log("Before: ", response);
+                            for(let i = 0; i < retrieveEligibilityLicense.length; i++){
+                                let eligibilityLicense = $(retrieveEligibilityLicense)[i];
+                                response[lastKey] = "/proofs"+$(eligibilityLicense).find("a").attr("href");
+                                lastKey++;
+                            }
+                            // console.log("After: ", response);
                             finalInformation['eligibilityLicenseFile'] = response;
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
@@ -663,6 +699,16 @@ $(document).ready(function(){
                     console.error(error);
                 }
             }
+            else{
+                let retrieveEligibilityLicense = document.querySelectorAll(".eligibility-license-file-wrapper");
+                let eligibilityLicenseObj = {};
+                for(let i = 0; i < retrieveEligibilityLicense.length; i++){
+                    let eligibilityLicense = $(retrieveEligibilityLicense)[i];
+                    eligibilityLicenseObj[i] = "/proofs"+$(eligibilityLicense).find("a").attr("href");
+                }
+                finalInformation['eligibilityLicenseFile'] = eligibilityLicenseObj;
+            }
+
             $.ajax({
                 url: "/updateInformation",
                 type: "POST",

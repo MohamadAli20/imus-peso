@@ -1,0 +1,3 @@
+git remote add origin <url> - add githu url
+git push -u origin master
+git pull origin master - if theres changes in github repo but not in local repo
