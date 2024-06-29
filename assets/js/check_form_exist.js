@@ -576,10 +576,15 @@ $(document).ready(function(){
                     console.error(error);
                 }
             })
-             if (response.length !== 0) {
+            if(response.length !== 0) {
                 // Assuming .close-certificate elements are created dynamically
                 // Delegate the click event handling to a static parent element
                 $(document).on("click", ".close-certificate", function() {
+
+                    let selectedCertificate = document.querySelectorAll(".selected-certificate-file-wrapper");
+                    for(let i = 0; i < selectedCertificate.length; i++){
+                        console.log($(selectedCertificate)[i]);
+                    }
                     $(this).parent().remove();
                 });
             } else {
@@ -625,19 +630,51 @@ $(document).ready(function(){
                         contentType: false,
                         processData: false,
                         success: function(response) {
+                            let selectedCertificate =  document.querySelectorAll(".selected-certificate-file-wrapper");
+                            let keysToDelete = [];
+                            let remainingKeys = [];
+
+                            for(let key in response){
+                                let foundMatch = false;
+                                for(let j = 0; j < selectedCertificate.length; j++){
+                                    let divSelectedCertificate = $(selectedCertificate)[j];
+                                    let val = $(divSelectedCertificate).attr("id");
+                                
+                                    if(parseInt(val) === parseInt(key)){
+                                        // console.log("Val: ", val, " Key: ", key, " Path: ", response[key]);
+                                        foundMatch = true;
+                                        remainingKeys.push(parseInt(key));
+                                        break;
+                                    }
+                                }
+                                if (!foundMatch) {
+                                    keysToDelete.push(key);
+                                }
+                            }
+                            keysToDelete.forEach(key => {
+                                delete response[key];
+                            });
+
+                            // Rearrange remaining keys in order
+                            remainingKeys.sort((a, b) => a - b);
+
+                            // Create a new object with rearranged keys
+                            let rearrangedResponse = {};
+                            remainingKeys.forEach((key, index) => {
+                                rearrangedResponse[index] = response[key];
+                            });
+                            response = rearrangedResponse;
+
                             let lastKey = 0;
                             for(let key in response){
                                 lastKey++;
                             }
-                            // console.log(lastKey);
                             let retrieveCertificate = document.querySelectorAll(".certificate-file-wrapper");
-                            // console.log("Before: ", response);
                             for(let i = 0; i < retrieveCertificate.length; i++){
                                 let certificate = $(retrieveCertificate)[i];
                                 response[lastKey] = "/proofs"+$(certificate).find("a").attr("href");
                                 lastKey++;
                             }
-                            // console.log("After: ", response);
                             finalInformation['certificateFile'] = response;
                         },
                         error: function(jqXHR, textStatus, errorThrown) {

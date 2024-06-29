@@ -69,10 +69,11 @@ $(".technical-vocational-training input").on("input", function(){
 
 $("input[name='selected-certificate-file']").change(function(){
     let certificateFiles = $("input[name='selected-certificate-file']")[0].files;
-    // $(".certificate-file-wrapper").remove();
+    $(".selected-certificate-file-wrapper").remove();
     for(let i = 0; i < certificateFiles.length; i++){
         let div = document.createElement("div");
         div.className = "col-lg-6 mt-3 d-block selected-certificate-file-wrapper";
+        div.id = i;
         div.style.position = "relative";
         let a = document.createElement("a");
         a.className = "px-3 py-2 border d-block certificate-container";
@@ -92,7 +93,7 @@ $("input[name='selected-certificate-file']").change(function(){
         closeIcon.style.right = "18px";
         closeIcon.style.top = "10px";
         div.append(a); 
-        iv.append(closeIcon); // Close Icon to remove file
+        div.append(closeIcon); // Close Icon to remove file
 
         document.querySelector(".technical-vocational-training .row").append(div);
     }
@@ -107,7 +108,7 @@ $("input[name='selected-certificate-file']").change(function(){
 })
 $("input[name='selected-eligibility-license-file']").change(function(){
     let certificateFiles = $("input[name='selected-eligibility-license-file']")[0].files;
-    // $(".eligibility-license-file-wrapper").remove();
+    $(".selected-eligibility-license-file-wrapper").remove();
     for(let i = 0; i < certificateFiles.length; i++){
         let div = document.createElement("div");
         div.className = "col-lg-6 mt-3 d-block selected-eligibility-license-file-wrapper";
