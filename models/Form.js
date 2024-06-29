@@ -746,5 +746,58 @@ class Form{
         )
 
     }      
+    select_top_language(callback){
+        this.connection.query(
+            `SELECT REPLACE(JSON_UNQUOTE(JSON_EXTRACT(language, '$[0]')), '"', '') AS language, COUNT(*) AS count
+            FROM (
+                SELECT JSON_UNQUOTE(JSON_KEYS(language1)) AS language FROM language_dialect_proficiency WHERE JSON_LENGTH(language1) > 0
+                UNION ALL
+                SELECT JSON_UNQUOTE(JSON_KEYS(language2)) FROM language_dialect_proficiency WHERE JSON_LENGTH(language2) > 0
+                UNION ALL
+                SELECT JSON_UNQUOTE(JSON_KEYS(language3)) FROM language_dialect_proficiency WHERE JSON_LENGTH(language3) > 0
+                UNION ALL
+                SELECT JSON_UNQUOTE(JSON_KEYS(other_language)) FROM language_dialect_proficiency WHERE JSON_LENGTH(other_language) > 0
+            ) AS languages
+            WHERE language IS NOT NULL AND language != 'null'
+            GROUP BY language
+            ORDER BY count DESC;`,
+            (error, rows) => {
+                if(error){
+                    callback(error, null);
+                }
+                else{
+                    callback(null, rows);
+                }
+            }
+        )
+    }
+    select_top_skill(callback){
+        this.connection.query(
+            `SELECT skill, COUNT(*) AS skill_count
+            FROM (
+                SELECT JSON_UNQUOTE(JSON_EXTRACT(skills, '$.skill1')) AS skill FROM other_skills
+                UNION ALL
+                SELECT JSON_UNQUOTE(JSON_EXTRACT(skills, '$.skill2')) FROM other_skills
+                UNION ALL
+                SELECT JSON_UNQUOTE(JSON_EXTRACT(skills, '$.skill3')) FROM other_skills
+                UNION ALL
+                SELECT JSON_UNQUOTE(JSON_EXTRACT(skills, '$.other')) FROM other_skills
+            ) AS skills_data
+            WHERE skill IS NOT NULL AND skill != 'null' AND skill != ''
+            GROUP BY skill
+            ORDER BY skill_count DESC
+            LIMIT 10;
+            `,
+            (error, rows) => {
+                if(error){
+                    callback(error, null);
+                }
+                else{
+                    callback(null, rows);
+                }
+            }
+
+        )
+    }
 }
 module.exports = new Form();

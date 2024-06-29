@@ -46,6 +46,8 @@ Router.get('/get_top_company', FormController.get_top_company);
 Router.get('/get_top_position', FormController.get_top_position);
 Router.get('/get_top_age', FormController.get_top_age);
 Router.get('/get_total_applicant_per_month', FormController.get_total_applicant_per_month);
+Router.get('/get_top_language', FormController.get_top_language);
+Router.get('/get_top_skill', FormController.get_top_skill);
 Router.get('/retrieve_by_id/:id', FormController.retrieve_application_by_id);
 Router.get('/download_form/:id', FormController.download_form);
 Router.get('/generate_report', FormController.download_report);

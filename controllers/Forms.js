@@ -294,6 +294,26 @@ class Forms{
             }
         })
     }
+    get_top_language(req, res){
+        modelForm.select_top_language((error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                res.json(row);
+            }
+        })
+    }
+    get_top_skill(req, res){
+        modelForm.select_top_skill((error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                res.json(row);
+            }
+        })
+    }
     download_form(req, res){
         const id = req.params.id;
 

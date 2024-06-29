@@ -60,12 +60,13 @@ window.onload = async function () {
     let totalEmployed = 0;
     let employedPieGraph = {
         title: {
-            text: "Employed"
+            text: "Employment Status: Employed"
         },
         subtitles: [{
-            text: `Total: ${totalEmployed}`
+            // text: `Total: ${totalEmployed}`
+            text: ``
         }],
-        theme: "light2",
+        theme: "light1",
         animationEnabled: true,
         data: [{
             type: "pie",
@@ -87,7 +88,7 @@ window.onload = async function () {
         
         let employed = arr.employed
         totalEmployed = parseInt(employed[0].self_employed_count) + parseInt(employed[0].wage_employed_count)
-        employedPieGraph.subtitles[0].text = "Total: " + totalEmployed;
+        // employedPieGraph.subtitles[0].text = "Total: " + totalEmployed;
         let totalSelfEmployed = Math.round(parseInt(employed[0].self_employed_count)/totalEmployed * 100);
         employed_data_points.push({ y: totalSelfEmployed, label: "SELF EMPLOYED" });
         let totalWageEmployed = Math.round(parseInt(employed[0].wage_employed_count)/totalEmployed * 100);
@@ -102,10 +103,11 @@ window.onload = async function () {
     /*UNEMPLOYED*/
     let unemployedPieGraph = {
         title: {
-            text: "Unemployed"
+            text: "Employment Status: Unemployed"
         },
         subtitles: [{
-            text: `As of ${monthName}, ${date.getFullYear()}`
+            // text: `As of ${monthName}, ${date.getFullYear()}`
+            text: ``
         }],
         theme: "light5",
         animationEnabled: true,
@@ -148,7 +150,7 @@ window.onload = async function () {
     var employmentStatus = {
         animationEnabled: true,
         title: {
-            text: `Preferred Occupation`
+            text: `Top 10 Preferred Occupation of Applicant`
         },
         axisY: {
             title: "Percentage",
@@ -189,12 +191,11 @@ window.onload = async function () {
 
     $("#barGraph").CanvasJSChart(employmentStatus); /* Add data to the graph */
 
-    
     /*PREFERRED WORK LOCATION*/
     var workLocation = {
         animationEnabled: true,
 	title: {
-		text: "Preferred Work Location",                
+		text: "Top 10 Preferred Work Location of Applicants",                
 		fontColor: "Peru"
 	},	
 	axisY: {
@@ -250,7 +251,7 @@ window.onload = async function () {
     var topCompany = {
         animationEnabled: true,
         title: {
-            text: `TOP COMPANIES`
+            text: `Top 10 Company Work Experience of Applicants`
         },
         axisY: {
             title: "Percentage",
@@ -295,7 +296,7 @@ window.onload = async function () {
     var topPosition = {
         animationEnabled: true,
 	title: {
-		text: "TOP POSITIONS",                
+		text: "Top 10 Job Experienced of Applicants",            
 		fontColor: "Peru"
 	},	
 	axisY: {
@@ -436,5 +437,85 @@ window.onload = async function () {
         console.error(error);
     }
     
+    // TOP LANGUAGE
 
+    let topLanguageGraph = {
+        title: {
+            text: "Most Proficient Language Used By Applicants"
+        },
+        subtitles: [{
+            text: ``
+        }],
+        theme: "light1",
+        animationEnabled: true,
+        data: [{
+            type: "pie",
+            startAngle: 40,
+            toolTipContent: "<b>{label}</b>: {y}%",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}%",
+            dataPoints: [
+                
+            ]
+        }]
+    };
+    let languageDataPoints = topLanguageGraph.data[0].dataPoints;
+    try{
+        const topLanguage = await $.ajax({
+            url: "/get_top_language",
+            type: "GET"
+        })
+        for(let i = 0; i < topLanguage.length; i++){
+            languageDataPoints.push({ y: parseInt(topLanguage[i].count), label: topLanguage[i].language.toUpperCase() });
+        }
+    }
+    catch(error){
+        console.error(error);
+    }
+    $("#languageGraph").CanvasJSChart(topLanguageGraph);
+
+    // TOP SKILLS
+    var skillGraph = {
+        animationEnabled: true,
+        title: {
+            text: `Most Other Skills Acquired with Formal Training of Applicants`
+        },
+        axisY: {
+            title: "Percentage",
+            suffix: "%"
+        },
+        axisX: {
+            title: ""
+        },
+        data: [{
+            type: "column",
+            yValueFormatString: "#,##0.0#"%"",
+            dataPoints: []
+        }]
+    };
+    let skillDataPoints = skillGraph.data[0].dataPoints;
+    try{
+        const topSkill = await $.ajax({
+            url: "/get_top_skill",
+            type: "GET"
+        })
+        let totalSkill = 0;
+        for(let j = 0; j < topSkill.length; j++){
+            totalSkill += parseInt(topSkill[j].skill_count);
+        }
+        // console.log(totalSkill);
+        for(let i = 0; i < topSkill.length; i++){
+            let skill = topSkill[i].skill;
+            console.log(skill)
+            let skillYValue = Math.round(parseInt(topSkill[i].skill_count)/totalSkill * 100);
+
+            skillDataPoints.push({ label: skill.toUpperCase(), y: skillYValue })
+        }
+        $("#skillGraph").CanvasJSChart(skillGraph);
+    }
+    catch(error){
+        console.error(error);
+    }
 };
