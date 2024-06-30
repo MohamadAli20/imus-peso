@@ -694,7 +694,6 @@ $(document).ready(function(){
                     let certificate = $(retrieveCertificate)[i];
                     certificateObj[i] = "/proofs"+$(certificate).find("a").attr("href");
                 }
-                console.log("certificateObj: ", certificateObj);
                 finalInformation['certificateFile'] = certificateObj;
             }
 
@@ -712,6 +711,41 @@ $(document).ready(function(){
                         contentType: false,
                         processData: false,
                         success: function(response) {
+                            let selectedEligibilityLicense =  document.querySelectorAll(".selected-eligibility-license-file-wrapper");
+                            let keysToDelete = [];
+                            let remainingKeys = [];
+
+                            for(let key in response){
+                                let foundMatch = false;
+                                for(let j = 0; j < selectedEligibilityLicense.length; j++){
+                                    let divSelectedEligibilityLicense = $(selectedEligibilityLicense)[j];
+                                    let val = $(divSelectedEligibilityLicense).attr("id");
+                                
+                                    if(parseInt(val) === parseInt(key)){
+                                        // console.log("Val: ", val, " Key: ", key, " Path: ", response[key]);
+                                        foundMatch = true;
+                                        remainingKeys.push(parseInt(key));
+                                        break;
+                                    }
+                                }
+                                if (!foundMatch) {
+                                    keysToDelete.push(key);
+                                }
+                            }
+                            keysToDelete.forEach(key => {
+                                delete response[key];
+                            });
+
+                            // Rearrange remaining keys in order
+                            remainingKeys.sort((a, b) => a - b);
+
+                            // Create a new object with rearranged keys
+                            let rearrangedResponse = {};
+                            remainingKeys.forEach((key, index) => {
+                                rearrangedResponse[index] = response[key];
+                            });
+                            response = rearrangedResponse;
+
                             let lastKey = 0;
                             for(let key in response){
                                 lastKey++;
@@ -736,6 +770,7 @@ $(document).ready(function(){
                     console.error(error);
                 }
             }
+            // If no file selected
             else{
                 let retrieveEligibilityLicense = document.querySelectorAll(".eligibility-license-file-wrapper");
                 let eligibilityLicenseObj = {};

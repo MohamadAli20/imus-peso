@@ -112,6 +112,7 @@ $("input[name='selected-eligibility-license-file']").change(function(){
     for(let i = 0; i < certificateFiles.length; i++){
         let div = document.createElement("div");
         div.className = "col-lg-6 mt-3 d-block selected-eligibility-license-file-wrapper";
+        div.id = i;
         div.style.position = "relative";
         let a = document.createElement("a");
         a.className = "px-3 py-2 border d-block eligibility-license-container";
@@ -124,7 +125,7 @@ $("input[name='selected-eligibility-license-file']").change(function(){
         a.setAttribute('href', localUrl);
         a.setAttribute('target', "_blank");
         let closeIcon = document.createElement("img");
-        closeIcon.className = "eligibility-license";
+        closeIcon.className = "close-certificate";
         closeIcon.setAttribute("src", "/images/close_gray.svg");
         closeIcon.style.zIndex = "5";
         closeIcon.style.position = "absolute";
