@@ -31,14 +31,14 @@ $(document).ready(function(){
             }
 
             let div = document.createElement("div");
-            // div.className = "p-2 border div-notif";
-            div.className = "p-2 border"
+            div.className = "p-2 border div-notif border";
+            // div.className = "p-2 border"
             div.textContent = response[i].description;
             let span = document.createElement('span');
             span.textContent = timeAgo;
             span.className = "d-block";
             div.append(span);
-            $(".notification-container").append(div);
+            $(".notification-body").append(div);
         }
     }
 

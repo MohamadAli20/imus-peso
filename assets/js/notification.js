@@ -1,7 +1,6 @@
 $(document).ready(function(){
     
     let idUser = localStorage.getItem("userId");
-    let isAdmin = localStorage.getItem("isAdmin");
 
     let setTime = (response) => {
         for(let i = 0; i < response.length; i++){
@@ -52,22 +51,6 @@ $(document).ready(function(){
                 success: function(response){
                     $(".div-notif").remove();
                     if(response.length !== 0){
-                        setTime(response);
-                    }
-                },
-                error: function(error){
-                    console.log(error);
-                }
-            })
-        }
-        else if(isAdmin == 1){
-            $.ajax({
-                url: "/all_notification/",
-                type: "GET",
-                success: function(response){
-                    $(".div-notif").remove();
-                    if(response.length !== 0){
-                        console.log(response)
                         setTime(response);
                     }
                 },

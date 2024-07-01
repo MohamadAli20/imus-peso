@@ -100,10 +100,10 @@ $(document).ready(() => {
     $('#success').delay(1000).fadeOut();
     $('#error').delay(1000).fadeOut();
 
-    document.getElementById('exampleModal').onkeydown = function (e) {
-        if(e.keyCode === 13){
-            loginSubmit();
-        }   
-    }
+    // document.getElementById('exampleModal').onkeydown = function (e) {
+    //     if(e.keyCode === 13){
+    //         loginSubmit();
+    //     }   
+    // }
 });
 
