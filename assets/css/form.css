@@ -99,11 +99,11 @@ input[type=date]:focus {
     color: orange !important;
 }
 /* Form section */
-/* .personal-information, */
+.personal-information,
 .job-preference,
 .language-dialect-proficiency,
 .educational-background,
-.technical-vocational-training,
+/* .technical-vocational-training, */
 .eligibility-professional-license,
 .work-experience,
 .other-skills-acquired,
