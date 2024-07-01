@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/css/admin_notification.css">
     <link rel="stylesheet" href="/css/loginModal.css">
     <link rel="stylesheet" href="/css/account_information.css">
+    <link rel="stylesheet" href="/css/view_account.css">
     <!-- <link rel="stylesheet" href="/css/admin_account_information.css"> -->
     <script src="/js/loginModal.js"></script>
     <script src="/js/dashboard.js"></script>
@@ -24,6 +25,7 @@
     <script src="/js/removeAccount.js"></script>
     <script src="/js/notification.js"></script>
     <script src="/js/account_setting.js"></script>
+    <script src="/js/view_account.js"></script>
 </head>
 <body class="container-fluid">
     <div class="row">
@@ -40,8 +42,8 @@
                     <img class="border" src="/images/default_profile.jpg" alt="profile picture">
                     <p class="nav-link p-0 px-3 m-0 username"></p>
                 </li>
-                <li class="nav-item p-3 active">
-                    <a class="nav-link" aria-current="page" href="/account_admin">Admin Information</a>
+                <li class="nav-item p-3">
+                    <a class="nav-link" href="/account_admin">Admin Information</a>
                 </li>
                 <li id="notifLogo" class="nav-item p-3 m-0">
                     <a class="nav-link" href="#">Notification</a>
@@ -71,52 +73,58 @@
             </ul>
         </div>
         <main class="col-lg-9">
-            <div id="accountForm" class="row container mt-5">
-                <div class="col-lg-3 image-container p-0">
-                    <img class="close_icon" src="/images/close_gray.svg" alt="Close icon">
-                    <img class="img-fluid border image" src="/images/default_profile.jpg" alt="Default profile picture">
-                    <input class="form-control mt-2" type="file" name="image" accept=".png, .jpg, .jpeg">
+            <div class="row">
+                <div class="container account-container p-0">
+                    <div id="accountForm" class="row border">
+                        <div class="col-lg-3 image-container p-0">
+                            <img class="img-fluid image" src="/images/default_profile.jpg" alt="Default profile picture">
+                            <!-- <input class="form-control mt-2" type="file" name="image" accept=".png, .jpg, .jpeg"> -->
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="row account-information-header">
+                                <h4 class="py-2">Account Information</h4>
+                                <a href="/dashboard">
+                                    <img class="close_account_information" src="/images/close_gray.svg" alt="Close icon">
+                                </a>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 my-2">
+                                    <input class="form-control" type="text" name="username" placeholder="Username" disabled>
+                                </div>
+                                <div class="col-lg-6 my-2">
+                                    <input class="form-control" type="email" name="email" placeholder="Email Address" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 my-2">
+                                    <input class="form-control" type="text" name="surname" placeholder="Surname" disabled>
+                                </div>
+                                <div class="col-lg-6 my-2">
+                                    <input class="form-control" type="text" name="firstname" placeholder="Firstname" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 my-2">
+                                    <input class="form-control" type="text" name="phonenumber" placeholder="Phone Number" disabled>
+                                </div>
+                                <div class="col-lg-6 my-2">
+                                    <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 my-2">
+                                    <!-- <select class="form-control" name="civil_status" id="" disabled>
+                                        <option value="" disabled selected class="placeholder-option">Civil Status</option>
+                                        <option value="single">Single</option>
+                                        <option value="married">Married</option>
+                                        <option value="widowed">Widowed</option>
+                                    </select> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button class="submit-account" type="submit">Upload</button> -->
+                    </div>
                 </div>
-                <div class="col-lg-9">
-                    <h4>Account Information</h4>
-                    <div class="row">
-                        <div class="col-lg-6 my-2">
-                            <input class="form-control" type="text" name="username" placeholder="Username" disabled>
-                        </div>
-                        <div class="col-lg-6 my-2">
-                            <input class="form-control" type="email" name="email" placeholder="Email Address" disabled>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 my-2">
-                            <input class="form-control" type="text" name="surname" placeholder="Surname" disabled>
-                        </div>
-                        <div class="col-lg-6 my-2">
-                            <input class="form-control" type="text" name="firstname" placeholder="Firstname" disabled>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 my-2">
-                            <input class="form-control" type="text" name="phonenumber" placeholder="Phone Number" disabled>
-                        </div>
-                         <div class="col-lg-6 my-2">
-                            <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" disabled>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 my-2">
-                            <!-- <select class="form-control" name="civil_status" id="" disabled>
-                                <option value="" disabled selected class="placeholder-option">Civil Status</option>
-                                <option value="single">Single</option>
-                                <option value="married">Married</option>
-                                <option value="widowed">Widowed</option>
-                            </select> -->
-                        </div>
-                    </div>
-                    <button class="btn btn-outline-primary btn-edit">Edit</button>
-                    <button id="btn-save-account" class="btn btn-primary">Save</button>
-                </div>
-                <!-- <button class="submit-account" type="submit">Upload</button> -->
             </div>
         </main>
     </div>

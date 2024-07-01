@@ -168,6 +168,14 @@ $(document).ready(function(){
 			location.reload();
 		}
 	});
+	$(".application").click(function(){
+        let applicantUserId = $(this).find("input[name='user_id']").val();
+        localStorage.setItem("applicant_user_id", applicantUserId);
+    });
+	
+    $(".view_account").click(function(){
+        window.location.href = "/view_account";
+    });
 	/* Change icon when view or delete icon is hovered over */
 	let deleteGray = "/images/delete_gray.svg"; 
     let deleteRed = "/images/delete_red.svg";

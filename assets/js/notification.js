@@ -34,6 +34,7 @@ $(document).ready(function(){
 
             let div = document.createElement("div");
             div.className = "p-2 border div-notif";
+            // div.className = "p-2 border"
             div.textContent = response[i].description;
             let span = document.createElement('span');
             span.textContent = timeAgo;
@@ -66,6 +67,7 @@ $(document).ready(function(){
                 success: function(response){
                     $(".div-notif").remove();
                     if(response.length !== 0){
+                        console.log(response)
                         setTime(response);
                     }
                 },

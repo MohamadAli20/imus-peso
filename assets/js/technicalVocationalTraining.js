@@ -124,7 +124,7 @@ $("input[name='selected-eligibility-license-file']").change(function(){
         a.setAttribute('href', localUrl);
         a.setAttribute('target', "_blank");
         let closeIcon = document.createElement("img");
-        closeIcon.className = "eligibility-license";
+        closeIcon.className = "close-certificate";
         closeIcon.setAttribute("src", "/images/close_gray.svg");
         closeIcon.style.zIndex = "5";
         closeIcon.style.position = "absolute";

@@ -45,8 +45,14 @@ class Users{
     admin_account_information(req, res){
         res.render("admin_account_information");
     }
+    view_account(req, res){
+        res.render('view_account');
+    }
     report(req, res){
         res.render('report_module');
+    }
+    notification(req, res){
+        res.render('notification');
     }
     get_user_by_id(req, res){
         let id = req.body.id;

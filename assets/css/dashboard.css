@@ -5,9 +5,12 @@ body{
     /* background-color: #F3F4F8; */
     font-size: 1rem;
 }
+a{
+    text-decoration: none;
+}
 @media screen and (min-width: 576px){
     .action img{
-        margin: 0 10px;
+        /* margin: 0 10px; */
     }
 }
 @media screen and (max-width: 575px) {
