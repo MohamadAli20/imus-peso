@@ -1,17 +1,8 @@
-.notification-container{
+.notification-wrapper{
+    /* text-align: right !important; */
+    /* color: black !important; */
     position: absolute;
-    top: 10px;
-    left: 350px;
-    width: 50%;
-    height: 90vh;
-    z-index: 5;
-    background-color: #F3F4F8;
-    overflow: auto;
-    display: none;
-}
-#notifLogo{
-    margin-right: 15px;
-}
-.navbar{
-    display: none;
+    top: 0;
+    left: 390px !important;
+    width: 75%;
 }

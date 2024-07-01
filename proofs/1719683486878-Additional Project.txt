@@ -1,2 +1,0 @@
-- Create an API or Package(NPM) GeoJSON for LGU Boundary of Cavite and its Barangay
-- Create an API showing Fire Data of Imus City, Cavite from a specific year

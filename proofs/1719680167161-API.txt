@@ -1,6 +1,0 @@
-Stripe API
-- handling payment
-
-FIRMS API
-- fire data from NASA satellite instruments (MODIS and VIIRS)
-

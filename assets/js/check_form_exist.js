@@ -580,7 +580,6 @@ $(document).ready(function(){
                 // Assuming .close-certificate elements are created dynamically
                 // Delegate the click event handling to a static parent element
                 $(document).on("click", ".close-certificate", function() {
-
                     let selectedCertificate = document.querySelectorAll(".selected-certificate-file-wrapper");
                     for(let i = 0; i < selectedCertificate.length; i++){
                         console.log($(selectedCertificate)[i]);
@@ -596,6 +595,14 @@ $(document).ready(function(){
         }
     }
     checkFrom();
+
+    $(document).on("click", ".close-certificate", function() {
+        let selectedCertificate = document.querySelectorAll(".selected-certificate-file-wrapper");
+        for(let i = 0; i < selectedCertificate.length; i++){
+            console.log($(selectedCertificate)[i]);
+        }
+        $(this).parent().remove();
+    })
 
     $(".btn-update").click(async function(e){
         e.preventDefault();
