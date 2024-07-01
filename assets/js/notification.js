@@ -1,6 +1,7 @@
 $(document).ready(function(){
     
     let idUser = localStorage.getItem("userId");
+    let isAdmin = localStorage.getItem("isAdmin");
 
     let setTime = (response) => {
         for(let i = 0; i < response.length; i++){
