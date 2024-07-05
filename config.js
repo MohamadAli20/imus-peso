@@ -1,6 +1,6 @@
 
 // const config = {
-//     host: 'pesodatabase.cpeies8qgyq4.ap-southeast-1.rds.amazonaws.com',
+//     host: 'peso-database.cpeies8qgyq4.ap-southeast-1.rds.amazonaws.com',
 //     user: 'admin',
 //     password: 'testing123',
 //     database: 'peso_db'

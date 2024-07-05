@@ -54,6 +54,29 @@ class Users{
     notification(req, res){
         res.render('notification');
     }
+    admin_main_dashboard(req, res){
+        res.render("admin_main_dashboard");
+    }
+    get_not_read_notification(req, res){
+        model.select_not_read_notification(req.body.user_id, req.body.is_admin, (error, result) => {
+            if(error){
+                console.error(error);
+            }
+            if(result){
+                res.json(result);
+            }
+        });
+    }
+    read_notification(req, res){
+        model.update_notification(req.body.user_id, req.body.is_admin, (error, message) => {
+            if(error){
+                console.error(error);
+            }
+            if(message){
+                res.json(message);
+            }
+        });
+    }
     get_user_by_id(req, res){
         let id = req.body.id;
         model.select_user_by_id(id, (error, result) => {

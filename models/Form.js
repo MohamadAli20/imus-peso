@@ -65,10 +65,12 @@ class Form{
                     let username = row[0].username
                     // insert activity to the notification
                     this.connection.query(
-                        'INSERT INTO notifications(user_id, description, created_at) VALUES(?,?,?)',
+                        'INSERT INTO notifications(user_id, description, user_mark_as_read, admin_mark_as_read, created_at) VALUES(?,?,?,?,?)',
                         [
                             info.userId,
                             `${username}'s application status is ${info.newStatus}`,
+                            0,
+                            0,
                             today
                         ],
                         (error) => {
@@ -306,10 +308,12 @@ class Form{
 
         // insert activity to the notification
         this.connection.query(
-            'INSERT INTO notifications(user_id, description, created_at) VALUES(?,?,?)',
+            'INSERT INTO notifications(user_id, description, user_mark_as_read, admin_mark_as_read, created_at) VALUES(?,?,?,?,?)',
             [
                 info.id,
                 `${info.username} submitted application successfully.`,
+                0,
+                0,
                 today
             ],
             (error) => {
@@ -536,10 +540,12 @@ class Form{
 
         // insert activity to the notification
         this.connection.query(
-            'INSERT INTO notifications(user_id, description, created_at) VALUES(?,?,?)',
+            'INSERT INTO notifications(user_id, description, user_mark_as_read, admin_mark_as_read, created_at) VALUES(?,?,?,?,?)',
             [
                 info.id,
                 `${info.username} updated application successfully.`,
+                0,
+                0,
                 today
             ],
             (error) => {

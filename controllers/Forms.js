@@ -90,6 +90,7 @@ class Forms{
         });
     }
     get_all_application(req, res){
+        console.log(req.body);
         model.select_all_application(req.body, (error, row) => {
             if(error){
                 console.error(error);
@@ -713,6 +714,12 @@ class Forms{
                     // console.log("Margin: ", contentMargin)
                     contentMargin += 18;
                 }
+                let total = 0;
+                for(let key in row){
+                    total += row[key].total_records;
+                }
+                let totalApplicant= `TOTAL APPLICANTS: ${total}`;
+                doc.fontSize(12).font('Helvetica-Bold').text(totalApplicant, 250, contentMargin+26);
 
                 // Pad month and day with leading zeros if necessary
                 const formattedMonth = monthFile < 10 ? `0${monthFile}` : monthFile;

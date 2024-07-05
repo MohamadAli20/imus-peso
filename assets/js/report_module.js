@@ -79,7 +79,10 @@ $(document).ready(function(){
                         break;
                     }
                 }
-
+                let total = 0;
+                for(let key in response){
+                    total += response[key].total_records;
+                }
                 $(".total-applicant-number").text(response.length);
                 if (response.length > 0) {
                     let dayCol = document.querySelectorAll("tbody tr th");

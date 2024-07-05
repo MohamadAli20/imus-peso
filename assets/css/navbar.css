@@ -170,6 +170,19 @@ body{
 }
 #notifLogo{
     cursor: pointer;
+    position: relative;
+    /* border: 1px solid black; */
+}
+.total_unread_notif{
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 100px;
+    right: -10px;
+    top: -10px;
+    padding: 0 5px;
+    font-size: 12px;
+    display: none;
 }
 .div-notif{
     cursor: pointer;

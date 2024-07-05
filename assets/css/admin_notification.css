@@ -1,5 +1,7 @@
 .notification-title{
-    position: fixed;
+    position: absolute;
+    /* background-color: white !important; */
+    /* z-index: 5; */
 }
 .notification-wrapper{
     position: absolute;
@@ -9,4 +11,18 @@
 }
 .notification-body{
     margin-top: 5%;
+}
+.notification-link{
+    position: relative;
+}
+.total_unread_notif{
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 100px;
+    right: 20px;
+    /* top: -10px; */
+    padding: 0 5px;
+    font-size: 13px;
+    display: none;
 }

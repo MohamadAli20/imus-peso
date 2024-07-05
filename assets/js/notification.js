@@ -67,15 +67,41 @@ $(document).ready(function(){
     let showNotif = false;
     $("#notifLogo").click(function(){
         if(!showNotif){
-            getNotification();
             $(".notification-container").css("display", "block");
-            showNotif = true;
             $(".account-info-container").css("display", "none");
+            getNotification();
+            showNotif = true;
+
+            $.ajax({
+                url: '/read_notification',
+                type: 'POST',
+                data: { user_id: idUser, is_admin: isAdmin },
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            })
         }
         else if(showNotif){
             $(".notification-container").css("display", "none");
             showNotif = false;
         }
+    });
+    // for notification page of admin
+    $(".notification-link").click(function(){
+        $.ajax({
+            url: '/read_notification',
+            type: 'POST',
+            data: { user_id: idUser, is_admin: isAdmin },
+            success: function(response){
+                console.log(response);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
     });
 
     let notifWhite = "/images/notification.svg"; 
@@ -118,4 +144,25 @@ $(document).ready(function(){
         }
     });
     
+    if(isAdmin !== null){
+        // Get all unread notications
+        $.ajax({
+            url: '/get_unread_notif',
+            type: 'POST',
+            data: { user_id: idUser, is_admin: isAdmin },
+            success: function(response){
+                let totalUnreadNotif = response.length;
+                if(totalUnreadNotif > 0){
+                    $(".total_unread_notif").text(totalUnreadNotif);
+                    $(".total_unread_notif").show();
+                }
+                else{
+                    $(".total_unread_notif").show();
+                }
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
 })

@@ -59,4 +59,18 @@ $(document).ready(function(){
             }
         })
     }
+    let idUser = null;
+    // Get all unread notications
+    $.ajax({
+        url: '/get_unread_notif',
+        type: 'POST',
+        data: { user_id: idUser, is_admin: isAdmin },
+        success: function(response){
+            console.log(response);
+        },
+        error: function(error){
+            console.log(error);
+        }
+
+    })
 })

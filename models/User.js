@@ -6,9 +6,48 @@ class User{
     constructor(){
         this.connection = mysql.createConnection(config);
     }
+    select_not_read_notification(user_id, is_admin, callback){
+        let query = "SELECT * FROM notifications";
+        if(is_admin == '0'){
+            query += ` WHERE user_mark_as_read = 0 AND user_id =  ${user_id}`;
+        }
+        if(is_admin == '1'){
+            query += ` WHERE admin_mark_as_read = 0`
+        }
+
+        this.connection.query(
+            query,
+            (error, row) => {
+                if(error){
+                    callback(error, null);
+                }
+                if(row){
+                    callback(null, row);
+                }
+            }
+        )
+    }
+    update_notification(user_id, is_admin, callback){
+        let query = "UPDATE notifications ";
+        if(is_admin == '0'){
+            query += ` SET user_mark_as_read = 1 WHERE user_id =  ${user_id}`;
+        }
+        if(is_admin == '1'){
+            query += ` SET admin_mark_as_read = 1`
+        }       
+        this.connection.query(
+            query,
+            (error) => {
+                if(error){
+                    callback(error, null);
+                }
+                else{
+                    callback(null, "Successfully read the notification");
+                }
+            }
+        )
+    }
     update_account_by_id(info, callback) {
-        console.log(info);
-    
         let query = 'UPDATE users SET ';
         let values = [];
         let setClauses = [];
