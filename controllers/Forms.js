@@ -205,6 +205,29 @@ class Forms{
             }
         })
     }
+    count_unemployed(req, res){
+        modelForm.get_all_unemployed((error, total) => {
+            if(error){
+                console.error(error);
+            }
+            if(total){
+                // console.log(total)
+                let val = total[0].count
+                res.json({"total_unemployed": val})
+            }
+        })
+    }
+    count_application_status(req, res){
+        modelForm.get_all_status_application((error, result) => {
+            if(error){
+                console.error(error);
+            }
+            if(result){
+                console.log(result)
+                res.json(result)
+            }
+        })
+    }
     get_top_five_occupation(req, res){
         modelForm.select_top_five_occupation((error, result) => {
             if(error){

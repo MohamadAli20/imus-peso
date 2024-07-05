@@ -582,6 +582,35 @@ class Form{
             }
         );
     }
+    get_all_unemployed(callback){
+        this.connection.query(
+            `SELECT UPPER(JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status'))) AS employment_status, 
+                    COUNT(*) AS count 
+            FROM personal_information
+            WHERE UPPER(JSON_UNQUOTE(JSON_EXTRACT(employment_status, '$.employment_status'))) = UPPER('unemployed');`,
+            (error, rows) => {
+                if (error) {
+                    callback(error, null);
+                } else {
+                    callback(null, rows);
+                }
+            }
+        )
+    }
+    get_all_status_application(callback){
+        this.connection.query(
+            `SELECT COUNT(*) AS total, status
+            FROM applications
+            GROUP BY status`,
+            (error, rows) => {
+                if (error) {
+                    callback(error, null);
+                } else {
+                    callback(null, rows);
+                }
+            }
+        )
+    }
     select_top_five_occupation(callback) {
         this.connection.query(
             `SELECT UPPER(occupation) AS occupation, COUNT(*) AS count

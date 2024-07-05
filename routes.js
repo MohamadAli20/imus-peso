@@ -42,6 +42,8 @@ Router.delete('/delete/:id', FormController.delete);
 Router.get('/count_form', FormController.count_form);
 Router.get('/count_male', FormController.count_male);
 Router.get('/count_female', FormController.count_female);
+Router.get('/count_unemployed', FormController.count_unemployed);
+Router.get('/count_per_status_application', FormController.count_application_status);
 Router.post('/get_all_application', FormController.get_all_application);
 Router.get('/get_top_five_occupation', FormController.get_top_five_occupation);
 Router.get('/get_top_five_location', FormController.get_top_five_location);

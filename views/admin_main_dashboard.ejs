@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="/css/sidebar_admin.css">
     <link rel="stylesheet" href="/css/admin_notification.css">
     <link rel="stylesheet" href="/css/loginModal.css">
-    <link rel="stylesheet" href="/css/admin_data_analytics.css">
     <link rel="stylesheet" href="/css/account_information.css">
+    <link rel="stylesheet" href="/css/admin_main_dashboard.css">
     <script src="/js/loginModal.js"></script>
-    <script src="/js/admin_data_analytics.js"></script>
+    <script src="/js/admin_main_dashboard.js"></script>
+    <!-- <script src="/js/admin_data_analytics.js"></script> -->
     <script src="/js/removeAccount.js"></script>
     <script src="/js/notification.js"></script>
     <script src="/js/account_setting.js"></script>
-    <script src="/js/admin_main_dashboard.js"></script>
 </head>
 <body class="container-fluid">
     <div class="row">
@@ -74,38 +74,70 @@
         </div>
         <!-- Main -->   
         <main class="col-lg-9">
-            <div class="row">
-                <div class="col-lg-4 border">
-                    TOTAL APPLICANTS <br>
-                    100
+            <div class="row total-container">
+                <div class="col-lg-4">
+                    <div class="border row">
+                        <img class="col-lg-5" src="/images/profile.svg" alt="total applicant icon">
+                        <p class="col-lg-7">TOTAL APPLICANTS <br><span id="total_applicants"></span></p>                        
+                    </div>
                 </div>
-                <div class="col-lg-4 border">
-                    TOTAL MALES <br>
-                    50
+                <div class="col-lg-4">
+                    <div class="border row">
+                        <img class="col-lg-5" src="/images/man.svg" alt="total male icon">
+                        <p class="col-lg-7">TOTAL MALES <br><span id="total_male"></span></p>
+                    </div>
                 </div>
-                <div class="col-lg-4 border">
-                    TOTAL FEMALES <br>
-                    50
-                </div>
-                <div class="col-lg-6 border m-0">
-                    TOTAL APPLICANTS WITH A STATUS OF UNEMPLOYED: <br>
-                    80
-                </div>
-                <div class="col-lg-6 border m-0">
-                    TOTAL APPLICATION ON-PROCESS <br>
-                    33 
-                </div>
-                <div class="col-lg-6 border m-0">
-                    APPLICATION ACCEPTED <br>
-                    33 
-                </div>
-                <div class="col-lg-6 border m-0">
-                    APPLICATION REJECTED <br>
-                    33
+                <div class="col-lg-4">
+                    <div class="border row">
+                        <img class="col-lg-5" src="/images/woman.svg" alt="total female icon">
+                        <p class="col-lg-7">TOTAL FEMALES <br><span id="total_female"></span></p>
+                    </div>
                 </div>
             </div>
-            <!-- <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> -->
-            <!-- <script src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script> -->
+            <div class="row total-container">
+                <div class="col-lg-6">
+                    <div class="border row">
+                        <img class="col-lg-3" src="/images/unemployed.svg" alt="total unemployed icon">
+                        <p class="col-lg-9">TOTAL APPLICANTS WITH A STATUS OF UNEMPLOYED: <br><span id="total_unemployed"></span></p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="border row">
+                        <img class="col-lg-3" src="/images/on-process.svg" alt="On process icon">
+                        <p class="col-lg-9">TOTAL APPLICATION ON-PROCESS <br><span id="total_on_process"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row total-container">
+                <div class="col-lg-6">
+                    <div class="border row">
+                        <img class="col-lg-3" src="/images/accepted.svg" alt="Accepted icon">
+                        <p class="col-lg-9">APPLICATION ACCEPTED <br><span id="total_accepted"></span></p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="border row">
+                        <img class="col-lg-3" src="/images/rejected.svg" alt="Rejected icon">
+                        <p class="col-lg-9">APPLICATION REJECTED <br><span id="total_rejected"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-6">
+                    <div id="topPosition" style="height: 290px; width: 100%;"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="location" style="height: 290px; width: 100%;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="topCompany" style="height: 290px; width: 90%;"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="skillGraph" style="height: 290px; width: 90%;"></div>
+                </div>
+            </div>
             <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
             <script src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
         </main>
