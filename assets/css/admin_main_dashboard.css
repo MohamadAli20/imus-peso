@@ -6,9 +6,32 @@
     display: flex;
     align-items: center;
 }
+.graph-container{
+    margin: 0 auto;
+}
+.graph-container div{
+    border-radius: 10px;
+    width: 49%;
+}
+.graph-container div:first-child{
+    margin-right: 19.7px;
+}
 .total-container div div img{
     /* width: 100px; */
 }
 .total-container div div p{
     text-align: center;
+}
+.total-applicants-container,
+.total-unemployed,
+.total-on-process,
+.total-accepted{
+    background-color: gray;
+    color: white;
+}
+.total-males-container, 
+.total-females-container,
+.total-rejected{
+    background-color: rgb(5, 55, 116); 
+    color: white;
 }
