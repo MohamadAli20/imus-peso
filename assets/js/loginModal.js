@@ -61,7 +61,7 @@ $(document).ready(() => {
                     $("#username").css("display", "block");
                     $("#navLoginBtn").css("display", "none");
                     if(response.isAdmin == 1){
-                        window.location.href = "/account_admin";
+                        window.location.href = "/admin_main_dashboard";
                     }
                     else{
                         window.location.href = "/";
