@@ -16,9 +16,6 @@
 .graph-container div:first-child{
     margin-right: 19.7px;
 }
-.total-container div div img{
-    /* width: 100px; */
-}
 .total-container div div p{
     text-align: center;
 }
@@ -42,5 +39,8 @@
 #total_on_process,
 #total_accepted,
 #total_rejected{
-    font-size: 25px;
+    font-size: 35px;
+    /* border: 1px solid black; */
+    display: block;
+    margin-top: 15px;
 }

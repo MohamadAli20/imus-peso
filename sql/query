@@ -1,1 +1,6 @@
+-- ERROR: Error: ER_MIX_OF_GROUP_FUNC_AND_FIELDS: In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'peso_db.personal_information.employment_status'; this is incompatible with sql_mode=only_full_group_by
+-- SOLUTION:
+-- 1. OPEN THE WAMPSERVER
+-- 2. OPEN THE MYSQL WORKBENCH
+-- 3. CREATE A QUERY AND TYPE THE FOLLOWING COMMAND THEN RUN
 SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
