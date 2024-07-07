@@ -35,3 +35,12 @@
     background-color: rgb(5, 55, 116); 
     color: white;
 }
+#total_applicants, 
+#total_male,
+#total_female,
+#total_unemployed,
+#total_on_process,
+#total_accepted,
+#total_rejected{
+    font-size: 25px;
+}
