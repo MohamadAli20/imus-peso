@@ -236,6 +236,39 @@ class User{
             }
         );
     }
+    select_record(filter, callback){
+        let query = `SELECT personal_information.*, applications.status FROM personal_information 
+            LEFT JOIN applications ON personal_information.id = applications.id
+            `;
+        let value = [];
+
+        if(filter.gender !== ""){
+            query += " WHERE gender = ?";
+            value.push(filter.gender);
+        }
+        if(filter.employment_status !== ""){
+            query += ` WHERE JSON_EXTRACT(personal_information.employment_status, '$.employment_status') IN (?)`;
+            value.push(filter.employment_status);
+        }
+        if(filter.application_status !== ""){
+            query += ` WHERE applications.status = ?`;
+            value.push(filter.application_status);
+        }
+        query += " ORDER BY personal_information.created_at DESC";
+        this.connection.query(
+            query,
+            value,
+            (error, row) => {
+                if(error){
+                    callback(error, null);
+                }
+                if(row){
+
+                    callback(null, row);
+                }
+            }
+        );
+    }
     count_application(callback){
         this.connection.query(
             "SELECT COUNT(*) AS total FROM personal_information",

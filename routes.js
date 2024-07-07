@@ -34,7 +34,8 @@ Router.post('/update_user_by_id', UserController.upload_image, UserController.up
 Router.get('/check_form/:id', FormController.check_form);
 Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
-Router.get('/get_all_record', UserController.get_all_record);
+Router.post('/get_all_record', UserController.get_all_record);
+Router.post('/download_record', FormController.download_record);
 Router.get('/report', UserController.report);
 Router.get('/view_application/:id', FormController.admin_form);
 Router.get('/admin_apply', UserController.admin_apply);

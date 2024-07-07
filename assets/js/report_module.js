@@ -83,7 +83,7 @@ $(document).ready(function(){
                 for(let key in response){
                     total += response[key].total_records;
                 }
-                $(".total-applicant-number").text(response.length);
+                $(".total-applicant-number").text(total);
                 if (response.length > 0) {
                     let dayCol = document.querySelectorAll("tbody tr th");
                     let applicantCol = document.querySelectorAll(".applicant");

@@ -61,8 +61,7 @@ class Users{
         res.render('record')
     }
     get_all_record(req, res){
-        const page = req.params.page;
-        model.applications(page, (error, row) => {
+        model.select_record(req.body, (error, row) => {
             if(error){
                 console.error(error);
             }

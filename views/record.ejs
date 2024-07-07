@@ -78,16 +78,19 @@
         <!-- Main -->   
         <main class="col-lg-9">
             <div class="row mx-3 my-4">
-                <div class="col-lg-4">
-                    <select class="form-control" name="status-application">
+                <div class="col-lg-4 p-0">
+                    <select class="form-control" name="filter-record">
+                        <option value=""  selected>All</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="employed">Employed</option>
-                        <option value="unemloyed">Unemployed</option>
+                        <option value="unemployed">Unemployed</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="rejected">Rejected</option>
                     </select>  
                 </div>
-                <div class="col-lg-1">
-                    <img class="download-icon h-100" src="/images/download.svg" alt="Download icon">
+                <div class="col-lg-1 border download-icon p-0">
+                    <img class="download-icon border m-0" src="/images/download.svg" alt="Download icon">
                 </div>
             </div>
             <div class="row mx-3">
@@ -100,19 +103,11 @@
                             <th scope="col">Date (Submission)</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Employment Status</th>
-                            <th scope="col">Application</th>
+                            <th scope="col">Application Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Juan Dela Cruz</td>
-                            <td>24</td>
-                            <td>June 7, 2024</td>
-                            <td>Male</td>
-                            <td>Unemployed</td>
-                            <td>On-Process</td>
-                        </tr>
+                        <!-- Insert here the data -->
                     </tbody>
                   </table>
             </div>

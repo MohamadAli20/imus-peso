@@ -1,3 +1,13 @@
 table{
     text-align: center;
 }
+.download-icon{
+    width: 35px;
+    margin-left: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+    .download-icon img{
+        /* width: 30px; */
+    }

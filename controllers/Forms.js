@@ -340,6 +340,72 @@ class Forms{
             }
         })
     }
+    download_record(req, res){
+        model.select_record(req.body, (error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                // Create a new PDF document
+                const doc = new PDFDocument({ layout: 'landscape' });
+                const margin = 40;
+
+                let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                const todayFile = new Date();
+                const yearFile = todayFile.getFullYear();
+                const monthFile = todayFile.getMonth();
+                const dayFile = todayFile.getDate();
+                
+                 // Add border around content
+                const startX = margin;
+                const startY = margin;
+                const width = doc.page.width - 2 * margin; // Adjusted width for landscape orientation
+                const height = doc.page.height - 2 * margin; // Adjusted height for landscape orientation
+                doc.rect(startX, startY, width, height);
+
+                // Write content to PDF
+                doc.fontSize(18).text(`Record for ${months[monthFile]} ${yearFile}`, 50, 50);
+
+                let header = "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+                doc.fontSize(12).text(header, 50, 70);
+                
+                let idHeader = "Id";
+                doc.fontSize(12).text(idHeader, 50, 88);
+                let nameHeader = "Name";
+                doc.fontSize(12).text(nameHeader, 100, 88);
+                let ageHeader = "Age";
+                doc.fontSize(12).text(ageHeader, 200, 88);
+                let dateHeader = "Date (Submission)";
+                doc.fontSize(12).text(dateHeader, 250, 88);
+                let genderHeader = "Gender";
+                doc.fontSize(12).text(genderHeader, 400, 88);
+                let empStatusHeader = "Employment Status";
+                doc.fontSize(12).text(empStatusHeader, 470, 88);
+                let appStatusHeader = "Application Status";
+                doc.fontSize(12).text(appStatusHeader, 600, 88);
+                let belowLine = "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+                doc.fontSize(12).text(belowLine, 50, 105);
+                
+                
+                
+                // Pad month and day with leading zeros if necessary
+                const formattedMonth = monthFile < 10 ? `0${monthFile}` : monthFile;
+                const formattedDay = dayFile < 10 ? `0${dayFile}` : dayFile;
+                const filename = `Record-${yearFile}-${formattedMonth}-${formattedDay}.pdf`;
+
+                // Finalize the PDF
+                const buffers = [];
+                doc.on("data", buffers.push.bind(buffers));
+                doc.on("end", function() {
+                    const pdfData = Buffer.concat(buffers);
+                    res.setHeader("Content-Type", "application/pdf");
+                    res.setHeader("Content-Disposition", `attachment; filename=${filename}`);
+                    res.send(pdfData);
+                });
+                doc.end();
+            }
+        });
+    }
     download_form(req, res){
         const id = req.params.id;
 
