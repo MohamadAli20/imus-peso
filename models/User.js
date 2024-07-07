@@ -349,7 +349,7 @@ class User{
         )
     }
     select_all_application(info, callback){
-
+        console.log(info)
         this.connection.query(
             `SELECT 
                 DAY(personal_information.created_at) AS day,

@@ -17,6 +17,7 @@ Router.post('/uploadCertificate', FormController.upload_certificate);
 Router.post('/uploadEligibilityLicense', FormController.upload_eligibility_license);
 Router.get('/notification/:id', FormController.get_notification);
 Router.get('/all_notification', FormController.get_all_notification);
+Router.get('/record', UserController.record);
 Router.post('/update_application_status', FormController.update_application_status);
 Router.get('/peso', UserController.peso);
 Router.get('/about', UserController.about);
@@ -33,6 +34,7 @@ Router.post('/update_user_by_id', UserController.upload_image, UserController.up
 Router.get('/check_form/:id', FormController.check_form);
 Router.get('/dashboard/:page', UserController.dashboard);
 Router.get('/dashboard', UserController.dashboard);
+Router.get('/get_all_record', UserController.get_all_record);
 Router.get('/report', UserController.report);
 Router.get('/view_application/:id', FormController.admin_form);
 Router.get('/admin_apply', UserController.admin_apply);

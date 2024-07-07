@@ -57,6 +57,20 @@ class Users{
     admin_main_dashboard(req, res){
         res.render("admin_main_dashboard");
     }
+    record(req, res){
+        res.render('record')
+    }
+    get_all_record(req, res){
+        const page = req.params.page;
+        model.applications(page, (error, row) => {
+            if(error){
+                console.error(error);
+            }
+            if(row){
+                res.json(row);
+            }
+        });
+    }
     get_not_read_notification(req, res){
         model.select_not_read_notification(req.body.user_id, req.body.is_admin, (error, result) => {
             if(error){
