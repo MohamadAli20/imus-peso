@@ -372,11 +372,11 @@ class Forms{
                 let idHeader = "Id";
                 doc.fontSize(12).text(idHeader, 50, 88);
                 let nameHeader = "Name";
-                doc.fontSize(12).text(nameHeader, 100, 88);
+                doc.fontSize(12).text(nameHeader, 80, 88);
                 let ageHeader = "Age";
-                doc.fontSize(12).text(ageHeader, 200, 88);
+                doc.fontSize(12).text(ageHeader, 220, 88);
                 let dateHeader = "Date (Submission)";
-                doc.fontSize(12).text(dateHeader, 250, 88);
+                doc.fontSize(12).text(dateHeader, 270, 88);
                 let genderHeader = "Gender";
                 doc.fontSize(12).text(genderHeader, 400, 88);
                 let empStatusHeader = "Employment Status";
@@ -385,8 +385,40 @@ class Forms{
                 doc.fontSize(12).text(appStatusHeader, 600, 88);
                 let belowLine = "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------";
                 doc.fontSize(12).text(belowLine, 50, 105);
-                
-                
+
+                let marginTop = 120;
+                for(let i = 0; i < row.length; i++){
+                    // For age
+                    let dobString = row[i].birthdate;
+                    let dob = new Date(dobString);
+                    let today = new Date();
+                    let age = today.getFullYear() - dob.getFullYear();
+                    if(today.getMonth() < dob.getMonth() ||
+                        (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
+                        age--;
+                    }
+                    // For submission date
+                    let dateString = row[i].created_at;
+                    let dateObj = new Date(dateString);
+                    let monthNames = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December"];
+                    let monthName = monthNames[dateObj.getMonth()];
+                    let day = dateObj.getDate();
+                    let year = dateObj.getFullYear();
+                    // For employment status
+                    let employmentStatus = JSON.parse(row[i].employment_status).employment_status;
+                    employmentStatus = employmentStatus.charAt(0).toUpperCase() + employmentStatus.slice(1).toLowerCase();
+                    
+                    console.log(row[i])
+                    doc.fontSize(12).text(row[i].user_id, 50, marginTop);
+                    doc.fontSize(12).text(`${row[i].firstname} ${row[i].surname}`, 80, marginTop);
+                    doc.fontSize(12).text(age, 220, marginTop);
+                    doc.fontSize(12).text(`${monthName} ${day}, ${year}`, 270, marginTop);
+                    doc.fontSize(12).text(row[i].gender.charAt(0).toUpperCase() + row[i].gender.slice(1).toLowerCase(), 400, marginTop);
+                    doc.fontSize(12).text(employmentStatus, 470, marginTop);
+                    doc.fontSize(12).text(row[i].status.charAt(0).toUpperCase() + row[i].status.slice(1).toLowerCase(), 600, marginTop);
+                    marginTop += 20;
+                }
                 
                 // Pad month and day with leading zeros if necessary
                 const formattedMonth = monthFile < 10 ? `0${monthFile}` : monthFile;

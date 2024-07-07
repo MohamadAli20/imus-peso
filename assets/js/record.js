@@ -11,13 +11,13 @@ $(document).ready(function(){
     );
     let genderVal = "";
     let employmentStatusVal = "";
-    let applicationStatusVal = ""
+    let applicationStatusVal = "";
     let retrievedData = () => {
         // Filter table
         $.ajax({
             url: "/get_all_record",
             type: "POST",
-            data: { gender: genderVal, employment_status: employmentStatusVal, application_status: applicationStatusVal},
+            data: { gender: genderVal, employment_status: employmentStatusVal, application_status: applicationStatusVal },
             success: function(response){
                 if(response.length > 0){
                     for(let i = 0; i < response.length; i++){
@@ -83,6 +83,7 @@ $(document).ready(function(){
     retrievedData();
     $("select[name='filter-record']").change(function(){
         let value = $(this).val();
+        console.log(value)
         if(value.toLowerCase() === "male" || value.toLowerCase() === "female"){
             employmentStatusVal = "";
             applicationStatusVal = "";
@@ -120,7 +121,8 @@ $(document).ready(function(){
             type: 'POST',
             data: { 
                 gender: genderVal, 
-                employment_status: employmentStatusVal 
+                employment_status: employmentStatusVal,
+                application_status: applicationStatusVal
             },
             xhrFields: {
                 responseType: 'blob'

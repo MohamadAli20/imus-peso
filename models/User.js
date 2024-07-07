@@ -238,8 +238,7 @@ class User{
     }
     select_record(filter, callback){
         let query = `SELECT personal_information.*, applications.status FROM personal_information 
-            LEFT JOIN applications ON personal_information.id = applications.id
-            `;
+            LEFT JOIN applications ON personal_information.id = applications.id`;
         let value = [];
 
         if(filter.gender !== ""){
