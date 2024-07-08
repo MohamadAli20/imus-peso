@@ -410,7 +410,7 @@ class Forms{
                     employmentStatus = employmentStatus.charAt(0).toUpperCase() + employmentStatus.slice(1).toLowerCase();
                     
                     console.log(row[i])
-                    doc.fontSize(12).text(row[i].user_id, 50, marginTop);
+                    doc.fontSize(12).text(i+1, 50, marginTop);
                     doc.fontSize(12).text(`${row[i].firstname} ${row[i].surname}`, 80, marginTop);
                     doc.fontSize(12).text(age, 220, marginTop);
                     doc.fontSize(12).text(`${monthName} ${day}, ${year}`, 270, marginTop);

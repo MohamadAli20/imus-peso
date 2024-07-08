@@ -26,11 +26,18 @@
     background-color: gray;
     color: white;
 }
-.total-males-container, 
-.total-females-container,
+.total-applicants-container,
+.total-on-process,
+.total-unemployed,
 .total-rejected{
     background-color: rgb(5, 55, 116); 
     color: white;
+}
+.total-males-container{
+    background-color: #ADD8E6;
+}
+.total-females-container{
+    background-color: #FBAED2;
 }
 #total_applicants, 
 #total_male,

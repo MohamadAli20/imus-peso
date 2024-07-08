@@ -8,7 +8,11 @@ $(document).ready(async function(){
         type: "POST",
         data: { month: currentMonth, year: currentYear, gender: "male" },
         success: function(response) {
-           $("#total_applicants").text(response.length);
+            let total = 0;
+            for(let i = 0; i < response.length; i++){
+                total += response[0].total_records;
+            }
+           $("#total_applicants").text(total);
         },
         error: function(error) {
             console.error(error);

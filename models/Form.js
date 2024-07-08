@@ -63,12 +63,22 @@ class Form{
             (error, row) => {
                 if(row){
                     let username = row[0].username
+                    let message = `${username}'s application status is ${info.newStatus}`;
                     // insert activity to the notification
+                    if(info.newStatus === "accepted"){
+                        message += ". Please proceed to show up on Imus Municipality, 2nd floor PESO Office to assist your accepted application." 
+                    }
+                    if(info.newStatus === "rejected"){
+                        message += ". We're sorry to inform you that your application not passed to our assessment hence it's rejected."
+                    }
+                    if(info.newStatus === "on-process"){
+                        message += ". Please wait for further instruction and thank you for submitting your application."
+                    }
                     this.connection.query(
                         'INSERT INTO notifications(user_id, description, user_mark_as_read, admin_mark_as_read, created_at) VALUES(?,?,?,?,?)',
                         [
                             info.userId,
-                            `${username}'s application status is ${info.newStatus}`,
+                            message,
                             0,
                             0,
                             today

@@ -42,7 +42,7 @@ $(document).ready(function(){
                         let tr = document.createElement("tr");
                         let thId = document.createElement("th");
                         thId.setAttribute("scope", "row");
-                        thId.textContent = response[i].user_id;
+                        thId.textContent = i+1;
                         tr.append(thId);
 
                         let name = response[i].firstname + " " + response[i].surname;
